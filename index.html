@@ -1,0 +1,52 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Pac-Kart File Testing</title>
+        <link href="index.css" rel="stylesheet"/>
+        <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+        <script defer type="text/javascript" src="index.js"></script>
+        <script defer type="text/javascript" src="Importer/file_import.js"></script>
+        <script defer type="text/javascript" src="Importer/file_check.js"></script>
+        <script defer type="text/javascript" src="Importer/mmvcl_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/hwvx_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/hwvx_proto_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/pmwr_xbox_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/pmwr_ps2_demo_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/pmwr_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/svtrb_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/bcc_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/bmg_testing.js"></script>
+        <script defer type="text/javascript" src="Importer/functions.js"></script>
+    </head>
+    <body>
+        <style id="debug_style">
+            [data-debug="true"] {
+                display: none;
+            }
+        </style>
+        <div id="main_page"></div>
+        <section id="main" style="margin: 2%;">
+            <input style='display:none;' id="file_input" type="file">
+            <div style="/* display: flex; */height: 90%;">
+                <div id="main_program" style="flex: 1 1 0%;">
+                    <div class="data_types_bar noselect" style="
+                  border-left: solid 1px #9d9898;
+                  border-top: solid 1px #9d9898;
+                  border-right: solid 1px #9d9898;
+                  width: 100%;box-sizing:border-box;white-space:nowrap;">
+                        <span style="display: inline-block;width: 49.035%" id="data_types_bar">
+                            <label for='file_input' data-is_active="false" class="data_bar_options" id="main_program__audio_button">Open File(s)</label>
+                        </span>
+                        <span id="_2nd_data_bar">
+                            <input id="show_debug" type="checkbox" style="">
+                            <label for="show_debug" style="padding:1%;">find lost offets</label>
+                        </span>
+                    </div>
+                    <div style="white-space:nowrap" id="outer_program"><div class='noselect' style="padding-left:5px;width: 30%;height: 100%;overflow-y: auto;border: solid 1px #9d9898;display: inline-block;height:100%;box-sizing: border-box;" id="file_viewer" tabindex="0"></div><div style="background: #f2f2f2;width:0.5%;cursor: col-resize;display: inline-block;height:100%;" id="drag_bar"></div><div id="file_editor" style="width:69.5%;border:solid 1px #9d9898;display: inline-block;height:100%;overflow:auto;box-sizing: border-box;"></div>
+                    </div>
+                    <div class="bar" style="border-left:solid 1px #9d9898;border-bottom:solid 1px #9d9898;border-right:solid 1px #9d9898;width: 100%;box-sizing:border-box;"></div>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
