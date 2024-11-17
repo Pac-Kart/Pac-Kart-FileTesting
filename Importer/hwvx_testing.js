@@ -50,7 +50,7 @@ function get_hwvx_directory(o, end_offset) {
             array: [],
             pointers: [],
         },
-        print: false
+        print: show_debug.checked
 
     }
 

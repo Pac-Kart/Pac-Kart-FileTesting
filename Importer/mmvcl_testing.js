@@ -24,7 +24,8 @@ function x_mm() {
             offset: 0,
             array: [],
             pointers: [],
-        }
+        },
+        print: show_debug.checked
     }
     globalThis.texts = []
     globalThis.fonts = []

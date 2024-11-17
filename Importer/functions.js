@@ -23,7 +23,6 @@ function get_string(begin, end, is_no_end) {
     return temp_string
 }
 
-
 function _Tx(array, f, n, offset, is_3) {
 
     if (array === undefined) {
@@ -64,11 +63,11 @@ function array_log(array_index=0) {
     let afterifhtml = ''
 
     if (temp_array__[0]?.line === 0) {
-        if (temp_array__[0].lost_offsets!== "") {
-        print_totals()
-        }else{
-        file_editor.innerHTML = "no values found"
-        file_viewer.innerHTML = "no values found"
+        if (temp_array__[0].lost_offsets !== "") {
+            print_totals()
+        } else {
+            file_editor.innerHTML = "no values found"
+            file_viewer.innerHTML = "no values found"
         }
         return
     }
@@ -77,11 +76,17 @@ function array_log(array_index=0) {
         let prev_sec_array = temp_array__[array_index].name.split('_')
         let prev_sec = prev_sec_array
         let last_entry = prev_sec_array[prev_sec_array.length - 1]
+        let istype = ''
+        if (last_entry.split('t')?.length > 1) {
+            istype = "t" + last_entry.split('t')[1]
+            last_entry = last_entry?.split('t')[0]
+        }
+
         prev_sec.pop()
         prev_sec = prev_sec.join('_')
         ismultilinked = `
 <p>multi linked to by:<br>
-    <a href="#${prev_sec}">${prev_sec} [${last_entry}] </a><br>
+    <a href="#${prev_sec}">${prev_sec} [${last_entry}]${istype} </a><br>
 </p>`
     }
     let last = 0
@@ -142,6 +147,7 @@ function array_log(array_index=0) {
         if (temp_array__[array_index].offset_check.multilink.length) {
             let prev_sec_array = temp_array__[array_index].name.split('_')
             let last_entry = prev_sec_array[prev_sec_array.length - 1]
+            last_entry = last_entry.split('t')[0]
 
             afterifhtml += `\n
 
@@ -205,6 +211,8 @@ function array_log(array_index=0) {
         if (temp_array__[array_index].offset_check.multilink.length) {
             let prev_sec_array = temp_array__[array_index].name.split('_')
             let last_entry = prev_sec_array[prev_sec_array.length - 1]
+            last_entry = last_entry.split('t')[0]
+
 
             afterifhtml += `
 // ä(${temp_array__[array_index].name}, u32(o + ${last_entry}), get_${temp_array__[array_index].name})
@@ -237,14 +245,49 @@ function array_log(array_index=0) {
     if (afterifhtml !== "") {
         afterifhtml = "\n" + afterifhtml
     }
+    let switchhtml = ''
+    if (temp_array__[array_index].switch.array.length) {
+        let switchhtmlfuntions = ''
+        switchhtml = `
+        switch (${temp_array__[array_index].switch.type.name}(o + ${temp_array__[array_index].switch.type_offset})) {`
 
-    let printall = if_section + u_sec + afterifhtml
+        for (let i = 0; i < temp_array__[array_index].switch.array.length; i++) {
+            switchhtml += `
+        case ${temp_array__[array_index].switch.array[i]}:
+            ö(u32(o + ${temp_array__[array_index].switch.offset_val}), get_${temp_array__[array_index].name}_${temp_array__[array_index].switch.offset_val}t${temp_array__[array_index].switch.array[i]})
+            break`
+            switchhtmlfuntions += `function get_${temp_array__[array_index].name}_${temp_array__[array_index].switch.offset_val}t${temp_array__[array_index].switch.array[i]}(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}\n`
+        }
+
+        if (temp_array__[array_index].switch.no_val_array.length) {
+            for (let i = 0; i < temp_array__[array_index].switch.no_val_array.length; i++) {
+                if (temp_array__[array_index].switch.no_val_array[i] === 0) {} else {
+                    switchhtml += `
+        case ${temp_array__[array_index].switch.array[i]}:
+        // not offset value seen? ${temp_array__[array_index].switch.no_val_array[i]}
+            break`
+                }
+            }
+        }
+
+        switchhtml += `
+        default:
+            if (u32(o + ${temp_array__[array_index].switch.offset_val})) {
+                 console.log(o)
+             }
+    `
+
+        switchhtml += '}\n\n' + switchhtmlfuntions
+
+        // console.log(switchhtml)
+    }
+
+    let printall = if_section + u_sec + switchhtml + afterifhtml
 
     let clickstructhtml = ''
 
     let struct_html = ''
     let structbox = ''
-
 
     if (temp_array__[array_index].struct_check.length) {
         let struct_sizes = temp_array__[array_index].struct_amount.sort(function(a, b) {
@@ -279,7 +322,7 @@ function array_log(array_index=0) {
             last = divisible(last, 4)
 
             structbox = `
-                <div style="height:50%;overflow:scroll;">
+                <div style="height:100%;overflow:scroll;">
                 ${generate_table_head()} ${log_3html} ${generate_table_end()}
             </div>`
         } else {
@@ -378,12 +421,16 @@ function array_log(array_index=0) {
         console.log(`PATCHERS %c${patchhtml}`, 'color:red')
     }
 
-    if (last === 0) {
+    // if (last === 0) {
+    if (temp_array__[array_index].struct_amount.length) {
         if (temp_array__[array_index].struct_amount.length) {
-        let consolehtml = temp_array__[array_index].console?.replaceAll('\n',"<br>")
-        consolehtml = consolehtml?.replaceAll('P_O',"<a class='s'>P_O</a>")
+            let consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
+            consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
 
-        file_editor.innerHTML = `
+            consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
+        Files Seen: [ ${temp_array__[[array_index]]?.files} ]`
+
+            file_editor.innerHTML = `
         <div style="height:66%;overflow:scroll;">
             <div stlye="padding:1%;">${consolehtml}<br><br>
             </div>
@@ -395,20 +442,24 @@ function array_log(array_index=0) {
 
         }
     } else {
-        let verticalhtml = vertical?.replaceAll('\n',"<br>")
-        let consolehtml = temp_array__[array_index].console?.replaceAll('\n',"<br>")
+        let verticalhtml = vertical?.replaceAll('\n', "<br>")
+        let consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
         if (temp_array__[0].settings.show_types === true) {
-        consolehtml = consolehtml?.replaceAll('P_Ou32#',"<a class='s'>P_Ou32#</a>")
-        }else{
-        consolehtml = consolehtml?.replaceAll('u32#',"")
-        consolehtml = consolehtml?.replaceAll('u8#',"")
-        consolehtml = consolehtml?.replaceAll('f32#',"")
-        consolehtml = consolehtml?.replaceAll('P_O',"<a class='s'>P_O</a>")
+            consolehtml = consolehtml?.replaceAll('P_Ou32#', "<a class='s'>P_Ou32#</a>")
+        } else {
+            consolehtml = consolehtml?.replaceAll('u32#', "")
+            consolehtml = consolehtml?.replaceAll('u8#', "")
+            consolehtml = consolehtml?.replaceAll('f32#', "")
+            consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
         }
         if (patchhtml !== "") {
-        consolehtml+= `PATCHERS <a class="O">${patchhtml}</a><br>`
+            consolehtml += `PATCHERS <a class="O">${patchhtml}</a><br>`
         }
-        consolehtml+= `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a>`
+        if (switchhtml !== "") {
+            consolehtml += switchhtml?.replaceAll('\n', "<br>")
+        }
+        consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
+        Files Seen: [ ${temp_array__[[array_index]]?.files} ]`
 
         file_editor.innerHTML = `
         <div style="height:66%;overflow:scroll;">
@@ -422,19 +473,19 @@ function array_log(array_index=0) {
             <div style="display:none;" id="verticaltable">${verticalhtml}</div>
         </div>
         `
-        document.getElementById('click_show_types').addEventListener("click",function(){
+        document.getElementById('click_show_types').addEventListener("click", function() {
             if (temp_array__[0].settings.show_types === true) {
                 temp_array__[0].settings.show_types = false;
-            }else{
+            } else {
                 temp_array__[0].settings.show_types = true;
             }
             document.getElementsByClassName('bar')[0]?.childNodes[array_index]?.click()
         })
-        document.getElementById('click_vertical').addEventListener("click",function(){
+        document.getElementById('click_vertical').addEventListener("click", function() {
             if (htmltable.style.display === "block") {
                 htmltable.style.display = "none"
                 verticaltable.style.display = "block"
-            }else{
+            } else {
                 htmltable.style.display = "block"
                 verticaltable.style.display = "none"
             }
@@ -488,10 +539,53 @@ function array_log(array_index=0) {
 
         let _2nd_array = temp_array__[0].line
         document.getElementsByClassName('bar')[0].innerHTML = htmlbuttons
+
+        let sortedlines = temp_array__[0].line.sort(function(a, b) {
+                                    return a - b;
+                                }).toString()
+
+        console.log('sorted lines:',sortedlines)
+
     } else {
         document.getElementsByClassName('bar')[0].innerHTML = `LINE: <a style="color:blue;">${temp_array__[array_index].line.toString()}</a><br><a style="color:red;">${patchhtml}</a>`
     }
     console.log(`LINE: %c ${temp_array__[[array_index]]?.line[0]?.toString()} \n%c${temp_array__[[array_index]]?.name}`, 'color:blue', 'color:cyan')
+
+    // if (temp_array__[array_index].switch.array.length) {
+    //     let switchhtmlfuntions = ''
+    //     let switchhtml = `
+    //     switch (${temp_array__[array_index].switch.type.name}(o + ${temp_array__[array_index].switch.type_offset})) {`
+
+    //     for (let i = 0; i < temp_array__[array_index].switch.array.length; i++) {
+    //         switchhtml += `
+    //     case ${temp_array__[array_index].switch.array[i]}:
+    //         ö(u32(o + ${temp_array__[array_index].switch.offset_val}), get_${temp_array__[array_index].name}_${temp_array__[array_index].switch.offset_val}t${temp_array__[array_index].switch.array[i]})
+    //         break`
+    //         switchhtmlfuntions += `function get_${temp_array__[array_index].name}_${temp_array__[array_index].switch.offset_val}t${temp_array__[array_index].switch.array[i]}(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}\n`
+    //     }
+
+    //     if (temp_array__[array_index].switch.no_val_array.length) {
+    //         for (let i = 0; i < temp_array__[array_index].switch.no_val_array.length; i++) {
+    //             if (temp_array__[array_index].switch.no_val_array[i] === 0) {} else {
+    //                 switchhtml += `
+    //     case ${temp_array__[array_index].switch.array[i]}:
+    //     // not offset value seen? ${temp_array__[array_index].switch.no_val_array[i]}
+    //         break`
+    //             }
+    //         }
+    //     }
+
+    //     switchhtml += `
+    //     default:
+    //         if (u32(o + ${temp_array__[array_index].switch.offset_val})) {
+    //              console.log(o)
+    //          }
+    // `
+
+    //     switchhtml += '}\n\n' + switchhtmlfuntions
+
+    //     // console.log(switchhtml)
+    // }
 
     function log(a, i) {
         if (a.a.length) {
@@ -662,31 +756,31 @@ function array_log(array_index=0) {
     }
 
     function print_totals() {
-    let total = temp_array__[0].totalnotfound
-    if (total.TEX0.max || total.ANIM.max || total.MDL0.max || total.OFF0.max || total.SND0.max) {
-        let totalshtml = ''
-        let totalhtml = printvals('OFF0')
-        totalhtml += printvals('TEX0')
-        totalhtml += printvals('ANIM')
-        totalhtml += printvals('MDL0')
-        totalhtml += printvals('SND0')
-        let OFF0color = is_equal('OFF0')
-        let tex0color = is_equal('TEX0')
-        let ANIMcolor = is_equal('ANIM')
-        let MDL0color = is_equal('MDL0')
-        let SND0color = is_equal('SND0')
-        function printvals(string) {
-            return `%c ${string}: ${total[string].min}/${total[string].max} |`
-        }
-        function is_equal(type) {
-            return total[type].min - total[type].max === 0 ? 'color:blue' : 'color:red'
-        }
+        let total = temp_array__[0].totalnotfound
+        if (total.TEX0.max || total.ANIM.max || total.MDL0.max || total.OFF0.max || total.SND0.max) {
+            let totalshtml = ''
+            let totalhtml = printvals('OFF0')
+            totalhtml += printvals('TEX0')
+            totalhtml += printvals('ANIM')
+            totalhtml += printvals('MDL0')
+            totalhtml += printvals('SND0')
+            let OFF0color = is_equal('OFF0')
+            let tex0color = is_equal('TEX0')
+            let ANIMcolor = is_equal('ANIM')
+            let MDL0color = is_equal('MDL0')
+            let SND0color = is_equal('SND0')
+            function printvals(string) {
+                return `%c ${string}: ${total[string].min}/${total[string].max} |`
+            }
+            function is_equal(type) {
+                return total[type].min - total[type].max === 0 ? 'color:blue' : 'color:red'
+            }
 
-        console.log(`TOTAL REST: ${totalhtml}`, OFF0color, tex0color, ANIMcolor, MDL0color, SND0color)
-        // temp_array__[array_index].console+= `TOTAL REST: ${totalhtml}`
-        file_editor.innerHTML = totalhtml + temp_array__[0].lost_offsets
-        file_viewer.innerHTML = ""
-    }
+            console.log(`TOTAL REST: ${totalhtml}`, OFF0color, tex0color, ANIMcolor, MDL0color, SND0color)
+            // temp_array__[array_index].console+= `TOTAL REST: ${totalhtml}`
+            file_editor.innerHTML = totalhtml + temp_array__[0].lost_offsets
+            file_viewer.innerHTML = ""
+        }
     }
 
 }
@@ -725,9 +819,8 @@ function ü(mode, array, offset) {
         }
     }
 
-    if (temp_array__[temp_array_index].files.includes(g.file_name)) {
-    }else{
-    temp_array__[temp_array_index].files.push(g.file_name)
+    if (temp_array__[temp_array_index].files.includes(g.file_name)) {} else {
+        temp_array__[temp_array_index].files.push(g.file_name)
     }
 
     let is_first_line = false;
@@ -805,15 +898,15 @@ function ü(mode, array, offset) {
     let consolehtml = html
     if (offset_mid === null) {
         html += '| %cO ' + offset
-        consolehtml+=`<a class="O">O ${offset}</a>`
+        consolehtml += `<a class="O">O ${offset}</a>`
     } else {
         html += '| %cO ' + offset + " %cM " + offset_mid + " %cI " + (offset - offset_mid)
-        consolehtml+=`| <a class="O">O ${offset} </a><a class="M">M ${offset_mid} </a><a class="I">I ${(offset - offset_mid)}</a>`
-}
+        consolehtml += `| <a class="O">O ${offset} </a><a class="M">M ${offset_mid} </a><a class="I">I ${(offset - offset_mid)}</a>`
+    }
     if (is_first_line) {
         console.log(html, 'color:red;', 'color:blue;', 'color:green;')
     }
-    temp_array__[temp_array_index].console+= consolehtml + "<br>"
+    temp_array__[temp_array_index].console += consolehtml + "<br>"
 
     if (mode === 1) {
         if (temp_array__[temp_array_index].subarrays.length === 0) {
@@ -885,14 +978,14 @@ function ü(mode, array, offset) {
         while (!isfound) {
             o += 1
 
-            if (o > buffer.byteLength) {
+            if (o > g.datapack_end) {
                 isfound = true
             }
             if (log_array.p_offset.pointers.includes(check_offset + o)) {
                 if (is_first_line) {
                     console.log(`%cStruct Size: %c ${o} %c| Init: %c ${o}`, 'color:blue;', 'color:red;', 'color:blue;', 'color:red;')
                 }
-                    temp_array__[temp_array_index].console+= `<a class="M">Struct Size: </a><a class="O"> ${o} </a><a class="M"> | Init: </a><a class="O"> ${o}</a><br><br>`
+                temp_array__[temp_array_index].console += `<a class="M">Struct Size: </a><a class="O"> ${o} </a><a class="M"> | Init: </a><a class="O"> ${o}</a><br><br>`
 
                 isfound = true
             }
@@ -1038,6 +1131,13 @@ function generate_temp_array() {
         console: '',
         lost_offsets: '',
         files: [],
+        switch: {
+            type: null,
+            offset_val: null,
+            array: [],
+            no_offset_array: [],
+            no_val_array: [],
+        },
         struct_check: [],
         offset_check: {
             model: [],
@@ -1049,7 +1149,7 @@ function generate_temp_array() {
         },
         struct_amount: 0,
         settings: {
-            show_types:true,
+            show_types: true,
         },
         line: 0,
         lines_clicked: 0,
@@ -1072,7 +1172,7 @@ function ä(a, o, f) {
         if (log_array.ä_array.includes(o + offset_mid)) {
             if (a.includes(o + offset_mid)) {} else {
                 let index = log_array.ä_array.indexOf(o + offset_mid)
-                temp_array__[temp_array_index].console+= `duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]}`
+                temp_array__[0].console += `duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]}<br>`
                 console.log(`duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]}`)
                 console.groupCollapsed('stack')
                 console.log((new Error).stack)
@@ -1989,10 +2089,12 @@ function html_to_eximport(inputHtml) {
 
 }
 function ß(type, o, n) {
-    // if ([3769400].includes(o + n)) {
-    //     var caller_name = (new Error).stack
-    //     console.log(type, o, n, caller_name)
-    // }
+    if (Number(check_offset.value)) {
+        if ([Number(check_offset.value)].includes(o + n)) {
+            var caller_name = (new Error).stack
+            console.log(type, o, n, caller_name)
+        }
+    }
     if (type === "p_model") {
         if (old_log_array.p_model.array.includes((o + n) - offset_mid)) {
             let model_index = old_log_array.p_model.array.indexOf((o + n) - offset_mid)
@@ -2111,7 +2213,7 @@ function logsearch() {
     html += get_log(log_array.p_offset.pointers, 'offsets')
     html += get_log(log_array.p_model.array, 'models')
     html += get_log(log_array.p_texture.array, 'tex0')
-    temp_array__[0].lost_offsets+= html.replaceAll('\n',"<br>")
+    temp_array__[0].lost_offsets += html.replaceAll('\n', "<br>")
     function get_log(rest_of_them, s) {
         let html = s + '\n'
         for (let array_entry of rest_of_them) {
@@ -2148,4 +2250,71 @@ function logsearch() {
 
     console.log(html)
 
+}
+
+function sü(type, type_offset, o, offset_val) {
+    var caller_line = (new Error).stack.split("\n")[2].split('js:')[1].split(':')[0]
+    var caller_name = (new Error).stack.split("\n")[2].split('(')[0].split('at get_')[1]?.trim()
+
+    let temp_array_index;
+    if (temp_array__[0].line === 0) {
+        temp_array__[0].line = [caller_line]
+        temp_array__[0].lines_clicked = [0, 0]
+        temp_array__[0].name = caller_name
+        temp_array_index = 0
+    } else {
+        if (temp_array__[0].line.includes(caller_line)) {
+            temp_array_index = temp_array__[0].line.indexOf(caller_line)
+        } else {
+            temp_array_index = temp_array__[0].line.length
+            temp_array__[0].line.push(caller_line)
+            globalThis.temp_array__.push(generate_temp_array())
+            temp_array__[temp_array_index].name = caller_name
+            temp_array__[temp_array_index].line = [caller_line]
+            temp_array__[temp_array_index].lines_clicked = [0, 0]
+        }
+    }
+
+    if (temp_array__[temp_array_index].files.includes(g.file_name)) {} else {
+        temp_array__[temp_array_index].files.push(g.file_name)
+    }
+
+    let is_first_line = false;
+
+    if (temp_array__[0].line[0] === caller_line) {
+        is_first_line = true;
+    }
+
+    let type_offset_val = type(o + type_offset)
+
+    temp_array__[temp_array_index].switch.type = type
+    temp_array__[temp_array_index].switch.type_offset = type_offset
+    temp_array__[temp_array_index].switch.offset_val = offset_val
+    if (u32(o + offset_val)) {
+        //not 0
+        if (log_array.p_offset.array.includes((o + offset_val) - offset_mid)) {
+            if (temp_array__[temp_array_index].switch.array.includes(type_offset_val)) {} else {
+                temp_array__[temp_array_index].switch.array.push(type_offset_val)
+            }
+        } else {}
+        if (temp_array__[temp_array_index].switch.no_offset_array.includes(type_offset_val)) {} else {
+            temp_array__[temp_array_index].switch.no_offset_array.push(type_offset_val)
+        }
+    } else {
+        if (temp_array__[temp_array_index].switch.no_val_array.includes(type_offset_val)) {} else {
+            temp_array__[temp_array_index].switch.no_val_array.push(type_offset_val)
+        }
+    }
+
+}
+
+
+function print_multilink(s) {
+    let s_replace = s.replaceAll("get_",'')
+    let s_split = s_replace.split('\n')
+    let html = ''
+for (let s_element of s_split) {
+        html+=`<a href="#${s_element.split(" ")[0]}">${s_element}</a><br>\n`
+    }
+    console.log(html)
 }

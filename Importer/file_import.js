@@ -20,7 +20,8 @@ async function input_file(event) {
                         console: 0,
                         version: 0,
                         file_name: file.name,
-                        endian: true
+                        endian: true,
+                        datapack_end: 0,
                     };
 
                     globalThis.buffer = e.target.result
@@ -74,6 +75,7 @@ function f32(o) {
 function choose_game_type() {
 
     let html = '';
+    g.datapack_end = buffer.byteLength;
 
     switch (g.game) {
     case "bigfoot_collision_course":
@@ -85,6 +87,9 @@ function choose_game_type() {
     case "pac_man_world_rally":
         if (g.version === 243) {
             get_x_pmwr_xdx()
+        }
+        if (g.version === 249) {
+            get_x_pmwr_ps2demo()
         }
         break
     case "hot_wheels_velocity_x":

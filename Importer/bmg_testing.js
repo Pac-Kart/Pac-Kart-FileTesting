@@ -37,7 +37,7 @@ function get_bmg_directory(o, end_offset) {
             array: [],
             pointers: [],
         },
-        print: false
+        print: show_debug.checked
 
     }
 
