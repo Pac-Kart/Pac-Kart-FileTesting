@@ -975,10 +975,11 @@ function ü(mode, array, offset) {
         let check_offset = offset - offset_mid
         let isfound = false
         let o = 0
+        let end = g.datapack_end - offset_mid
         while (!isfound) {
             o += 1
 
-            if (o > g.datapack_end) {
+            if (o > end) {
                 isfound = true
             }
             if (log_array.p_offset.pointers.includes(check_offset + o)) {
@@ -2103,7 +2104,8 @@ function ß(type, o, n) {
             }
             if (old_log_array.p_model.array_type[model_index] !== 0) {} else {
                 // ä(hwvx_model, u32(o + n), get_hwvx_model)
-                ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
+                // ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
+                ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
             }
         } else {
             if (o - (offset_mid + u32(o + n)) === false) {
