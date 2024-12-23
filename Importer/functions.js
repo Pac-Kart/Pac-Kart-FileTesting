@@ -2320,3 +2320,34 @@ for (let s_element of s_split) {
     }
     console.log(html)
 }
+function compare_if_2_table(s){
+    let splitarray = s.split('||')
+    splitarray[0] = splitarray[0].replace('if','')
+    splitarray[splitarray.length - 1] = splitarray[splitarray.length - 1].replace('\n','')
+    console.log(splitarray)
+
+    let index_array = []
+    for (let i = 0; i < temp_array__[7].subarrays.length; i++) {
+        index_array.push(temp_array__[7].subarrays[i].number)
+    }
+
+    let found_diff = []
+
+    for (let i = 0; i < splitarray.length; i++) {
+        let not_0 = false 
+        let value = Number(splitarray[0].split('o +')[1].split(')')[0])
+        let tableindex = index_array.indexOf(value)
+
+        let temptable = temp_array__[7].subarrays[tableindex]
+
+        for (let table_array_entry of temptable.a) {
+            if (table_array_entry !== 0) {
+            not_0 = true
+            }
+        }
+        if (not_0) {
+            found_diff.push(value)
+        }
+    }
+    console.log(found_diff)
+}
