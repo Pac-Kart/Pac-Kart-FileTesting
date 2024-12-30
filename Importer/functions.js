@@ -163,7 +163,7 @@ function array_log(array_index=0) {
             if (offarray.length) {
                 afterifhtml += `ö(u32(o + ${offarray[array_index]}), get_${temp_array__[array_index].name}_${offarray[array_index]})\n`
                 for (let i = 1; i < offarray.length; i++) {
-                    afterifhtml += `//ö(u32(o + ${offarray[i]}), get_${temp_array__[array_index].name}_${offarray[i]})\n`
+                    afterifhtml += `ö(u32(o + ${offarray[i]}), get_${temp_array__[array_index].name}_${offarray[i]})\n`
                 }
             }
             afterifhtml += `\n    }\n\n`
@@ -213,7 +213,6 @@ function array_log(array_index=0) {
             let last_entry = prev_sec_array[prev_sec_array.length - 1]
             last_entry = last_entry.split('t')[0]
 
-
             afterifhtml += `
 // ä(${temp_array__[array_index].name}, u32(o + ${last_entry}), get_${temp_array__[array_index].name})
 // globalThis.${temp_array__[array_index].name} = []`
@@ -227,7 +226,7 @@ function array_log(array_index=0) {
             // afterifhtml += `ö(u32(o + ${offarray[0]}), get_${temp_array__[array_index].name}_${offarray[array_index]})\n`
 
             for (let i = 0; i < offarray.length; i++) {
-                afterifhtml += `//ö(u32(o + ${offarray[i]}), get_${temp_array__[array_index].name}_${offarray[i]})\n`
+                afterifhtml += `ö(u32(o + ${offarray[i]}), get_${temp_array__[array_index].name}_${offarray[i]})\n`
             }
             afterifhtml += `\n    }\n\n`
 
@@ -288,6 +287,7 @@ function array_log(array_index=0) {
 
     let struct_html = ''
     let structbox = ''
+    let copy_name = `<a id="click_copytext" class="switch_view">copy</a><br>`
 
     if (temp_array__[array_index].struct_check.length) {
         let struct_sizes = temp_array__[array_index].struct_amount.sort(function(a, b) {
@@ -322,11 +322,11 @@ function array_log(array_index=0) {
             last = divisible(last, 4)
 
             structbox = `
-                <div style="height:100%;overflow:scroll;">
+                <div style="height:100%;overflow:scroll;">${copy_name}
                 ${generate_table_head()} ${log_3html} ${generate_table_end()}
             </div>`
         } else {
-            structbox = ''
+            structbox = `${copy_name} ${temp_array__[array_index].name}`
         }
 
         clickstructhtml = `
@@ -424,8 +424,17 @@ function array_log(array_index=0) {
     // if (last === 0) {
     if (temp_array__[array_index].struct_amount.length) {
         if (temp_array__[array_index].struct_amount.length) {
-            let consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
-            consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
+            let consolehtml;
+            if (globalThis?.packart_hide_console === true) {
+                consolehtml = temp_array__[array_index].console?.length
+            }else{
+            if (temp_array__[array_index].console?.length < temp_array__[array_index].settings.console_limit) {
+                consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
+                consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
+            } else {
+                consolehtml = temp_array__[array_index].console?.length
+            }
+            }
 
             consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
         Files Seen: [ ${temp_array__[[array_index]]?.files} ]`
@@ -439,6 +448,14 @@ function array_log(array_index=0) {
             <div style="display:block;" id="htmltable">${structbox}</div>
         </div>
         `
+            document.getElementById('click_copytext').addEventListener("click", function() {
+
+                if (document.getElementById("click_copytext").getElementsByTagName('Textarea')?.length) {}
+                document.getElementById("click_copytext").innerHTML = `<textarea style="height:50%;" id='click_copytext_if'>${temp_array__[[array_index]]?.name}\n</textarea>`
+                document.getElementById("click_copytext_if").select()
+                document.execCommand('copy')
+                // temp_array__[array_index].lines_clicked[1] = 1
+            })
 
         }
     } else {
@@ -468,7 +485,8 @@ function array_log(array_index=0) {
             </div>
         </div>
         <div style="height:33%;overflow:scroll;">
-            <a id="click_vertical" class="switch_view">Switch View</a>
+            <a id="click_vertical" class="switch_view">Switch View</a> ||
+            <a id="click_copytext" class="switch_view">copy</a>
             <div style="display:block;" id="htmltable">${html}</div>
             <div style="display:none;" id="verticaltable">${verticalhtml}</div>
         </div>
@@ -489,6 +507,14 @@ function array_log(array_index=0) {
                 htmltable.style.display = "block"
                 verticaltable.style.display = "none"
             }
+        })
+        document.getElementById('click_copytext').addEventListener("click", function() {
+
+            if (document.getElementById("click_copytext").getElementsByTagName('Textarea')?.length) {}
+            document.getElementById("click_copytext").innerHTML = `<textarea style="height:50%;" id='click_copytext_if'>${temp_array__[[array_index]]?.name}\n</textarea>`
+            document.getElementById("click_copytext_if").select()
+            document.execCommand('copy')
+            // temp_array__[array_index].lines_clicked[1] = 1
         })
     }
     let total = temp_array__[0].totalnotfound
@@ -541,10 +567,10 @@ function array_log(array_index=0) {
         document.getElementsByClassName('bar')[0].innerHTML = htmlbuttons
 
         let sortedlines = temp_array__[0].line.sort(function(a, b) {
-                                    return a - b;
-                                }).toString()
+            return a - b;
+        }).toString()
 
-        console.log('sorted lines:',sortedlines)
+        console.log('sorted lines:', sortedlines)
 
     } else {
         document.getElementsByClassName('bar')[0].innerHTML = `LINE: <a style="color:blue;">${temp_array__[array_index].line.toString()}</a><br><a style="color:red;">${patchhtml}</a>`
@@ -1151,6 +1177,7 @@ function generate_temp_array() {
         struct_amount: 0,
         settings: {
             show_types: true,
+            console_limit: 1000000,
         },
         line: 0,
         lines_clicked: 0,
@@ -2103,9 +2130,17 @@ function ß(type, o, n) {
                 return
             }
             if (old_log_array.p_model.array_type[model_index] !== 0) {} else {
+                switch (g.game) {
+                case 'snoopy_vs_the_red_baron':
+                    ä(svtrb_model, u32(o + n), get_svtrb_model)
+                    break
+                case 'pac_man_world_rally':
+                    ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
+                    break
+                }
+
                 // ä(hwvx_model, u32(o + n), get_hwvx_model)
                 // ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
-                ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
             }
         } else {
             if (o - (offset_mid + u32(o + n)) === false) {
@@ -2310,20 +2345,19 @@ function sü(type, type_offset, o, offset_val) {
 
 }
 
-
 function print_multilink(s) {
-    let s_replace = s.replaceAll("get_",'')
+    let s_replace = s.replaceAll("get_", '')
     let s_split = s_replace.split('\n')
     let html = ''
-for (let s_element of s_split) {
-        html+=`<a href="#${s_element.split(" ")[0]}">${s_element}</a><br>\n`
+    for (let s_element of s_split) {
+        html += `<a href="#${s_element.split(" ")[0]}">${s_element}</a><br>\n`
     }
     console.log(html)
 }
-function compare_if_2_table(s){
+function compare_if_2_table(s) {
     let splitarray = s.split('||')
-    splitarray[0] = splitarray[0].replace('if','')
-    splitarray[splitarray.length - 1] = splitarray[splitarray.length - 1].replace('\n','')
+    splitarray[0] = splitarray[0].replace('if', '')
+    splitarray[splitarray.length - 1] = splitarray[splitarray.length - 1].replace('\n', '')
     console.log(splitarray)
 
     let index_array = []
@@ -2334,7 +2368,7 @@ function compare_if_2_table(s){
     let found_diff = []
 
     for (let i = 0; i < splitarray.length; i++) {
-        let not_0 = false 
+        let not_0 = false
         let value = Number(splitarray[0].split('o +')[1].split(')')[0])
         let tableindex = index_array.indexOf(value)
 
@@ -2342,7 +2376,7 @@ function compare_if_2_table(s){
 
         for (let table_array_entry of temptable.a) {
             if (table_array_entry !== 0) {
-            not_0 = true
+                not_0 = true
             }
         }
         if (not_0) {

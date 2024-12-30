@@ -117,13 +117,17 @@ function filecheck() {
             }
             break
         case 273:
+            g.game = "snoopy_vs_the_red_baron"
             switch (extension) {
-            case 'xpp':
-                g.game = "snoopy_vs_the_red_baron"
-                g.console = "psp"
+            case 'xps':
+                g.console = "ps2"
                 choose_game_type()
                 break
+            case 'xpp':
+                g.console = "psp"
+                choose_game_type()
             }
+            break
         case 274:
             switch (extension) {
             case 'xpp':

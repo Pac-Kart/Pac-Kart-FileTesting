@@ -5,6 +5,7 @@ const file_viewer = getElementSafely('file_viewer');
 const file_editor = getElementSafely('file_editor');
 const outer_program = getElementSafely('outer_program');
 const show_debug = getElementSafely('show_debug');
+const hide_console = getElementSafely('hide_console_view');
 const drag_bar = getElementSafely('drag_bar');
 const check_offset_input = getElementSafely('check_offset');
 const pk_debug = true
@@ -18,6 +19,9 @@ if (drag_bar) {
 
 if (show_debug) {
     show_debug.addEventListener("click", checkDebugBox);
+}
+if (hide_console) {
+    hide_console.addEventListener("click", check_hide_console);
 }
 
 function handleDragBar(e) {
@@ -55,6 +59,20 @@ function checkDebugBox() {
     const debugStyle = document.getElementById("debug_style");
     if (debugStyle) {
         debugStyle.innerHTML = `[data-debug="true"] { display: ${show_debug.checked ? 'block' : 'none'}; }`;
+    }
+}
+function check_hide_console() {
+    const hide_console_html = document.getElementById("hide_console_view");
+    if (hide_console_html) {
+        if (hide_console_html.checked === true) {
+            console.log(true)
+            globalThis.packart_hide_console = true
+            // document.getElementsByClassName('bar')[0].dataset.index
+        } else {
+            console.log(false)
+            globalThis.packart_hide_console = false
+        }
+        // debugStyle.innerHTML = `[data-debug="true"] { display: ${show_debug.checked ? 'block' : 'none'}; }`;
     }
 }
 

@@ -84,6 +84,9 @@ function choose_game_type() {
     case "bee_movie_game":
         get_x_bmg()
         break
+    case "snoopy_vs_the_red_baron":
+        get_x_svtrb()
+        break
     case "pac_man_world_rally":
         if (g.version === 243) {
             get_x_pmwr_xdx()
@@ -112,9 +115,12 @@ function choose_game_type() {
 document.getElementById("file_input").addEventListener("change", input_file);
 
 document.getElementsByClassName('bar')[0].addEventListener('click', function(e) {
-    if (e?.srcElement?.dataset?.val != undefined) {
+    let val = e?.srcElement?.dataset?.val
+    if (val != undefined) {
         console.clear()
-        array_log(parseInt(e.srcElement.dataset.val))
+        val = parseInt(val)
+        document.getElementsByClassName('bar')[0].dataset.index = val
+        array_log(val)
     }
 
 })
