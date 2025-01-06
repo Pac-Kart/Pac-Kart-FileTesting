@@ -113,7 +113,7 @@ function get_bmg_directory(o, end_offset) {
 
     switch (g.type) {
     case 1:
-        // case 3:
+    case 3:
         // case 4:
         get_bmg_datapack(end_offset + u32(o + 20), u32(o + 16))
         break
