@@ -105,7 +105,6 @@ function get_svtrb_directory(o, end_offset) {
     globalThis.svtrb_car_0_36_64_4_4_0_8_0 = []
     globalThis.svtrb_strange = []
     globalThis.svtrb_unknown_4_4t5 = []
-    globalThis.svtrb_unknown_4_4t2_92_8_8_8_12 = []
     globalThis.svtrb_mysterious_4t9_12_4_48_0 = []
     globalThis.svtrb_unknown_4_4t2_112_0 = []
     globalThis.svtrb_world_4 = []
@@ -129,7 +128,6 @@ function get_svtrb_directory(o, end_offset) {
     globalThis.svtrb_world_68_64 = []
     globalThis.svtrb_world_108_56_56 = []
     globalThis.svtrb_world_108_56_64 = []
-    globalThis.svtrb_world_208_0 = []
     globalThis.svtrb_world_20 = []
     globalThis.svtrb_world_100_64 = []
     globalThis.svtrb_world_36 = []
@@ -149,6 +147,16 @@ function get_svtrb_directory(o, end_offset) {
     globalThis.svtrb_world_176_12_0 = []
     globalThis.svtrb_world_172_192_28_0 = []
     globalThis.svtrb_car_0_36 = []
+    globalThis.svtrb_activator_68 = []
+    globalThis.svtrb_world_176_20_0_16 = []
+    globalThis.svtrb_car_0_80_4 = []
+    globalThis.svtrb_world_176_20_0_32 = []
+    globalThis.svtrb_world_176_20_0_44 = []
+    globalThis.svtrb_activator_148_8_8_8_12 = []
+    globalThis.svtrb_mysterious_4t15 = []
+    globalThis.svtrb_unknown_4_4t5_28_4_0 = []
+globalThis.svtrb_unknown_4_4t2_12_0 = []
+globalThis.svtrb_car_0_112_0 = []
 
     director_offset = o
     g.type = u32(o + 4)
@@ -574,7 +582,8 @@ function get_svtrb_world_12_80_4_0(o) {
 }
 
 function get_svtrb_world_12_80_4_0_36(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) !== 1 || u32(o + 4) !== 50 || u32(o + 8) !== 50 || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_world_12_80_8(o) {
@@ -753,8 +762,8 @@ function get_svtrb_world_92(o) {
 }
 
 function get_svtrb_world_92_64(o) {
-    // if (u8(o + 1) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 36) || u32(o + 40) || u32(o + 60) || u8(o + 64) !== 255 || u8(o + 65) !== 255 || u8(o + 66) !== 255 || u8(o + 67) !== 255 || u32(o + 68) || u32(o + 72) || u32(o + 76))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, u32, 72, u32, 76], o)
+    if (u8(o + 2) || u8(o + 3) || u32(o + 36) || u32(o + 40) || u32(o + 60) || u8(o + 64) !== 255 || u8(o + 65) !== 255 || u8(o + 66) !== 255 || u8(o + 67) !== 255 || u32(o + 68) || u32(o + 72) || u32(o + 76))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, u32, 72, u32, 76], o)
 
     switch (u8(o + 0)) {
     case 0:
@@ -768,7 +777,6 @@ function get_svtrb_world_92_64(o) {
             sü(u8, 0, o, 4)
         }
     }
-
 
     ä(svtrb_model_anims_2, u32(o + 8), get_svtrb_model_anims_2)
 
@@ -788,13 +796,19 @@ function get_svtrb_world_92_64(o) {
 }
 
 function get_svtrb_world_92_64_12(o) {
-    // if (u8(o + 8) !== 255 || u8(o + 9) !== 255 || u8(o + 10) !== 255 || u8(o + 11) !== 255 || u32(o + 16) || u32(o + 20) || u32(o + 24) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || f32(o + 48) !== 1 || f32(o + 52) !== 1 || f32(o + 56) !== 1 || u32(o + 60) || u32(o + 72) || u32(o + 76))
-    ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, f32, 48, f32, 52, f32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
+    if (u32(o + 20) || u32(o + 24) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || f32(o + 48) !== 1 || f32(o + 52) !== 1 || f32(o + 56) !== 1 || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, f32, 48, f32, 52, f32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
 
+    ö(u32(o + 16), get_svtrb_world_92_64_12_16)
     ö(u32(o + 28), get_svtrb_world_92_64_12_28)
     ä(svtrb_unknown_4_4t2_112_0, u32(o + 44), get_svtrb_unknown_4_4t2_112_0)
     ö(u32(o + 68), get_svtrb_world_92_64_12_68)
+    ö(u32(o + 76), get_svtrb_world_92_64_12_76)
 
+}
+function get_svtrb_world_92_64_12_16(o) {
+    if (f32(o + 0) !== -0.5 || u32(o + 4) || f32(o + 8) !== -0.5 || u32(o + 12) || f32(o + 16) !== 0.5 || f32(o + 20) !== 1 || f32(o + 24) !== 0.5 || u32(o + 28) || f32(o + 32) !== 0.5 || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [f32, 0, u32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44], o)
 }
 
 function get_svtrb_world_92_64_12_28(o) {
@@ -807,9 +821,80 @@ function get_svtrb_world_92_64_12_28(o) {
 }
 
 function get_svtrb_world_92_64_12_28_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 1) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 function get_svtrb_world_92_64_12_28_8(o) {
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_world_92_64_12_28_8_0)
+    for (let i = 0; i < u32(o + 4); i++) {
+        ö(u32(o + 8) + (i * 12), get_svtrb_world_92_64_12_28_8_8)
+    }
+
+}
+
+function get_svtrb_world_92_64_12_28_8_0(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 4), get_svtrb_world_92_64_12_28_8_0_4)
+    ö(u32(o + 12), get_svtrb_world_92_64_12_28_8_0_12)
+
+}
+
+function get_svtrb_world_92_64_12_28_8_0_4(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
+}
+function get_svtrb_world_92_64_12_28_8_0_12(o) {
+    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, ], o)
+}
+
+function get_svtrb_world_92_64_12_28_8_8(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
+
+    ö(u32(o + 0), get_svtrb_world_92_64_12_28_8_8_0)
+    for (let i = 0; i < u32(o + 4); i++) {
+        ö(u32(o + 8) + (i * 24), get_svtrb_world_92_64_12_28_8_8_8)
+    }
+
+}
+
+function get_svtrb_world_92_64_12_28_8_8_0(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 4), get_svtrb_world_92_64_12_28_8_8_0_4)
+    ö(u32(o + 12), get_svtrb_world_92_64_12_28_8_8_0_12)
+
+}
+
+function get_svtrb_world_92_64_12_28_8_8_0_4(o) {
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, ], o)
+}
+function get_svtrb_world_92_64_12_28_8_8_0_12(o) {
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
+}
+
+function get_svtrb_world_92_64_12_28_8_8_8(o) {
+    if (u32(o + 4) || f32(o + 16) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20], o)
+
+    ö(u32(o + 8), get_svtrb_world_92_64_12_28_8_8_8_8)
+    // ö(u32(o + ), get_svtrb_world_92_64_12_28_8_8_8_12)
+    ä(svtrb_unknown_4_4t2_112_0, u32(o + 12), get_svtrb_unknown_4_4t2_112_0)
+
+    // ö(u32(o + 20), get_svtrb_world_92_64_12_28_8_8_8_20)
+
+}
+
+function get_svtrb_world_92_64_12_28_8_8_8_8(o) {
+ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, ], o)
+}
+function get_svtrb_world_92_64_12_28_8_8_8_12(o) {
+ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, ], o)
+}
+function get_svtrb_world_92_64_12_28_8_8_8_20(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -817,17 +902,23 @@ function get_svtrb_world_92_64_12_68(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_svtrb_world_92_64_12_68_0)
+    ä(svtrb_unknown, u32(o + 0), get_svtrb_unknown)
+}
+
+function get_svtrb_world_92_64_12_76(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_world_92_64_12_76_0)
 
 }
 
-function get_svtrb_world_92_64_12_68_0(o) {
+function get_svtrb_world_92_64_12_76_0(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_world_92_64_20(o) {
-    // if (u32(o + 20))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)*/
 
     for (let i = 0; i < u32(o + 4); i++) {
         ö(u32(o + 8) + (i * 32), get_svtrb_world_92_64_20_8)
@@ -835,8 +926,11 @@ function get_svtrb_world_92_64_20(o) {
     for (let i = 0; i < u32(o + 12); i++) {
         ö(u32(o + 16) + (i * 32), get_svtrb_world_92_64_20_16)
     }
+    ö(u32(o + 20), get_svtrb_world_92_64_20_20)
+
     for (let i = 0; i < u32(o + 24); i++) {
-        ö(u32(o + 28) + (i * 64), get_svtrb_world_92_64_20_28)
+        // ö(u32(o + ) + (i * 64), get_svtrb_world_92_64_20_28)
+        ö(u32(o + 28) + (i * 64), get_svtrb_mysterious)
     }
 
 }
@@ -849,6 +943,10 @@ function get_svtrb_world_92_64_20_16(o) {
     if (u32(o + 12) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
+function get_svtrb_world_92_64_20_20(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_world_92_64_20_28(o) {
     if (u32(o + 12) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
@@ -862,7 +960,7 @@ function get_svtrb_world_92_64_20_28_4(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_world_92_64_20_28_8(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_svtrb_world_92_64_48(o) {
@@ -870,7 +968,8 @@ function get_svtrb_world_92_64_48(o) {
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
 
     for (let i = 0; i < u32(o + 8); i++) {
-        ö(u32(o + 12) + (i * 64), get_svtrb_world_92_64_48_12)
+        // ö(u32(o + ) + (i * 64), get_svtrb_world_92_64_48_12)
+        ö(u32(o + 12) + (i * 64), get_svtrb_mysterious)
     }
 
 }
@@ -888,8 +987,8 @@ function get_svtrb_world_92_64_48_12_4(o) {
 }
 
 function get_svtrb_world_92_64_52(o) {
-    // if (u8(o + 0) !== 1 || u8(o + 1) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 12))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
     ß('p_texture', o, 4)
 
     ö(u32(o + 8), get_svtrb_world_92_64_52_8)
@@ -901,12 +1000,12 @@ function get_svtrb_world_92_64_52_8(o) {
         ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 
-
 function get_svtrb_world_100(o) {
     if (u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 44) !== 1 || u32(o + 68))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, u32, 64, u32, 68, f32, 72, u32, 76], o)
 
-    ä(svtrb_world_100_64, u32(o + 64), get_svtrb_world_100_64)
+    // ä(svtrb_world_100_64, u32(o + 64), get_svtrb_world_100_64)
+    ä(svtrb_strange, u32(o + 64), get_svtrb_strange)
 
 }
 
@@ -928,21 +1027,28 @@ function get_svtrb_world_100_64_4(o) {
 }
 
 function get_svtrb_world_108(o) {
-    // if (u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 44) !== 1 || u32(o + 64) || u32(o + 68) !== 65535 || u32(o + 76))
-    ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71, u8, 72, u8, 73, u8, 74, u8, 75, u32, 76], o)
+    if (u16(o + 4) !== 15 || u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 44) !== 1 || u8(o + 68) !== 255 || u8(o + 69) !== 255 || u8(o + 70) || u8(o + 71) || u8(o + 74) || u8(o + 75) || u32(o + 76))
+        ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71, u8, 72, u8, 73, u8, 74, u8, 75, u32, 76], o)
 
     ä(svtrb_world_108_56, u32(o + 56), get_svtrb_world_108_56)
 
 }
 
 function get_svtrb_world_108_56(o) {
-    // if (u32(o + 0) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 52) || u32(o + 60) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 108) || u8(o + 112) !== 255 || u8(o + 113) !== 255 || u8(o + 114) !== 255 || u8(o + 115) !== 255 || u32(o + 116) || u32(o + 120) || u32(o + 124))
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, f32, 28, f32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124], o)
+    if (u32(o + 0) || u8(o + 5) || u8(o + 7) || u32(o + 16) || u8(o + 37) || u8(o + 39) || u32(o + 52) || u32(o + 60) || u32(o + 68) || u32(o + 72) || u8(o + 87) || u32(o + 108) || u8(o + 112) !== 255 || u8(o + 113) !== 255 || u8(o + 114) !== 255 || u8(o + 115) !== 255 || u32(o + 116) || u32(o + 120) || u32(o + 124))
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, f32, 28, f32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124], o)
+
+    ö(u32(o + 8), get_svtrb_world_108_56_8)
+
+    // ö(u32(o + ), get_svtrb_world_108_56_20) // model 2
+    ä(svtrb_model_anims_2, u32(o + 20), get_svtrb_model_anims_2)
 
     ö(u32(o + 40), get_svtrb_world_108_56_40)
     ä(svtrb_unknown, u32(o + 56), get_svtrb_unknown)
 
     ä(svtrb_interface_72_24t1_4, u32(o + 64), get_svtrb_interface_72_24t1_4)
+    // ö(u32(o + ), get_svtrb_world_108_56_76) 
+    ä(svtrb_unknown, u32(o + 76), get_svtrb_unknown)
 
     ö(u32(o + 88), get_svtrb_world_108_56_88)
     ö(u32(o + 92), get_svtrb_world_108_56_92)
@@ -952,14 +1058,24 @@ function get_svtrb_world_108_56(o) {
     }
 
 }
+function get_svtrb_world_108_56_8(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+}
+
+function get_svtrb_world_108_56_20(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_world_108_56_40(o) {
-    // if (u32(o + 12) || u32(o + 24) || u32(o + 28))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 12) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 4), get_svtrb_world_108_56_40_4)
+    // ö(u32(o + 4), get_svtrb_world_108_56_40_4)
+    sü(u32, 0, o, 4)
+
     ö(u32(o + 16), get_svtrb_world_108_56_40_16)
     ö(u32(o + 20), get_svtrb_world_108_56_40_20)
+    ö(u32(o + 24), get_svtrb_world_108_56_40_24)
 
 }
 
@@ -967,8 +1083,20 @@ function get_svtrb_world_108_56_40_4(o) {
     if (u32(o + 4) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_svtrb_world_108_56_40_4_0)
+    // ö(u32(o + 0), get_svtrb_world_108_56_40_4_0)
+    switch (u32(o + 4)) {
+    case 0:
+        ö(u32(o + 0), get_svtrb_world_108_56_40_4_0t0)
+        break
+    default:
+        if (u32(o + 0)) {
+            sü(u32, 4, o, 0)
+        }
+    }
 
+}
+function get_svtrb_world_108_56_40_4_0t0(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_world_108_56_40_4_0(o) {
@@ -983,14 +1111,23 @@ function get_svtrb_world_108_56_40_20(o) {
     if (u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_svtrb_world_108_56_40_20_0)
+    // ö(u32(o + 0), get_svtrb_world_108_56_40_20_0)
+    //model link ?
+    ä(svtrb_model_link, u32(o + 0), get_svtrb_model_link)
 
 }
 
 function get_svtrb_world_108_56_40_20_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+}
+function get_svtrb_world_108_56_40_24(o) {
+    if (u32(o + 0) !== 30000 || u32(o + 4) !== 2 || u8(o + 8) !== 255 || u8(o + 9) !== 255 || u8(o + 10) !== 255 || u8(o + 11) !== 255 || u8(o + 12) !== 255 || u8(o + 13) !== 255 || u8(o + 14) !== 255 || u8(o + 15) !== 255 || u8(o + 16) !== 255 || u8(o + 17) !== 255 || u8(o + 18) !== 255 || u8(o + 19) !== 255 || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28], o)
 }
 
+function get_svtrb_world_108_56_76(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_world_108_56_88(o) {
     if (u32(o + 0) !== 1 || u32(o + 4) !== 1 || u8(o + 8) || u8(o + 9) !== 64 || u8(o + 10) !== 28 || u8(o + 11) !== 70)
@@ -1023,15 +1160,44 @@ function get_svtrb_world_108_56_92_8(o) {
 }
 
 function get_svtrb_world_108_56_92_8_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 4), get_svtrb_world_108_56_92_8_0_4)
+    ö(u32(o + 12), get_svtrb_world_108_56_92_8_0_12)
+
 }
+
+function get_svtrb_world_108_56_92_8_0_4(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
+}
+function get_svtrb_world_108_56_92_8_0_12(o) {
+if(u8(o+0) !==9 ||u8(o+1) !==147 ||u8(o+2) !==14 ||u8(o+3) !==30 ||u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_world_108_56_92_8_8(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_world_108_56_92_8_8_0)
+    for (let i = 0; i < u32(o + 4); i++) {
+        ö(u32(o + 8) + (i * 24), get_svtrb_world_108_56_92_8_8_8)
+    }
+
+}
+
+function get_svtrb_world_108_56_92_8_8_0(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
+function get_svtrb_world_108_56_92_8_8_8(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20], o)
 }
 
 function get_svtrb_world_108_56_96(o) {
-    // if (u8(o + 0) !== 1 || u8(o + 1) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 12))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) !== 1 || u8(o + 1) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    ß('p_texture', o, 4)
 
     ö(u32(o + 8), get_svtrb_world_108_56_96_8)
 
@@ -1043,8 +1209,8 @@ function get_svtrb_world_108_56_96_8(o) {
 }
 
 function get_svtrb_world_116(o) {
-    // if (u32(o + 8) || u32(o + 12) !== 524289 || u32(o + 16) !== 524289 || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || f32(o + 52) !== 1 || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || f32(o + 72) !== 1 || u32(o + 76) || f32(o + 92) !== 1 || u32(o + 96) || u32(o + 104) || u32(o + 108))
-    ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, f32, 52, u32, 56, u32, 60, u32, 64, u32, 68, f32, 72, u32, 76, u8, 80, u8, 81, u8, 82, u8, 83, f32, 84, u8, 88, u8, 89, u8, 90, u8, 91, f32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
+    if (u16(o + 4) !== 5 || u32(o + 8) || u16(o + 14) !== 8 || u16(o + 18) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || f32(o + 52) !== 1 || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || f32(o + 72) !== 1 || u32(o + 76) || f32(o + 92) !== 1 || u32(o + 96) || u32(o + 104) || u32(o + 108))
+        ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, f32, 52, u32, 56, u32, 60, u32, 64, u32, 68, f32, 72, u32, 76, u8, 80, u8, 81, u8, 82, u8, 83, f32, 84, u8, 88, u8, 89, u8, 90, u8, 91, f32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
     ß('p_model', o, 100)
 }
 function get_svtrb_world_120(o) {
@@ -1363,30 +1529,84 @@ function get_svtrb_world_176_12_0(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172], o)
 
     ö(u32(o + 140), get_svtrb_world_176_12_0_140)
-    ö(u32(o + 148), get_svtrb_world_176_12_0_148)
+    for (let i = 0; i < u32(o + 144); i++) {
+        ö(u32(o + 148) + (i * 4), get_svtrb_world_176_12_0_148)
+    }
     ö(u32(o + 152), get_svtrb_world_176_12_0_152)
-    ö(u32(o + 160), get_svtrb_world_176_12_0_160)
+    for (let i = 0; i < u32(o + 156); i++) {
+        ö(u32(o + 160) + (i * 24), get_svtrb_world_176_12_0_160)
+    }
     ö(u32(o + 164), get_svtrb_world_176_12_0_164)
     ö(u32(o + 168), get_svtrb_world_176_12_0_168)
 
 }
 
-function get_svtrb_world_176_12_0_140(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_svtrb_world_176_12_0_140(o) {// console.log(get_string(o, 0, false))
 }
 function get_svtrb_world_176_12_0_148(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    /*ü(1, [u32, 0], o)*/
+
+    // ö(u32(o + 0), get_svtrb_world_176_12_0_148_0)
+    ä(svtrb_world_176_12_0, u32(o + 0), get_svtrb_world_176_12_0)
+
 }
+
+function get_svtrb_world_176_12_0_148_0(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, ], o)
+}
+
 function get_svtrb_world_176_12_0_152(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) !== 32 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_world_176_12_0_160(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 16) || u32(o + 20))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)
+
+    ö(u32(o + 0), get_svtrb_world_176_12_0_160_0)
+    ö(u32(o + 8), get_svtrb_world_176_12_0_160_8)
+    ö(u32(o + 12), get_svtrb_world_176_12_0_160_12)
+
 }
+
+function get_svtrb_world_176_12_0_160_0(o) {
+    // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    //string
+}
+function get_svtrb_world_176_12_0_160_8(o) {
+    //string
+}
+function get_svtrb_world_176_12_0_160_12(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
+
 function get_svtrb_world_176_12_0_164(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    ö(u32(o + 12), get_svtrb_world_176_12_0_164_12)
+    for (let i = 0; i < u32(o + 16); i++) {
+    ö(u32(o + 20) + (i*8), get_svtrb_world_176_12_0_164_20)
+    }
+
+}
+
+function get_svtrb_world_176_12_0_164_12(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+    function get_svtrb_world_176_12_0_164_20(o) {
+ü(1, [u32, 0, u32, 4], o)
+}
+
 function get_svtrb_world_176_12_0_168(o) {
+    if (u32(o + 0) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 8), get_svtrb_world_176_12_0_168_8)
+
+}
+
+function get_svtrb_world_176_12_0_168_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -1402,28 +1622,52 @@ function get_svtrb_world_176_20_0(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
     ß('p_texture', o, 20)
 
-    // ä(svtrb_world_176_20_0, u32(o + 0), get_svtrb_world_176_20_0)
-    // globalThis.svtrb_world_176_20_0 = []
+    // ö(u32(o + 16), get_svtrb_world_176_20_0_16)
+    ä(svtrb_interface_72_24t1_4, u32(o + 16), get_svtrb_interface_72_24t1_4)
 
-    ö(u32(o + 16), get_svtrb_world_176_20_0_16)
-    ö(u32(o + 32), get_svtrb_world_176_20_0_32)
-    ö(u32(o + 44), get_svtrb_world_176_20_0_44)
+    // ö(u32(o + 32), get_svtrb_world_176_20_0_32)
+    // ä(svtrb_world_176_20_0_32, u32(o + 32), get_svtrb_world_176_20_0_32)
+    ä(svtrb_world_176_4_0, u32(o + 32), get_svtrb_world_176_4_0)
+
+    // ö(u32(o + 44), get_svtrb_world_176_20_0_44)
+    // ä(svtrb_world_176_20_0_44, u32(o + ), get_svtrb_world_176_20_0_44)
+    ä(svtrb_world_108_56, u32(o + 44), get_svtrb_world_108_56)
 
 }
 
 function get_svtrb_world_176_20_0_16(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 function get_svtrb_world_176_20_0_32(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u32, 52, u32, 56, u32, 60, ], o)
 }
 function get_svtrb_world_176_20_0_44(o) {
+    if (u32(o + 0) || u32(o + 4) !== 1 || u32(o + 12) || u32(o + 16) || u32(o + 20) || f32(o + 24) !== 12 || u32(o + 28) || f32(o + 32) !== 10 || u32(o + 36) !== 65546 || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 68) || u32(o + 72) || u32(o + 76) || f32(o + 80) !== 3000 || u32(o + 84) !== 65792 || u32(o + 88) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u8(o + 112) !== 255 || u8(o + 113) !== 255 || u8(o + 114) !== 255 || u8(o + 115) !== 255 || u32(o + 116) || u32(o + 120) || u32(o + 124))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124], o)
+
+    // ä(svtrb_world_176_20_0_44, u32(o + 44), get_svtrb_world_176_20_0_44)
+    // globalThis.svtrb_world_176_20_0_44 = []
+
+    ö(u32(o + 8), get_svtrb_world_176_20_0_44_8)
+    ö(u32(o + 64), get_svtrb_world_176_20_0_44_64)
+    ö(u32(o + 92), get_svtrb_world_176_20_0_44_92)
+
+}
+
+function get_svtrb_world_176_20_0_44_8(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_world_176_20_0_44_64(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_world_176_20_0_44_92(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_world_176_28(o) {
     /*ü(1, [u32, 0], o)*/
 
+    globalThis.svtrbtemptype = 28
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1433,28 +1677,106 @@ function get_svtrb_world_176_28_0(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ö(u32(o + 8), get_svtrb_world_176_28_0_8)
-    ö(u32(o + 12), get_svtrb_world_176_28_0_12)
-    ö(u32(o + 20), get_svtrb_world_176_28_0_20)
-    ö(u32(o + 28), get_svtrb_world_176_28_0_28)
+    switch (svtrbtemptype) {
+    case 28:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t28)
+        break
+    case 36:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t36)
+        break
+    case 44:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t44)
+        break
+    case 60:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t60)
+        break
+    case 68:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t68)
+        break
+    case 84:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t84)
+        break
+    case 92:
+        ö(u32(o + 12), get_svtrb_world_176_28_0_12t92)
+        break
+    default:
+        console.log(svtrbtemptype)
+    }
+    // ö(u32(o + 12), get_svtrb_world_176_28_0_12)
+    for (let i = 0; i < u32(o + 16); i++) {
+        ö(u32(o + 20), get_svtrb_world_176_28_0_20)
+    }
+    for (let i = 0; i < u32(o + 24); i++) {
+        ö(u32(o + 28) + (i * 24), get_svtrb_world_176_28_0_28)
+    }
 
 }
 
-function get_svtrb_world_176_28_0_8(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_svtrb_world_176_28_0_8(o) {// console.log(get_string(o, 0, false))
 }
-function get_svtrb_world_176_28_0_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_svtrb_world_176_28_0_12t28(o) {
+    ü(1, [f32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, ], o)
+}
+function get_svtrb_world_176_28_0_12t36(o) {
+    ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, ], o)
+}
+function get_svtrb_world_176_28_0_12t44(o) {
+if(u32(o+0) ||u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_world_176_28_0_12t60(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
+function get_svtrb_world_176_28_0_12t68(o) {
+    ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
+}
+function get_svtrb_world_176_28_0_12t84(o) {
+    ü(1, [u32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, ], o)
+}
+function get_svtrb_world_176_28_0_12t92(o) {
+    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, ], o)
 }
 function get_svtrb_world_176_28_0_20(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 4), get_svtrb_world_176_28_0_20_4)
+    // ö(u32(o + 8), get_svtrb_world_176_28_0_20_8)
+    sü(u32, 0, o, 8)
+
+
+}
+
+function get_svtrb_world_176_28_0_20_4(o) {
+// console.log(get_string(o, 0, false))
+}
+function get_svtrb_world_176_28_0_20_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_world_176_28_0_28(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)*/
+
+    ö(u32(o + 0), get_svtrb_world_176_28_0_28_0)
+    ö(u32(o + 8), get_svtrb_world_176_28_0_28_8)
+    // ö(u32(o + 12), get_svtrb_world_176_28_0_28_12)
+    sü(u32, 4, o, 12)
+    
+}
+
+function get_svtrb_world_176_28_0_28_0(o) {
+// console.log(get_string(o, 0, false))
+}
+function get_svtrb_world_176_28_0_28_8(o) {
+// console.log(get_string(o, 0, false))
+}
+function get_svtrb_world_176_28_0_28_12(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_world_176_36(o) {
     /*ü(1, [u32, 0], o)*/
 
+    globalThis.svtrbtemptype = 36
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1462,13 +1784,14 @@ function get_svtrb_world_176_36(o) {
 function get_svtrb_world_176_44(o) {
     /*ü(1, [u32, 0], o)*/
 
+    globalThis.svtrbtemptype = 44
     ö(u32(o + 0), get_svtrb_world_176_28_0)
-
 }
 
 function get_svtrb_world_176_60(o) {
     /*ü(1, [u32, 0], o)*/
 
+    globalThis.svtrbtemptype = 60
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1477,6 +1800,7 @@ function get_svtrb_world_176_68(o) {
     if (u32(o + 0) !== 8642400)
         ü(1, [u32, 0], o)
 
+    globalThis.svtrbtemptype = 68
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1485,6 +1809,7 @@ function get_svtrb_world_176_84(o) {
     /*ü(1, [u32, 0], o)*/
 
     // ö(u32(o + 0), get_svtrb_world_176_84_0)
+    globalThis.svtrbtemptype = 84
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1497,6 +1822,7 @@ function get_svtrb_world_176_92(o) {
     /*ü(1, [u32, 0], o)*/
 
     // ö(u32(o + 0), get_svtrb_world_176_92_0)
+    globalThis.svtrbtemptype = 92
     ö(u32(o + 0), get_svtrb_world_176_28_0)
 
 }
@@ -1510,26 +1836,6 @@ function get_svtrb_world_208(o) {
 
     ä(svtrb_unknown_4_4t2_112_0, u32(o + 0), get_svtrb_unknown_4_4t2_112_0)
 
-}
-
-function get_svtrb_world_208_0(o) {
-    if (f32(o + 4) !== 1 || f32(o + 12) !== 1 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 70 || f32(o + 40) !== 1 || u32(o + 44) || f32(o + 48) !== 1 || u32(o + 52) || f32(o + 56) !== 1 || u32(o + 60) || u32(o + 64) || u32(o + 80) || u32(o + 84) || f32(o + 88) !== 300 || f32(o + 92) !== 200 || f32(o + 96) !== 1000 || u32(o + 100) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 140))
-        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
-
-    ä(svtrb_unknown, u32(o + 36), get_svtrb_unknown)
-    ä(svtrb_sound_section, u32(o + 76), get_svtrb_sound_section)
-    ö(u32(o + 108), get_svtrb_world_208_0_108)
-
-}
-
-function get_svtrb_world_208_0_36(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
-}
-function get_svtrb_world_208_0_76(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_svtrb_world_208_0_108(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_svtrb_basic(o) {
@@ -1569,18 +1875,14 @@ function get_svtrb_car(o) {
 }
 
 function get_svtrb_car_0(o) {
-if(u32(o+0) ||u32(o+4) ||u32(o+8) ||u32(o+20) ||u32(o+60) ||u32(o+64) ||u32(o+68) ||u32(o+72) ||u32(o+100) ||u32(o+104) ||u32(o+116) ||u32(o+120) ||u32(o+124) )
-ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124], o)
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 20) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 100) || u32(o + 104) || u32(o + 116) || u32(o + 120) || u32(o + 124))
+        ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124], o)
 
-
-ö(u32(o + 24), get_svtrb_car_0_24)
-
-
-
+    ä(svtrb_model_anims_2, u32(o + 24), get_svtrb_model_anims_2)
     ä(svtrb_model_anims_2, u32(o + 28), get_svtrb_model_anims_2)
     ö(u32(o + 32), get_svtrb_car_0_32)
     // ö(u32(o + 36), get_svtrb_car_0_36)
-ä(svtrb_car_0_36, u32(o + 36), get_svtrb_car_0_36)
+    ä(svtrb_car_0_36, u32(o + 36), get_svtrb_car_0_36)
 
     ö(u32(o + 40), get_svtrb_car_0_40)
     ö(u32(o + 44), get_svtrb_car_0_44)
@@ -1595,14 +1897,13 @@ if(u32(o+0) ||u32(o+4) ||u32(o+8) ||u32(o+20) ||u32(o+60) ||u32(o+64) ||u32(o+68
     for (let i = 0; i < u32(o + 92); i++) {
         ö(u32(o + 96) + (i * 4), get_svtrb_car_0_96)
     }
-ö(u32(o + 112), get_svtrb_car_0_112)
+    ö(u32(o + 112), get_svtrb_car_0_112)
 
 }
-function get_svtrb_car_0_24(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
 
 function get_svtrb_car_0_32(o) {
-if(u32(o+16) ||u32(o+20) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 16) || u32(o + 20))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(svtrb_model_link, u32(o + 0), get_svtrb_model_link)
 
@@ -1622,8 +1923,8 @@ function get_svtrb_model_link(o) {
     ö(u32(o + 8), get_svtrb_model_link_8)
     ä(svtrb_model_anims_1, u32(o + 12), get_svtrb_model_anims_1)
     for (let i = 0; i < u32(o + 20); i++) {
-    // ö(u32(o + 24) + (i*64), get_svtrb_model_link_24)
-    ö(u32(o + 24) + (i*64), get_svtrb_mysterious)
+        // ö(u32(o + 24) + (i*64), get_svtrb_model_link_24)
+        ö(u32(o + 24) + (i * 64), get_svtrb_mysterious)
     }
 
     ö(u32(o + 32), get_svtrb_model_link_32)
@@ -1671,7 +1972,8 @@ function get_svtrb_model_link_36(o) {
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_model_link_40(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_model_link_44(o) {
@@ -1733,8 +2035,8 @@ function get_svtrb_car_0_32_12(o) {
 }
 
 function get_svtrb_car_0_32_28(o) {
-if(u32(o+0) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_svtrb_car_0_32_28_4)
     ö(u32(o + 12), get_svtrb_car_0_32_28_12)
@@ -1756,11 +2058,21 @@ function get_svtrb_car_0_32_28_4_4(o) {
     ä(svtrb_model_link, u32(o + 0), get_svtrb_model_link)
 
 }
-function get_svtrb_car_0_32_28_12(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_32_28_12(o) {
+    if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_car_0_32_28_12_4)
+
+}
+
+function get_svtrb_car_0_32_28_12_4(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
 
 function get_svtrb_car_0_36(o) {
-if(u32(o+0) ||u8(o+20) !==255 ||u8(o+21) !==255 ||u8(o+22) !==255 ||u8(o+23) !==255 ||u8(o+28) !==255 ||u8(o+29) !==255 ||u8(o+30) !==255 ||u8(o+31) !==255 ||u8(o+32) !==255 ||u8(o+33) !==255 ||u8(o+34) !==255 ||u8(o+35) !==255 ||u8(o+36) !==255 ||u8(o+37) !==255 ||u8(o+38) !==255 ||u8(o+39) !==255 ||u8(o+44) !==255 ||u8(o+45) !==255 ||u8(o+46) !==255 ||u8(o+47) !==255 ||u32(o+48) ||u32(o+76) )
-ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u8, 36, u8, 37, u8, 38, u8, 39, u8, 40, u8, 41, u8, 42, u8, 43, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
+    if (u32(o + 0) || u8(o + 20) !== 255 || u8(o + 21) !== 255 || u8(o + 22) !== 255 || u8(o + 23) !== 255 || u8(o + 28) !== 255 || u8(o + 29) !== 255 || u8(o + 30) !== 255 || u8(o + 31) !== 255 || u8(o + 32) !== 255 || u8(o + 33) !== 255 || u8(o + 34) !== 255 || u8(o + 35) !== 255 || u8(o + 36) !== 255 || u8(o + 37) !== 255 || u8(o + 38) !== 255 || u8(o + 39) !== 255 || u8(o + 44) !== 255 || u8(o + 45) !== 255 || u8(o + 46) !== 255 || u8(o + 47) !== 255 || u32(o + 48) || u32(o + 76))
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u8, 36, u8, 37, u8, 38, u8, 39, u8, 40, u8, 41, u8, 42, u8, 43, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
 
     ä(svtrb_model_anims_2, u32(o + 52), get_svtrb_model_anims_2)
 
@@ -1798,8 +2110,8 @@ function get_svtrb_car_0_36_64(o) {
 }
 
 function get_svtrb_car_0_36_64_4(o) {
-if(u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 12), get_svtrb_car_0_36_64_4_4)
@@ -1808,22 +2120,21 @@ if(u32(o+12) )
 }
 
 function get_svtrb_car_0_36_64_4_4(o) {
-if(u32(o+8) )
-ü(1, [u32, 0, u32, 4, u32, 8], o)
-
-
-
-
+    if (u32(o + 8))
+        ü(1, [u32, 0, u32, 4, u32, 8], o)
 
     ä(svtrb_model_link, u32(o + 0), get_svtrb_model_link)
-ö(u32(o + 4), get_svtrb_car_0_36_64_4_4_4)
+    ä(svtrb_model_link, u32(o + 4), get_svtrb_model_link)
+    // ö(u32(o + ), get_svtrb_car_0_36_64_4_4_4)
 
 }
-function get_svtrb_car_0_36_64_4_4_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_36_64_4_4_4(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+}
 
 function get_svtrb_car_0_36_72(o) {
-if(u32(o+8) ||u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 64), get_svtrb_mysterious)
@@ -1877,17 +2188,17 @@ function get_svtrb_car_0_40_12_8_0_4(o) {
 }
 
 function get_svtrb_car_0_40_12_8_8(o) {
-/*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
+    /*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
 
     ö(u32(o + 0), get_svtrb_car_0_40_12_8_8_0)
     for (let i = 0; i < u32(o + 4); i++) {
-    ö(u32(o + 8) + (i*24), get_svtrb_car_0_40_12_8_8_8)
+        ö(u32(o + 8) + (i * 24), get_svtrb_car_0_40_12_8_8_8)
     }
 
 }
 
 function get_svtrb_car_0_40_12_8_8_0(o) {
-/*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
 
     ö(u32(o + 4), get_svtrb_car_0_40_12_8_8_0_4)
     ö(u32(o + 12), get_svtrb_car_0_40_12_8_8_0_12)
@@ -1895,8 +2206,8 @@ function get_svtrb_car_0_40_12_8_8_0(o) {
 }
 
 function get_svtrb_car_0_40_12_8_8_0_4(o) {
-if(u32(o+8) ||u32(o+12) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_car_0_40_12_8_8_0_12(o) {
     if (u8(o + 0) !== 182 || u8(o + 1) !== 111 || u8(o + 2) !== 154 || u8(o + 3) !== 18 || u32(o + 4) || u32(o + 8) || u32(o + 12))
@@ -1904,9 +2215,8 @@ function get_svtrb_car_0_40_12_8_8_0_12(o) {
 }
 
 function get_svtrb_car_0_40_12_8_8_8(o) {
-    // if (f32(o + 16) !== 1 || u32(o + 24) || u32(o + 28))
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, u32, 24, u32, 28], o)
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20], o)
+    if (f32(o + 16) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20], o)
 
     ö(u32(o + 8), get_svtrb_car_0_40_12_8_8_8_8)
     ä(svtrb_unknown_4_4t2_112_0, u32(o + 12), get_svtrb_unknown_4_4t2_112_0)
@@ -1914,8 +2224,8 @@ function get_svtrb_car_0_40_12_8_8_8(o) {
 }
 
 function get_svtrb_car_0_40_12_8_8_8_8(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, u32, 28], o)
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 function get_svtrb_car_0_40_12_8_8_8_12(o) {
     if (u32(o + 0) !== 29 || f32(o + 4) !== 1 || f32(o + 8) !== 0.30000001192092896 || f32(o + 12) !== 1 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 70 || u32(o + 36) || f32(o + 40) !== 1 || u32(o + 44) || f32(o + 48) !== 1 || u32(o + 52) || f32(o + 56) !== 1 || u32(o + 60) || u32(o + 64) || f32(o + 68) !== 30 || f32(o + 72) !== 75 || u32(o + 76) || u32(o + 80) || u32(o + 84) || f32(o + 88) !== 300 || f32(o + 92) !== 200 || f32(o + 96) !== 1000 || u32(o + 100) || u32(o + 104) !== 256 || u32(o + 108) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 132) !== 5 || u32(o + 136) !== 10 || u32(o + 140))
@@ -1991,10 +2301,12 @@ function get_svtrb_mysterious(o) {
         ä(svtrb_activator, u32(o + 4), get_svtrb_activator)
         break
     case 13:
-        ö(u32(o + 4), get_svtrb_mysterious_4t13)
+        // ö(u32(o + ), get_svtrb_mysterious_4t13)
+        ä(svtrb_world_108_56, u32(o + 4), get_svtrb_world_108_56)
         break
     case 15:
-        ö(u32(o + 4), get_svtrb_mysterious_4t15)
+        // ö(u32(o + 4), get_svtrb_mysterious_4t15)
+        ä(svtrb_mysterious_4t15, u32(o + 4), get_svtrb_mysterious_4t15)
         break
     default:
         if (u32(o + 4)) {
@@ -2017,7 +2329,8 @@ function get_svtrb_strange(o) {
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 4), get_svtrb_strange_4)
     }
-    ö(u32(o + 28), get_svtrb_strange_28)
+    // ö(u32(o + ), get_svtrb_strange_28)
+    ä(svtrb_sound_controls, u32(o + 28), get_svtrb_sound_controls)
 
 }
 
@@ -2069,7 +2382,7 @@ function get_svtrb_mysterious_4t5_16t0(o) {
 
 }
 function get_svtrb_mysterious_4t5_16t2(o) {
-/*ü(1, [u32, 0], o)*/
+    /*ü(1, [u32, 0], o)*/
     ß('p_texture', o, 0)
 }
 
@@ -2087,13 +2400,13 @@ function get_svtrb_mysterious_4t5_52(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8], o)
 }
 function get_svtrb_mysterious_4t5_56(o) {
-if(u32(o+12) ||u32(o+24) ||u32(o+28) )
-ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 12) || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 
 function get_svtrb_mysterious_4t7(o) {
-    // if (u32(o + 4) || u32(o + 8) !== 1 || u32(o + 16) !== 100 || f32(o + 20) !== 1 || u32(o + 32) !== 1 || u32(o + 40) !== 1 || u32(o + 52) || u32(o + 56) || u32(o + 60))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, f32, 48, f32, 52, u32, 56, u32, 60], o)
+    if (u8(o + 0) || u32(o + 4) || u32(o + 8) !== 1 || u32(o + 16) !== 100 || f32(o + 20) !== 1 || u32(o + 32) !== 1 || u32(o + 40) !== 1 || u32(o + 56) || u32(o + 60))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, f32, 48, f32, 52, u32, 56, u32, 60], o)
 
     ö(u32(o + 12), get_svtrb_mysterious_4t7_12)
     ö(u32(o + 36), get_svtrb_mysterious_4t7_36)
@@ -2137,11 +2450,11 @@ function get_svtrb_mysterious_4t9_4(o) {
 }
 
 function get_svtrb_mysterious_4t9_4_8(o) {
-    if (u8(o + 0) !== 255 || u8(o + 1) !== 255 || u8(o + 2) !== 255 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_mysterious_4t9_4_20(o) {
-    if (u8(o + 0) !== 255 || u8(o + 1) !== 255 || u8(o + 2) !== 255 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -2160,10 +2473,11 @@ function get_svtrb_mysterious_4t9_8_8(o) {
 }
 
 function get_svtrb_mysterious_4t9_12(o) {
-    if (u32(o + 0) !== 1 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ö(u32(o + 4), get_svtrb_mysterious_4t9_12_4)
+    ö(u32(o + 12), get_svtrb_mysterious_4t9_12_12)
     ö(u32(o + 16), get_svtrb_mysterious_4t9_12_16)
 
 }
@@ -2185,7 +2499,22 @@ function get_svtrb_mysterious_4t9_12_4_8(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_mysterious_4t9_12_4_44(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 4) !== 5 || u32(o + 16) !== 24 || u32(o + 20) !== 4 || u32(o + 24) || u32(o + 28) !== 6)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    ß('p_texture', o, 0)
+
+    ö(u32(o + 8), get_svtrb_mysterious_4t9_12_4_44_8)
+    ö(u32(o + 12), get_svtrb_mysterious_4t9_12_4_44_12)
+
+}
+
+function get_svtrb_mysterious_4t9_12_4_44_8(o) {
+if(u8(o+0) !==255 ||u8(o+1) ||u8(o+2) ||u8(o+3) !==255 ||u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t9_12_4_44_12(o) {
+if(u8(o+0) ||u8(o+1) ||u8(o+2) !==255 ||u8(o+3) !==255 ||u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_mysterious_4t9_12_4_48(o) {
@@ -2235,18 +2564,72 @@ function get_svtrb_mysterious_4t9_12_4_48_0_28(o) {
     if (f32(o + 0) !== 6 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
+function get_svtrb_mysterious_4t9_12_12(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_mysterious_4t9_12_16(o) {
     if (u32(o + 0) || u32(o + 4) !== 5000 || u32(o + 8) !== 1000 || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_mysterious_4t10(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    // ö(u32(o + ), get_svtrb_mysterious_4t10_4)
+    //mystioure ??
+    for (let i = 0; i < u32(o + 0); i++) {
+        ö(u32(o + 4) + (i * 64), get_svtrb_mysterious)
+    }
+
 }
+
+function get_svtrb_mysterious_4t10_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_mysterious_4t13(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124, ], o)
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || f32(o + 24) !== 55 || u32(o + 28) || f32(o + 32) !== 10 || u32(o + 36) !== 65646 || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 72) || u32(o + 76) || f32(o + 80) !== 2000 || u32(o + 84) !== 65536 || u32(o + 88) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u8(o + 112) !== 255 || u8(o + 113) !== 255 || u8(o + 114) !== 255 || u8(o + 115) !== 255 || u32(o + 116) || u32(o + 120) || u32(o + 124))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124], o)
+
+    ö(u32(o + 40), get_svtrb_mysterious_4t13_40)
+    ö(u32(o + 64), get_svtrb_mysterious_4t13_64)
+    ö(u32(o + 68), get_svtrb_mysterious_4t13_68)
+    ö(u32(o + 92), get_svtrb_mysterious_4t13_92)
+
 }
+
+function get_svtrb_mysterious_4t13_40(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t13_64(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t13_68(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t13_92(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_mysterious_4t15(o) {
+    if (u32(o + 0) !== 256 || u32(o + 8) || f32(o + 24) !== 5000 || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u8(o + 64) !== 255 || u8(o + 65) !== 255 || u8(o + 66) !== 255 || u8(o + 67) !== 255 || u32(o + 68) || u32(o + 72) || u32(o + 76))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, u32, 72, u32, 76], o)
+    ß('p_model', o, 4)
+
+    ö(u32(o + 12), get_svtrb_mysterious_4t15_12)
+    ö(u32(o + 20), get_svtrb_mysterious_4t15_20)
+    ö(u32(o + 32), get_svtrb_mysterious_4t15_32)
+
+}
+
+function get_svtrb_mysterious_4t15_12(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t15_20(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_mysterious_4t15_32(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -2257,13 +2640,17 @@ function get_svtrb_activator(o) {
     // ä(svtrb_activator, u32(o + ac), get_svtrb_activator)
     // globalThis.svtrb_activator = []
 
-    ö(u32(o + 4), get_svtrb_activator_4)
+    // ö(u32(o + ), get_svtrb_activator_4) //2
+    ä(svtrb_model_anims_2, u32(o + 4), get_svtrb_model_anims_2)
+
     ö(u32(o + 8), get_svtrb_activator_8)
     for (let i = 0; i < u32(o + 28); i++) {
-    ö(u32(o + 32) + (i*24), get_svtrb_activator_32)
+        ö(u32(o + 32) + (i * 24), get_svtrb_activator_32)
     }
     ö(u32(o + 36), get_svtrb_activator_36)
-    ö(u32(o + 68), get_svtrb_activator_68)
+    // ö(u32(o + 68), get_svtrb_activator_68)
+    // ä(svtrb_activator_68, u32(o + 68), get_svtrb_activator_68)
+    ä(svtrb_unknown_4_4t2_112_0, u32(o + 68), get_svtrb_unknown_4_4t2_112_0)
 
     for (let i = 0; i < u32(o + 20); i++) {
         ö(u32(o + 24) + (i * 24), get_svtrb_activator_24)
@@ -2271,18 +2658,28 @@ function get_svtrb_activator(o) {
     ö(u32(o + 108), get_svtrb_activator_108)
     ö(u32(o + 116), get_svtrb_activator_116)
     ö(u32(o + 124), get_svtrb_activator_124)
-    ö(u32(o + 144), get_svtrb_activator_144)
+    for (let i = 0; i < u32(o + 140); i++) {
+        ö(u32(o + 144) + (i * 16), get_svtrb_activator_144)
+    }
 
     ö(u32(o + 148), get_svtrb_activator_148)
-    ö(u32(o + 160), get_svtrb_activator_160)
-    ö(u32(o + 168), get_svtrb_activator_168)
+    for (let i = 0; i < u32(o + 156); i++) {
+        ö(u32(o + 160) + (i * 20), get_svtrb_activator_160)
+    }
+    for (let i = 0; i < u32(o + 164); i++) {
+        ö(u32(o + 168) + (i * 36), get_svtrb_activator_168)
+    }
 
     for (let i = 0; i < u32(o + 172); i++) {
         ö(u32(o + 176) + (i * 20), get_svtrb_activator_176)
     }
-    ö(u32(o + 184), get_svtrb_activator_184)
+    for (let i = 0; i < u32(o + 180); i++) {
+        ö(u32(o + 184) + (i * 12), get_svtrb_activator_184)
+    }
     ö(u32(o + 212), get_svtrb_activator_212)
-    ö(u32(o + 220), get_svtrb_activator_220)
+    for (let i = 0; i < u32(o + 216); i++) {
+        ö(u32(o + 220) + (i * 12), get_svtrb_activator_220)
+    }
     ö(u32(o + 228), get_svtrb_activator_228)
 
     for (let i = 0; i < u32(o + 244); i++) {
@@ -2294,39 +2691,131 @@ function get_svtrb_activator_4(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_activator_32(o) {
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20 ], o)
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)*/
+
+    ö(u32(o + 4), get_svtrb_activator_32_4)
+    ö(u32(o + 12), get_svtrb_activator_32_12)
+    for (let i = 0; i < u32(o + 16); i++) {
+        ö(u32(o + 20) + (i * 12), get_svtrb_activator_32_20)
+    }
+
 }
+
+function get_svtrb_activator_32_4(o) {
+if(u8(o+2) ||u8(o+3) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12], o)
+}
+function get_svtrb_activator_32_12(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_32_20(o) {
+/*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
+
+
+ö(u32(o + 8), get_svtrb_activator_32_20_8)
+
+    }
+
+function get_svtrb_activator_32_20_8(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+
+
 function get_svtrb_activator_36(o) {
+    if (u8(o + 0) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    ß('p_texture', o, 4)
+
+    ö(u32(o + 8), get_svtrb_activator_36_8)
+
+}
+
+function get_svtrb_activator_36_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_activator_68(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, ], o)
 }
 function get_svtrb_activator_116(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 2) !== 154 || u8(o + 3) !== 18 || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12], o)
 }
 function get_svtrb_activator_124(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) || u32(o + 4) || f32(o + 8) !== 10 || u32(o + 12) || u32(o + 16) || f32(o + 20) !== 2 || f32(o + 24) !== 2 || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 function get_svtrb_activator_144(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 12), get_svtrb_activator_144_12)
+
+}
+
+function get_svtrb_activator_144_12(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_activator_160(o) {
+    if (u32(o + 4))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16], o)
+
+    ö(u32(o + 16), get_svtrb_activator_160_16)
+
+}
+
+function get_svtrb_activator_160_16(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_svtrb_activator_168(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+function get_svtrb_activator_168(o) {/*ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32], o)*/
 }
 function get_svtrb_activator_184(o) {
+    if (u32(o + 8))
+        ü(1, [u32, 0, u32, 4, u32, 8], o)
+
+    ö(u32(o + 4), get_svtrb_activator_184_4)
+
+}
+
+function get_svtrb_activator_184_4(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_activator_212(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_activator_212_0)
+    ö(u32(o + 4), get_svtrb_activator_212_4)
+
+}
+
+function get_svtrb_activator_212_0(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_activator_212_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_activator_220(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
+
+    ö(u32(o + 8), get_svtrb_activator_220_8)
+
+}
+
+function get_svtrb_activator_220_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_activator_228(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_activator_228_0)
+
+}
+
+function get_svtrb_activator_228_0(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -2336,8 +2825,20 @@ function get_svtrb_activator_24(o) {
     if (u8(o + 2) || u8(o + 3))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, f32, 12, f32, 16, f32, 20], o)
 
-    ö(u32(o + 4), get_svtrb_activator_24_4)
+    // ö(u32(o + 4), get_svtrb_activator_24_4)
+    switch (u8(o + 1)) {
+    case 0:
+        ö(u32(o + 4), get_svtrb_activator_24_4t0)
+        break
+    default:
+        if (u32(o + 4)) {
+            sü(u8, 1, o, 4)
+        }
+    }
 
+}
+function get_svtrb_activator_24_4t0(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_activator_24_4(o) {
@@ -2371,17 +2872,20 @@ function get_svtrb_activator_148_8(o) {
 }
 
 function get_svtrb_activator_148_8_0(o) {
-    // if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
 
     //maybe check
     // ö(u32(o + 4), get_svtrb_activator_148_8_0_4)
+    ö(u32(o + 12), get_svtrb_activator_148_8_0_12)
 
 }
 
 function get_svtrb_activator_148_8_0_4(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_148_8_0_12(o) {
+    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_svtrb_activator_148_8_8(o) {
@@ -2408,26 +2912,46 @@ function get_svtrb_activator_148_8_8_0_4(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 }
 function get_svtrb_activator_148_8_8_0_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_activator_148_8_8_8(o) {
-if(f32(o+16) !==1 )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20], o)
+    if (f32(o + 16) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20], o)
 
+    ö(u32(o + 8), get_svtrb_activator_148_8_8_8_8)
+    // ö(u32(o + 12), get_svtrb_activator_148_8_8_8_12)
+    // ä(svtrb_activator_148_8_8_8_12, u32(o + 12), get_svtrb_activator_148_8_8_8_12)
+    ä(svtrb_unknown_4_4t2_112_0, u32(o + 12), get_svtrb_unknown_4_4t2_112_0)
 
-ö(u32(o + 8), get_svtrb_activator_148_8_8_8_8)
-ö(u32(o + 12), get_svtrb_activator_148_8_8_8_12)
-// ö(u32(o + 20), get_svtrb_activator_148_8_8_8_20)
+    // ö(u32(o + 20), get_svtrb_activator_148_8_8_8_20)
 
-    }
+}
 
-function get_svtrb_activator_148_8_8_8_8(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-function get_svtrb_activator_148_8_8_8_12(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-function get_svtrb_activator_148_8_8_8_20(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-
+function get_svtrb_activator_148_8_8_8_8(o) {
+    if (u8(o + 1) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
+}
+function get_svtrb_activator_148_8_8_8_12(o) {
+    ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, ], o)
+}
+function get_svtrb_activator_148_8_8_8_20(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_activator_148_8_8_12(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+
+    ö(u32(o + 4), get_svtrb_activator_148_8_8_12_4)
+    ö(u32(o + 12), get_svtrb_activator_148_8_8_12_12)
+
+}
+
+function get_svtrb_activator_148_8_8_12_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_148_8_8_12_12(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -2479,21 +3003,115 @@ function get_svtrb_activator_248(o) {
 }
 
 function get_svtrb_activator_248_4(o) {
-if(u8(o+2) ||u8(o+3) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4], o)
+    if (u8(o + 2) || u8(o + 3))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4], o)
 
-sü(u8, 0, o, 4)
-// ö(u32(o + 4), get_svtrb_activator_248_4_4)
+    switch (u8(o + 0)) {
+    case 0:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t0)
+        break
+    case 1:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t1)
+        break
+    case 2:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t2)
+        break
+    case 5:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t5)
+        break
+    case 11:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t11)
+        break
+    case 12:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t12)
+        break
+    case 13:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t13)
+        break
+    case 18:
+        ö(u32(o + 4), get_svtrb_activator_248_4_4t18)
+        break
+    default:
+        if (u32(o + 4)) {
+            sü(u8, 0, o, 4)
+        }
+    }
+
+}
+
+function get_svtrb_activator_248_4_4t0(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_activator_248_4_4t0_4)
+
+}
+
+function get_svtrb_activator_248_4_4t0_4(o) {
+if(u8(o+25) ||u8(o+30) ||u8(o+31) ||u8(o+32) ||u8(o+34) ||u32(o+36) ||u32(o+40) ||u32(o+44) )
+ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u32, 36, u32, 40, u32, 44], o)
+
+
+ö(u32(o + 4), get_svtrb_activator_248_4_4t0_4_4)
 
     }
 
-function get_svtrb_activator_248_4_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_activator_248_4_4t0_4_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
 
 
-function get_svtrb_activator_248_4_4(o) {
-    // if (u32(o + 0) !== 2 || f32(o + 4) !== 1 || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
+function get_svtrb_activator_248_4_4t1(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_activator_248_4_4t2(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_248_4_4t5(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_248_4_4t11(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_activator_248_4_4t12(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_activator_248_4_4t12_4)
+
+}
+
+function get_svtrb_activator_248_4_4t12_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_svtrb_activator_248_4_4t13(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_activator_248_4_4t13_0)
+
+}
+
+function get_svtrb_activator_248_4_4t13_0(o) {
+if(u32(o+0) !==4075 ||u32(o+8) ||u32(o+12) )
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+
+ö(u32(o + 4), get_svtrb_activator_248_4_4t13_0_4)
+
+    }
+
+function get_svtrb_activator_248_4_4t13_0_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+
+
+function get_svtrb_activator_248_4_4t18(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_activator_248_4_12(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
@@ -2529,7 +3147,9 @@ function get_svtrb_activator_248_32(o) {
     ö(u32(o + 36), get_svtrb_activator_248_32_36)
     ö(u32(o + 44), get_svtrb_activator_248_32_44)
     ö(u32(o + 56), get_svtrb_activator_248_32_56)
-    ö(u32(o + 76), get_svtrb_activator_248_32_76)
+    for (let i = 0; i < u32(o + 72); i++) {
+        ö(u32(o + 76) + (i * 12), get_svtrb_activator_248_32_76)
+    }
 
     ö(u32(o + 84), get_svtrb_activator_248_32_84)
     ö(u32(o + 88), get_svtrb_activator_248_32_88)
@@ -2539,7 +3159,7 @@ function get_svtrb_activator_248_32(o) {
 function get_svtrb_activator_248_32_0(o) {// console.log(get_string(o, 0, false))
 }
 function get_svtrb_activator_248_32_8(o) {
-/*ü(1, [u32, 0], o)*/
+    /*ü(1, [u32, 0], o)*/
 
     ä(svtrb_model_link, u32(o + 0), get_svtrb_model_link)
 }
@@ -2549,15 +3169,28 @@ function get_svtrb_activator_248_32_16(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_activator_248_32_36(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_activator_248_32_44(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [u32, 0, f32, 4, f32, 8, u32, 12], o)
 }
 function get_svtrb_activator_248_32_56(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_activator_248_32_76(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
+
+    // ö(u32(o + 8), get_svtrb_activator_248_32_76_8)
+    sü(u32, 0, o, 8)
+    // sü(u32, 0, o, 8)
+
+}
+
+function get_svtrb_activator_248_32_76_8(o) {
+    //always 16
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
@@ -2565,8 +3198,7 @@ function get_svtrb_activator_248_32_84(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_svtrb_activator_248_32_88(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_svtrb_activator_248_32_88(o) {// console.log(get_string(o, 0, false))
 }
 
 function get_svtrb_mysterious_8(o) {
@@ -2575,14 +3207,16 @@ function get_svtrb_mysterious_8(o) {
 }
 
 function get_svtrb_car_0_76(o) {
-if(u32(o+24) !==1 )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 24) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 32), get_svtrb_car_0_76_4)
     }
     ö(u32(o + 12), get_svtrb_car_0_76_12)
-    ö(u32(o + 20), get_svtrb_car_0_76_20)
+    for (let i = 0; i < u32(o + 16); i++) {
+        ö(u32(o + 20) + (i * 16), get_svtrb_car_0_76_20)
+    }
     ö(u32(o + 28), get_svtrb_car_0_76_28)
 
 }
@@ -2592,118 +3226,161 @@ function get_svtrb_car_0_76_4(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(svtrb_car_0_76_4_4, u32(o + 4), get_svtrb_car_0_76_4_4)
+    // ä(svtrb_car_0_80_4, u32(o + 4), get_svtrb_car_0_80_4)
 
 }
 
 function get_svtrb_car_0_76_4_4(o) {
-if(u8(o+4) !==255 ||u8(o+5) !==255 ||u8(o+6) !==255 ||u8(o+7) !==255 ||u8(o+8) !==255 ||u8(o+9) !==255 ||u8(o+10) !==255 ||u8(o+11) !==255 ||u8(o+24) !==255 ||u8(o+25) !==255 ||u8(o+26) !==255 ||u8(o+27) !==255 ||u8(o+28) !==255 ||u8(o+29) !==255 ||u8(o+30) !==255 ||u8(o+31) !==255 ||u8(o+32) !==255 ||u8(o+33) !==255 ||u8(o+34) !==255 ||u8(o+35) !==255 ||u32(o+44) ||u8(o+50) ||u32(o+60) ||u32(o+104) ||u32(o+108) ||u32(o+140) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u8, 36, u8, 37, u8, 38, u8, 39, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, f32, 88, u8, 92, u8, 93, u8, 94, u8, 95, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, f32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
+    if (u8(o + 4) !== 255 || u8(o + 5) !== 255 || u8(o + 6) !== 255 || u8(o + 7) !== 255 || u8(o + 8) !== 255 || u8(o + 9) !== 255 || u8(o + 10) !== 255 || u8(o + 11) !== 255 || u8(o + 24) !== 255 || u8(o + 25) !== 255 || u8(o + 26) !== 255 || u8(o + 27) !== 255 || u8(o + 28) !== 255 || u8(o + 29) !== 255 || u8(o + 30) !== 255 || u8(o + 31) !== 255 || u8(o + 32) !== 255 || u8(o + 33) !== 255 || u8(o + 34) !== 255 || u8(o + 35) !== 255 || u32(o + 44) || u8(o + 50) || u32(o + 60) || u32(o + 104) || u32(o + 108) || u32(o + 140))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u8, 36, u8, 37, u8, 38, u8, 39, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, f32, 88, u8, 92, u8, 93, u8, 94, u8, 95, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, f32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
 
     ä(svtrb_model_anims_2, u32(o + 52), get_svtrb_model_anims_2)
     ö(u32(o + 56), get_svtrb_car_0_76_4_4_56)
     ö(u32(o + 68), get_svtrb_car_0_76_4_4_68)
     ä(svtrb_unknown, u32(o + 72), get_svtrb_unknown)
-     ö(u32(o + 80), get_svtrb_car_0_76_4_4_80)
-   for (let i = 0; i < u32(o + 96); i++) {
+    ö(u32(o + 80), get_svtrb_car_0_76_4_4_80)
+    for (let i = 0; i < u32(o + 96); i++) {
         ö(u32(o + 100) + (i * 32), get_svtrb_car_0_76_4_4_100)
     }
     ä(svtrb_interface, u32(o + 112), get_svtrb_interface)
 
     ä(svtrb_car_0_76_4_4_128, u32(o + 128), get_svtrb_car_0_76_4_4_128)
-ö(u32(o + 136), get_svtrb_car_0_76_4_4_136)
+    for (let i = 0; i < u32(o + 132); i++) {
+        ö(u32(o + 136) + (i * 8), get_svtrb_car_0_76_4_4_136)
+    }
 
 }
 
 function get_svtrb_car_0_76_4_4_56(o) {
-if(u8(o+2) ||u8(o+3) ||u32(o+4) ||u32(o+8) ||u32(o+12) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_car_0_76_4_4_68(o) {
-/*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
-
-
-
-
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
 
     ä(svtrb_unknown_4_4t2, u32(o + 0), get_svtrb_unknown_4_4t2)
     ä(svtrb_unknown, u32(o + 4), get_svtrb_unknown)
-    ö(u32(o + 12), get_svtrb_car_0_76_4_4_68_12)
+    // ö(u32(o + 12), get_svtrb_car_0_76_4_4_68_12)
+    ä(svtrb_unknown_4_4t2, u32(o + 12), get_svtrb_unknown_4_4t2)
 
 }
-function get_svtrb_car_0_76_4_4_68_12(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_76_4_4_68_12(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
-function get_svtrb_car_0_76_4_4_80(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_76_4_4_80(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 20) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+
+    for (let i = 0; i < u32(o + 12); i++) {
+        ö(u32(o + 16) + (i * 64), get_svtrb_mysterious)
+    }
+    for (let i = 0; i < u32(o + 24); i++) {
+        ö(u32(o + 28) + (i * 64), get_svtrb_mysterious)
+    }
+    // ö(u32(o + 16), get_svtrb_car_0_76_4_4_80_16)
+    // ö(u32(o + ), get_svtrb_car_0_76_4_4_80_28)
+
+}
+
+function get_svtrb_car_0_76_4_4_80_16(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_car_0_76_4_4_80_28(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_car_0_76_4_4_100(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 function get_svtrb_car_0_76_4_4_128(o) {
-if(u32(o+8) ||u8(o+16) !==1 ||u8(o+17) !==1 ||u8(o+18) ||u8(o+19) ||u32(o+20) ||u32(o+40) ||u32(o+44) )
+if(u32(o+8) ||u8(o+17) !==1 ||u8(o+18) ||u8(o+19) ||u32(o+40) ||u32(o+44) )
 ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
-
     ö(u32(o + 4), get_svtrb_car_0_76_4_4_128_4)
-    ö(u32(o + 24), get_svtrb_car_0_76_4_4_128_24)
+   ö(u32(o + 20), get_svtrb_car_0_76_4_4_128_20)
+ ö(u32(o + 24), get_svtrb_car_0_76_4_4_128_24)
     ö(u32(o + 28), get_svtrb_car_0_76_4_4_128_28)
     ö(u32(o + 36), get_svtrb_car_0_76_4_4_128_36)
 
 }
 
 function get_svtrb_car_0_76_4_4_128_4(o) {
-    // if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
-    //always 16
+    if (u32(o + 0) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_svtrb_car_0_76_4_4_128_4_4)
+    ö(u32(o + 12), get_svtrb_car_0_76_4_4_128_4_12)
 
 }
 
 function get_svtrb_car_0_76_4_4_128_4_4(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+if(u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_car_0_76_4_4_128_4_12(o) {
+    if (u8(o + 3) !== 18 || u8(o + 7) !== 18 || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_car_0_76_4_4_128_24(o) {
-if(u32(o+4) ||u32(o+8) ||u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_car_0_76_4_4_128_20(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+
 function get_svtrb_car_0_76_4_4_128_28(o) {
-    // if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    if (u32(o + 0) !== 1)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
     //always 16
     ö(u32(o + 4), get_svtrb_car_0_76_4_4_128_28_4)
-
+    ö(u32(o + 12), get_svtrb_car_0_76_4_4_128_28_12)
 }
 
 function get_svtrb_car_0_76_4_4_128_28_4(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+if(u32(o+4) ||u32(o+8) ||u32(o+12) )
+ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_car_0_76_4_4_128_28_12(o) {
+    if (u8(o + 0) !== 196 || u8(o + 1) !== 113 || u8(o + 2) !== 154 || u8(o + 3) !== 18 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_car_0_76_4_4_128_36(o) {
-    // if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_svtrb_car_0_76_4_4_136(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_76_4_4_136(o) {
+    /*ü(1, [u32, 0, u32, 4], o)*/
 
-function get_svtrb_car_0_76_12(o) {
-    // if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-    // ü(1, [f32, 0, u32, 4, u32, 8, u32, 12], o)
-ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, ], o)
+    ö(u32(o + 4), get_svtrb_car_0_76_4_4_136_4)
+
+}
+
+function get_svtrb_car_0_76_4_4_136_4(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
+
+function get_svtrb_car_0_76_12(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, f32, 12], o)*/
 }
 function get_svtrb_car_0_76_20(o) {
-    // if (u32(o + 8) || u32(o + 12))
-    ü(3, [f32, 0, u32, 4, u32, 8, u32, 12], o)
+    /*ü(1, [f32, 0, u32, 4, u32, 8, u32, 12], o)*/
 
-    ö(u32(o + 4), get_svtrb_car_0_76_20_4)
+    // ö(u32(o + 4), get_svtrb_car_0_76_20_4)
+    for (let i = 0; i < u32(o + 8); i++) {
+    ö(u32(o + 12) + (i*12), get_svtrb_car_0_76_20_12)
+    }
 
 }
 
 function get_svtrb_car_0_76_20_4(o) {
     // if (f32(o + 0) !== 11 || f32(o + 4) !== 2.3694278276172396e-38 || f32(o + 8) !== 1 || f32(o + 12) !== 22 || f32(o + 16) !== 0.0010000000474974513 || f32(o + 20) !== 1 || u32(o + 40) !== 1 || u32(o + 52) || u32(o + 56) || u32(o + 60))
     ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60], o)
+}
+function get_svtrb_car_0_76_20_12(o) {
+ü(1, [u32, 0, u32, 4, u32, 8], o)
 }
 
 function get_svtrb_car_0_76_28(o) {
@@ -2748,25 +3425,35 @@ function get_svtrb_car_0_76_28_8(o) {
     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 function get_svtrb_car_0_76_28_12(o) {
-    // if (f32(o + 0) !== 0.949999988079071 || f32(o + 4) !== 1.75 || f32(o + 8) !== 3 || f32(o + 12) !== 1.25 || f32(o + 16) !== 0.949999988079071 || f32(o + 20) !== 1.75 || f32(o + 24) !== 3 || f32(o + 28) !== 1.25 || f32(o + 32) !== 2.3499999046325684 || f32(o + 36) !== 1.5499999523162842 || f32(o + 40) !== 3 || f32(o + 44) !== 2)
-    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44], o)
+    if (f32(o + 4) !== 1.75 || f32(o + 8) !== 3 || f32(o + 12) !== 1.25 || f32(o + 20) !== 1.75 || f32(o + 24) !== 3 || f32(o + 28) !== 1.25 || f32(o + 36) !== 1.5499999523162842 || f32(o + 40) !== 3 || f32(o + 44) !== 2)
+        ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44], o)
 }
 function get_svtrb_car_0_76_28_16(o) {
-    // if (f32(o + 4) !== 40 || f32(o + 8) !== 22 || u8(o + 16) !== 40 || u8(o + 17) !== 107 || u8(o + 18) !== 238 || u8(o + 19) !== 78 || f32(o + 20) !== 1 || f32(o + 28) !== 122.5999984741211 || f32(o + 32) !== 1.2000000476837158 || f32(o + 36) !== 1.2000000476837158 || f32(o + 40) !== 0.5 || u32(o + 60))
-    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60], o)
+    if (f32(o + 8) !== 22 || f32(o + 28) !== 122.5999984741211 || f32(o + 36) !== 1.2000000476837158 || u32(o + 60))
+        ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60], o)
 }
 function get_svtrb_car_0_76_28_20(o) {
-    // if (f32(o + 4) !== 6.900000095367432 || f32(o + 8) !== 2.5 || f32(o + 12) !== 2.75 || f32(o + 16) !== 1.25 || f32(o + 20) !== 7.5 || f32(o + 24) !== 11.5 || u32(o + 28))
-    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
+    if (f32(o + 4) !== 6.900000095367432 || f32(o + 8) !== 2.5 || f32(o + 16) !== 1.25 || f32(o + 20) !== 7.5 || f32(o + 24) !== 11.5 || u32(o + 28))
+        ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 
 function get_svtrb_car_0_80(o) {
-    // if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    // ö(u32(o + 4), get_svtrb_car_0_80_4)
+    // ä(svtrb_car_0_80_4, u32(o + 4), get_svtrb_car_0_80_4)
+    ä(svtrb_car_0_76_4_4, u32(o + 4), get_svtrb_car_0_76_4_4)
+
 }
+
+function get_svtrb_car_0_80_4(o) {
+    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u8, 32, u8, 33, u8, 34, u8, 35, u8, 36, u8, 37, u8, 38, u8, 39, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, f32, 124, u32, 128, u32, 132, u32, 136, u32, 140, ], o)
+}
+
 function get_svtrb_car_0_84(o) {
-    // if (u32(o + 0) !== 1 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
+    if (u8(o + 1) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
 }
 function get_svtrb_car_0_88(o) {
     if (u32(o + 0) !== 257 || u32(o + 12))
@@ -2783,13 +3470,29 @@ function get_svtrb_car_0_88_8(o) {
 }
 
 function get_svtrb_car_0_96(o) {
-    // if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0], o)
+    /*ü(1, [u32, 0], o)*/
 
     ä(svtrb_unknown, u32(o + 0), get_svtrb_unknown)
 
 }
-function get_svtrb_car_0_112(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_car_0_112(o) {
+    if (u32(o + 4) !== 2 || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+   ä(svtrb_car_0_112_0, u32(o + 0), get_svtrb_car_0_112_0)
+ // ö(u32(o + 0), get_svtrb_car_0_112_0)
+    for (let i = 0; i < u32(o + 4); i++) {
+    ö(u32(o + 8) + (i*64), get_svtrb_car_0_112_8)
+    }
+
+}
+
+function get_svtrb_car_0_112_0(o) {
+ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, ], o)
+}
+function get_svtrb_car_0_112_8(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+}
 
 function get_svtrb_unknown(o) {
     if (u32(o + 8) || u32(o + 12))
@@ -2832,19 +3535,23 @@ based on type [0]
         ä(svtrb_unknown_4_4t5, u32(o + 4), get_svtrb_unknown_4_4t5)
         break
     case 6:
-        ö(u32(o + 4), get_svtrb_unknown_4_4t6)
+        // ö(u32(o + ), get_svtrb_unknown_4_4t6)
+        ä(svtrb_world_92_64, u32(o + 4), get_svtrb_world_92_64)
+
         break
     case 9:
         ä(svtrb_sound_section, u32(o + 4), get_svtrb_sound_section)
         break
     case 25:
-        ö(u32(o + 4), get_svtrb_unknown_4_4t25)
+        // ö(u32(o + ), get_svtrb_unknown_4_4t25)
+        ä(svtrb_world_108_56, u32(o + 4), get_svtrb_world_108_56)
         break
     case 26:
         ä(svtrb_sound_controls, u32(o + 4), get_svtrb_sound_controls)
         break
     case 31:
-        ö(u32(o + 4), get_svtrb_unknown_4_4t31)
+        // ö(u32(o + ), get_svtrb_unknown_4_4t31)
+        ä(svtrb_activator, u32(o + 4), get_svtrb_activator)
         break
 
     default:
@@ -2901,8 +3608,8 @@ based on type [0]
 
 }
 function get_svtrb_unknown_4_4t1(o) {
-if(u8(o+2) ||u8(o+3) ||u32(o+36) ||u32(o+40) ||u32(o+44) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+    if (u8(o + 2) || u8(o + 3) || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
     switch (u8(o + 0)) {
     case 0:
@@ -2944,29 +3651,39 @@ function get_svtrb_unknown_4_4t1_4t0(o) {
 }
 
 function get_svtrb_unknown_4_4t1_4t0_4(o) {
-    // if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0], o)
+    /*ü(1, [u32, 0], o)*/
     ß('p_model', o, 0)
-
 }
 function get_svtrb_unknown_4_4t1_4t0_40(o) {
-    // if (u32(o + 12) || u32(o + 16) || u32(o + 24) || u32(o + 28))
-    ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 12) || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_4t1_4t0_56(o) {
-    // if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-    ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_4t1_4t0_48(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (f32(o + 0) !== 1 || u32(o + 4) || u32(o + 8) || f32(o + 12) !== 50 || u32(o + 16) || f32(o + 20) !== 2000 || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, u32, 4, u32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_4t1_4t0_64(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) !== 10 || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    for (let i = 0; i < u32(o); i++) {
+        
+    }
+    ö(u32(o + 4) + (i * 20), get_svtrb_unknown_4_4t1_4t0_64_4)
+
+}
+
+function get_svtrb_unknown_4_4t1_4t0_64_4(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16], o)
 }
 
 function get_svtrb_unknown_4_4t1_4t1(o) {
-if(u8(o+8) ||u32(o+12) ||u32(o+16) ||u32(o+68) ||u32(o+72) ||u32(o+76) )
-ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
+    if (u8(o + 8) || u32(o + 12) || u32(o + 68) || u32(o + 72) || u32(o + 76))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 4), get_svtrb_unknown_4_4t1_4t1_4)
@@ -2974,9 +3691,13 @@ if(u8(o+8) ||u32(o+12) ||u32(o+16) ||u32(o+68) ||u32(o+72) ||u32(o+76) )
     for (let i = 0; i < u32(o + 40); i++) {
         ö(u32(o + 44) + (i * 12), get_svtrb_unknown_4_4t1_4t1_44)
     }
-    ö(u32(o + 52), get_svtrb_unknown_4_4t1_4t1_52)
+    for (let i = 0; i < u32(o + 48); i++) {
+        ö(u32(o + 52) + (i * 12), get_svtrb_unknown_4_4t1_4t1_52)
+    }
     ö(u32(o + 56), get_svtrb_unknown_4_4t1_4t1_56)
-    ö(u32(o + 64), get_svtrb_unknown_4_4t1_4t1_64)
+    for (let i = 0; i < u32(o + 60); i++) {
+        ö(u32(o + 64) + (i * 8), get_svtrb_unknown_4_4t1_4t1_64)
+    }
 
 }
 
@@ -2987,24 +3708,24 @@ function get_svtrb_unknown_4_4t1_4t1_4(o) {
 function get_svtrb_unknown_4_4t1_4t1_44(o) {/*ü(1, [f32, 0, u32, 4, f32, 8], o)*/
 }
 function get_svtrb_unknown_4_4t1_4t1_52(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, u32, 4, u32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
+/*ü(1, [f32, 0, u32, 4, u32, 8], o)*/
 }
 function get_svtrb_unknown_4_4t1_4t1_56(o) {
-    if (u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 9) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_4t1_4t1_64(o) {
-    // if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    //this may be 2x
-    ö(u32(o + 4), get_svtrb_unknown_4_4t1_4t1_64_4)
+    /*ü(1, [u32, 0, u32, 4], o)*/
+
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 4) + (i * 20), get_svtrb_unknown_4_4t1_4t1_64_4)
+    }
 
 }
 
 function get_svtrb_unknown_4_4t1_4t1_64_4(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 8) || u32(o + 12) || u32(o + 16))
+        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16], o)
 }
 
 function get_svtrb_unknown_4_4t1_4t2(o) {
@@ -3019,8 +3740,8 @@ function get_svtrb_unknown_4_4t1_4t2(o) {
 }
 
 function get_svtrb_unknown_4_4t1_4t2_4(o) {
-if(u8(o+4) ||u8(o+6) ||u8(o+7) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8], o)
+    if (u8(o + 4) || u8(o + 6) || u8(o + 7))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8], o)
 }
 function get_svtrb_unknown_4_4t1_4t2_20(o) {
     if (u32(o + 4) || u32(o + 8))
@@ -3035,7 +3756,8 @@ function get_svtrb_unknown_4_4t1_32(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_svtrb_unknown_4_4t1_32_0)
+    // ö(u32(o + ), get_svtrb_unknown_4_4t1_32_0) //un
+    ä(svtrb_unknown, u32(o + 0), get_svtrb_unknown)
 
 }
 
@@ -3044,8 +3766,8 @@ function get_svtrb_unknown_4_4t1_32_0(o) {
 }
 
 function get_svtrb_unknown_4_4t2(o) {
-if(u32(o+4) ||u32(o+20) ||u32(o+28) ||u32(o+36) ||u32(o+44) ||u32(o+48) ||f32(o+60) !==-1 ||f32(o+64) !==1 ||u32(o+68) ||u8(o+74) ||u32(o+84) ||u32(o+88) ||f32(o+96) !==0.4000000059604645 ||u32(o+120) ||u32(o+124) ||u32(o+148) ||u32(o+152) ||u32(o+156) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, f32, 64, u32, 68, u8, 72, u8, 73, u8, 74, u8, 75, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156], o)
+    if (u32(o + 4) || u32(o + 36) || u32(o + 44) || u32(o + 48) || f32(o + 60) !== -1 || f32(o + 64) !== 1 || u32(o + 84) || u32(o + 88) || f32(o + 96) !== 0.4000000059604645 || u32(o + 148) || u32(o + 152) || u32(o + 156))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, f32, 64, f32, 68, u8, 72, u8, 73, u8, 74, u8, 75, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156], o)
 
     ö(u32(o + 8), get_svtrb_unknown_4_4t2_8)
     ö(u32(o + 12), get_svtrb_unknown_4_4t2_12)
@@ -3058,6 +3780,8 @@ if(u32(o+4) ||u32(o+20) ||u32(o+28) ||u32(o+36) ||u32(o+44) ||u32(o+48) ||f32(o+
         ö(u32(o + 112) + (i * 20), get_svtrb_unknown_4_4t2_112)
     }
     ä(svtrb_unknown, u32(o + 116), get_svtrb_unknown)
+    ö(u32(o + 120), get_svtrb_unknown_4_4t2_120)
+    ö(u32(o + 124), get_svtrb_unknown_4_4t2_124)
     ö(u32(o + 128), get_svtrb_unknown_4_4t2_128)
     for (let i = 0; i < u32(o + 132); i++) {
         ö(u32(o + 136) + (i * 64), get_svtrb_mysterious)
@@ -3067,20 +3791,79 @@ if(u32(o+4) ||u32(o+20) ||u32(o+28) ||u32(o+36) ||u32(o+44) ||u32(o+48) ||f32(o+
 }
 
 function get_svtrb_unknown_4_4t2_8(o) {
-if(u32(o+8) ||u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 4), get_svtrb_unknown_4_4t2_8_4)
-
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 4) + (i * 44), get_svtrb_unknown_4_4t2_8_4)
+    }
 }
 
 function get_svtrb_unknown_4_4t2_8_4(o) {
-    // if (u32(o + 0) || u32(o + 4) || u32(o + 8) !== 10000 || f32(o + 12) !== 1 || f32(o + 16) !== 100 || f32(o + 20) !== 300 || f32(o + 24) !== 20 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
-    // ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47], o)
+    if (u32(o + 4))
+        ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40], o)
+
+    for (let i = 0; i < u32(o + 28); i++) {
+        ö(u32(o + 32) + (i * 64), get_svtrb_mysterious)
+    }
+    // ö(u32(o + ), get_svtrb_unknown_4_4t2_8_4_32)
+    ö(u32(o + 36), get_svtrb_unknown_4_4t2_8_4_36)
+    ö(u32(o + 40), get_svtrb_unknown_4_4t2_8_4_40)
+
+}
+
+function get_svtrb_unknown_4_4t2_8_4_32(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_svtrb_unknown_4_4t2_12(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-function get_svtrb_unknown_4_4t2_80(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_unknown_4_4t2_8_4_36(o) {
+ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+}
+function get_svtrb_unknown_4_4t2_8_4_40(o) {
+ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u32, 16, f32, 20, u32, 24, f32, 28, u32, 32, f32, 36, f32, 40, f32, 44, ], o)
+}
+
+function get_svtrb_unknown_4_4t2_12(o) {
+    if (u32(o + 4) !== 6 || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    // ö(u32(o + 0), get_svtrb_unknown_4_4t2_12_0)
+  ä(svtrb_unknown_4_4t2_12_0, u32(o + 0), get_svtrb_unknown_4_4t2_12_0)
+  
+    for (let i = 0; i < u32(o + 4); i++) {
+    ö(u32(o + 8) + (i* 12), get_svtrb_unknown_4_4t2_12_8)
+    }
+    ö(u32(o + 12), get_svtrb_unknown_4_4t2_12_12)
+    ö(u32(o + 16), get_svtrb_unknown_4_4t2_12_16)
+    // ö(u32(o + ), get_svtrb_unknown_4_4t2_12_20)
+    ä(svtrb_model_link, u32(o + 20), get_svtrb_model_link)
+
+    ö(u32(o + 24), get_svtrb_unknown_4_4t2_12_24)
+
+}
+
+function get_svtrb_unknown_4_4t2_12_0(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+}
+function get_svtrb_unknown_4_4t2_12_8(o) {
+ü(1, [u32, 0, u32, 4, u32, 8], o)
+}
+function get_svtrb_unknown_4_4t2_12_12(o) {
+ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, f32, 84, f32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, f32, 112, f32, 116, f32, 120, f32, 124, u32, 128, f32, 132, f32, 136, u32, 140, f32, 144, u32, 148, u32, 152, u32, 156, ], o)
+}
+function get_svtrb_unknown_4_4t2_12_16(o) {
+ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, f32, 72, f32, 76, f32, 80, f32, 84, u32, 88, u32, 92, ], o)
+}
+function get_svtrb_unknown_4_4t2_12_20(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+}
+function get_svtrb_unknown_4_4t2_12_24(o) {
+ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, u32, 44, ], o)
+}
+
+function get_svtrb_unknown_4_4t2_80(o) {
+    if (f32(o + 0) !== 1500 || f32(o + 4) !== 0.20000000298023224 || u32(o + 8) !== 260 || u32(o + 12))
+        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_unknown_4_4t2_112(o) {
     if (u32(o + 4) || u32(o + 16))
@@ -3092,24 +3875,20 @@ function get_svtrb_unknown_4_4t2_112(o) {
 }
 
 function get_svtrb_unknown_4_4t2_112_0(o) {
-if(f32(o+4) !==1 ||f32(o+12) !==1 ||u32(o+16) ||u32(o+20) ||u32(o+24) ||u32(o+28) ||f32(o+32) !==70 ||f32(o+40) !==1 ||u32(o+44) ||f32(o+48) !==1 ||u32(o+52) ||f32(o+56) !==1 ||u32(o+60) ||u32(o+64) ||u32(o+80) ||u32(o+84) ||f32(o+88) !==300 ||f32(o+92) !==200 ||f32(o+96) !==1000 ||u32(o+100) ||u32(o+120) ||u32(o+124) ||u32(o+128) ||u32(o+140) )
-ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
+    if (f32(o + 4) !== 1 || f32(o + 12) !== 1 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 70 || f32(o + 40) !== 1 || u32(o + 44) || f32(o + 48) !== 1 || u32(o + 52) || f32(o + 56) !== 1 || u32(o + 60) || u32(o + 64) || u32(o + 80) || u32(o + 84) || f32(o + 88) !== 300 || f32(o + 92) !== 200 || f32(o + 96) !== 1000 || u32(o + 100) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 140))
+        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
 
-ö(u32(o + 36), get_svtrb_unknown_4_4t2_112_0_36)
-ö(u32(o + 76), get_svtrb_unknown_4_4t2_112_0_76)
-
-
+    ä(svtrb_unknown, u32(o + 36), get_svtrb_unknown)
+    ä(svtrb_sound_section, u32(o + 76), get_svtrb_sound_section)
 
     ö(u32(o + 108), get_svtrb_unknown_4_4t2_112_0_108)
-ö(u32(o + 116), get_svtrb_unknown_4_4t2_112_0_116)
+    ö(u32(o + 116), get_svtrb_unknown_4_4t2_112_0_116)
 
 }
-function get_svtrb_unknown_4_4t2_112_0_36(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-function get_svtrb_unknown_4_4t2_112_0_76(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
 
 function get_svtrb_unknown_4_4t2_112_0_108(o) {
-if(u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_svtrb_unknown_4_4t2_112_0_108_4)
 
@@ -3125,10 +3904,26 @@ function get_svtrb_unknown_4_4t2_112_0_108_4(o) {
 }
 
 function get_svtrb_unknown_4_4t2_112_0_108_4_8(o) {
-if(u32(o+0) ||u32(o+20) ||u32(o+24) ||u32(o+28) )
-ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 0) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
 }
-function get_svtrb_unknown_4_4t2_112_0_116(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+function get_svtrb_unknown_4_4t2_112_0_116(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_svtrb_unknown_4_4t2_112_0_116_0)
+
+}
+
+function get_svtrb_unknown_4_4t2_112_0_116_0(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_unknown_4_4t2_120(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_unknown_4_4t2_124(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_unknown_4_4t2_128(o) {
     if (u32(o + 4) !== 1281 || f32(o + 8) !== 1 || u32(o + 12) || u32(o + 16) !== 1000 || u32(o + 20) !== 1000 || f32(o + 28) !== 100)
@@ -3145,8 +3940,8 @@ function get_svtrb_unknown_4_4t2_128_24(o) {
 }
 
 function get_svtrb_unknown_4_4t2_144(o) {
-if(u32(o+4) ||u32(o+8) ||u32(o+12) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_4t2_92(o) {
@@ -3159,15 +3954,17 @@ function get_svtrb_unknown_4_4t2_92(o) {
 }
 
 function get_svtrb_unknown_4_4t2_92_4(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_4t2_92_8(o) {
-    if (u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+if(u32(o+12) )
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 0), get_svtrb_unknown_4_4t2_92_8_0)
-    ö(u32(o + 8), get_svtrb_unknown_4_4t2_92_8_8)
+    for (let i = 0; i < u32(o + 4); i++) {
+    ö(u32(o + 8) + (i*12), get_svtrb_unknown_4_4t2_92_8_8)
+    }
 
 }
 
@@ -3185,10 +3982,12 @@ function get_svtrb_unknown_4_4t2_92_8_0_4(o) {
 }
 
 function get_svtrb_unknown_4_4t2_92_8_8(o) {
-    if (u32(o + 4) !== 1 || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // if (u32(o + 4) !== 1 || u32(o + 12))
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8], o)
+    //16/32 bytes
 
-    ö(u32(o + 0), get_svtrb_unknown_4_4t2_92_8_8_0)
+    // ö(u32(o + 0), get_svtrb_unknown_4_4t2_92_8_8_0)
     ö(u32(o + 8), get_svtrb_unknown_4_4t2_92_8_8_8)
 
 }
@@ -3202,8 +4001,8 @@ function get_svtrb_unknown_4_4t2_92_8_8_0(o) {
 }
 
 function get_svtrb_unknown_4_4t2_92_8_8_0_4(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // if (u32(o + 4) || u32(o + 8) || u32(o + 12))
+    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_4t2_92_8_8_8(o) {
@@ -3216,16 +4015,8 @@ function get_svtrb_unknown_4_4t2_92_8_8_8(o) {
 }
 
 function get_svtrb_unknown_4_4t2_92_8_8_8_8(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-function get_svtrb_unknown_4_4t2_92_8_8_8_12(o) {
-    if (u32(o + 0) !== 2 || f32(o + 4) !== 1 || f32(o + 8) !== 0.30000001192092896 || f32(o + 12) !== 1 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 70 || f32(o + 40) !== 1 || u32(o + 44) || f32(o + 48) !== 1 || u32(o + 52) || f32(o + 56) !== 1 || u32(o + 60) || u32(o + 64) || f32(o + 68) !== 30 || f32(o + 72) !== 75 || u32(o + 80) || u32(o + 84) || f32(o + 88) !== 300 || f32(o + 92) !== 200 || f32(o + 96) !== 1000 || u32(o + 100) || u32(o + 104) !== 256 || u32(o + 108) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 132) !== 5 || u32(o + 136) !== 10 || u32(o + 140))
-        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, f32, 48, u32, 52, f32, 56, u32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140], o)
-
-    ä(svtrb_unknown, u32(o + 36), get_svtrb_unknown)
-    ä(svtrb_sound_section, u32(o + 76), get_svtrb_sound_section)
-
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 
 function get_svtrb_unknown_4_4t2_104(o) {
@@ -3237,32 +4028,70 @@ function get_svtrb_unknown_4_4t2_104(o) {
 }
 
 function get_svtrb_unknown_4_4t2_104_0(o) {
-    if (u32(o + 0) || u32(o + 4) || f32(o + 8) !== 100 || u32(o + 12) || f32(o + 16) !== 100 || u32(o + 20) || u32(o + 24) || u32(o + 28))
+    if (f32(o + 8) !== 100 || f32(o + 16) !== 100 || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    ö(u32(o + 0), get_svtrb_unknown_4_4t2_104_0_0)
+    ö(u32(o + 4), get_svtrb_unknown_4_4t2_104_0_4)
+    ö(u32(o + 12), get_svtrb_unknown_4_4t2_104_0_12)
+
+}
+
+function get_svtrb_unknown_4_4t2_104_0_0(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_unknown_4_4t2_104_0_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_unknown_4_4t2_104_0_12(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_8t3(o) {
-if(u32(o+8) ||u32(o+12) ||u32(o+16) ||u32(o+20) ||u32(o+24) ||u32(o+28) ||u32(o+32) ||u32(o+36) ||u8(o+40) ||u8(o+41) ||u8(o+43) ||u32(o+44) ||u32(o+48) ||u32(o+56) ||u32(o+60) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u8(o + 40) || u8(o + 41) || u8(o + 43) || u32(o + 44) || u32(o + 48) || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-
-ö(u32(o + 52), get_svtrb_unknown_4_8t3_52)
-
+    // ö(u32(o + 52), get_svtrb_unknown_4_8t3_52)
+    switch (u8(o + 42)) {
+    case 1:
+        ö(u32(o + 52), get_svtrb_unknown_4_8t3_52t1)
+        break
+    case 2:
+        ö(u32(o + 52), get_svtrb_unknown_4_8t3_52t2)
+        break
+    default:
+        if (u32(o + 52)) {
+            sü(u8, 42, o, 52)
+        }
     }
 
-function get_svtrb_unknown_4_8t3_52(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+}
+function get_svtrb_unknown_4_8t3_52t1(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_svtrb_unknown_4_8t3_52t2(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_svtrb_unknown_4_8t3_52(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
 function get_svtrb_unknown_4_8t4(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) || f32(o + 8) !== 5 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== -3 || u32(o + 36) || u32(o + 40) !== 2 || u32(o + 44) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    if (u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 36) || u8(o + 41) || u8(o + 43) || u32(o + 44) || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     ö(u32(o + 48), get_svtrb_unknown_4_8t4_48)
+    ö(u32(o + 52), get_svtrb_unknown_4_8t4_52)
 
 }
 
 function get_svtrb_unknown_4_8t4_48(o) {
-    if (u32(o + 0) || f32(o + 4) !== 2 || u32(o + 8) || f32(o + 12) !== 2 || u32(o + 16) || f32(o + 20) !== 2 || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, f32, 4, u32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 0) || u32(o + 16) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
+}
+function get_svtrb_unknown_4_8t4_52(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_4t5(o) {
@@ -3278,56 +4107,54 @@ function get_svtrb_unknown_4_4t5(o) {
 }
 
 function get_svtrb_unknown_4_4t5_4(o) {
-    // if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) !== 1 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+    if (u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
     ö(u32(o + 16), get_svtrb_unknown_4_4t5_4_16)
 
 }
 
 function get_svtrb_unknown_4_4t5_4_16(o) {
-    // if (u8(o + 0) !== 9 || u8(o + 1) !== 147 || u8(o + 2) !== 14 || u8(o + 3) !== 30 || u32(o + 4) || u32(o + 8) || u32(o + 12))
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12], o)
+    //alwasy 16
 }
 
 function get_svtrb_unknown_4_4t5_12(o) {
     if (u32(o + 0) !== 2 || u32(o + 8) !== 2 || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 4), get_svtrb_unknown_4_4t5_12_4)
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 4) + (i * 12), get_svtrb_unknown_4_4t5_12_4)
+    }
 
 }
 
 function get_svtrb_unknown_4_4t5_12_4(o) {
-    if (u8(o + 0) !== 255 || u8(o + 1) !== 255 || u8(o + 2) !== 255 || u8(o + 3) !== 255 || u32(o + 4) || u32(o + 8) || u8(o + 12) || u8(o + 13) || u8(o + 14) || u8(o + 15) !== 255 || u32(o + 16) || f32(o + 20) !== 500 || u32(o + 24) || u32(o + 28))
-        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, f32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 3) !== 255 || u8(o + 4) || u8(o + 5) || u8(o + 6) || u8(o + 7))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8], o)
 }
 
 function get_svtrb_unknown_4_4t5_20(o) {
-    if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
+    if (u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 4), get_svtrb_unknown_4_4t5_20_4)
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 4) + (i * 12), get_svtrb_unknown_4_4t5_20_4)
+    }
 
 }
 
 function get_svtrb_unknown_4_4t5_20_4(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 6) || u8(o + 7))
+        ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8], o)
 }
 
 function get_svtrb_unknown_4_4t5_28(o) {
-if(u32(o+0) !==1 ||u32(o+8) ||u32(o+12) ||u32(o+20) ||u32(o+24) ||f32(o+28) ||u32(o+44) ||u32(o+60) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-
-// ä(svtrb_unknown_4_4t5_28, u32(o + 28), get_svtrb_unknown_4_4t5_28)
-// globalThis.svtrb_unknown_4_4t5_28 = []
-
-    // ö(u32(o + 4), get_svtrb_unknown_4_4t5_28_4)
-    // ö(u32(o + 16), get_svtrb_unknown_4_4t5_28_16)
-    // ö(u32(o + 36), get_svtrb_unknown_4_4t5_28_36)
+    ö(u32(o + 4), get_svtrb_unknown_4_4t5_28_4)
 
 }
 
@@ -3335,7 +4162,8 @@ function get_svtrb_unknown_4_4t5_28_4(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_svtrb_unknown_4_4t5_28_4_0)
+    // ö(u32(o + 0), get_svtrb_unknown_4_4t5_28_4_0)
+    ä(svtrb_unknown_4_4t5_28_4_0, u32(o + 0), get_svtrb_unknown_4_4t5_28_4_0)
 
 }
 
@@ -3348,31 +4176,12 @@ function get_svtrb_unknown_4_4t5_28_4_0(o) {
 }
 
 function get_svtrb_unknown_4_4t5_28_4_0_4(o) {
-    if (u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_svtrb_unknown_4_4t5_28_16(o) {
-    if (u32(o + 0) !== 2 || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-
-    ö(u32(o + 4), get_svtrb_unknown_4_4t5_28_16_4)
-
-}
-
-function get_svtrb_unknown_4_4t5_28_16_4(o) {
-    if (u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_svtrb_unknown_4_4t5_28_36(o) {
-    if (u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_svtrb_unknown_4_4t5_36(o) {
-    if (u32(o + 8) || u32(o + 12))
-        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 8) || u8(o + 10) || u8(o + 11) || u32(o + 12))
+        ü(1, [f32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12], o)
 }
 function get_svtrb_unknown_4_4t6(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
@@ -3385,8 +4194,8 @@ function get_svtrb_unknown_4_4t31(o) {
 }
 
 function get_svtrb_unknown_4_8t1(o) {
-if(u32(o+28) ||u8(o+41) ||u32(o+44) ||u32(o+56) ||u32(o+60) )
-ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, f32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    if (u32(o + 28) || u8(o + 41) || u32(o + 44) || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, f32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     ö(u32(o + 48), get_svtrb_unknown_4_8t1_48)
     switch (u8(o + 42)) {
@@ -3415,15 +4224,15 @@ function get_svtrb_unknown_4_8t1_52t1(o) {
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u32, 24, u32, 28], o)
 }
 function get_svtrb_unknown_4_8t1_52t2(o) {
-/*ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)*/
+    /*ü(1, [f32, 0, f32, 4, u32, 8, u32, 12], o)*/
 
     ö(u32(o + 12), get_svtrb_unknown_4_8t1_52t2_12)
 
 }
 
 function get_svtrb_unknown_4_8t1_52t2_12(o) {
-if(u32(o+12) )
-ü(1, [f32, 0, f32, 4, f32, 8, u32, 12], o)
+    if (u32(o + 12))
+        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_8t1_52t3(o) {
@@ -3432,25 +4241,40 @@ function get_svtrb_unknown_4_8t1_52t3(o) {
 }
 
 function get_svtrb_unknown_4_8t2(o) {
-    // if (u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 36) || u32(o + 44) || u32(o + 56) || u32(o + 60))
-    ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, f32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    if (u32(o + 20) || u32(o + 28) || u8(o + 43) || u32(o + 44) || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, f32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     ö(u32(o + 48), get_svtrb_unknown_4_8t2_48)
     // very long idk
-    ö(u32(o + 52), get_svtrb_unknown_4_8t2_52)
+    // ö(u32(o + 52), get_svtrb_unknown_4_8t2_52)
     //this may be ????
+    switch (u8(o + 42)) {
+    case 2:
+        ö(u32(o + 52), get_svtrb_unknown_4_8t2_52t2)
+        break
+    case 1:
+        ö(u32(o + 52), get_svtrb_unknown_4_8t2_52t1)
+        break
+    default:
+        if (u32(o + 52)) {
+            sü(u8, 42, o, 52)
+        }
+    }
 
 }
 
-function get_svtrb_unknown_4_8t2_48(o) {
-    if (f32(o + 0) !== 90 || u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_svtrb_unknown_4_8t2_48(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, f32, 12], o)*/
 }
-function get_svtrb_unknown_4_8t2_52(o) {
-    // if (f32(o + 0) !== 10 || u32(o + 4) || u32(o + 8))
-    ü(1, [f32, 0, f32, 4, f32, 8, u32, 12], o)
+function get_svtrb_unknown_4_8t2_52t2(o) {
+ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, ], o)
+}
+function get_svtrb_unknown_4_8t2_52t1(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
 
-    ö(u32(o + 12), get_svtrb_unknown_4_8t2_52_12)
+function get_svtrb_unknown_4_8t2_52(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, u32, 12], o)*/
+
+// ö(u32(o + 12), get_svtrb_unknown_4_8t2_52_12)
 
 }
 
@@ -3464,40 +4288,115 @@ function get_svtrb_unknown_4_8t5(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_unknown_4_8t31(o) {
+    if (u32(o + 0) !== 1 || u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u8(o + 41) || u8(o + 43) || u32(o + 44) || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+
+    ö(u32(o + 48), get_svtrb_unknown_4_8t31_48)
+    ö(u32(o + 52), get_svtrb_unknown_4_8t31_52)
+
+}
+
+function get_svtrb_unknown_4_8t31_48(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_unknown_4_8t31_52(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_svtrb_unknown_4_8t25(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_unknown_4_8t25_4)
+
+}
+
+function get_svtrb_unknown_4_8t25_4(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_unknown_4_8t34(o) {
+    if (u8(o + 3) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    // ö(u32(o + 4), get_svtrb_unknown_4_8t34_4)
+    ä(svtrb_interface, u32(o + 4), get_svtrb_interface)
+    ä(svtrb_interface, u32(o + 8), get_svtrb_interface)
+
+    // ö(u32(o + ), get_svtrb_unknown_4_8t34_8)
+    ö(u32(o + 16), get_svtrb_unknown_4_8t34_16)
+
+}
+
+function get_svtrb_unknown_4_8t34_4(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, f32, 64, u32, 68, u32, 72, u32, 76, ], o)
+}
+function get_svtrb_unknown_4_8t34_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_unknown_4_8t34_16(o) {
+if(u32(o+0) ||u32(o+4) )
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+
+ö(u32(o + 12), get_svtrb_unknown_4_8t34_16_12)
+
+    }
+
+function get_svtrb_unknown_4_8t34_16_12(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+
+
 function get_svtrb_unknown_4_8t32(o) {
+    if (u8(o + 2) || u8(o + 3) || u8(o + 12) !== 255 || u8(o + 13) !== 255 || u8(o + 14) !== 255 || u8(o + 15) !== 255 || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    ö(u32(o + 8), get_svtrb_unknown_4_8t32_8)
+
+}
+
+function get_svtrb_unknown_4_8t32_8(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+
 function get_svtrb_unknown_4_8t6(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_unknown_4_8t6_4)
+
+}
+
+function get_svtrb_unknown_4_8t6_4(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_unknown_4_8t9(o) {
-if(u8(o+0) ||u8(o+2) ||u8(o+3) ||u32(o+8) ||u32(o+12) )
-ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 
+    ö(u32(o + 4), get_svtrb_unknown_4_8t9_4)
 
-ö(u32(o + 4), get_svtrb_unknown_4_8t9_4)
+}
 
-    }
-
-function get_svtrb_unknown_4_8t9_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-
+function get_svtrb_unknown_4_8t9_4(o) {
+    if (u32(o + 4) || f32(o + 8) !== 32 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [f32, 0, u32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
+}
 
 function get_svtrb_unknown_4_8t26(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_svtrb_unknown_4_8t26_4)
+
+}
+
+function get_svtrb_unknown_4_8t26_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_interface(o) {
-    if (u8(o + 7) || u32(o + 40) || u32(o + 52) !== 1 || u32(o + 60) || u32(o + 76))
+    // if (u8(o + 7) || u32(o + 40) || u32(o + 52) !== 1 || u32(o + 60) || u32(o + 76))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, f32, 64, u32, 68, u32, 72, u32, 76], o)
 
     ö(u32(o + 0), get_svtrb_interface_0)
@@ -3844,13 +4743,15 @@ function get_svtrb_sound_controls(o) {
     if (u32(o + 4) || u8(o + 8) !== 1 || u8(o + 9) || u8(o + 11) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 16), get_svtrb_sound_controls_16)
+    for (let i = 0; i < u32(o + 12); i++) {
+        ö(u32(o + 16) + (i * 16), get_svtrb_sound_controls_16)
+    }
 
 }
 
 function get_svtrb_sound_controls_16(o) {
-    if (u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // if (u32(o + 12))
+    ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12], o)
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 4), get_svtrb_sound_controls_16_4)
@@ -3899,14 +4800,15 @@ function get_svtrb_interface_72(o) {
     case 1:
         ö(u32(o + 24), get_svtrb_interface_72_24t1)
         break
+case 2:
+ö(u32(o + 24), get_svtrb_interface_72_24t2)
+break
     case 5:
         ö(u32(o + 24), get_svtrb_interface_72_24t5)
         break
     case 6:
-        ö(u32(o + 24), get_svtrb_interface_72_24t6)
-        break
     case 7:
-        ö(u32(o + 24), get_svtrb_interface_72_24t7)
+        ö(u32(o + 24), get_svtrb_interface_72_24t6)
         break
     case 10:
         ö(u32(o + 24), get_svtrb_interface_72_24t10)
@@ -4097,7 +4999,8 @@ function get_svtrb_interface_72_24t1_8_4t0_4(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_svtrb_interface_72_24t1_8_4t0_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_interface_72_24t1_12t0(o) {
@@ -4181,6 +5084,8 @@ function get_svtrb_interface_72_24t1_16_4(o) {
     if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_svtrb_interface_72_24t2(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
+
 function get_svtrb_interface_72_24t5(o) {
     if (u32(o + 4) !== 5 || f32(o + 8) !== 0.5 || f32(o + 12) !== 0.5)
         ü(1, [u32, 0, u32, 4, f32, 8, f32, 12], o)
@@ -4200,19 +5105,6 @@ function get_svtrb_interface_72_24t6(o) {
 }
 
 function get_svtrb_interface_72_24t6_12(o) {/*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
-}
-function get_svtrb_interface_72_24t7(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-
-    //prob just t6
-
-    ö(u32(o + 0), get_svtrb_interface_72_24t7_0)
-
-}
-
-function get_svtrb_interface_72_24t7_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_interface_72_24t10(o) {
@@ -4631,7 +5523,15 @@ function get_svtrb_interface_72_72_4_44(o) {
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 }
 function get_svtrb_interface_72_72_4_56(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    if (u32(o + 0) || u32(o + 4) !== 3 || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    // ö(u32(o + ), get_svtrb_interface_72_72_4_56_8)
+    ä(svtrb_sound_controls, u32(o + 8), get_svtrb_sound_controls)
+}
+
+function get_svtrb_interface_72_72_4_56_8(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_svtrb_model_anims_1(o) {
@@ -5245,6 +6145,6 @@ function get_svtrb_texture_anims_0_4_4(o) {
 }
 
 function get_svtrb_texture_anims_0_20(o) {
-if(u8(o+10) ||u8(o+11) )
-ü(1, [f32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12], o)
+    if (u8(o + 10) || u8(o + 11))
+        ü(1, [f32, 0, f32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12], o)
 }
