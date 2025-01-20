@@ -427,13 +427,13 @@ function array_log(array_index=0) {
             let consolehtml;
             if (globalThis?.packart_hide_console === true) {
                 consolehtml = temp_array__[array_index].console?.length
-            }else{
-            if (temp_array__[array_index].console?.length < temp_array__[array_index].settings.console_limit) {
-                consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
-                consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
             } else {
-                consolehtml = temp_array__[array_index].console?.length
-            }
+                if (temp_array__[array_index].console?.length < temp_array__[array_index].settings.console_limit) {
+                    consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
+                    consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
+                } else {
+                    consolehtml = temp_array__[array_index].console?.length
+                }
             }
 
             consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
@@ -460,24 +460,29 @@ function array_log(array_index=0) {
         }
     } else {
         let verticalhtml = vertical?.replaceAll('\n', "<br>")
-        let consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
-        if (temp_array__[0].settings.show_types === true) {
-            consolehtml = consolehtml?.replaceAll('P_Ou32#', "<a class='s'>P_Ou32#</a>")
+        let consolehtml;
+        if (globalThis?.packart_hide_console === true) {
+            consolehtml = temp_array__[array_index].console?.length
         } else {
-            consolehtml = consolehtml?.replaceAll('u32#', "")
-            consolehtml = consolehtml?.replaceAll('u8#', "")
-            consolehtml = consolehtml?.replaceAll('f32#', "")
-            consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
-        }
-        if (patchhtml !== "") {
-            consolehtml += `PATCHERS <a class="O">${patchhtml}</a><br>`
-        }
-        if (switchhtml !== "") {
-            consolehtml += switchhtml?.replaceAll('\n', "<br>")
-        }
-        consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
-        Files Seen: [ ${temp_array__[[array_index]]?.files} ]`
 
+            consolehtml = temp_array__[array_index].console?.replaceAll('\n', "<br>")
+            if (temp_array__[0].settings.show_types === true) {
+                consolehtml = consolehtml?.replaceAll('P_Ou32#', "<a class='s'>P_Ou32#</a>")
+            } else {
+                consolehtml = consolehtml?.replaceAll('u32#', "")
+                consolehtml = consolehtml?.replaceAll('u8#', "")
+                consolehtml = consolehtml?.replaceAll('f32#', "")
+                consolehtml = consolehtml?.replaceAll('P_O', "<a class='s'>P_O</a>")
+            }
+            if (patchhtml !== "") {
+                consolehtml += `PATCHERS <a class="O">${patchhtml}</a><br>`
+            }
+            if (switchhtml !== "") {
+                consolehtml += switchhtml?.replaceAll('\n', "<br>")
+            }
+            consolehtml += `LINE: <a class="M"> ${temp_array__[[array_index]]?.line[0]?.toString()}</a> - <a style="color:#3c1bb4">${temp_array__[[array_index]]?.name}</a><br>
+        Files Seen: [ ${temp_array__[[array_index]]?.files} ]`
+        }
         file_editor.innerHTML = `
         <div style="height:66%;overflow:scroll;">
             <div stlye="padding:1%;">${consolehtml}<br><br>

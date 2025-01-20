@@ -6,6 +6,7 @@ const file_editor = getElementSafely('file_editor');
 const outer_program = getElementSafely('outer_program');
 const show_debug = getElementSafely('show_debug');
 const hide_console = getElementSafely('hide_console_view');
+var packart_hide_console = false;
 const drag_bar = getElementSafely('drag_bar');
 const check_offset_input = getElementSafely('check_offset');
 const pk_debug = true
