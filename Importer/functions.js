@@ -575,7 +575,7 @@ function array_log(array_index=0) {
             return a - b;
         }).toString()
 
-        console.log('sorted lines:', sortedlines)
+        console.log(`sorted lines: ${sortedlines} | T: ${temp_array__[0].line.length}`)
 
     } else {
         document.getElementsByClassName('bar')[0].innerHTML = `LINE: <a style="color:blue;">${temp_array__[array_index].line.toString()}</a><br><a style="color:red;">${patchhtml}</a>`
@@ -2136,6 +2136,9 @@ function ß(type, o, n) {
             }
             if (old_log_array.p_model.array_type[model_index] !== 0) {} else {
                 switch (g.game) {
+                case 'bigfoot_collision_course':
+                    ä(bcc_model, u32(o + n), get_bcc_model)
+                    break
                 case 'snoopy_vs_the_red_baron':
                     ä(svtrb_model, u32(o + n), get_svtrb_model)
                     break
@@ -2143,6 +2146,7 @@ function ß(type, o, n) {
                     ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
                     break
                 }
+
 
                 // ä(hwvx_model, u32(o + n), get_hwvx_model)
                 // ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
