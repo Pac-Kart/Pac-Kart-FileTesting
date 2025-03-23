@@ -2259,6 +2259,8 @@ function logsearch() {
     html += get_log(log_array.p_offset.pointers, 'offsets')
     html += get_log(log_array.p_model.array, 'models')
     html += get_log(log_array.p_texture.array, 'tex0')
+    html += get_log(log_array.p_sound.array, 'snd')
+    html += get_log(log_array.p_animation.array, 'anim0')
     temp_array__[0].lost_offsets += html.replaceAll('\n', "<br>")
     function get_log(rest_of_them, s) {
         let html = s + '\n'
