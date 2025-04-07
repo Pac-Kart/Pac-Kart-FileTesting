@@ -2139,6 +2139,9 @@ function ß(type, o, n) {
                 case 'bigfoot_collision_course':
                     ä(bcc_model, u32(o + n), get_bcc_model)
                     break
+                case 'bee_movie_game':
+                    ä(bmg_model, u32(o + n), get_bmg_model)
+                    break
                 case 'snoopy_vs_the_red_baron':
                     ä(svtrb_model, u32(o + n), get_svtrb_model)
                     break
