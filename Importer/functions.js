@@ -1205,8 +1205,8 @@ function ä(a, o, f) {
         if (log_array.ä_array.includes(o + offset_mid)) {
             if (a.includes(o + offset_mid)) {} else {
                 let index = log_array.ä_array.indexOf(o + offset_mid)
-                temp_array__[0].console += `duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]}<br>`
-                console.log(`duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]}`)
+                temp_array__[0].console += `duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]} || O: ${log_array.ä_array[index + 0]}<br>`
+                console.log(`duplicate found: ${f.name} -> ${log_array.ä_array[index + 1]} || O: ${log_array.ä_array[index + 0]}`)
                 console.groupCollapsed('stack')
                 console.log((new Error).stack)
                 console.groupEnd()
