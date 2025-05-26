@@ -2110,7 +2110,6 @@ function get_bcc_unknown_4(o) {
     case 4:
         ö(u32(o + 8), get_bcc_unknown_4_8t4)
         break
-
     case 5:
         ö(u32(o + 8), get_bcc_unknown_4_8t5)
         break
@@ -2137,11 +2136,11 @@ function get_bcc_unknown_4_4t1(o) {
     }
 
     switch (u8(o + 20)) {
-    case 2:
-        ö(u32(o + 24), get_bcc_unknown_4_4t1_24t2)
-        break
     case 1:
         ö(u32(o + 24), get_bcc_unknown_4_4t1_24t1)
+        break
+    case 2:
+        ö(u32(o + 24), get_bcc_unknown_4_4t1_24t2)
         break
     default:
         if (u32(o + 24)) {
@@ -3808,7 +3807,6 @@ function get_bcc_interface_92(o) {
     case 10:
         ö(u32(o + 36), get_bcc_interface_92_36t10)
         break
-
     case 12:
         ö(u32(o + 36), get_bcc_interface_92_36t12)
         break
@@ -4507,11 +4505,11 @@ function get_bcc_interface_92_68_4_4_16_12(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     switch (u32(o + 12)) {
-    case 1:
-        ö(u32(o + 16), get_bcc_interface_92_68_4_4_16_12_16t1)
-        break
     case 0:
         //value
+        break
+    case 1:
+        ö(u32(o + 16), get_bcc_interface_92_68_4_4_16_12_16t1)
         break
     default:
         if (u32(o + 16)) {

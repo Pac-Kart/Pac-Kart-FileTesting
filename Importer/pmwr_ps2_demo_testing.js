@@ -192,8 +192,8 @@ function get_pmwr_ps2demo_audio_list(o, o2) {
 }
 
 function get_pmwr_ps2demo_audio(o) {
-if(u32(o+16) ||u32(o+20) !==1081343 ||u32(o+24) ||u32(o+28) )
-ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 16) || u32(o + 20) !== 1081343 || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
 function get_pmwr_ps2demo_texture(o) {
