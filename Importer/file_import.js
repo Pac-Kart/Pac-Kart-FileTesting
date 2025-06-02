@@ -39,7 +39,7 @@ async function input_file(event) {
 
                     filecheck()
 
-                    console.log(`%c ${g.file_name}`, 'color:#ff10ff')
+                    console.log(`%c ${g.file_name} || ${i}/${lastFileIndex}`, 'color:#ff10ff')
                     for (let temp_array_index = 0; temp_array_index < temp_array__.length; temp_array_index++) {
                     if (temp_array__[temp_array_index].files.includes(g.file_name)) {
                         temp_array__[temp_array_index].console += `<a class='f'> ${g.file_name}</a><hr><br>`
