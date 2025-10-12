@@ -126,7 +126,6 @@ function get_bmg_datapack(o, e) {
     if (index_patch_list === 21680096 && g.file_name === 'mcp.xdx9') {
         index_patch_list = 21679952
     }
-    /*
     bmg_get_index_patch_list(o, index_patch_list)
     bmg_get_offset_patch_list(o, offset_mid + u32(o))
 
@@ -140,23 +139,22 @@ function get_bmg_datapack(o, e) {
         ö(u32(o + 60) + (i * 12), get_bmg_texture_anim)
     }
 
-    // switch (g.type) {
-    // case 1:
-    // case 3:
-    //     get_bmg_basic(offset_mid)
-    //     break
-    // case 4:
-    //     get_bmg_world(offset_mid)
-    //     break
-    // default:
-    //     console.log("?")
-    // }
+    switch (g.type) {
+    case 1:
+    case 3:
+        get_bmg_basic(offset_mid)
+        break
+    case 4:
+        get_bmg_world(offset_mid)
+        break
+    default:
+        console.log("?")
+    }
 
-    */
         // ö(u32(o + 24), get_test_temp)
-        if (u32(o + 24)) {
-            get_test_temp(end_after_datapack + u32(o + 24))
-        }
+        // if (u32(o + 24)) {
+        //     get_test_temp(end_after_datapack + u32(o + 24))
+        // }
 
 
     if (u32(o + 4)) {

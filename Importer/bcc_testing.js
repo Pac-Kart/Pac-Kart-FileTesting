@@ -168,40 +168,6 @@ function get_bcc_directory(o, end_offset) {
     director_offset = o
     g.type = u32(o + 4)
 
-    // if (g.type !== 0) {
-    //     return
-    // }
-
-    // switch (g.type) {
-    //     // case 0:
-    //     // case 1:
-    // case 2:
-    //     // case 3:
-    // case 4:
-    // case 5:
-    // case 6:
-    // case 7:
-    //     // case 8:
-    // case 9:
-    // case 10:
-    //     return
-    //     break
-    // }
-
-    /*types finished
-    * 0 = car [f]
-    * 1 = interface
-    * 2 = item
-    * 3 = link
-    * 4 = world
-    * 5 = colliders
-    * 6 = world texture
-    * 7 = geometry
-    * 8 = share
-    * 9 = audio
-    * 10 = music
-    */
-
     switch (g.type) {
     case 0:
     case 1:
@@ -252,9 +218,6 @@ function get_bcc_datapack(o, e) {
     case 4:
         get_bcc_world(offset_mid)
         break
-    case 5:
-        // get_bcc_collision(offset_mid)
-        break
     case 8:
         if (u32(o) !== 0) {
             get_bcc_share(offset_mid)
@@ -266,10 +229,6 @@ function get_bcc_datapack(o, e) {
     for (let i = 0; i < u32(o + 100); i++) {
         get_bcc_texture_anims(offset_mid + u32(o + 132) + (i * 8))
     }
-
-    // if (u32(o + 132) !==0) {
-    // get_bcc_texture_anims(offset_mid + u32(o + ))
-    // }
 
 }
 function get_bcc_share(o) {

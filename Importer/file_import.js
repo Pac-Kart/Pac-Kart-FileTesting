@@ -76,10 +76,16 @@ function choose_game_type() {
 
     let html = '';
     g.datapack_end = buffer.byteLength;
-
     switch (g.game) {
     case "bigfoot_collision_course":
         get_x_bcc()
+        break
+    case "bee_movie_game":
+        if (g.version === 288) {
+            get_x_bmg_demo()
+        }else{
+        get_x_bmg()
+        }
         break
     case "bee_movie_game":
         get_x_bmg()
@@ -93,6 +99,8 @@ function choose_game_type() {
         }
         if (g.version === 249) {
             get_x_pmwr_ps2demo()
+        } else{
+            get_x_pmwr()
         }
         break
     case "hot_wheels_velocity_x":

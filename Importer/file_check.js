@@ -149,6 +149,12 @@ function filecheck() {
                 choose_x_game()
             }
             break
+        case 288:
+            g.game = "bee_movie_game"
+            g.console = "wii"
+            //demo wii version
+           choose_game_type()
+            break
         case 312:
             g.game = "bee_movie_game"
             switch (extension) {
