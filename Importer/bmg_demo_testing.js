@@ -114,34 +114,21 @@ function get_bmg_demo_directory(o, end_offset) {
     globalThis.bmg_demo_model_link = []
     globalThis.bmg_demo_activator = []
     globalThis.bmg_demo_idk = []
-    globalThis.bmg_demo_world_12_60_0_12 = []
     globalThis.bmg_demo_model_sub_link = []
     globalThis.bmg_demo_world_28_72_0_0 = []
-    globalThis.bmg_demo_world_28_76_8_0 = []
     globalThis.bmg_demo_world_176_4_0 = []
     globalThis.bmg_demo_var = []
     globalThis.bmg_demo_world_176_20_0 = []
-    globalThis.bmg_demo_interface_80_36t1_4 = []
-    globalThis.bmg_demo_interface_72_24_28 = []
     globalThis.bmg_demo_interface_80_36t1_12t0 = []
     globalThis.bmg_demo_interface_80_36t1_12t1 = []
     globalThis.bmg_demo_interface_80_36t1_8_4_0 = []
     globalThis.bmg_demo_interface_80_36t1_12t0_4 = []
 
     globalThis.bmg_demo_interface_80_36t1_12t1_4_20 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4_16 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4_12 = []
     globalThis.bmg_demo_datapack_108_4 = []
-    globalThis.bmg_demo_idk_24_40 = []
-    globalThis.bmg_demo_idk_4t1 = []
-    globalThis.bmg_demo_idk_4t1_12 = []
-    globalThis.bmg_demo_activator_220_8_0 = []
-    globalThis.bmg_demo_var_156_0 = []
     globalThis.bmg_demo_world_176_28_0 = []
-    globalThis.bmg_demo_world_12_60_0_20_4_4_0 = []
     globalThis.bmg_demo_strange = []
     globalThis.bmg_demo_interface_80_36t1_12t1_4_28 = []
-    globalThis.bmg_demo_idk_4t1_12_0 = []
     globalThis.bmg_demo_var_168_24_12 = []
     globalThis.bmg_demo_activator_236_32_8_0 = []
     globalThis.bmg_demo_interface_64_4_12t10_0 = []
@@ -151,46 +138,18 @@ function get_bmg_demo_directory(o, end_offset) {
     globalThis.bmg_demo_var_168_24_12t34 = []
     globalThis.bmg_demo_var_168_16_12t21 = []
     globalThis.bmg_demo_sound_section = []
-    globalThis.bmg_demo_var_168_24_12t18_4 = []
-    globalThis.bmg_demo_var_168_24_12t23_0 = []
     globalThis.bmg_demo_var_168_24_12t15_0 = []
-    globalThis.bmg_demo_var_168_16_12t8_8 = []
-    globalThis.bmg_demo_flag_20t8_0 = []
     globalThis.bmg_demo_var_168_24_12t23_4_0 = []
-    globalThis.bmg_demo_var_168_24_12t7_4t4 = []
-    globalThis.bmg_demo_var_168_16_12t12_4t4 = []
-    globalThis.bmg_demo_var_168_16_12t25_4_0 = []
     globalThis.bmg_demo_world_20 = []
-    globalThis.bmg_demo_mysterious_4t11 = []
     globalThis.bmg_demo_var_168_24_12t2_4t1_4 = []
-    globalThis.bmg_demo_var_168_16_12t15_4_12t21 = []
     globalThis.bmg_demo_var_168_24_12t34_12_12t34 = []
     globalThis.bmg_demo_var_168_24_12t2_4t17_16_0 = []
     globalThis.bmg_demo_var_168_16_12t12_4t7_4_0 = []
     globalThis.bmg_demo_var_168_24_12t33_4_16_12_4 = []
     globalThis.bmg_demo_var_168_24_12t34_12_12t7_4 = []
-    globalThis.bmg_demo_interface_72_24_4t31 = []
-    globalThis.bmg_demo_activator_8 = []
-    globalThis.bmg_demo_var_168_24_12t33_4_32_12t23_0 = []
-    globalThis.bmg_demo_var_168_24_12t34_12_12t19_4_0 = []
-    globalThis.bmg_demo_extended_world_link_0t11 = []
-    globalThis.bmg_demo_var_168_24_12t33_4_24_12t7_4 = []
-    globalThis.bmg_demo_var_168_24_12t33_4_24_12t23_0 = []
-    globalThis.bmg_demo_extended_world_link_0t0 = []
-    globalThis.bmg_demo_var_168_24_12t34_12_12t5_0t1_0 = []
-    globalThis.bmg_demo_var_168_24_12t33_4_32_12t5_0_4 = []
-    globalThis.bmg_demo_var_168_24_12t34_12_12t5_0t2_4 = []
-    globalThis.bmg_demo_extended_world_link_0t0 = []
-    globalThis.bmg_demo_extended_world_link_0t11 = []
-    globalThis.bmg_demo_extended_world_link_0t13 = []
-    globalThis.bmg_demo_extended_world_link_0t10 = []
 
     //both interface/mcp finished
     /*
-    check these if same:
-    get_bmg_demo_model_sub_link
-get_bmg_demo_world_12_60_0_12
-    16/11/2025
     */
 
     director_offset = o
@@ -284,13 +243,8 @@ function get_bmg_demo_datapack_108(o) {
     if (u32(o + 0))
         ü(1, [u32, 0, u32, 4], o)
 
-    // ö(u32(o + 4), get_bmg_demo_datapack_108_4)
     ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 4), get_bmg_demo_interface_80_36t1_8_4_0)
 
-}
-
-function get_bmg_demo_datapack_108_4(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_basic_audio_pc(o, e) {
@@ -502,7 +456,6 @@ function get_bmg_demo_world(o) {
     ä(bmg_demo_world_12, u32(o + 12), get_bmg_demo_world_12)
     for (let i = 0; i < u32(o + 16); i++) {
         ä(bmg_demo_world_20, u32(o + 20) + (i * 128), get_bmg_demo_world_20)
-        // ö(u32(o + 20) + (i * 128), get_bmg_demo_world_20)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
@@ -510,7 +463,6 @@ function get_bmg_demo_world(o) {
     }
     for (let i = 0; i < u32(o + 64); i++) {
         ä(bmg_demo_world_68, u32(o + 68) + (i * 112), get_bmg_demo_world_68)
-        // ö(u32(o + 68) , get_bmg_demo_world_68)
     }
     ä(bmg_demo_world_84, u32(o + 84), get_bmg_demo_world_84)
     for (let i = 0; i < u32(o + 88); i++) {
@@ -558,8 +510,6 @@ function get_bmg_demo_world_4(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     ö(u32(o + 16), get_bmg_demo_world_4_16)
-    // ö(u32(o + 20), get_bmg_demo_world_4_20)
-    // ä(bmg_demo_world_4_20, u32(o + 20), get_bmg_demo_world_4_20)
     ä(bmg_demo_world_4, u32(o + 20), get_bmg_demo_world_4)
 
 }
@@ -568,13 +518,10 @@ function get_bmg_demo_world_4_16(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
 }
-function get_bmg_demo_world_4_20(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
 
 function get_bmg_demo_world_12(o) {
-    if (u32(o + 0) !== 728 || u32(o + 4) || u32(o + 8) || u32(o + 12) !== 65544 || u32(o + 16) !== 65544 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) !== 10083456 || u8(o + 64) !== 255 || u8(o + 65) !== 255 || u8(o + 66) !== 255 || u8(o + 67) !== 255 || u32(o + 68) !== 257 || f32(o + 72) !== 500 || f32(o + 76) !== 1000 || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) !== 65535 || u32(o + 112) !== 256 || u32(o + 116) || u32(o + 120) !== 1 || u32(o + 124) !== 1000 || u32(o + 128) || u32(o + 132) !== 1 || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156], o)
+    if (u32(o + 0) !== 728 || u32(o + 4) || u32(o + 8) || u16(o + 12) !== 1 || u16(o + 14) !== 8 || u16(o + 16) !== 1 || u16(o + 18) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) !== 10083456 || u8(o + 64) !== 255 || u8(o + 65) !== 255 || u8(o + 66) !== 255 || u8(o + 67) !== 255 || u8(o + 68) || u8(o + 69) || u8(o + 70) !== 1 || u8(o + 71) !== 1 || f32(o + 72) !== 500 || f32(o + 76) !== 1000 || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u8(o + 108) || u8(o + 109) || u8(o + 110) !== 255 || u8(o + 111) !== 255 || u8(o + 112) || u8(o + 113) || u8(o + 114) !== 1 || u8(o + 115) || u32(o + 116) || u32(o + 120) !== 1 || u32(o + 124) !== 1000 || u32(o + 128) || u32(o + 132) !== 1 || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156))
+        ü(1, [u32, 0, u32, 4, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u8, 68, u8, 69, u8, 70, u8, 71, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u8, 108, u8, 109, u8, 110, u8, 111, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156], o)
 
     ö(u32(o + 60), get_bmg_demo_world_12_60)
 
@@ -589,63 +536,17 @@ function get_bmg_demo_world_12_60(o) {
 }
 
 function get_bmg_demo_world_12_60_0(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) !== 10083584 || u32(o + 16) !== 2 || u32(o + 20) !== 10083744 || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 5000 || f32(o + 36) !== 10 || f32(o + 40) !== 380 || f32(o + 44) !== 75 || u32(o + 48) || u32(o + 52) || u32(o + 56) !== 10088128 || u32(o + 60) !== 50 || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u8(o + 84) !== 70 || u8(o + 85) !== 28 || u8(o + 86) !== 64 || u8(o + 87) || u32(o + 88) !== 1000 || u32(o + 92))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u32, 88, u32, 92], o)
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) !== 10083584 || u32(o + 16) !== 2 || u32(o + 20) !== 10083744 || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 5000 || f32(o + 36) !== 10 || f32(o + 40) !== 380 || f32(o + 44) !== 75 || u32(o + 48) || u32(o + 52) || u32(o + 56) !== 10088128 || u32(o + 60) !== 50 || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || f32(o + 84) !== 10000 || u32(o + 88) !== 1000 || u32(o + 92))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, f32, 84, u32, 88, u32, 92], o)
 
-    // ä(bmg_demo_world_12_60_0_12, u32(o + 12), get_bmg_demo_world_12_60_0_12)
     ä(bmg_demo_model_sub_link, u32(o + 12), get_bmg_demo_model_sub_link)
-    // ö(u32(o + 12), get_bmg_demo_world_12_60_0_12)
     for (let i = 0; i < u32(o + 16); i++) {
         ö(u32(o + 20) + (i * 8), get_bmg_demo_world_12_60_0_20)
     }
-    // ö(u32(o + 20), get_bmg_demo_world_12_60_0_20)
 
     ö(u32(o + 56), get_bmg_demo_world_12_60_0_56)
 
 }
-
-function get_bmg_demo_world_12_60_0_12(o) {
-    if (u32(o + 0) !== 10062144 || u32(o + 4) !== 1 || u32(o + 8) !== 10083616 || u32(o + 12) !== 10 || u32(o + 16) !== 10083648 || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ä(bmg_demo_world_12_60_0_12, u32(o + 12), get_bmg_demo_world_12_60_0_12)
-    // globalThis.bmg_demo_world_12_60_0_12 = []
-
-    // ö(u32(o + 0), get_bmg_demo_world_12_60_0_12_0)
-    ä(bmg_demo_model_anims_2, u32(o + 0), get_bmg_demo_model_anims_2)
-    ö(u32(o + 8), get_bmg_demo_world_12_60_0_12_8)
-    // patch sound
-    for (let i = 0; i < u32(o + 12); i++) {
-        ö(u32(o + 16) + (i * 8), get_bmg_demo_world_12_60_0_12_16)
-    }
-
-}
-
-// function get_bmg_demo_world_12_60_0_12_0(o) {
-//     if (u32(o + 8) !== 1 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     for (let i = 0; i < u32(o); i++) {
-//         ö(u32(o + 16) + (i * 32), get_bmg_demo_world_12_60_0_12_0_16)
-//     }
-
-// }
-
-// function get_bmg_demo_world_12_60_0_12_0_16(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)*/
-// }
-
-// function get_bmg_demo_world_12_60_0_12_8(o) {
-//     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-//     ß('p_model', o, 0)
-
-// }
-// function get_bmg_demo_world_12_60_0_12_16(o) {
-//     if (u8(o + 4) || u8(o + 6) || u8(o + 7))
-//         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7], o)
-//     ß('p_model', o, 0)
-
-// }
 
 function get_bmg_demo_world_12_60_0_20(o) {
     if (u32(o + 0))
@@ -668,9 +569,6 @@ function get_bmg_demo_world_12_60_0_20_4(o) {
 function get_bmg_demo_world_12_60_0_20_4_4(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_world_12_60_0_20_4_4_0)
-    // ä(bmg_demo_world_12_60_0_20_4_4_0, u32(o + 0), get_bmg_demo_world_12_60_0_20_4_4_0)
-    // ä(bmg_demo_world_12_60_0_20_4_4_0, u32(o + 0), get_bmg_demo_world_12_60_0_20_4_4_0)
     ä(bmg_demo_model_link, u32(o + 0), get_bmg_demo_model_link)
 
 }
@@ -693,7 +591,10 @@ function get_bmg_demo_world_20(o) {
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u8, 80, u8, 81, u8, 82, u8, 83, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124], o)
 
     ä(bmg_demo_model_anim_1, u32(o + 64), get_bmg_demo_model_anim_1)
+
+
     ä(bmg_demo_idk, u32(o + 72), get_bmg_demo_idk)
+
     ä(bmg_demo_model_link, u32(o + 76), get_bmg_demo_model_link)
 
 }
@@ -702,16 +603,85 @@ function get_bmg_demo_model_anim_1(o) {
     if (u32(o + 0) !== 5 || u32(o + 4) !== 35 || u32(o + 16) !== 1 || u32(o + 20) !== 7)
         ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-    // ö(u32(o + 32), get_bmg_demo_model_anim_1_32)
-    // ö(u32(o + 52), get_bmg_demo_model_anim_1_52)
+    for (let i = 0; i < u32(o + 40); i++) {
+        ö(u32(o + 32) + (i * 4), get_bmg_demo_model_anim_1_32)
+    }
+    ö(u32(o + 52), get_bmg_demo_model_anim_1_52)
 
 }
 
-function get_bmg_demo_model_anim_1_32(o) {
-    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, f32, 72, f32, 76, f32, 80, f32, 84, f32, 88, f32, 92, f32, 96, f32, 100, f32, 104, f32, 108, f32, 112, f32, 116, f32, 120, f32, 124, f32, 128, f32, 132, f32, 136, f32, 140, f32, 144, f32, 148, f32, 152, f32, 156, f32, 160, f32, 164, f32, 168, f32, 172, f32, 176, f32, 180, f32, 184, f32, 188, f32, 192, f32, 196, f32, 200, f32, 204, f32, 208, f32, 212, f32, 216, f32, 220, f32, 224, f32, 228, f32, 232, f32, 236, f32, 240, f32, 244, f32, 248, f32, 252, f32, 256, f32, 260, f32, 264, f32, 268, f32, 272, f32, 276, f32, 280, f32, 284, f32, 288, f32, 292, f32, 296, f32, 300, f32, 304, f32, 308, f32, 312, f32, 316, f32, 320, f32, 324, f32, 328, f32, 332, f32, 336, f32, 340, f32, 344, f32, 348, f32, 352, f32, 356, f32, 360, f32, 364, ], o)
+function get_bmg_demo_model_anim_1_32(o) {/*ü(1, [f32, 0], o)*/
 }
 function get_bmg_demo_model_anim_1_52(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, ], o)
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)*/
+
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+        // for (let i = 0; i < u32(o); i++) {
+        //     ö(u32(o + 12) + (i * 2), get_bmg_demo_model_anim_1_52_12)
+        // }
+        ö(u32(o + 12), get_bmg_demo_model_anim_1_52_12)
+
+    } else {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+    if (old_log_array.p_offset.array.includes(o + 16 - offset_mid)) {
+        // for (let i = 0; i < u32(o + 8); i++) {
+        //     ö(u32(o + 16) + (i * 2), get_bmg_demo_model_anim_1_52_16)
+        // }
+        ö(u32(o + 16), get_bmg_demo_model_anim_1_52_16)
+
+    } else {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+    if (old_log_array.p_offset.array.includes(o + 20 - offset_mid)) {
+        // for (let i = 0; i < u32(o + 4); i++) {
+        //     ö(u32(o + 20) + (i * 2), get_bmg_demo_model_anim_1_52_20)
+        // }
+        ö(u32(o + 20), get_bmg_demo_model_anim_1_52_20)
+    } else {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+    if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
+        // for (let i = 0; i < u32(o + 0); i++) {
+        //     ö(u32(o + 24) + (i * 4), get_bmg_demo_model_anim_1_52_24)
+        // }
+        ö(u32(o + 24), get_bmg_demo_model_anim_1_52_24)
+
+        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    } else {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_bmg_demo_model_anim_1_52_28)
+        // maybe 24 bytes per entry ????
+        // maybe [04]
+        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    } else {// if no offset [0] = 7
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+    if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
+        ö(u32(o + 32), get_bmg_demo_model_anim_1_52_32)
+        // maybe [04 / 08 ?]
+        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    } else {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
+    }
+
+}
+
+function get_bmg_demo_model_anim_1_52_12(o) {/*ü(1, [u8, 0, u8, 1], o)*/
+}
+function get_bmg_demo_model_anim_1_52_16(o) {/*ü(1, [u8, 0, u8, 1], o)*/
+}
+function get_bmg_demo_model_anim_1_52_20(o) {
+    if (u8(o + 0))
+        ü(1, [u8, 0, u8, 1], o)
+}
+function get_bmg_demo_model_anim_1_52_24(o) {/*ü(1, [f32, 0], o)*/
+}
+function get_bmg_demo_model_anim_1_52_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_bmg_demo_model_anim_1_52_32(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_model_link(o) {
@@ -721,8 +691,8 @@ function get_bmg_demo_model_link(o) {
     ö(u32(o + 4), get_bmg_demo_model_link_4)
     ö(u32(o + 8), get_bmg_demo_model_link_8)
     ä(bmg_demo_model_sub_link, u32(o + 12), get_bmg_demo_model_sub_link)
-    // ö(u32(o + 12), get_bmg_demo_model_sub_link)
     ö(u32(o + 16), get_bmg_demo_model_link_16)
+
     //model anims
     ö(u32(o + 28), get_bmg_demo_model_link_28)
     ö(u32(o + 32), get_bmg_demo_model_link_32)
@@ -730,7 +700,6 @@ function get_bmg_demo_model_link(o) {
 
     for (let i = 0; i < u32(o + 52); i++) {
         ö(u32(o + 56) + (i * 64), get_bmg_demo_mysterious)
-        // ö(u32(o + 56) + (i*64), get_bmg_demo_model_link_56)
     }
 
 }
@@ -743,11 +712,7 @@ function get_bmg_demo_model_sub_link(o) {
     if (u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_model_sub_link, u32(o + link), get_bmg_demo_model_sub_link)
-    // globalThis.bmg_demo_model_sub_link = []
-
     ä(bmg_demo_model_anims_2, u32(o + 0), get_bmg_demo_model_anims_2)
-    // ö(u32(o + 0), get_bmg_demo_model_anims_2)
     for (let i = 0; i < u32(o + 4); i++) {
         ö(u32(o + 8) + (i * 4), get_bmg_demo_model_sub_link_8)
     }
@@ -786,13 +751,7 @@ function get_bmg_demo_model_anims_2(o) {
 
 }
 
-function get_bmg_demo_model_anims_2_16(o) {/*ü(1, [f32, 0, f32, 4, u32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)*/
-}
-function get_bmg_demo_model_anims_2_8(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_model_anims_2_20(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_bmg_demo_model_anims_2_16(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)*/
 }
 function get_bmg_demo_model_anims_2_8t2852208671(o) {// ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, ], o)
 // string
@@ -845,9 +804,19 @@ function get_bmg_demo_model_sub_link_16(o) {
 
 }
 
-function get_bmg_demo_model_link_16(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// prob model_anim
+function get_bmg_demo_model_link_16(o) {
+    if (u32(o) === 2860548033) {
+        get_bmg_demo_some_model_anim(o)
+    }else{
+        get_bmg_demo_model_anim_1(o)
+    }
+
 }
+
+function get_bmg_demo_some_model_anim(o) {
+        ü(3, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7], o)
+}
+
 function get_bmg_demo_model_link_28(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -860,13 +829,10 @@ function get_bmg_demo_model_link_48(o) {
     if (u32(o + 12) || u32(o + 28) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 }
-// function get_bmg_demo_model_link_56(o) {
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, u8, 24, u8, 25, u8, 26, u8, 27, u32, 28, u32, 32, f32, 36, u32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60, ], o)
-// }
 
 function get_bmg_demo_world_28(o) {
-    if (u8(o + 4) || u8(o + 5) !== 2 || u8(o + 6) || u8(o + 7) !== 1 || u32(o + 8) || u8(o + 12) || u8(o + 13) !== 1 || u8(o + 14) || u8(o + 15) !== 8 || u8(o + 16) || u8(o + 17) !== 1 || u8(o + 18) || u8(o + 19) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 44) || u32(o + 48) || u32(o + 68) || u32(o + 80) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108))
-        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
+    if (u16(o + 4) !== 2 || u16(o + 6) !== 1 || u32(o + 8) || u16(o + 12) !== 1 || u16(o + 14) !== 8 || u16(o + 16) !== 1 || u16(o + 18) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 44) || u32(o + 48) || u32(o + 68) || u32(o + 80) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108))
+        ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
 
     // 52 = bytelength 32 bytes
     let bytelength = u32(o + 52)
@@ -887,7 +853,9 @@ function get_bmg_demo_world_28_56(o) {
     if (u8(o + 17) !== 254 || u8(o + 20) !== 254 || u8(o + 21) !== 254 || u8(o + 22) !== 254 || u8(o + 23) !== 254 || u8(o + 24) !== 254 || u8(o + 25) !== 254 || u8(o + 26) !== 254 || u8(o + 27) !== 254 || u8(o + 28) !== 254 || u8(o + 29) !== 254 || u8(o + 30) !== 254 || u8(o + 31) !== 254)
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31], o)
 }
-function get_bmg_demo_world_28_64(o) {/*ü(1, [u32, 0], o)*/
+function get_bmg_demo_world_28_64(o) {
+    if (u8(o + 0) || u8(o + 1) || u8(o + 2) !== 10)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3], o)
 }
 function get_bmg_demo_world_28_72(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -902,15 +870,9 @@ function get_bmg_demo_world_28_72(o) {
 function get_bmg_demo_world_28_72_0(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_world_28_72_0_0)
-    // ä(bmg_demo_world_28_72_0_0, u32(o + 0), get_bmg_demo_world_28_72_0_0)
     ä(bmg_demo_world_116, u32(o + 0), get_bmg_demo_world_116)
 
 }
-
-// function get_bmg_demo_world_28_72_0_0(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, f32, 52, u32, 56, u32, 60, u32, 64, u32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, f32, 92, u32, 96, u32, 100, u32, 104, u32, 108, ], o)
-// }
 
 function get_bmg_demo_world_28_76(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -925,37 +887,30 @@ function get_bmg_demo_world_28_76(o) {
 function get_bmg_demo_world_28_76_8(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_world_28_76_8_0)
-    // ä(bmg_demo_world_28_76_8_0, u32(o + 0), get_bmg_demo_world_28_76_8_0)
     ä(bmg_demo_world_92, u32(o + 0), get_bmg_demo_world_92)
 
 }
 
-// function get_bmg_demo_world_28_76_8_0(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-// }
-
 function get_bmg_demo_world_68(o) {
-    if (u8(o + 4) || u8(o + 5) !== 10 || u8(o + 6) || u32(o + 8) || u8(o + 12) || u8(o + 13) || u8(o + 14) || u8(o + 16) || u8(o + 17) || u8(o + 18) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || f32(o + 52) !== 3.1415927410125732 || u32(o + 56) || f32(o + 60) !== 1 || u8(o + 68) !== 71 || u8(o + 69) !== 175 || u8(o + 70) !== 200 || u8(o + 71) || u8(o + 72) !== 71 || u8(o + 73) !== 28 || u8(o + 74) !== 64 || u8(o + 75) || u32(o + 76) || u32(o + 80) !== 5000 || u32(o + 84) !== 1000 || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108))
-        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71, u8, 72, u8, 73, u8, 74, u8, 75, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
+    if (u16(o + 4) !== 10 || u16(o + 8) || u16(o + 10) || u16(o + 12) || u16(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || f32(o + 52) !== 3.1415927410125732 || u32(o + 56) || f32(o + 60) !== 1 || f32(o + 68) !== 90000 || f32(o + 72) !== 40000 || u32(o + 76) || u32(o + 80) !== 5000 || u32(o + 84) !== 1000 || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108))
+        ü(1, [u32, 0, u16, 4, u16, 6, u16, 8, u16, 10, u16, 12, u16, 14, u16, 16, u16, 18, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108], o)
 
-    // ö(u32(o + 64), get_bmg_demo_activator)
     ä(bmg_demo_activator, u32(o + 64), get_bmg_demo_activator)
 
 }
 
 function get_bmg_demo_activator(o) {
-    if (u32(o + 4) || u8(o + 14) !== 1 || u8(o + 15) || u32(o + 20) || f32(o + 24) !== 10 || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 112) || u32(o + 116) || u32(o + 120) !== 1 || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136) || u32(o + 140) || u32(o + 144) || u8(o + 148) !== 119 || u8(o + 149) !== 53 || u8(o + 150) !== 148 || u8(o + 151) || u32(o + 152) || u32(o + 160) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u8(o + 181) || u8(o + 182) || u8(o + 183) || f32(o + 184) !== 5 || u32(o + 192) || u32(o + 196) || u32(o + 200) || u32(o + 204) || u32(o + 208) || u32(o + 212) || u32(o + 240) || u32(o + 244))
-        ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u8, 148, u8, 149, u8, 150, u8, 151, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u8, 180, u8, 181, u8, 182, u8, 183, f32, 184, u32, 188, u32, 192, u32, 196, u32, 200, u32, 204, u32, 208, u32, 212, u32, 216, u32, 220, u32, 224, u32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252], o)
+    if (u32(o + 4) || u8(o + 14) !== 1 || u8(o + 15) || u32(o + 20) || f32(o + 24) !== 10 || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 112) || u32(o + 116) || u32(o + 120) !== 1 || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 148) !== 2000000000 || u32(o + 152) || u8(o + 156) || u8(o + 157) || u8(o + 159) || u32(o + 160) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u8(o + 181) || u8(o + 182) || u8(o + 183) || f32(o + 184) !== 5 || u32(o + 192) || u32(o + 196) || u32(o + 200) || u32(o + 204) || u32(o + 208) || u32(o + 212) || u32(o + 240) || u32(o + 244))
+        ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u8, 156, u8, 157, u8, 158, u8, 159, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u8, 180, u8, 181, u8, 182, u8, 183, f32, 184, u32, 188, u32, 192, u32, 196, u32, 200, u32, 204, u32, 208, u32, 212, u32, 216, u32, 220, u32, 224, u32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252], o)
 
     ö(u32(o + 0), get_bmg_demo_activator_0)
     ä(bmg_demo_model_anims_2, u32(o + 8), get_bmg_demo_model_anims_2)
-    // ä(bmg_demo_activator_8, u32(o + 8), get_bmg_demo_activator_8)
-    // ö(u32(o + 8), get_bmg_demo_activator_8)
     ö(u32(o + 28), get_bmg_demo_activator_28)
     ö(u32(o + 108), get_bmg_demo_activator_108)
     ö(u32(o + 188), get_bmg_demo_activator_188)
-    ö(u32(o + 220), get_bmg_demo_activator_220)
+    for (let i = 0; i < u32(o + 216); i++) {
+        ö(u32(o + 220) + (i * 28), get_bmg_demo_activator_220)
+    }
     ö(u32(o + 228), get_bmg_demo_activator_228)
     for (let i = 0; i < u32(o + 232); i++) {
         ö(u32(o + 236) + (i * 36), get_bmg_demo_activator_236)
@@ -965,9 +920,6 @@ function get_bmg_demo_activator(o) {
 }
 
 function get_bmg_demo_activator_0(o) {// console.log(get_string(o, 0, false))
-}
-function get_bmg_demo_activator_8(o) {
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_activator_28(o) {
@@ -1013,17 +965,15 @@ function get_bmg_demo_activator_188(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_bmg_demo_activator_220(o) {
-    if (u8(o + 4) !== 7 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 12) || u32(o + 20) || f32(o + 24) !== 2000000000)
-        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, f32, 16, u32, 20, f32, 24, u32, 28], o)
+    if (u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 12) || u32(o + 20) || f32(o + 24) !== 2000000000)
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, f32, 16, u32, 20, f32, 24], o)
 
     ö(u32(o + 0), get_bmg_demo_activator_220_0)
     ö(u32(o + 8), get_bmg_demo_activator_220_8)
-    ö(u32(o + 28), get_bmg_demo_activator_220_28)
 
 }
 
-function get_bmg_demo_activator_220_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// console.log(get_string(o, 0, false))
+function get_bmg_demo_activator_220_0(o) {// console.log(get_string(o, 0, false))
 }
 function get_bmg_demo_activator_220_8(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -1033,21 +983,6 @@ function get_bmg_demo_activator_220_8(o) {
 
 }
 
-// function get_bmg_demo_activator_220_8_0(o) {
-//     if (u32(o + 0) || u32(o + 4) || u32(o + 16) || u32(o + 24) !== 1 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 16777216 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-
-//     ö(u32(o + 8), get_bmg_demo_activator_220_8_0_8)
-//     ö(u32(o + 20), get_bmg_demo_activator_220_8_0_20)
-
-// }
-
-// function get_bmg_demo_activator_220_8_0_8(o) {// console.log(get_string(o, 0, false))
-// }
-// function get_bmg_demo_activator_220_8_0_20(o) {
-//     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-// }
 function get_bmg_demo_activator_228(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) !== 1 || u32(o + 16) !== 2 || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -1061,8 +996,8 @@ function get_bmg_demo_activator_228(o) {
 }
 
 function get_bmg_demo_activator_228_4(o) {
-    if (u32(o + 0) !== 17104896 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 0) !== 1 || u8(o + 1) !== 5 || u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_bmg_demo_activator_228_12(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -1086,8 +1021,7 @@ function get_bmg_demo_activator_228_20(o) {
 
 }
 
-function get_bmg_demo_activator_228_20_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_activator_228_20_0(o) {// string
 }
 function get_bmg_demo_activator_228_20_12(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -1115,8 +1049,8 @@ function get_bmg_demo_activator_236_4(o) {
 }
 
 function get_bmg_demo_activator_236_4_4(o) {
-    if (u32(o + 0) !== 33554432 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 0) !== 2 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
 function get_bmg_demo_activator_236_8(o) {// console.log(get_string(o, 0, false))
@@ -1128,26 +1062,21 @@ function get_bmg_demo_activator_236_32(o) {
     ö(u32(o + 0), get_bmg_demo_activator_236_32_0)
     ö(u32(o + 8), get_bmg_demo_activator_236_32_8)
     ö(u32(o + 16), get_bmg_demo_activator_236_32_16)
-    ö(u32(o + 76), get_bmg_demo_activator_236_32_76)
+    for (let i = 0; i < u32(o + 72); i++) {
+        ö(u32(o + 76) + (i * 16), get_bmg_demo_activator_236_32_76)
+    }
     ö(u32(o + 84), get_bmg_demo_activator_236_32_84)
 
 }
 
 function get_bmg_demo_activator_236_32_0(o) {// console.log(get_string(o, 0, false))
-// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_bmg_demo_activator_236_32_8(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_activator_236_32_8_0)
-    // ä(bmg_demo_activator_236_32_8_0, u32(o + 0), get_bmg_demo_activator_236_32_8_0)
     ä(bmg_demo_model_link, u32(o + 0), get_bmg_demo_model_link)
 
-}
-
-function get_bmg_demo_activator_236_32_8_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
 
 function get_bmg_demo_activator_236_32_16(o) {
@@ -1155,8 +1084,8 @@ function get_bmg_demo_activator_236_32_16(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_bmg_demo_activator_236_32_76(o) {
-    if (u32(o + 8) || u32(o + 20) || u32(o + 24))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u32(o + 8))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 0), get_bmg_demo_activator_236_32_76_0)
 
@@ -1176,14 +1105,9 @@ function get_bmg_demo_activator_236_32_76(o) {
         }
     }
 
-    // ö(u32(o + 12), get_bmg_demo_activator_236_32_76_12)
-    ö(u32(o + 16), get_bmg_demo_activator_236_32_76_16)
-    ö(u32(o + 28), get_bmg_demo_activator_236_32_76_28)
-
 }
 
-function get_bmg_demo_activator_236_32_76_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_activator_236_32_76_0(o) {// string
 }
 function get_bmg_demo_activator_236_32_76_12t0(o) {
     if (u8(o + 0) !== 4 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -1196,22 +1120,7 @@ function get_bmg_demo_activator_236_32_76_12t23(o) {
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 64), get_bmg_demo_mysterious)
     }
-    // ö(u32(o + 4), get_bmg_demo_activator_236_32_76_12t23_4)
-
 }
-
-// function get_bmg_demo_activator_236_32_76_12t23_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-//     /*ü(1,], o)*/
-//     // maybe mys
-
-//     ö(u32(o + 4), get_bmg_demo_activator_236_32_76_12t23_4_4)
-
-// }
-
-// function get_bmg_demo_activator_236_32_76_12t23_4_4(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_activator_236_32_76_12t8(o) {
     if (u32(o + 0) !== 1 || u32(o + 4) !== 10197824 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -1220,36 +1129,7 @@ function get_bmg_demo_activator_236_32_76_12t8(o) {
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 64), get_bmg_demo_mysterious)
     }
-    // ö(u32(o + 4), get_bmg_demo_activator_236_32_76_12t8_4)
 
-}
-
-// function get_bmg_demo_activator_236_32_76_12t8_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, f32, 36, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, f32, 48, u32, 52, u32, 56, u32, 60, ], o)
-//     /*ü(1,], o)*/
-
-//     // mys?
-//     ö(u32(o + 4), get_bmg_demo_activator_236_32_76_12t8_4_4)
-//     ö(u32(o + 8), get_bmg_demo_activator_236_32_76_12t8_4_8)
-
-// }
-
-// function get_bmg_demo_activator_236_32_76_12t8_4_4(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_activator_236_32_76_12t8_4_8(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-
-function get_bmg_demo_activator_236_32_76_12(o) {
-    ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-}
-function get_bmg_demo_activator_236_32_76_16(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
-}
-function get_bmg_demo_activator_236_32_76_28(o) {
-    if (u8(o + 0) !== 4 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
 function get_bmg_demo_activator_236_32_84(o) {
@@ -1262,28 +1142,16 @@ function get_bmg_demo_activator_252(o) {
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 64), get_bmg_demo_mysterious)
-        // ö(u32(o + 4) + (i * 64), get_bmg_demo_activator_252_4)
-        // ö(u32(o + 4) + (i * 64), get_bmg_demo_activator_252_4)
     }
 
-}
-
-function get_bmg_demo_activator_252_4(o) {
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, u8, 24, u8, 25, u8, 26, u8, 27, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 }
 
 function get_bmg_demo_world_84(o) {
     if (u32(o + 0) !== 746 || u8(o + 4) || u8(o + 5) !== 11 || u8(o + 6) || u8(o + 7) || u32(o + 8) || u8(o + 12) || u8(o + 13) !== 1 || u8(o + 14) || u8(o + 15) !== 8 || u8(o + 16) || u8(o + 17) !== 1 || u8(o + 18) || u8(o + 19) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) !== 1 || u32(o + 64) !== 2976 || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
 
-    // ö(u32(o + 64), get_bmg_demo_world_84_64)
-    // ä(bmg_demo_world_84_64, u32(o + 64), get_bmg_demo_world_84_64)
     ä(bmg_demo_world_12, u32(o + 64), get_bmg_demo_world_12)
 
-}
-
-function get_bmg_demo_world_84_64(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, ], o)
 }
 
 function get_bmg_demo_world_92(o) {
@@ -1303,9 +1171,7 @@ function get_bmg_demo_idk(o) {
         ß('p_model', o, 4)
         break
     case 1:
-        // ä(bmg_demo_idk_4t1, u32(o + 4), get_bmg_demo_idk_4t1)
         ä(bmg_demo_model_link, u32(o + 4), get_bmg_demo_model_link)
-        // ö(u32(o + 4), get_bmg_demo_idk_4t1)
         break
     default:
         if (u32(o + 4)) {
@@ -1314,34 +1180,23 @@ function get_bmg_demo_idk(o) {
         }
     }
 
-    // ö(u32(o + 4), get_bmg_demo_idk_4)
-
     ö(u32(o + 24), get_bmg_demo_idk_24)
-    // myst
     for (let i = 0; i < u32(o + 52); i++) {
         ö(u32(o + 56) + (i * 64), get_bmg_demo_mysterious)
     }
 
 }
 
-function get_bmg_demo_idk_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_idk_24(o) {
     if (u32(o + 0) || f32(o + 4) !== 1 || u32(o + 8) || f32(o + 16) !== 1 || f32(o + 20) !== 1 || f32(o + 24) !== 1 || u32(o + 28) || u8(o + 36) !== 255 || u8(o + 37) !== 255 || u8(o + 38) !== 255 || u8(o + 39) !== 255 || u32(o + 40) !== 10088736 || u8(o + 46) || u8(o + 47) || u32(o + 52) || u32(o + 56) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
 
-    // ä(bmg_demo_idk_24_40, u32(o + 40), get_bmg_demo_idk_24_40)
     ä(bmg_demo_world_208_0, u32(o + 40), get_bmg_demo_world_208_0)
-    // ö(u32(o + 40), get_bmg_demo_idk_24_40)
     ö(u32(o + 48), get_bmg_demo_idk_24_48)
     ö(u32(o + 60), get_bmg_demo_idk_24_60)
 
 }
 
-function get_bmg_demo_idk_24_40(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, f32, 80, f32, 84, u32, 88, u32, 92, u32, 96, f32, 100, f32, 104, f32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, ], o)
-}
 function get_bmg_demo_idk_24_48(o) {
     if (f32(o + 0) !== -0.5 || u32(o + 4) || f32(o + 8) !== -0.5 || u32(o + 12) || f32(o + 16) !== 0.5 || f32(o + 20) !== 1 || f32(o + 24) !== 0.5 || u32(o + 28) || f32(o + 32) !== 0.5 || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [f32, 0, u32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
@@ -1388,15 +1243,12 @@ function get_bmg_demo_mysterious(o) {
     switch (u8(o + 0)) {
     case 1:
         ä(bmg_demo_unknown, u32(o + 4), get_bmg_demo_unknown)
-        // ö(u32(o + 4), get_bmg_demo_unknown)
         break
     case 2:
         ä(bmg_demo_strange, u32(o + 4), get_bmg_demo_strange)
-        // ö(u32(o + 4), get_bmg_demo_strange)
         break
     case 3:
         ä(bmg_demo_sound_controls, u32(o + 4), get_bmg_demo_sound_controls)
-        // ö(u32(o + 4), get_bmg_demo_mysterious_4t3)
         break
     case 5:
     case 6:
@@ -1404,21 +1256,17 @@ function get_bmg_demo_mysterious(o) {
         break
     case 8:
         ä(bmg_demo_model_link, u32(o + 4), get_bmg_demo_model_link)
-        // ö(u32(o + 4), get_bmg_demo_mysterious_4t8)
         break
     case 11:
         ä(bmg_demo_activator, u32(o + 4), get_bmg_demo_activator)
-        // ä(bmg_demo_mysterious_4t11, u32(o + 4), get_bmg_demo_mysterious_4t11)
-        // ä(bmg_demo_mysterious_4t11, u32(o + 4), get_bmg_demo_mysterious_4t11)
-        // ö(u32(o + 4), get_bmg_demo_mysterious_4t11)
         break
 
     default:
         if (u32(o + 4)) {
+            ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60], o)
             sü(u8, 0, o, 4)
         }
     }
-    // ö(u32(o + 4), get_bmg_demo_mysterious_4)
     ö(u32(o + 8), get_bmg_demo_mysterious_8)
 
 }
@@ -1440,7 +1288,6 @@ function get_bmg_demo_mysterious_4t5(o) {
         }
     }
 
-    // ö(u32(o + 16), get_bmg_demo_mysterious_4t5_16)
     ö(u32(o + 36), get_bmg_demo_mysterious_4t5_36)
     for (let i = 0; i < u32(o + 40); i++) {
         ö(u32(o + 44) + (i * 32), get_bmg_demo_mysterious_4t5_44)
@@ -1464,13 +1311,6 @@ function get_bmg_demo_mysterious_4t5_16t0(o) {
 
 }
 
-function get_bmg_demo_mysterious_4t5_16(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    ß('p_texture', o, 0)
-    ß('p_model', o, 0)
-
-}
 function get_bmg_demo_mysterious_4t5_36(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -1491,16 +1331,10 @@ function get_bmg_demo_mysterious_4t5_56(o) {
 function get_bmg_demo_mysterious_4t6(o) {
     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
-function get_bmg_demo_mysterious_4t11(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u8, 148, u8, 149, u8, 150, u8, 151, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, f32, 184, u32, 188, u32, 192, u32, 196, u32, 200, u32, 204, u32, 208, u32, 212, u32, 216, u32, 220, u32, 224, u32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252, ], o)
-}
 
 function get_bmg_demo_unknown(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ä(bmg_demo_unknown, u32(o + 4), get_bmg_demo_unknown)
-    // globalThis.bmg_demo_unknown = []
 
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 16), get_bmg_demo_unknown_4)
@@ -1519,6 +1353,10 @@ function get_bmg_demo_unknown_4(o) {
     case 5:
         ö(u32(o + 4), get_bmg_demo_unknown_4_4t5)
         break
+    case 9:
+        ä(bmg_demo_sound_section, u32(o + 4), get_bmg_demo_sound_section)
+        // ö(u32(o + ), get_bmg_demo_unknown_4_4t9)
+        break
     case 26:
         ä(bmg_demo_sound_controls, u32(o + 4), get_bmg_demo_sound_controls)
         break
@@ -1535,6 +1373,9 @@ function get_bmg_demo_unknown_4(o) {
     case 5:
         ö(u32(o + 8), get_bmg_demo_unknown_4_8t5)
         break
+    case 9:
+        ö(u32(o + 8), get_bmg_demo_unknown_4_8t9)
+        break
     case 26:
         ö(u32(o + 8), get_bmg_demo_unknown_4_8t26)
         break
@@ -1543,9 +1384,6 @@ function get_bmg_demo_unknown_4(o) {
             sü(u32, 0, o, 8)
         }
     }
-
-    // ö(u32(o + 4), get_bmg_demo_unknown_4_4)
-    // ö(u32(o + 8), get_bmg_demo_unknown_4_8)
 
 }
 function get_bmg_demo_unknown_4_4t1(o) {
@@ -1571,8 +1409,6 @@ function get_bmg_demo_unknown_4_4t1(o) {
             sü(u8, 20, o, 24)
         }
     }
-
-    // ö(u32(o + 24), get_bmg_demo_unknown_4_4t1_24)
 
 }
 
@@ -1674,10 +1510,6 @@ function get_bmg_demo_unknown_4_4t1_24t2_20(o) {
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_unknown_4_4t1_24(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_unknown_4_4t5(o) {
     if (u8(o + 4) || u8(o + 5) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u8(o + 46) || u8(o + 47) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60], o)
@@ -1690,8 +1522,8 @@ function get_bmg_demo_unknown_4_4t5(o) {
 
 }
 function get_bmg_demo_unknown_4_4t5_0(o) {
-    if (u32(o + 0) || f32(o + 4) !== -1 || f32(o + 8) !== 1 || f32(o + 12) !== -1 || f32(o + 16) !== 1 || u32(o + 20) !== 33 || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
+    if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 24) || u32(o + 28))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
 function get_bmg_demo_unknown_4_4t5_24(o) {
@@ -1740,6 +1572,9 @@ function get_bmg_demo_unknown_4_4t5_40(o) {
     if (f32(o + 0) !== 10000 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
+function get_bmg_demo_unknown_4_4t9(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
+}
 
 function get_bmg_demo_unknown_4_8t1(o) {
     if (u32(o + 20) || u32(o + 28) || u8(o + 41) || u8(o + 43) || u32(o + 44) || u32(o + 56) || u32(o + 60))
@@ -1763,6 +1598,11 @@ function get_bmg_demo_unknown_4_8t5(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
+function get_bmg_demo_unknown_4_8t9(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+}
+
 function get_bmg_demo_unknown_4_8t26(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -1781,37 +1621,10 @@ function get_bmg_demo_strange_4(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_strange_4_0)
     ä(bmg_demo_unknown, u32(o + 0), get_bmg_demo_unknown)
 
 }
 
-// function get_bmg_demo_strange_4_0(o) {
-// if(u32(o+8) ||u32(o+12) ||u32(o+16) ||u32(o+20) ||u32(o+24) ||u32(o+28) )
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-// ö(u32(o + 4), get_bmg_demo_strange_4_0_4)
-
-//     }
-
-// function get_bmg_demo_strange_4_0_4(o){ü(3,[u32,0,u32,4,u32,8,u32,12],o)}
-
-// function get_bmg_demo_mysterious_4t3(o) {
-//     if (u32(o + 0) !== 30000 || u32(o + 4) || u32(o + 8) !== 16777216 || u32(o + 12) !== 2 || u32(o + 16) !== 10289184 || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     ö(u32(o + 16), get_bmg_demo_mysterious_4t3_16)
-// // bmg_demo_mysterious_4t3_16 = sound maybe
-
-// }
-
-// function get_bmg_demo_mysterious_4t3_16(o) {
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, f32, 28, ], o)
-// }
-
-function get_bmg_demo_mysterious_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_mysterious_8(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -1845,8 +1658,6 @@ function get_bmg_demo_world_172(o) {
     for (let i = 0; i < u32(o + 104); i++) {
         ö(u32(o + 108) + (i * 4), get_bmg_demo_world_172_108)
     }
-    // ö(u32(o + 176), get_bmg_demo_world_172_176)
-    // ä(bmg_demo_world_172_176, u32(o + 176), get_bmg_demo_world_172_176)
     ä(bmg_demo_interface_80_36t1_12t0, u32(o + 176), get_bmg_demo_interface_80_36t1_12t0)
 
 }
@@ -1855,112 +1666,18 @@ function get_bmg_demo_world_172_0(o) {
     if (u32(o + 0) !== 10310080 || u32(o + 4) !== 10357440 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_world_172_0_0)
-    // int
     ä(bmg_demo_interface, u32(o + 0), get_bmg_demo_interface)
     ä(bmg_demo_interface, u32(o + 4), get_bmg_demo_interface)
 
-    // ö(u32(o + 4), get_bmg_demo_world_172_0_4)
-
 }
-
-// function get_bmg_demo_world_172_0_0(o) {
-//     if (u32(o + 0) !== 10310176 || u32(o + 4) !== 65540 || u32(o + 8) !== 5 || u32(o + 12) !== 16842752 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) !== 10310208 || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 48) !== 10310368 || u32(o + 52) !== 10310400 || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 64) !== 10310464 || u32(o + 68) !== 7 || u32(o + 72) !== 10310912 || u32(o + 76) !== 14 || u32(o + 80) !== 10312800 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     ö(u32(o + 0), get_bmg_demo_world_172_0_0_0)
-//     ö(u32(o + 28), get_bmg_demo_world_172_0_0_28)
-//     ö(u32(o + 48), get_bmg_demo_world_172_0_0_48)
-//     ö(u32(o + 52), get_bmg_demo_world_172_0_0_52)
-//     ö(u32(o + 64), get_bmg_demo_world_172_0_0_64)
-//     ö(u32(o + 72), get_bmg_demo_world_172_0_0_72)
-//     ö(u32(o + 80), get_bmg_demo_world_172_0_0_80)
-
-// }
-
-// function get_bmg_demo_world_172_0_0_0(o) {
-//     // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-//     // string
-// }
-// function get_bmg_demo_world_172_0_0_28(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_0_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_0_52(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_0_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_0_72(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_0_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-
-// function get_bmg_demo_world_172_0_4(o) {
-//     if (u32(o + 0) !== 10357536 || u32(o + 4) || u32(o + 8) !== 1 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 48) !== 10357568 || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 64) !== 10357600 || u32(o + 68) !== 21 || u32(o + 72) !== 10360832 || u32(o + 76) !== 18 || u32(o + 80) !== 10368320 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     ö(u32(o + 0), get_bmg_demo_world_172_0_4_0)
-//     ö(u32(o + 48), get_bmg_demo_world_172_0_4_48)
-//     ö(u32(o + 64), get_bmg_demo_world_172_0_4_64)
-//     ö(u32(o + 72), get_bmg_demo_world_172_0_4_72)
-//     ö(u32(o + 80), get_bmg_demo_world_172_0_4_80)
-
-// }
-
-// function get_bmg_demo_world_172_0_4_0(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_4_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_4_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_4_72(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_0_4_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_world_172_4(o) {
     if (u32(o + 0) !== 10419744 || u32(o + 4) || u32(o + 8) || f32(o + 12) !== 240 || u32(o + 16) || u32(o + 20) !== 16777216 || f32(o + 24) !== 320 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-    // ö(u32(o + 0), get_bmg_demo_world_172_4_0)
     ä(bmg_demo_interface, u32(o + 0), get_bmg_demo_interface)
 
 }
-
-// function get_bmg_demo_world_172_4_0(o) {
-//     if (u32(o + 0) !== 10419840 || u32(o + 4) || u32(o + 8) !== 2 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 48) !== 10419872 || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 64) !== 10419904 || u32(o + 68) || u32(o + 72) || u32(o + 76) !== 7 || u32(o + 80) !== 10420256 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     ö(u32(o + 0), get_bmg_demo_world_172_4_0_0)
-//     ö(u32(o + 48), get_bmg_demo_world_172_4_0_48)
-//     ö(u32(o + 64), get_bmg_demo_world_172_4_0_64)
-//     ö(u32(o + 80), get_bmg_demo_world_172_4_0_80)
-
-// }
-
-// function get_bmg_demo_world_172_4_0_0(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_4_0_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_4_0_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_172_4_0_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_world_172_56(o) {
     if (u8(o + 3) || u32(o + 4) || u8(o + 11) !== 255 || f32(o + 12) !== 50 || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || f32(o + 48) !== 100 || u32(o + 56) || u32(o + 60))
@@ -1985,25 +1702,7 @@ function get_bmg_demo_world_172_108(o) {
 
 }
 
-function get_bmg_demo_world_172_108_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// console.log(get_string(o, 0, false))
-}
-
-function get_bmg_demo_world_172_176(o) {
-    if (u32(o + 0) !== 2228224 || u32(o + 4) || u32(o + 8) !== 789504 || f32(o + 12) !== 12 || u32(o + 16) !== 1 || u32(o + 20) !== 10426688 || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-        ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-    ß('p_texture', o, 0)
-
-    // ä(bmg_demo_world_172_176, u32(o + 176), get_bmg_demo_world_172_176)
-    // globalThis.bmg_demo_world_172_176 = []
-
-    ö(u32(o + 20), get_bmg_demo_world_172_176_20)
-
-}
-
-function get_bmg_demo_world_172_176_20(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+function get_bmg_demo_world_172_108_0(o) {// console.log(get_string(o, 0, false))
 }
 
 function get_bmg_demo_world_176(o) {
@@ -2019,47 +1718,23 @@ function get_bmg_demo_world_176(o) {
     for (let i = 0; i < u32(o + 16); i++) {
         ö(u32(o + 20) + (i * 4), get_bmg_demo_world_176_20)
     }
-    let temp_amt = u32(o + 24) - 1;
 
     for (let i = 0; i < u32(o + 24); i++) {
         ö(u32(o + 28) + (i * 4), get_bmg_demo_world_176_28)
     }
-    // ö(u32(o + 28), get_bmg_demo_world_176_28test)
 
 }
 
 function get_bmg_demo_world_176_4(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_world_176_4_0)
-    // ä(bmg_demo_world_176_4_0, u32(o + 0), get_bmg_demo_world_176_4_0)
     ä(bmg_demo_flag, u32(o + 0), get_bmg_demo_flag)
 
 }
 
-// function get_bmg_demo_world_176_4_0(o) {
-//     if (u32(o + 4) || u8(o + 12) !== 255 || u8(o + 13) !== 255 || u8(o + 14) !== 253 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 16777216 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-
-//     ö(u32(o + 8), get_bmg_demo_world_176_4_0_8)
-//     ö(u32(o + 20), get_bmg_demo_world_176_4_0_20)
-
-// }
-
-// function get_bmg_demo_world_176_4_0_8(o) {// console.log(get_string(o, 0, false))
-// // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_world_176_4_0_20(o) {
-//     // if (u32(o + 4) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     // flag
-// }
-
 function get_bmg_demo_world_176_12(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_var)
     ä(bmg_demo_var, u32(o + 0), get_bmg_demo_var)
 
 }
@@ -2067,9 +1742,6 @@ function get_bmg_demo_world_176_12(o) {
 function get_bmg_demo_var(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 160) || u32(o + 172) || u32(o + 176) || u32(o + 180) || u32(o + 184) || u32(o + 188))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188], o)
-
-    // ä(bmg_demo_var, u32(o + 0), get_bmg_demo_var)
-    // globalThis.bmg_demo_var = []
 
     ö(u32(o + 148), get_bmg_demo_var_148)
     ö(u32(o + 156), get_bmg_demo_var_156)
@@ -2080,21 +1752,14 @@ function get_bmg_demo_var(o) {
 }
 
 function get_bmg_demo_var_148(o) {// console.log(get_string(o, 0, false))
-// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_bmg_demo_var_156(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_var_156_0)
-    // ä(bmg_demo_var_156_0, u32(o + 0), get_bmg_demo_var_156_0)
     ä(bmg_demo_var, u32(o + 0), get_bmg_demo_var)
 
 }
-
-// function get_bmg_demo_var_156_0(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188, ], o)
-// }
 
 function get_bmg_demo_var_168(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 28) || u32(o + 32))
@@ -2132,8 +1797,6 @@ function get_bmg_demo_var_168_16(o) {
         break
     case 21:
         ä(bmg_demo_interface, u32(o + 12), get_bmg_demo_interface)
-        // ä(bmg_demo_var_168_16_12t21, u32(o + 12), get_bmg_demo_var_168_16_12t21)
-        // ö(u32(o + 12), get_bmg_demo_var_168_16_12t21)
         break
     case 25:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t25)
@@ -2141,19 +1804,12 @@ function get_bmg_demo_var_168_16(o) {
     case 8:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t8)
         break
-    case 7:
-        // not offset value seen? 17
-        break
-    case 12:
-        // not offset value seen? 2
-        break
     default:
         if (u32(o + 12)) {
             sü(u32, 4, o, 12)
         }
     }
 
-    // ö(u32(o + 12), get_bmg_demo_var_168_16_12)
     ö(u32(o + 16), get_bmg_demo_var_168_16_16)
 
 }
@@ -2173,17 +1829,13 @@ function get_bmg_demo_var_168_16_12t12(o) {
         ö(u32(o + 4), get_bmg_demo_var_168_16_12t12_4t7)
         break
     case 4:
-        // ä(bmg_demo_var_168_16_12t12_4t4, u32(o + 4), get_bmg_demo_var_168_16_12t12_4t4)
         ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
-        // ö(u32(o + 4), get_bmg_demo_var_168_16_12t12_4t4)
         break
     default:
         if (u32(o + 4)) {
             sü(u8, 0, o, 4)
         }
     }
-
-    // ö(u32(o + 4), get_bmg_demo_var_168_16_12t12_4)
 
 }
 
@@ -2192,34 +1844,13 @@ function get_bmg_demo_var_168_16_12t12_4t7(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ö(u32(o + 4), get_bmg_demo_extended_world_link)
-    // ö(u32(o + ), get_bmg_demo_var_168_16_12t12_4t7_4)
     ö(u32(o + 12), get_bmg_demo_var_168_16_12t12_4t7_12)
 
-}
-
-function get_bmg_demo_var_168_16_12t12_4t7_4(o) {
-    if (u32(o + 0) !== 144640 || u32(o + 4) !== 11 || u8(o + 8) !== 1 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ö(u32(o + 0), get_bmg_demo_var_168_16_12t12_4t7_4_0)
-    // ä(bmg_demo_var_168_16_12t12_4t7_4_0, u32(o + 0), get_bmg_demo_var_168_16_12t12_4t7_4_0) -> get_bmg_demo_world_84
-    // extended
-}
-
-function get_bmg_demo_var_168_16_12t12_4t7_4_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
 }
 
 function get_bmg_demo_var_168_16_12t12_4t7_12(o) {
     if (u32(o + 0) !== 33554432 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-
-function get_bmg_demo_var_168_16_12t12_4t4(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
-
-function get_bmg_demo_var_168_16_12t12_4(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_16_12t18(o) {
@@ -2261,8 +1892,6 @@ function get_bmg_demo_var_168_16_12t15_4(o) {
     switch (u32(o + 4)) {
     case 21:
         ä(bmg_demo_interface, u32(o + 12), get_bmg_demo_interface)
-        // ä(bmg_demo_var_168_16_12t15_4_12t21, u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12t21)
-        // ö(u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12t21)
         break
     case 5:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12t5)
@@ -2273,45 +1902,12 @@ function get_bmg_demo_var_168_16_12t15_4(o) {
         }
     }
 
-    // ö(u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12)
     ö(u32(o + 16), get_bmg_demo_var_168_16_12t15_4_16)
 
 }
 
-function get_bmg_demo_var_168_16_12t15_4_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_var_168_16_12t15_4_0(o) {// string
 }
-function get_bmg_demo_var_168_16_12t15_4_12t21(o) {
-    if (u32(o + 0) !== 10493472 || u32(o + 4) || u32(o + 8) !== 5 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 48) !== 10493504 || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 64) !== 10493536 || u32(o + 68) !== 1 || u32(o + 72) !== 10493664 || u32(o + 76) !== 2 || u32(o + 80) !== 10493760 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-    // ä(bmg_demo_var_168_16_12t15_4_12t21, u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12t21)
-    // globalThis.bmg_demo_var_168_16_12t15_4_12t21 = []
-
-    ö(u32(o + 0), get_bmg_demo_var_168_16_12t15_4_12t21_0)
-    ö(u32(o + 48), get_bmg_demo_var_168_16_12t15_4_12t21_48)
-    ö(u32(o + 64), get_bmg_demo_var_168_16_12t15_4_12t21_64)
-    ö(u32(o + 72), get_bmg_demo_var_168_16_12t15_4_12t21_72)
-    ö(u32(o + 80), get_bmg_demo_var_168_16_12t15_4_12t21_80)
-
-}
-
-function get_bmg_demo_var_168_16_12t15_4_12t21_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_16_12t15_4_12t21_48(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_16_12t15_4_12t21_64(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_16_12t15_4_12t21_72(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_16_12t15_4_12t21_80(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_var_168_16_12t15_4_12t5(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -2325,42 +1921,10 @@ function get_bmg_demo_var_168_16_12t15_4_12t5_4(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_var_168_16_12t15_4_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_var_168_16_12t15_4_16(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
-
-// function get_bmg_demo_var_168_16_12t21(o) {
-//     if (u32(o + 8) !== 5 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 44) !== 1 || u32(o + 52) || u32(o + 56) || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     ö(u32(o + 0), get_bmg_demo_var_168_16_12t21_0)
-//     ö(u32(o + 48), get_bmg_demo_var_168_16_12t21_48)
-//     ö(u32(o + 64), get_bmg_demo_var_168_16_12t21_64)
-//     ö(u32(o + 72), get_bmg_demo_var_168_16_12t21_72)
-//     ö(u32(o + 80), get_bmg_demo_var_168_16_12t21_80)
-
-// }
-
-// function get_bmg_demo_var_168_16_12t21_0(o) {
-//     // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-//     // string
-// }
-// function get_bmg_demo_var_168_16_12t21_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_16_12t21_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_16_12t21_72(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_16_12t21_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_var_168_16_12t25(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -2374,52 +1938,18 @@ function get_bmg_demo_var_168_16_12t25_4(o) {
     if (u32(o + 4) !== 1 || u8(o + 8) !== 1 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_var_168_16_12t25_4_0)
-    // ä(bmg_demo_var_168_16_12t25_4_0, u32(o + 0), get_bmg_demo_var_168_16_12t25_4_0)
     ä(bmg_demo_world_20, u32(o + 0), get_bmg_demo_world_20)
 
-}
-
-function get_bmg_demo_var_168_16_12t25_4_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, f32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, ], o)
 }
 
 function get_bmg_demo_var_168_16_12t8(o) {
     if (u32(o + 0) !== 33554432 || u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 8), get_bmg_demo_var_168_16_12t8_8)
-    // ä(bmg_demo_var_168_16_12t8_8, u32(o + 8), get_bmg_demo_var_168_16_12t8_8)
     ä(bmg_demo_world_20, u32(o + 8), get_bmg_demo_world_20)
 
 }
 
-// function get_bmg_demo_var_168_16_12t8_8(o) {
-//     if (u8(o + 4) || u8(o + 5) !== 1 || u8(o + 6) || u32(o + 8) || u32(o + 12) !== 8 || u32(o + 16) !== 8 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 1 || u32(o + 48) || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 1 || u32(o + 80) || f32(o + 84) !== 1000 || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124))
-//         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124], o)
-
-//     // ä(bmg_demo_var_168_16_12t8_8, u32(o + 8), get_bmg_demo_var_168_16_12t8_8)
-//     // globalThis.bmg_demo_var_168_16_12t8_8 = []
-
-//     ö(u32(o + 64), get_bmg_demo_var_168_16_12t8_8_64)
-//     ö(u32(o + 72), get_bmg_demo_var_168_16_12t8_8_72)
-//     ö(u32(o + 76), get_bmg_demo_var_168_16_12t8_8_76)
-
-// }
-
-// function get_bmg_demo_var_168_16_12t8_8_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_16_12t8_8_72(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_16_12t8_8_76(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-
-function get_bmg_demo_var_168_16_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_var_168_16_16(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -2454,7 +1984,6 @@ function get_bmg_demo_var_168_24(o) {
         break
     case 34:
         ä(bmg_demo_var_168_24_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34)
-        // ö(u32(o + 12), get_bmg_demo_var_168_24_12t34)
         break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t15)
@@ -2468,9 +1997,6 @@ function get_bmg_demo_var_168_24(o) {
         }
     }
 
-    // ä(bmg_demo_var_168_24_12, u32(o + 12), get_bmg_demo_var_168_24_12)
-    // ö(u32(o + 12), get_bmg_demo_var_168_24_12)
-
 }
 
 function get_bmg_demo_var_168_24_0(o) {// console.log(get_string(o, 0, false))
@@ -2479,7 +2005,6 @@ function get_bmg_demo_var_168_24_12t2(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4)
     switch (u32(o + 0)) {
     case 7:
         ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t7)
@@ -2530,32 +2055,21 @@ function get_bmg_demo_var_168_24_12t2_4t1(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, f32, 28], o)
 
     ä(bmg_demo_world_84, u32(o + 4), get_bmg_demo_world_84)
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t1_4)
     ö(u32(o + 16), get_bmg_demo_extended_world_link)
     ö(u32(o + 20), get_bmg_demo_extended_world_link)
 
 }
 
-// function get_bmg_demo_var_168_24_12t2_4t1_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-// }
 function get_bmg_demo_var_168_24_12t2_4t1_16(o) {
     if (u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t2_4t1_16_0)
-
-}
-
-function get_bmg_demo_var_168_24_12t2_4t1_16_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t2_4t5(o) {
     if (u8(o + 0) || u8(o + 1) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-    // ö(u32(o + 16), get_bmg_demo_extended_world_link)
     ö(u32(o + 16), get_bmg_demo_extended_world_link)
 
 }
@@ -2569,11 +2083,9 @@ function get_bmg_demo_extended_world_link(o) {
         switch (u8(o + 4)) {
         case 1:
             ä(bmg_demo_world_20, u32(o + 0), get_bmg_demo_world_20)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t1)
             break
         case 11:
             ä(bmg_demo_world_84, u32(o + 0), get_bmg_demo_world_84)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t11)
             break
         default:
             if (u32(o + 0)) {
@@ -2585,25 +2097,16 @@ function get_bmg_demo_extended_world_link(o) {
     case 1:
         switch (u32(o + 4)) {
         case 0:
-            // ä(bmg_demo_world_84, u32(o + 0), get_bmg_demo_world_84)
             ä(bmg_demo_world_12, u32(o + 0), get_bmg_demo_world_12)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t0)
-            // ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
             break
         case 10:
-            // ä(bmg_demo_extended_world_link_0t10, u32(o + 0), get_bmg_demo_extended_world_link_0t10)
             ä(bmg_demo_world_68, u32(o + 0), get_bmg_demo_world_68)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t10)
             break
         case 11:
-            // ä(bmg_demo_extended_world_link_0t11, u32(o + 0), get_bmg_demo_extended_world_link_0t11)
             ä(bmg_demo_world_84, u32(o + 0), get_bmg_demo_world_84)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t11)
             break
         case 13:
-            // ä(bmg_demo_extended_world_link_0t13, u32(o + 0), get_bmg_demo_extended_world_link_0t13)
             ä(bmg_demo_world_92, u32(o + 0), get_bmg_demo_world_92)
-            // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t13)
             break
 
         default:
@@ -2621,73 +2124,20 @@ function get_bmg_demo_extended_world_link(o) {
         break
     default:
         if (u32(o + 0)) {
-            // sü(u8, 8, o, 0)
+            sü(u8, 8, o, 0)
             ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
         }
     }
 
-    // switch (u8(o + 4)) {
-    // case 1:
-    // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t1)
-    // break
-    // case 11:
-    // break
-    // case 0:
-    // ö(u32(o + 0), get_bmg_demo_extended_world_link_0t0)
-    // break
-    // case 11:
-    // // not offset value seen? 100
-    // break
-    // default:
-    // if (u32(o + 0)) {
-    //     sü(u8, 4, o, 0)
-    // }
-    // }
-
-    // ö(u32(o + 0), get_bmg_demo_extended_world_link_0)
-
-}
-function get_bmg_demo_extended_world_link_0t0(o) {
-    ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u8, 64, u8, 65, u8, 66, u8, 67, f32, 68, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-}
-function get_bmg_demo_extended_world_link_0t11(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-}
-function get_bmg_demo_extended_world_link_0t13(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-}
-function get_bmg_demo_extended_world_link_0t10(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71, u8, 72, u8, 73, u8, 74, u8, 75, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, ], o)
-}
-
-function get_bmg_demo_extended_world_link_0t1(o) {
-    ü(1, [u32, 0, u16, 4, u16, 6, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, ], o)
-}
-
-function get_bmg_demo_extended_world_link_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t2_4t4(o) {
     if (u8(o + 0) || u8(o + 1) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-    // ö(u32(o + 16), get_bmg_demo_var_168_24_12t2_4t4_16)
     ö(u32(o + 16), get_bmg_demo_extended_world_link)
 
 }
-
-// function get_bmg_demo_var_168_24_12t2_4t4_16(o) {
-//     if (u32(o + 4) !== 10 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     ö(u32(o + 0), get_bmg_demo_var_168_24_12t2_4t4_16_0)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t2_4t4_16_0(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_var_168_24_12t2_4t12(o) {
     if (u8(o + 0) || u8(o + 1) || u8(o + 2) !== 1 || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) !== 10613792 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
@@ -2706,42 +2156,19 @@ function get_bmg_demo_var_168_24_12t2_4t17(o) {
     if (u8(o + 0) || u8(o + 1) || u8(o + 2) !== 16 || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u8(o + 52) || u8(o + 54) || u8(o + 55) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u32, 56, u32, 60], o)
 
-    // ö(u32(o + 16), get_bmg_demo_var_168_24_12t2_4t17_16)
     ö(u32(o + 16), get_bmg_demo_extended_world_link)
 
-}
-
-function get_bmg_demo_var_168_24_12t2_4t17_16(o) {
-    if (u32(o + 0) !== 2976 || u32(o + 4) || u8(o + 8) !== 1 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t2_4t17_16_0)
-    // ä(bmg_demo_var_168_24_12t2_4t17_16_0, u32(o + 0), get_bmg_demo_var_168_24_12t2_4t17_16_0)
-
-}
-
-function get_bmg_demo_var_168_24_12t2_4t17_16_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u8, 64, u8, 65, u8, 66, u8, 67, u32, 68, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, ], o)
-}
-
-function get_bmg_demo_var_168_24_12t2_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t18(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_var_168_24_12t18_4, u32(o + 4), get_bmg_demo_var_168_24_12t18_4)
     ä(bmg_demo_world_176_20_0, u32(o + 4), get_bmg_demo_world_176_20_0)
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t18_4)
     ö(u32(o + 8), get_bmg_demo_var_168_24_12t18_8)
 
 }
 
-// function get_bmg_demo_var_168_24_12t18_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-// }
 function get_bmg_demo_var_168_24_12t18_8(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -2753,9 +2180,7 @@ function get_bmg_demo_var_168_24_12t7(o) {
 
     switch (u8(o + 0)) {
     case 4:
-        // ä(bmg_demo_var_168_24_12t7_4t4, u32(o + 4), get_bmg_demo_var_168_24_12t7_4t4)
         ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
-        // ö(u32(o + 4), get_bmg_demo_var_168_24_12t7_4t4)
         break
     case 7:
         ö(u32(o + 4), get_bmg_demo_var_168_24_12t7_4t7)
@@ -2766,14 +2191,8 @@ function get_bmg_demo_var_168_24_12t7(o) {
         }
     }
 
-    // type
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t7_4)
-
 }
 
-function get_bmg_demo_var_168_24_12t7_4t4(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
 function get_bmg_demo_var_168_24_12t7_4t7(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) !== 122 || u32(o + 12) !== 10453280 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -2787,47 +2206,13 @@ function get_bmg_demo_var_168_24_12t7_4t7_12(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_var_168_24_12t7_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_var_168_24_12t23(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_var_168_24_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t23_0)
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t23_0)
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t23_4)
-    // ä(bmg_demo_unknown, u32(o + 4), get_bmg_demo_unknown)
+    ä(bmg_demo_unknown, u32(o + 0), get_bmg_demo_unknown)
+    ö(u32(o + 4), get_bmg_demo_extended_world_link)
 
-}
-
-// function get_bmg_demo_var_168_24_12t23_0(o) {
-//     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     // ä(bmg_demo_var_168_24_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t23_0)
-//     // globalThis.bmg_demo_var_168_24_12t23_0 = []
-
-//     ö(u32(o + 4), get_bmg_demo_var_168_24_12t23_0_4)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t23_0_4(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-
-function get_bmg_demo_var_168_24_12t23_4(o) {
-    if (u32(o + 0) !== 144640 || u32(o + 4) !== 11 || u32(o + 8) !== 16777216 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t23_4_0)
-    ä(bmg_demo_var_168_24_12t23_4_0, u32(o + 0), get_bmg_demo_var_168_24_12t23_4_0)
-
-}
-
-function get_bmg_demo_var_168_24_12t23_4_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
 }
 
 function get_bmg_demo_var_168_24_12t14(o) {
@@ -2854,8 +2239,6 @@ function get_bmg_demo_var_168_24_12t5(o) {
             sü(u8, 4, o, 0)
         }
     }
-
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t5_0)
 
 }
 function get_bmg_demo_var_168_24_12t5_0t1(o) {
@@ -2886,10 +2269,6 @@ function get_bmg_demo_var_168_24_12t5_0t2(o) {
 
     ä(bmg_demo_interface, u32(o + 4), get_bmg_demo_interface)
 
-}
-
-function get_bmg_demo_var_168_24_12t5_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t34(o) {
@@ -2925,7 +2304,6 @@ function get_bmg_demo_var_168_24_12t34_12(o) {
         break
     case 34:
         ä(bmg_demo_var_168_24_12t34_12_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34)
-        // ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34)
         break
     case 19:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t19)
@@ -2942,12 +2320,9 @@ function get_bmg_demo_var_168_24_12t34_12(o) {
         }
     }
 
-    // ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12)
-
 }
 
-function get_bmg_demo_var_168_24_12t34_12_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_var_168_24_12t34_12_0(o) {// string
 }
 function get_bmg_demo_var_168_24_12t34_12_12t5(o) {
     if (u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -2966,54 +2341,15 @@ function get_bmg_demo_var_168_24_12t34_12_12t5(o) {
         }
     }
 
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0)
-
 }
 function get_bmg_demo_var_168_24_12t34_12_12t5_0t1(o) {
     if (u8(o + 4) || u8(o + 5) !== 1 || u8(o + 6) || u8(o + 7) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_var_168_24_12t34_12_12t5_0t1_0, u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0)
     ä(bmg_demo_interface, u32(o + 0), get_bmg_demo_interface)
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0)
     ö(u32(o + 8), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_8)
 
 }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0(o) {
-//     if (u32(o + 4) || u32(o + 8) !== 5 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     // ä(bmg_demo_var_168_24_12t34_12_12t5_0t1_0, u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0)
-//     // globalThis.bmg_demo_var_168_24_12t34_12_12t5_0t1_0 = []
-
-//     ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_0)
-//     ö(u32(o + 48), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_48)
-//     ö(u32(o + 52), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_52)
-//     ö(u32(o + 64), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_64)
-//     ö(u32(o + 72), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_72)
-//     ö(u32(o + 80), get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_80)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_0(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_52(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_64(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_72(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_0_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_var_168_24_12t34_12_12t5_0t1_8(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -3032,59 +2368,16 @@ function get_bmg_demo_var_168_24_12t34_12_12t5_0t2(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4)
-    // ä(bmg_demo_var_168_24_12t34_12_12t5_0t2_4, u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4)
     ä(bmg_demo_interface, u32(o + 4), get_bmg_demo_interface)
 
-}
-
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4(o) {
-    if (u32(o + 4) || u32(o + 8) !== 5 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 44) !== 1 || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-    ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_0)
-    ö(u32(o + 48), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_48)
-    ö(u32(o + 52), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_52)
-    ö(u32(o + 64), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_64)
-    ö(u32(o + 72), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_72)
-    ö(u32(o + 80), get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_80)
-
-}
-
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_48(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_52(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_64(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_72(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12t34_12_12t5_0t2_4_80(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_bmg_demo_var_168_24_12t34_12_12t5_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t34_12_12t7(o) {
     if (u8(o + 0) !== 4 || u8(o + 2) || u8(o + 3) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t7_4)
     ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
 
-}
-
-function get_bmg_demo_var_168_24_12t34_12_12t7_4(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
 
 function get_bmg_demo_var_168_24_12t34_12_12t15(o) {
@@ -3116,16 +2409,12 @@ function get_bmg_demo_var_168_24_12t34_12_12t34(o) {
     if (u32(o + 0) !== 10565088 || u32(o + 4) !== 16777216 || u32(o + 8) !== 1 || u32(o + 12) !== 10565120 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_var_168_24_12t34_12_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34)
-    // globalThis.bmg_demo_var_168_24_12t34_12_12t34 = []
-
     ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t34_0)
     ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34_12)
 
 }
 
-function get_bmg_demo_var_168_24_12t34_12_12t34_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_var_168_24_12t34_12_12t34_0(o) {// string
 }
 function get_bmg_demo_var_168_24_12t34_12_12t34_12(o) {
     if (u32(o + 0) !== 10565152 || u32(o + 4) !== 16842752 || u32(o + 8) !== 23 || u32(o + 12) !== 10565184 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -3136,43 +2425,16 @@ function get_bmg_demo_var_168_24_12t34_12_12t34_12(o) {
 
 }
 
-function get_bmg_demo_var_168_24_12t34_12_12t34_12_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
+function get_bmg_demo_var_168_24_12t34_12_12t34_12_0(o) {// string
 }
 function get_bmg_demo_var_168_24_12t34_12_12t34_12_12(o) {
     if (u32(o + 0) !== 10565216 || u32(o + 4) !== 10565312 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(bmg_demo_unknown, u32(o + 0), get_bmg_demo_unknown)
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0)
     ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t34_12_12_4)
 
 }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0(o) {
-//     if (u32(o + 0) !== 1 || u32(o + 4) !== 10565248 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-//     /*ü(1,], o)*/
-
-//     // unknwon ?
-//     ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4_4)
-//     ö(u32(o + 8), get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4_8)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4_4(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_var_168_24_12t34_12_12t34_12_12_0_4_8(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_var_168_24_12t34_12_12t34_12_12_4(o) {
     if (u32(o + 0) || u32(o + 4) !== 11 || u32(o + 8) !== 16777216 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -3183,23 +2445,9 @@ function get_bmg_demo_var_168_24_12t34_12_12t19(o) {
     if (u32(o + 0) !== 20 || u32(o + 4) !== 10565600 || u32(o + 8) !== 16842752 || f32(o + 12) !== 50 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t34_12_12t19_4)
     ö(u32(o + 4), get_bmg_demo_extended_world_link)
 
 }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t19_4(o) {
-//     if (u32(o + 0) !== 144640 || u32(o + 4) !== 11 || u32(o + 8) !== 16777216 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     ä(bmg_demo_var_168_24_12t34_12_12t19_4_0, u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t19_4_0)
-//     // ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_12t19_4_0)
-//     // world prob
-// }
-
-// function get_bmg_demo_var_168_24_12t34_12_12t19_4_0(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-// }
 
 function get_bmg_demo_var_168_24_12t34_12_12t14(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -3210,22 +2458,13 @@ function get_bmg_demo_var_168_24_12t34_12_12t17(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_var_168_24_12t34_12_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_var_168_24_12t15(o) {
     if (u32(o + 4) !== 2 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t15_0)
     ä(bmg_demo_var, u32(o + 0), get_bmg_demo_var)
 
 }
-
-// function get_bmg_demo_var_168_24_12t15_0(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188, ], o)
-// }
 
 function get_bmg_demo_var_168_24_12t33(o) {
     if (u32(o + 0) !== 1 || u32(o + 4) !== 10672096 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -3265,12 +2504,8 @@ function get_bmg_demo_var_168_24_12t33_4_16_12(o) {
     if (u8(o + 0) !== 4 || u8(o + 1) !== 5 || u8(o + 2) || u8(o + 3) || u32(o + 4) !== 10446272 || f32(o + 8) !== 1 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_16_12_4)
     ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
 
-}
-
-function get_bmg_demo_var_168_24_12t33_4_16_12_4(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
 
 function get_bmg_demo_var_168_24_12t33_4_16_16(o) {
@@ -3299,8 +2534,6 @@ function get_bmg_demo_var_168_24_12t33_4_24(o) {
         }
     }
 
-    // ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_24_12)
-
 }
 
 function get_bmg_demo_var_168_24_12t33_4_24_0(o) {// string
@@ -3309,44 +2542,17 @@ function get_bmg_demo_var_168_24_12t33_4_24_12t7(o) {
     if (u32(o + 0) !== 67371008 || u32(o + 4) !== 10446272 || f32(o + 8) !== 2 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_24_12t7_4)
     ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
 
 }
-
-// function get_bmg_demo_var_168_24_12t33_4_24_12t7_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-// }
 
 function get_bmg_demo_var_168_24_12t33_4_24_12t23(o) {
     if (u32(o + 0) !== 10633856 || u32(o + 4) !== 10672512 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(bmg_demo_unknown, u32(o + 0), get_bmg_demo_unknown)
-    // ä(bmg_demo_var_168_24_12t33_4_24_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t33_4_24_12t23_0)
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t33_4_24_12t23_0)
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_24_12t23_4)
     ö(u32(o + 4), get_bmg_demo_extended_world_link)
 
-}
-
-function get_bmg_demo_var_168_24_12t33_4_24_12t23_0(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) !== 10633888 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ä(bmg_demo_var_168_24_12t33_4_24_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t33_4_24_12t23_0)
-    // globalThis.bmg_demo_var_168_24_12t33_4_24_12t23_0 = []
-
-    ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_24_12t23_0_4)
-
-}
-
-function get_bmg_demo_var_168_24_12t33_4_24_12t23_0_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_bmg_demo_var_168_24_12t33_4_24_12t23_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_var_168_24_12t33_4_24_12t15(o) {
@@ -3354,16 +2560,11 @@ function get_bmg_demo_var_168_24_12t33_4_24_12t15(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_var_168_24_12t33_4_24_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_var_168_24_12t33_4_32(o) {
     if (u32(o + 4) !== 16777216 || u32(o + 16) || u32(o + 20) !== 1 || u32(o + 24) !== 1)
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24], o)
 
     ö(u32(o + 0), get_bmg_demo_var_168_24_12t33_4_32_0)
-    // ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12)
     switch (u32(o + 8)) {
     case 5:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12t5)
@@ -3384,9 +2585,6 @@ function get_bmg_demo_var_168_24_12t33_4_32(o) {
 
 function get_bmg_demo_var_168_24_12t33_4_32_0(o) {// string
 }
-function get_bmg_demo_var_168_24_12t33_4_32_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_var_168_24_12t33_4_32_12t5(o) {
     if (u32(o + 0) !== 10672768 || u8(o + 4) !== 2 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -3399,44 +2597,17 @@ function get_bmg_demo_var_168_24_12t33_4_32_12t5_0(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 4) !== 10588512 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_32_12t5_0_4)
     ä(bmg_demo_interface, u32(o + 4), get_bmg_demo_interface)
 
 }
-
-// function get_bmg_demo_var_168_24_12t33_4_32_12t5_0_4(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
-// }
 
 function get_bmg_demo_var_168_24_12t33_4_32_12t23(o) {
     if (u32(o + 0) !== 10472480 || u32(o + 4) !== 10672864 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(bmg_demo_unknown, u32(o + 0), get_bmg_demo_unknown)
-    // ä(bmg_demo_var_168_24_12t33_4_32_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t33_4_32_12t23_0)
-    // ö(u32(o + 0), get_bmg_demo_var_168_24_12t33_4_32_12t23_0)
-    // ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_32_12t23_4)
     ö(u32(o + 4), get_bmg_demo_extended_world_link)
 
-}
-
-// function get_bmg_demo_var_168_24_12t33_4_32_12t23_0(o) {
-//     if (u32(o + 0) !== 1 || u32(o + 4) !== 10472512 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-//     // ä(bmg_demo_var_168_24_12t33_4_32_12t23_0, u32(o + 0), get_bmg_demo_var_168_24_12t33_4_32_12t23_0)
-//     // globalThis.bmg_demo_var_168_24_12t33_4_32_12t23_0 = []
-
-//     ö(u32(o + 4), get_bmg_demo_var_168_24_12t33_4_32_12t23_0_4)
-
-// }
-
-// function get_bmg_demo_var_168_24_12t33_4_32_12t23_0_4(o) {
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-// }
-
-function get_bmg_demo_var_168_24_12t33_4_32_12t23_4(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_var_168_24_12t33_4_32_12t15(o) {
@@ -3444,37 +2615,9 @@ function get_bmg_demo_var_168_24_12t33_4_32_12t15(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
-function get_bmg_demo_var_168_24_12(o) {
-    if (u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    // ä(bmg_demo_var_168_24_12, u32(o + 12), get_bmg_demo_var_168_24_12)
-    // globalThis.bmg_demo_var_168_24_12 = []
-
-    ö(u32(o + 0), get_bmg_demo_var_168_24_12_0)
-    ö(u32(o + 4), get_bmg_demo_var_168_24_12_4)
-    ö(u32(o + 8), get_bmg_demo_var_168_24_12_8)
-    ö(u32(o + 12), get_bmg_demo_var_168_24_12_12)
-
-}
-
-function get_bmg_demo_var_168_24_12_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12_8(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_var_168_24_12_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_world_176_20(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_world_176_20_0)
     ä(bmg_demo_world_176_20_0, u32(o + 0), get_bmg_demo_world_176_20_0)
 
 }
@@ -3482,9 +2625,6 @@ function get_bmg_demo_world_176_20(o) {
 function get_bmg_demo_world_176_20_0(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) !== 16842752 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) !== 4000 || u32(o + 32) !== 4000 || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-
-    // ä(bmg_demo_world_176_20_0, u32(o + 0), get_bmg_demo_world_176_20_0)
-    // globalThis.bmg_demo_world_176_20_0 = []
 }
 
 function get_bmg_demo_world_176_28(o) {
@@ -3494,15 +2634,10 @@ function get_bmg_demo_world_176_28(o) {
 
 }
 
-function get_bmg_demo_world_176_28_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
 function get_bmg_demo_world_208(o) {
     if (u32(o + 0) !== 10088736 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_world_208_0)
     ä(bmg_demo_world_208_0, u32(o + 0), get_bmg_demo_world_208_0)
 
 }
@@ -3511,108 +2646,9 @@ function get_bmg_demo_world_208_0(o) {
     if (u32(o + 0) !== 1 || u32(o + 4) !== 1 || u32(o + 8) || f32(o + 12) !== 1 || f32(o + 16) !== 0.30000001192092896 || u32(o + 20) || u32(o + 24) !== 5 || u32(o + 28) !== 10 || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || f32(o + 44) !== 70 || u32(o + 48) !== 10088896 || f32(o + 52) !== 1 || u32(o + 56) || f32(o + 60) !== 1 || u32(o + 64) || f32(o + 68) !== 1 || u32(o + 72) || u32(o + 76) || f32(o + 80) !== 30 || f32(o + 84) !== 75 || u32(o + 88) !== 10089440 || u32(o + 92) || u32(o + 96) || f32(o + 100) !== 300 || f32(o + 104) !== 200 || f32(o + 108) !== 1000 || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, f32, 68, u32, 72, u32, 76, f32, 80, f32, 84, u32, 88, u32, 92, u32, 96, f32, 100, f32, 104, f32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156], o)
 
-    // ä(bmg_demo_world_208_0, u32(o + 0), get_bmg_demo_world_208_0)
-    // globalThis.bmg_demo_world_208_0 = []
-
-    ö(u32(o + 48), get_bmg_demo_world_208_0_48)
-    // ö(u32(o + 88), get_bmg_demo_world_208_0_88)
-    // ö(u32(o + ), get_bmg_demo_sound_section)
+    ä(bmg_demo_unknown, u32(o + 48), get_bmg_demo_unknown)
     ä(bmg_demo_sound_section, u32(o + 88), get_bmg_demo_sound_section)
 
-}
-
-function get_bmg_demo_world_208_0_48(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) !== 10088928 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    ö(u32(o + 4), get_bmg_demo_world_208_0_48_4)
-
-}
-
-function get_bmg_demo_world_208_0_48_4(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) !== 10088960 || u32(o + 8) !== 10089344 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    ö(u32(o + 4), get_bmg_demo_world_208_0_48_4_4)
-    ö(u32(o + 8), get_bmg_demo_world_208_0_48_4_8)
-
-}
-
-function get_bmg_demo_world_208_0_48_4_4(o) {
-    if (u32(o + 0) !== 300 || u32(o + 4) !== 150 || f32(o + 8) !== 300 || u32(o + 12) !== 2 || u32(o + 16) !== 10089024 || u32(o + 20) !== 17432576 || u32(o + 24) !== 10089056 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-
-    // maybe amt
-    ö(u32(o + 16), get_bmg_demo_world_208_0_48_4_4_16)
-    ö(u32(o + 24), get_bmg_demo_world_208_0_48_4_4_24)
-
-}
-
-function get_bmg_demo_world_208_0_48_4_4_16(o) {
-    if (f32(o + 0) !== -0.0000012854984561272431 || u32(o + 4) || f32(o + 8) !== 150 || f32(o + 12) !== -0.000001285487087443471 || u32(o + 16) || f32(o + 20) !== 150 || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, u32, 4, f32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_world_208_0_48_4_4_24(o) {
-    if (u32(o + 0) !== 2 || u32(o + 4) !== 10089152 || u32(o + 8) !== 327682 || u32(o + 12) || u32(o + 16) || f32(o + 20) !== 180 || u32(o + 24) || f32(o + 28) !== 60 || u32(o + 32) || u32(o + 36) || f32(o + 40) !== 1 || u32(o + 44) || u32(o + 48) !== 2 || u32(o + 52) !== 10089184 || u32(o + 56) !== 2 || u32(o + 60) !== 10089216 || u32(o + 64) !== 10089248 || u32(o + 68) !== 1 || u32(o + 72) !== 10089280 || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, f32, 28, u32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-    for (let i = 0; i < u32(o); i++) {
-        ö(u32(o + 4) + (i * 4), get_bmg_demo_world_208_0_48_4_4_24_4)
-    }
-    ö(u32(o + 52), get_bmg_demo_world_208_0_48_4_4_24_52)
-    // amt maybe
-    ö(u32(o + 60), get_bmg_demo_world_208_0_48_4_4_24_60)
-    // amt maybe
-    ö(u32(o + 64), get_bmg_demo_world_208_0_48_4_4_24_64)
-    ö(u32(o + 72), get_bmg_demo_world_208_0_48_4_4_24_72)
-
-}
-
-function get_bmg_demo_world_208_0_48_4_4_24_4(o) {
-    /*ü(1, [u32, 0], o)*/
-    ß('p_texture', o, 0)
-
-}
-function get_bmg_demo_world_208_0_48_4_4_24_52(o) {
-    if (f32(o + 0) !== 2 || u32(o + 4) || u32(o + 8) || f32(o + 12) !== 9 || u32(o + 16) !== 33554432 || f32(o + 20) !== 70 || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, u32, 4, u32, 8, f32, 12, u32, 16, f32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_world_208_0_48_4_4_24_60(o) {
-    if (f32(o + 0) !== 2 || u32(o + 4) || u32(o + 8) || f32(o + 12) !== 9 || u8(o + 16) !== 2 || u8(o + 17) || u8(o + 18) || u8(o + 19) || f32(o + 20) !== 70 || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, u32, 4, u32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, f32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_world_208_0_48_4_4_24_64(o) {
-    if (u32(o + 0) || u32(o + 4) || f32(o + 8) !== 0.5 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_world_208_0_48_4_4_24_72(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) !== 10089312 || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    ö(u32(o + 4), get_bmg_demo_world_208_0_48_4_4_24_72_4)
-
-}
-
-function get_bmg_demo_world_208_0_48_4_4_24_72_4(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-
-function get_bmg_demo_world_208_0_48_4_8(o) {
-    if (u32(o + 0) !== 1 || u32(o + 4) || f32(o + 8) !== 6 || f32(o + 12) !== 3 || f32(o + 16) !== -20 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u8(o + 40) !== 2 || u8(o + 41) || u8(o + 42) || u8(o + 43) || u32(o + 44) || u8(o + 48) || u8(o + 49) !== 153 || u8(o + 50) !== 243 || u8(o + 51) !== 192 || u32(o + 52) || u32(o + 56) || u32(o + 60))
-        ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u32, 52, u32, 56, u32, 60], o)
-
-    ö(u32(o + 48), get_bmg_demo_world_208_0_48_4_8_48)
-
-}
-
-function get_bmg_demo_world_208_0_48_4_8_48(o) {
-    if (f32(o + 0) !== 90 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-
-function get_bmg_demo_world_208_0_88(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_basic(o) {
@@ -3738,14 +2774,8 @@ function get_bmg_demo_flag_20t8(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_flag_20t8_0)
-    // ä(bmg_demo_flag_20t8_0, u32(o + 0), get_bmg_demo_flag_20t8_0)
     ä(bmg_demo_flag, u32(o + 0), get_bmg_demo_flag)
 
-}
-
-function get_bmg_demo_flag_20t8_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
 
 function get_bmg_demo_flag_20t9(o) {
@@ -3942,7 +2972,6 @@ function get_bmg_demo_interface(o) {
     ä(bmg_demo_sound_controls, u32(o + 16), get_bmg_demo_sound_controls)
     ä(bmg_demo_sound_controls, u32(o + 20), get_bmg_demo_sound_controls)
     ä(bmg_demo_sound_controls, u32(o + 28), get_bmg_demo_sound_controls)
-    // ö(u32(o + 28), get_bmg_demo_sound_controls)
     ö(u32(o + 48), get_bmg_demo_interface_48)
     ö(u32(o + 52), get_bmg_demo_interface_52)
     ö(u32(o + 64), get_bmg_demo_interface_64)
@@ -3981,7 +3010,6 @@ function get_bmg_demo_sound_controls_16(o) {
 function get_bmg_demo_sound_controls_16_4(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_sound_section)
     ä(bmg_demo_sound_section, u32(o + 0), get_bmg_demo_sound_section)
 
 }
@@ -4098,37 +3126,8 @@ function get_bmg_demo_interface_64_4_12t10(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_interface_64_4_12t10_0)
-    // ä(bmg_demo_interface_64_4_12t10_0, u32(o + 0), get_bmg_demo_interface_64_4_12t10_0)
     ä(bmg_demo_flag, u32(o + 0), get_bmg_demo_flag)
-    // ä(bmg_demo_activator_220_8_0, u32(o + 0), get_bmg_demo_activator_220_8_0)
 
-}
-function get_bmg_demo_activator_220_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// string
-}
-
-// function get_bmg_demo_interface_64_4_12t10_0(o) {
-//     if (u32(o + 0) || u32(o + 4) || u32(o + 24) !== 1 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 16777216 || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
-
-//     // ä(bmg_demo_interface_64_4_12t10_0, u32(o + 0), get_bmg_demo_interface_64_4_12t10_0)
-//     // globalThis.bmg_demo_interface_64_4_12t10_0 = []
-
-//     ö(u32(o + 8), get_bmg_demo_interface_64_4_12t10_0_8)
-//     ö(u32(o + 20), get_bmg_demo_interface_64_4_12t10_0_20)
-
-// }
-
-// function get_bmg_demo_interface_64_4_12t10_0_8(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_interface_64_4_12t10_0_20(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-
-function get_bmg_demo_interface_64_4_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_interface_72(o) {
@@ -4160,24 +3159,6 @@ function get_bmg_demo_interface_72_16_4(o) {
     if (u8(o + 0) !== 1 || u8(o + 3) || u32(o + 8) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 4), get_bmg_demo_interface_72_16_4_4)
-    // switch (u8(o + 2)) {
-    // case 0:
-    //     ö(u32(o + 4), get_bmg_demo_interface_72_16_4_4t0)
-    //     break
-    // default:
-    //     if (u32(o + 4)) {
-    //     }
-    // }
-    // switch (u8(o + 12)) {
-    // case 0:
-    //     ö(u32(o + 4), get_bmg_demo_interface_72_16_4_4t0)
-    //     break
-    // default:
-    //     if (u32(o + 4)) {
-    //         sü(u8, 12, o, 4)
-    //     }
-    // }
     switch (u8(o + 1)) {
     case 6:
         ö(u32(o + 4), get_bmg_demo_interface_72_16_4_4t6)
@@ -4205,39 +3186,23 @@ function get_bmg_demo_interface_72_16_4(o) {
 
 }
 
-function get_bmg_demo_interface_72_16_4_4t9(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// console.log(get_string(o, 0, false))
+function get_bmg_demo_interface_72_16_4_4t9(o) {// console.log(get_string(o, 0, false))
 
 }
 function get_bmg_demo_interface_72_16_4_4t7(o) {// console.log(get_string(o, 0, false))
-// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_bmg_demo_interface_72_16_4_4t6(o) {// console.log(get_string(o, 0, false))
-}
-
-function get_bmg_demo_interface_72_16_4_4t0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_bmg_demo_interface_72_16_4_4t0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-
-function get_bmg_demo_interface_72_16_4_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_interface_72_24(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 32) || u32(o + 36))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36], o)
 
-    // ö(u32(o + 4), get_bmg_demo_interface_72_24_4)
     ö(u32(o + 12), get_bmg_demo_interface_72_24_12)
     switch (u8(o + 0)) {
     case 1:
     case 31:
         ä(bmg_demo_interface, u32(o + 4), get_bmg_demo_interface)
-        // ö(u32(o + 4), get_bmg_demo_interface_72_24_4t1)
         break
     case 11:
         ö(u32(o + 4), get_bmg_demo_interface_72_24_4t11)
@@ -4247,18 +3212,10 @@ function get_bmg_demo_interface_72_24(o) {
             sü(u8, 0, o, 4)
         }
     }
-    // ö(u32(o + 28), get_bmg_demo_interface_72_24_28)
-    // ä(bmg_demo_interface_72_24_28, u32(o + 28), get_bmg_demo_interface_72_24_28)
     ä(bmg_demo_sound_controls, u32(o + 28), get_bmg_demo_sound_controls)
 
 }
 
-function get_bmg_demo_interface_72_24_4(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_interface_72_24_4t1(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_interface_72_24_4t11(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
@@ -4274,7 +3231,6 @@ function get_bmg_demo_interface_72_24_4t11_4(o) {
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12], o)
 
     ö(u32(o + 0), get_bmg_demo_interface_72_24_4t11_4_0)
-    // ö(u32(o + 12), get_bmg_demo_interface_72_24_4t11_4_12)
     switch (u8(o + 9)) {
     case 0:
         ö(u32(o + 12), get_bmg_demo_interface_72_24_4t11_4_12t0)
@@ -4291,9 +3247,6 @@ function get_bmg_demo_interface_72_24_4t11_4(o) {
 }
 
 function get_bmg_demo_interface_72_24_4t11_4_0(o) {// console.log(get_string(o, 0, false))
-}
-function get_bmg_demo_interface_72_24_4t11_4_12(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 function get_bmg_demo_interface_72_24_4t11_4_12t0(o) {
     if (u8(o + 7) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -4325,36 +3278,6 @@ function get_bmg_demo_interface_72_24_4t11_4_12t1_4(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
-function get_bmg_demo_interface_72_24_4t31(o) {
-    if (u32(o + 4) || u32(o + 8) !== 5 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) || u32(o + 44) !== 1 || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 76) !== 1 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-    // ä(bmg_demo_interface_72_24_4t31, u32(o + 4), get_bmg_demo_interface_72_24_4t31)
-    // globalThis.bmg_demo_interface_72_24_4t31 = []
-
-    ö(u32(o + 0), get_bmg_demo_interface_72_24_4t31_0)
-    ö(u32(o + 48), get_bmg_demo_interface_72_24_4t31_48)
-    ö(u32(o + 64), get_bmg_demo_interface_72_24_4t31_64)
-    ö(u32(o + 72), get_bmg_demo_interface_72_24_4t31_72)
-    ö(u32(o + 80), get_bmg_demo_interface_72_24_4t31_80)
-
-}
-
-function get_bmg_demo_interface_72_24_4t31_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_interface_72_24_4t31_48(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_interface_72_24_4t31_64(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_interface_72_24_4t31_72(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_interface_72_24_4t31_80(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 
 function get_bmg_demo_interface_72_24_12(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -4372,8 +3295,6 @@ function get_bmg_demo_interface_72_24_12_0(o) {
 function get_bmg_demo_interface_72_24_12_4(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_interface_72_24_28(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_interface_80(o) {
@@ -4457,26 +3378,16 @@ function get_bmg_demo_interface_80_32_8_4(o) {
     if (u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
-// function get_bmg_demo_interface_80_32_8_16(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_interface_80_32_8_28(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_interface_80_36t6(o) {
     if (u8(o + 4) !== 1 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_interface_80_36t6_0)
     ä(bmg_demo_interface, u32(o + 0), get_bmg_demo_interface)
     ö(u32(o + 12), get_bmg_demo_interface_80_36t6_12)
 
 }
 
-function get_bmg_demo_interface_80_36t6_0(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_interface_80_36t6_12(o) {
     if (u32(o + 0) || u8(o + 5) || u8(o + 6) || u8(o + 7) || u8(o + 17) || u8(o + 18) || u8(o + 19) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28], o)
@@ -4486,39 +3397,9 @@ function get_bmg_demo_interface_80_36t7(o) {
     if (u32(o + 0) !== 10370368 || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ö(u32(o + 0), get_bmg_demo_interface_80_36t7_0)
-    // ä(bmg_demo_interface_80_36t7_0, u32(o + 0), get_bmg_demo_interface_80_36t7_0)
     ä(bmg_demo_interface, u32(o + 0), get_bmg_demo_interface)
-    // ä(bmg_demo_interface_80_36t7_0, u32(o + 0), get_bmg_demo_interface_80_36t7_0)
 
 }
-
-// function get_bmg_demo_interface_80_36t7_0(o) {
-//     if (u32(o + 0) !== 10370464 || u32(o + 4) || u32(o + 8) !== 4 || u32(o + 12) !== 16777216 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || f32(o + 32) !== 1 || u32(o + 36) || u32(o + 40) !== 500 || u32(o + 44) !== 1 || u32(o + 48) !== 10370528 || u32(o + 52) || u32(o + 56) || f32(o + 60) !== 500 || u32(o + 64) !== 10370560 || u32(o + 68) || u32(o + 72) || u32(o + 76) !== 3 || u32(o + 80) !== 10370592 || u32(o + 84) || u32(o + 88) || u32(o + 92))
-//         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
-
-//     // ä(bmg_demo_interface_80_36t7_0, u32(o + 0), get_bmg_demo_interface_80_36t7_0)
-//     // globalThis.bmg_demo_interface_80_36t7_0 = []
-
-//     ö(u32(o + 0), get_bmg_demo_interface_80_36t7_0_0)
-//     ö(u32(o + 48), get_bmg_demo_interface_80_36t7_0_48)
-//     ö(u32(o + 64), get_bmg_demo_interface_80_36t7_0_64)
-//     ö(u32(o + 80), get_bmg_demo_interface_80_36t7_0_80)
-
-// }
-
-// function get_bmg_demo_interface_80_36t7_0_0(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_interface_80_36t7_0_48(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
-// function get_bmg_demo_interface_80_36t7_0_64(o) {
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-// }
-// function get_bmg_demo_interface_80_36t7_0_80(o) {
-//     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-// }
 
 function get_bmg_demo_interface_80_36t13(o) {
     if (u32(o + 0) !== 327680 || u32(o + 8) !== 1 || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -4596,19 +3477,15 @@ function get_bmg_demo_interface_80_36t1(o) {
     if (u8(o + 3) !== 5)
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, f32, 28], o)
 
-    // ä(bmg_demo_interface_80_36t1_4, u32(o + 4), get_bmg_demo_interface_80_36t1_4)
     ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 4), get_bmg_demo_interface_80_36t1_8_4_0)
-    // ö(u32(o + 4), get_bmg_demo_interface_80_36t1_4)
     ö(u32(o + 8), get_bmg_demo_interface_80_36t1_8)
 
     switch (u8(o + 2)) {
     case 0:
         ä(bmg_demo_interface_80_36t1_12t0, u32(o + 12), get_bmg_demo_interface_80_36t1_12t0)
-        // ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t0)
         break
     case 1:
         ä(bmg_demo_interface_80_36t1_12t1, u32(o + 12), get_bmg_demo_interface_80_36t1_12t1)
-        // ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t1)
         break
     default:
         if (u32(o + 12)) {
@@ -4616,35 +3493,8 @@ function get_bmg_demo_interface_80_36t1(o) {
         }
     }
 
-    // switch (u8(o + 0)) {
-    // case 0:
-    //     ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t0)
-    //     break
-    // case 1:
-    //     ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t1)
-    //     break
-    // case 3:
-    //     ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t3)
-    //     break
-    // default:
-    //     if (u32(o + 12)) {
-    //     }
-    // }
-
-    // ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12)
     ö(u32(o + 16), get_bmg_demo_interface_80_36t1_16)
 
-}
-
-function get_bmg_demo_interface_80_36t1_4(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    ö(u32(o + 0), get_bmg_demo_interface_80_36t1_4_0)
-
-}
-
-function get_bmg_demo_interface_80_36t1_4_0(o) {// console.log(get_string(o, 0, false))
 }
 
 function get_bmg_demo_interface_80_36t1_8(o) {
@@ -4660,7 +3510,6 @@ function get_bmg_demo_interface_80_36t1_8(o) {
 function get_bmg_demo_interface_80_36t1_8_4(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_interface_80_36t1_8_4_0)
     ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 0), get_bmg_demo_interface_80_36t1_8_4_0)
 
 }
@@ -4669,9 +3518,6 @@ function get_bmg_demo_interface_80_36t1_8_4_0(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    // ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 0), get_bmg_demo_interface_80_36t1_8_4_0)
-    // globalThis.bmg_demo_interface_80_36t1_8_4_0 = []
-
     ö(u32(o + 0), get_bmg_demo_interface_80_36t1_8_4_0_0)
 
 }
@@ -4679,16 +3525,12 @@ function get_bmg_demo_interface_80_36t1_8_4_0(o) {
 function get_bmg_demo_interface_80_36t1_8_4_0_0(o) {// console.log(get_string(o, 0, false))
 }
 
-function get_bmg_demo_interface_80_36t1_12(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_interface_80_36t1_12t0(o) {
     if (u8(o + 11) || u32(o + 16) !== 1 || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
     ß('p_texture', o, 0)
 
     ä(bmg_demo_interface_80_36t1_12t0_4, u32(o + 4), get_bmg_demo_interface_80_36t1_12t0_4)
-    // ö(u32(o + 4), get_bmg_demo_interface_80_36t1_12t0_4)
     ö(u32(o + 20), get_bmg_demo_interface_80_36t1_12t0_20)
     for (let i = 0; i < u32(o + 24); i++) {
         ö(u32(o + 28) + (i * 12), get_bmg_demo_interface_80_36t1_12t0_28)
@@ -4740,35 +3582,10 @@ function get_bmg_demo_interface_80_36t1_12t1_4(o) {
     if (u8(o + 2) || u8(o + 3))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
 
-    // ä(bmg_demo_interface_80_36t1_12t1_4_12, u32(o + 12), get_bmg_demo_interface_80_36t1_12t1_4_12)
     ä(bmg_demo_interface_80_36t1_12t0, u32(o + 12), get_bmg_demo_interface_80_36t1_12t0)
     ä(bmg_demo_interface_80_36t1_12t0, u32(o + 16), get_bmg_demo_interface_80_36t1_12t0)
     ä(bmg_demo_interface_80_36t1_12t0, u32(o + 20), get_bmg_demo_interface_80_36t1_12t0)
     ä(bmg_demo_interface_80_36t1_12t0, u32(o + 28), get_bmg_demo_interface_80_36t1_12t0)
-    // ö(u32(o + 28), get_bmg_demo_interface_80_36t1_12t1_4_28)
-    // ö(u32(o + 12), get_bmg_demo_interface_80_36t1_12t1_4_12)
-    // ä(bmg_demo_interface_80_36t1_12t1_4_16, u32(o + 16), get_bmg_demo_interface_80_36t1_12t1_4_16)
-    // ö(u32(o + 16), get_bmg_demo_interface_80_36t1_12t1_4_16)
-    // ö(u32(o + 20), get_bmg_demo_interface_80_36t1_12t1_4_20)
-    // ä(bmg_demo_interface_80_36t1_12t1_4_20, u32(o + 20), get_bmg_demo_interface_80_36t1_12t1_4_20)
-
-}
-
-function get_bmg_demo_interface_80_36t1_12t1_4_12(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
-function get_bmg_demo_interface_80_36t1_12t1_4_16(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
-function get_bmg_demo_interface_80_36t1_12t1_4_20(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-}
-// function get_bmg_demo_interface_80_36t1_12t1_4_28(o) {
-//     ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
-// }
-
-function get_bmg_demo_interface_80_36t1_12t3(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_bmg_demo_interface_80_36t1_16(o) {
@@ -4809,9 +3626,6 @@ function get_bmg_demo_interface_80_36t0_8_4(o) {
 
 }
 
-function get_bmg_demo_interface_80_36(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
 function get_bmg_demo_interface_80_40(o) {
     if (u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
