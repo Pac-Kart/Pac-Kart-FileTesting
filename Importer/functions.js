@@ -2140,11 +2140,7 @@ function ß(type, o, n) {
                     ä(bcc_model, u32(o + n), get_bcc_model)
                     break
                 case 'bee_movie_game':
-                    if (u32(8) === 288) {
-                        ä(bmg_demo_model, u32(o + n), get_bmg_demo_model)
-                    } else {
                         ä(bmg_model, u32(o + n), get_bmg_model)
-                    }
                     break
                 case 'snoopy_vs_the_red_baron':
                     ä(svtrb_model, u32(o + n), get_svtrb_model)

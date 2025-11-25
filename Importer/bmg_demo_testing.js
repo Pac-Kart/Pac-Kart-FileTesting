@@ -47,16 +47,9 @@ function get_bmg_demo_directory(o, end_offset) {
     if (u32(o + 0) !== 288 || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)
 
-    globalThis.bmg_demo_text = []
     globalThis.bmg_demo_sound_controls = []
     globalThis.bmg_demo_sound_section = []
-    globalThis.bmg_demo_model = []
-    globalThis.bmg_demo_text = []
     globalThis.bmg_demo_interface = []
-    globalThis.bmg_demo_interface_92_36t16_0 = []
-    globalThis.bmg_demo_interface_92_36t1_12t0 = []
-    globalThis.bmg_demo_interface_92_36t1_12t1 = []
-    globalThis.bmg_demo_model_anim_2 = []
     globalThis.bmg_demo_world_4 = []
     globalThis.bmg_demo_world_12 = []
     globalThis.bmg_demo_world_20 = []
@@ -64,95 +57,30 @@ function get_bmg_demo_directory(o, end_offset) {
     globalThis.bmg_demo_world_84 = []
     globalThis.bmg_demo_world_92 = []
     globalThis.bmg_demo_world_116 = []
-    globalThis.bmg_demo_world_60 = []
-    globalThis.bmg_demo_world_44 = []
-    globalThis.bmg_demo_world_108 = []
-    globalThis.bmg_demo_world_224 = []
-    globalThis.bmg_demo_world_100 = []
     globalThis.bmg_demo_idk = []
     globalThis.bmg_demo_world_208_0 = []
-    globalThis.bmg_demo_world_12_76 = []
     globalThis.bmg_demo_activator = []
-    globalThis.bmg_demo_world_120_0 = []
-    globalThis.bmg_demo_world_172_224 = []
-    globalThis.bmg_demo_object = []
     globalThis.bmg_demo_strange = []
-    globalThis.bmg_demo_world_36 = []
     globalThis.bmg_demo_var = []
     globalThis.bmg_demo_world_176_20_0 = []
-    globalThis.bmg_demo_world_224_76 = []
     globalThis.bmg_demo_unknown = []
     globalThis.bmg_demo_flag = []
-    globalThis.bmg_demo_sound_section = []
     globalThis.bmg_demo_model_link = []
     globalThis.bmg_demo_model_sub_link = []
-    globalThis.bmg_demo_world_12_76_0t10_96 = []
-    globalThis.bmg_demo_interface_84_24_4t11_4_12t116 = []
     globalThis.bmg_demo_some_model_anim = []
     globalThis.bmg_demo_unknown_4_4t1 = []
     globalThis.bmg_demo_unknown_4_4t5 = []
-    globalThis.bmg_demo_world_12_76_0t10_100 = []
-    globalThis.bmg_demo_unknown7 = []
     globalThis.bmg_demo_var_168_24_12t34 = []
-    globalThis.bmg_demo_var_168_24_12t8_0 = []
     globalThis.bmg_demo_model_anims_2 = []
     globalThis.test_temp = []
-
-    globalThis.bmg_demo_world_4 = []
-    globalThis.bmg_demo_world_12 = []
-    globalThis.bmg_demo_world_84 = []
-    globalThis.bmg_demo_world_92 = []
-    globalThis.bmg_demo_world_116 = []
-    globalThis.bmg_demo_sound_controls = []
-    globalThis.bmg_demo_world_4_20 = []
     globalThis.bmg_demo_model_anim_1 = []
     globalThis.bmg_demo_world_0_64 = []
-    globalThis.bmg_demo_world_68 = []
-    globalThis.bmg_demo_world_208_0 = []
-    globalThis.bmg_demo_world_172_176 = []
-    globalThis.bmg_demo_world_84_64 = []
-    globalThis.bmg_demo_model_link = []
-    globalThis.bmg_demo_activator = []
-    globalThis.bmg_demo_idk = []
-    globalThis.bmg_demo_model_sub_link = []
-    globalThis.bmg_demo_world_28_72_0_0 = []
-    globalThis.bmg_demo_world_176_4_0 = []
-    globalThis.bmg_demo_var = []
-    globalThis.bmg_demo_world_176_20_0 = []
     globalThis.bmg_demo_interface_80_36t1_12t0 = []
     globalThis.bmg_demo_interface_80_36t1_12t1 = []
     globalThis.bmg_demo_interface_80_36t1_8_4_0 = []
     globalThis.bmg_demo_interface_80_36t1_12t0_4 = []
-
-    globalThis.bmg_demo_interface_80_36t1_12t1_4_20 = []
-    globalThis.bmg_demo_datapack_108_4 = []
-    globalThis.bmg_demo_strange = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4_28 = []
     globalThis.bmg_demo_var_168_24_12 = []
-    globalThis.bmg_demo_activator_236_32_8_0 = []
-    globalThis.bmg_demo_interface_64_4_12t10_0 = []
-    globalThis.bmg_demo_interface_80_36t7_0 = []
-    globalThis.bmg_demo_model_anims_2 = []
-    globalThis.bmg_demo_unknown = []
-    globalThis.bmg_demo_var_168_24_12t34 = []
-    globalThis.bmg_demo_var_168_16_12t21 = []
-    globalThis.bmg_demo_sound_section = []
-    globalThis.bmg_demo_var_168_24_12t15_0 = []
-    globalThis.bmg_demo_var_168_24_12t23_4_0 = []
-    globalThis.bmg_demo_world_20 = []
-    globalThis.bmg_demo_var_168_24_12t2_4t1_4 = []
     globalThis.bmg_demo_var_168_24_12t34_12_12t34 = []
-    globalThis.bmg_demo_var_168_24_12t2_4t17_16_0 = []
-    globalThis.bmg_demo_var_168_24_12t33_4_16_12_4 = []
-    globalThis.bmg_demo_var_168_24_12t34_12_12t7_4 = []
-    globalThis.bmg_demo_interface_80_36t1_8t1_4_0 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t1_12 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t1_16 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t1_20 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t0_12 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t0_28 = []
-    globalThis.bmg_demo_interface_80_36t1_12t1_4t0_32 = []
-    globalThis.bmg_demo_extended_world_link_0t1 = []
 
     //interface/mcp/world finished
 
@@ -237,7 +165,6 @@ function get_bmg_demo_datapack(o, e) {
     //     // ö(u32(o + 24), get_test_temp)
     //     // ä(test_temp, u32(o + 24), get_test_temp)
     //     // ä(test_temp, u32(o + 24), get_test_temp)
-    //     // get_bmg_demo_world_60 ?
     //     console.log(pk_audio_end_offset, "pk_audio_end_offset", pk_audio_end_offset - index_patch_list)
     // }
 
@@ -3602,13 +3529,8 @@ function get_bmg_demo_interface_80_36t1_8t1(o) {
 function get_bmg_demo_interface_80_36t1_8t1_4(o) {
     /*ü(1, [u32, 0], o)*/
 
-    // ö(u32(o + 0), get_bmg_demo_interface_80_36t1_8t1_4_0)
     ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 0), get_bmg_demo_interface_80_36t1_8_4_0)
 
-}
-
-function get_bmg_demo_interface_80_36t1_8t1_4_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
 function get_bmg_demo_interface_80_36t1_8t3(o) {
