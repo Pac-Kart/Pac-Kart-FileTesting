@@ -695,43 +695,6 @@ function get_bmg_demo_model_anims_2(o) {
 
 function get_bmg_demo_model_anims_2_16(o) {/*ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)*/
 }
-function get_bmg_demo_model_anims_2_8t2852208671(o) {// ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, ], o)
-// string
-}
-function get_bmg_demo_model_anims_2_16t2852208671(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-}
-function get_bmg_demo_model_anims_2_20t2852208671(o) {
-    if (u8(o + 4) !== 255 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 44))
-        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44], o)
-
-    ö(u32(o + 0), get_bmg_demo_model_anims_2_20t2852208671_0)
-    for (let i = 0; i < u32(o + 36); i++) {
-        ö(u32(o + 40) + (i * 4), get_bmg_demo_model_anims_2_20t2852208671_40)
-    }
-
-}
-
-function get_bmg_demo_model_anims_2_20t2852208671_0(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
-// string
-}
-function get_bmg_demo_model_anims_2_20t2852208671_40(o) {
-    /*ü(1, [u32, 0], o)*/
-
-    ö(u32(o + 0), get_bmg_demo_model_anims_2_20t2852208671)
-
-}
-
-function get_bmg_demo_model_anims_2_20t2852208671_40_4(o) {
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44, ], o)
-}
-function get_bmg_demo_model_anims_2_20t2852208671_40_8(o) {
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44, ], o)
-}
-function get_bmg_demo_model_anims_2_20t2852208671_40_12(o) {
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44, ], o)
-}
 
 function get_bmg_demo_model_sub_link_8(o) {
     /*ü(1, [u32, 0], o)*/
@@ -843,9 +806,37 @@ function get_bmg_demo_some_model_anim_2(o) {
     if (u32(o + 0) !== 2852208671 || u32(o + 4) !== 196651 || u32(o + 8) !== 10066592 || u32(o + 12) || u32(o + 16) !== 10066608 || u32(o + 20) !== 10066624 || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 8), get_bmg_demo_model_anims_2_8t2852208671)
-    ö(u32(o + 16), get_bmg_demo_model_anims_2_16t2852208671)
-    ö(u32(o + 20), get_bmg_demo_model_anims_2_20t2852208671)
+    ö(u32(o + 8), get_bmg_demo_some_model_anim_2_8)
+    ö(u32(o + 16), get_bmg_demo_some_model_anim_2_16)
+    ö(u32(o + 20), get_bmg_demo_some_model_anim_2_20)
+}
+
+function get_bmg_demo_some_model_anim_2_8(o) {// ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, ], o)
+// string
+}
+function get_bmg_demo_some_model_anim_2_16(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_bmg_demo_some_model_anim_2_20(o) {
+    if (u8(o + 4) !== 255 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 44))
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44], o)
+
+    ö(u32(o + 0), get_bmg_demo_some_model_anim_2_20_0)
+    for (let i = 0; i < u32(o + 36); i++) {
+        ö(u32(o + 40) + (i * 4), get_bmg_demo_some_model_anim_2_20_40)
+    }
+
+}
+
+function get_bmg_demo_some_model_anim_2_20_0(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
+// string
+}
+function get_bmg_demo_some_model_anim_2_20_40(o) {
+    /*ü(1, [u32, 0], o)*/
+
+    ö(u32(o + 0), get_bmg_demo_some_model_anim_2_20)
+
 }
 
 function get_bmg_demo_model_link_28(o) {
@@ -1124,11 +1115,11 @@ function get_bmg_demo_activator_236_32_76(o) {
     case 0:
         ö(u32(o + 12), get_bmg_demo_activator_236_32_76_12t0)
         break
-    case 23:
-        ö(u32(o + 12), get_bmg_demo_activator_236_32_76_12t23)
-        break
     case 8:
         ö(u32(o + 12), get_bmg_demo_activator_236_32_76_12t8)
+        break
+    case 23:
+        ö(u32(o + 12), get_bmg_demo_activator_236_32_76_12t23)
         break
     default:
         if (u32(o + 12)) {
@@ -1307,11 +1298,11 @@ function get_bmg_demo_mysterious_4t5(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     switch (u8(o + 3)) {
-    case 2:
-        ö(u32(o + 16), get_bmg_demo_mysterious_4t5_16t2)
-        break
     case 0:
         ö(u32(o + 16), get_bmg_demo_mysterious_4t5_16t0)
+        break
+    case 2:
+        ö(u32(o + 16), get_bmg_demo_mysterious_4t5_16t2)
         break
     default:
         if (u32(o + 16)) {
@@ -1424,14 +1415,14 @@ function get_bmg_demo_unknown_4_4t1(o) {
         ö(u32(o + 16) + (i * 12), get_bmg_demo_unknown_4_4t1_16)
     }
     switch (u8(o + 20)) {
+    case 0:
+        ö(u32(o + 24), get_bmg_demo_unknown_4_4t1_24t0)
+        break
     case 1:
         ö(u32(o + 24), get_bmg_demo_unknown_4_4t1_24t1)
         break
     case 2:
         ö(u32(o + 24), get_bmg_demo_unknown_4_4t1_24t2)
-        break
-    case 0:
-        ö(u32(o + 24), get_bmg_demo_unknown_4_4t1_24t0)
         break
     default:
         if (u32(o + 24)) {
@@ -1812,23 +1803,23 @@ function get_bmg_demo_var_168_16(o) {
     case 7:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t7)
         break
+    case 8:
+        ö(u32(o + 12), get_bmg_demo_var_168_16_12t8)
+        break
     case 12:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t12)
         break
-    case 18:
-        ö(u32(o + 12), get_bmg_demo_var_168_16_12t18)
-        break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t15)
+        break
+    case 18:
+        ö(u32(o + 12), get_bmg_demo_var_168_16_12t18)
         break
     case 21:
         ä(bmg_demo_interface, u32(o + 12), get_bmg_demo_interface)
         break
     case 25:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t25)
-        break
-    case 8:
-        ö(u32(o + 12), get_bmg_demo_var_168_16_12t8)
         break
     default:
         if (u32(o + 12)) {
@@ -1851,11 +1842,11 @@ function get_bmg_demo_var_168_16_12t12(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     switch (u8(o + 0)) {
-    case 7:
-        ö(u32(o + 4), get_bmg_demo_var_168_16_12t12_4t7)
-        break
     case 4:
         ä(bmg_demo_flag, u32(o + 4), get_bmg_demo_flag)
+        break
+    case 7:
+        ö(u32(o + 4), get_bmg_demo_var_168_16_12t12_4t7)
         break
     default:
         if (u32(o + 4)) {
@@ -1912,11 +1903,11 @@ function get_bmg_demo_var_168_16_12t15_4(o) {
     ö(u32(o + 0), get_bmg_demo_var_168_16_12t15_4_0)
 
     switch (u32(o + 4)) {
-    case 21:
-        ä(bmg_demo_interface, u32(o + 12), get_bmg_demo_interface)
-        break
     case 5:
         ö(u32(o + 12), get_bmg_demo_var_168_16_12t15_4_12t5)
+        break
+    case 21:
+        ä(bmg_demo_interface, u32(o + 12), get_bmg_demo_interface)
         break
     default:
         if (u32(o + 12)) {
@@ -1986,32 +1977,32 @@ function get_bmg_demo_var_168_24(o) {
     case 2:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t2)
         break
-    case 18:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t18)
+    case 5:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t5)
         break
     case 7:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t7)
         break
-    case 23:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t23)
-        break
     case 14:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t14)
-        break
-    case 17:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t17)
-        break
-    case 5:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t5)
-        break
-    case 34:
-        ä(bmg_demo_var_168_24_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34)
         break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t15)
         break
+    case 17:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t17)
+        break
+    case 18:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t18)
+        break
+    case 23:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t23)
+        break
     case 33:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33)
+        break
+    case 34:
+        ä(bmg_demo_var_168_24_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34)
         break
     default:
         if (u32(o + 12)) {
@@ -2028,20 +2019,20 @@ function get_bmg_demo_var_168_24_12t2(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     switch (u32(o + 0)) {
+    case 1:
+        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t1)
+        break
+    case 4:
+        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t4)
+        break
+    case 5:
+        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t5)
+        break
     case 7:
         ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t7)
         break
     case 11:
         ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t11)
-        break
-    case 1:
-        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t1)
-        break
-    case 5:
-        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t5)
-        break
-    case 4:
-        ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t4)
         break
     case 12:
         ö(u32(o + 4), get_bmg_demo_var_168_24_12t2_4t12)
@@ -2305,29 +2296,29 @@ function get_bmg_demo_var_168_24_12t34_12(o) {
 
     ö(u32(o + 0), get_bmg_demo_var_168_24_12t34_12_0)
     switch (u32(o + 8)) {
+    case 2:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t2)
+        break
     case 5:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t5)
         break
     case 7:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t7)
         break
+    case 14:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t14)
+        break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t15)
         break
-    case 2:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t2)
-        break
-    case 34:
-        ä(bmg_demo_var_168_24_12t34_12_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34)
+    case 17:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t17)
         break
     case 19:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t19)
         break
-    case 14:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t14)
-        break
-    case 17:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t17)
+    case 34:
+        ä(bmg_demo_var_168_24_12t34_12_12t34, u32(o + 12), get_bmg_demo_var_168_24_12t34_12_12t34)
         break
     default:
         if (u32(o + 12)) {
@@ -2537,11 +2528,11 @@ function get_bmg_demo_var_168_24_12t33_4_24(o) {
     case 7:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_24_12t7)
         break
-    case 23:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_24_12t23)
-        break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_24_12t15)
+        break
+    case 23:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_24_12t23)
         break
     default:
         if (u32(o + 12)) {
@@ -2584,11 +2575,11 @@ function get_bmg_demo_var_168_24_12t33_4_32(o) {
     case 5:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12t5)
         break
-    case 23:
-        ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12t23)
-        break
     case 15:
         ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12t15)
+        break
+    case 23:
+        ö(u32(o + 12), get_bmg_demo_var_168_24_12t33_4_32_12t23)
         break
     default:
         if (u32(o + 12)) {
@@ -3316,11 +3307,11 @@ function get_bmg_demo_interface_80(o) {
     case 1:
         ö(u32(o + 36), get_bmg_demo_interface_80_36t1)
         break
-    case 7:
-        ö(u32(o + 36), get_bmg_demo_interface_80_36t7)
-        break
     case 6:
         ö(u32(o + 36), get_bmg_demo_interface_80_36t6)
+        break
+    case 7:
+        ö(u32(o + 36), get_bmg_demo_interface_80_36t7)
         break
     case 10:
         ö(u32(o + 36), get_bmg_demo_interface_80_36t10)
