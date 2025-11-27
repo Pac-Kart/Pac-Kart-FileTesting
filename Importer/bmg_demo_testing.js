@@ -175,7 +175,6 @@ function get_bmg_demo_datapack_108(o) {
         ü(1, [u32, 0, u32, 4], o)
 
     ä(bmg_demo_interface_80_36t1_8_4_0, u32(o + 4), get_bmg_demo_interface_80_36t1_8_4_0)
-
 }
 
 function get_bmg_demo_basic_audio_pc(o, e) {
@@ -201,11 +200,7 @@ function get_bmg_demo_basic_audio_0(o, e) {
     /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
     let start = e + u32(o + 0)
     let end = start + u32(o + 4)
-    if (g.console === "pc") {
-        get_bmg_demo_basic_audio_0_0tpc(start, end, e)
-    } else {
-        get_bmg_demo_basic_audio_0_0twii(start, end, e)
-    }
+    get_bmg_demo_basic_audio_0_0twii(start, end, e)
 
     if (pk_audio_end_offset < end) {
         pk_audio_end_offset = end
@@ -215,11 +210,6 @@ function get_bmg_demo_basic_audio_0_0twii(o, end, e) {
     if (u32(o + 0) !== 1179861555)
         ü(1, [u32, 0], o)
     // FSB3 file
-}
-function get_bmg_demo_basic_audio_0_0tpc(o, end, e) {
-    if (u32(o + 0) !== 1179011410)
-        ü(1, [u32, 0], o)
-    // RIFF file
 }
 function get_bmg_demo_basic_audio_4(o, e) {
     if (u8(o + 8) !== 16 || u8(o + 9) || u8(o + 10) || u8(o + 11))
@@ -342,10 +332,7 @@ function bmg_demo_get_offset_patch_list(o, patch_offset) {
     patchlistoffset = patch_offset
     log_array.p_model.offset = patchlistoffset
 
-    let array_type_offset = 6
-    if (g.console === "wii") {
-        array_type_offset = 4
-    }
+    let array_type_offset = 4
 
     for (let i = 0; i < u32(o + 56); i++) {
         log_array.p_model.array.push(u32(patchlistoffset + (i * 8)))
@@ -1320,16 +1307,16 @@ function get_bmg_demo_mysterious_4t5(o) {
     ö(u32(o + 56), get_bmg_demo_mysterious_4t5_56)
 
 }
-function get_bmg_demo_mysterious_4t5_16t2(o) {
-    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    ß('p_texture', o, 0)
-
-}
 function get_bmg_demo_mysterious_4t5_16t0(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
     ß('p_model', o, 0)
+
+}
+function get_bmg_demo_mysterious_4t5_16t2(o) {
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    ß('p_texture', o, 0)
 
 }
 
@@ -1348,10 +1335,6 @@ function get_bmg_demo_mysterious_4t5_52(o) {
 function get_bmg_demo_mysterious_4t5_56(o) {
     if (u32(o + 0) || u32(o + 4) || f32(o + 8) !== 1 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-
-function get_bmg_demo_mysterious_4t6(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
 
 function get_bmg_demo_unknown(o) {
@@ -1943,15 +1926,7 @@ function get_bmg_demo_var_168_16_12t25(o) {
     if (u8(o + 1) !== 10 || u8(o + 2) !== 3 || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 4), get_bmg_demo_var_168_16_12t25_4)
-
-}
-
-function get_bmg_demo_var_168_16_12t25_4(o) {
-    if (u32(o + 4) !== 1 || u8(o + 8) !== 1 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-
-    ä(bmg_demo_world_20, u32(o + 0), get_bmg_demo_world_20)
+    ö(u32(o + 4), get_bmg_demo_extended_world_link)
 
 }
 
