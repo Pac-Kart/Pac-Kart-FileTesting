@@ -2053,8 +2053,8 @@ function get_bmg_demo_var_168_24_12t2_4t5(o) {
 }
 
 function get_bmg_demo_extended_world_link(o) {
-    if (u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
+    // if (u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 28))
+    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
 
     switch (u8(o + 8)) {
     case 0:
@@ -2073,7 +2073,7 @@ function get_bmg_demo_extended_world_link(o) {
         }
         break
     case 1:
-        switch (u32(o + 4)) {
+        switch (u8(o + 7)) {
         case 0:
             ä(bmg_demo_world_12, u32(o + 0), get_bmg_demo_world_12)
             break
@@ -2099,6 +2099,7 @@ function get_bmg_demo_extended_world_link(o) {
         break
     case 2:
     case 4:
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
         if (old_log_array.p_offset.array.includes(o + 0 - offset_mid)) {
             ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28], o)
         }
@@ -2377,13 +2378,8 @@ function get_bmg_demo_var_168_24_12t34_12_12t2_4(o) {
     if (u8(o + 0) || u8(o + 2) || u8(o + 3) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
-    ö(u32(o + 16), get_bmg_demo_var_168_24_12t34_12_12t2_4_16)
+    ö(u32(o + 16), get_bmg_demo_extended_world_link)
 
-}
-
-function get_bmg_demo_var_168_24_12t34_12_12t2_4_16(o) {
-    if (u32(o + 0) || u8(o + 8) !== 4 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 
 function get_bmg_demo_var_168_24_12t34_12_12t34(o) {
@@ -3135,7 +3131,7 @@ function get_bmg_demo_interface_72_16(o) {
         ö(u32(o + 4), get_bmg_demo_interface_72_16_4t2)
         break
     case 3:
-        ö(u32(o + 4), get_bmg_demo_interface_72_16_4)
+        ö(u32(o + 4), get_bmg_demo_interface_72_16_4t3)
         break
     default:
         if (u32(o + 4)) {
@@ -3149,17 +3145,14 @@ function get_bmg_demo_interface_72_16_4t2(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
 function get_bmg_demo_interface_72_16_4t3(o) {
-    ü(3, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-}
-function get_bmg_demo_interface_72_16_4(o) {
     if (u8(o + 0) !== 1 || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 4), get_bmg_demo_interface_72_16_4_4)
+    ö(u32(o + 4), get_bmg_demo_interface_72_16_4t3_4)
 
 }
 
-function get_bmg_demo_interface_72_16_4_4(o) {// console.log(get_string(o, 0, false))
+function get_bmg_demo_interface_72_16_4t3_4(o) {// console.log(get_string(o, 0, false))
 
 }
 
@@ -3167,7 +3160,6 @@ function get_bmg_demo_interface_72_24(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 8) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 32) || u32(o + 36))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36], o)
 
-    ö(u32(o + 12), get_bmg_demo_interface_72_24_12)
     switch (u8(o + 0)) {
     case 1:
     case 31:
@@ -3181,6 +3173,7 @@ function get_bmg_demo_interface_72_24(o) {
             sü(u8, 0, o, 4)
         }
     }
+    ö(u32(o + 12), get_bmg_demo_interface_72_24_12)
     ä(bmg_demo_sound_controls, u32(o + 28), get_bmg_demo_sound_controls)
 
 }
