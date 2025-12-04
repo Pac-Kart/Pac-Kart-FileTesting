@@ -23,6 +23,29 @@ function filecheck() {
         break;
     }
 
+    function is_x() {
+
+        //magic 2
+        switch (u32(4)) {
+        case 67174573:
+        case 134348960:
+            g.game = "motor_mayhem"
+            choose_game_type()
+            return
+            break
+        case 67174574:
+            is_hot_wheels()
+            return
+            break
+        case 67174575:
+            is_later_game()
+            break
+        default:
+            alert('magic 2 diff val: ', u32(4))
+        }
+
+    }
+
     function is_hot_wheels() {
         g.game = "hot_wheels_velocity_x"
         g.version = u32(8)
@@ -54,29 +77,6 @@ function filecheck() {
         }
     }
 
-    function is_x() {
-
-        //magic 2
-        switch (u32(4)) {
-        case 67174573:
-        case 134348960:
-            g.game = "motor_mayhem"
-            choose_game_type()
-            return
-            break
-        case 67174574:
-            is_hot_wheels()
-            return
-            break
-        case 67174575:
-            is_later_game()
-            break
-        default:
-            alert('magic 2 diff val: ', u32(4))
-        }
-
-    }
-
     function is_later_game() {
         g.version = u32(8)
         switch (g.version) {
@@ -85,14 +85,12 @@ function filecheck() {
             g.console = "xbox"
             //demo xbox pmwr
             choose_game_type()
-
             break
         case 249:
             g.game = "pac_man_world_rally"
             g.console = "ps2"
             //demo ps2 pmwr
             choose_game_type()
-
             break
         case 267:
             g.game = "pac_man_world_rally"
@@ -100,17 +98,14 @@ function filecheck() {
             case 'xgc':
                 g.console = "gamecube"
                 choose_game_type()
-
                 break
             case 'xps':
                 g.console = "ps2"
                 choose_game_type()
-
                 break
             case 'xpc':
                 g.console = "pc"
                 choose_game_type()
-
                 break
             default:
                 choose_x_game()
@@ -228,7 +223,7 @@ function filecheck() {
         <div id='hot_wheels_velocity_x' class="select_option_fileview">Hot Wheels Velocity X</div>
         <div id='snoopy_vs_the_red_baron' class="select_option_fileview">Snoopy vs The Red Baron</div>
         <div id='pac_man_world_rally' class="select_option_fileview">Pac Man World Rally</div>
-        <div id='bigfoot_collision_course' class="select_option_fileview">Bee Movie Game</div>
+        <div id='bee_movie_game' class="select_option_fileview">Bee Movie Game</div>
         <div id='bigfoot_collision_course' class="select_option_fileview">Bigfoot: Collision Course</div>
         `
         let games = document.getElementsByClassName('select_option_fileview')
@@ -284,7 +279,7 @@ function filecheck() {
         <div id='xbox' class="select_option_fileview">Xbox</div>
         <div id='psp' class="select_option_fileview">PSP</div>
         <div id='ps2' class="select_option_fileview">PS2</div>
-        <div id='ps2' class="select_option_fileview">Wii</div>
+        <div id='wii' class="select_option_fileview">Wii</div>
         `
         let consoles = document.getElementsByClassName('select_option_fileview')
         for (let system of consoles) {
