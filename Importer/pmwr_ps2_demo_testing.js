@@ -1395,11 +1395,11 @@ function get_pmwr_ps2demo_world_160_44_0_28(o) {
     case 1:
         ö(u32(o + 12), get_pmwr_ps2demo_world_160_44_0_28_12t1)
         break
-    case 6:
-        ö(u32(o + 12), get_pmwr_ps2demo_world_160_44_0_28_12t6)
-        break
     case 2:
         ö(u32(o + 12), get_pmwr_ps2demo_world_160_44_0_28_12t2)
+        break
+    case 6:
+        ö(u32(o + 12), get_pmwr_ps2demo_world_160_44_0_28_12t6)
         break
     case 8:
         ö(u32(o + 12), get_pmwr_ps2demo_world_160_44_0_28_12t8)
