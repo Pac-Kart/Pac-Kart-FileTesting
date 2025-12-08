@@ -4,6 +4,8 @@ async function input_file(event) {
     const files = event.currentTarget.files;
     const lastFileIndex = files.length - 1;
 
+    globalThis.sha1_array = []
+
     Object.keys(files).forEach(i => {
         const reader = new FileReader();
         read_a_file(reader, i, files[i])
@@ -37,7 +39,11 @@ async function input_file(event) {
                     file_viewer.textContent = ''
                     file_editor.textContent = ''
 
+
+
                     filecheck()
+
+
 
                     console.log(`%c ${g.file_name} || ${i}/${lastFileIndex}`, 'color:#ff10ff')
                     for (let temp_array_index = 0; temp_array_index < temp_array__.length; temp_array_index++) {
@@ -76,48 +82,65 @@ function choose_game_type() {
 
     let html = '';
     g.datapack_end = buffer.byteLength;
-    switch (g.game) {
-    case "bigfoot_collision_course":
-        get_x_bcc()
-        break
-    case "bee_movie_game":
-        if (g.version === 288) {
-            get_x_bmg_demo()
-        }else{
-        get_x_bmg()
-        }
-        break
-    case "bee_movie_game":
-        get_x_bmg()
-        break
-    case "snoopy_vs_the_red_baron":
-        get_x_svtrb()
-        break
-    case "pac_man_world_rally":
-        if (g.version === 243) {
-            get_x_pmwr_xdx()
-        }
-        if (g.version === 249) {
-            get_x_pmwr_ps2demo()
-        } else{
-            get_x_pmwr()
-        }
-        break
-    case "hot_wheels_velocity_x":
-        if (g.version === 183) {
-            get_x_hwvx()
-        } else {
-            get_x_hwvx_proto()
-        }
-        break
-    case "motor_mayhem":
-        x_mm()
-        break
-    default:
-        console.log("?")
-        // html = get_x_static(g.file_name, false);
-    }
+    // switch (g.game) {
+    // case "bigfoot_collision_course":
+    //     get_x_bcc()
+    //     break
+    // case "bee_movie_game":
+    //     if (g.version === 288) {
+    //         get_x_bmg_demo()
+    //     }else{
+    //     get_x_bmg()
+    //     }
+    //     break
+    // case "bee_movie_game":
+    //     get_x_bmg()
+    //     break
+    // case "snoopy_vs_the_red_baron":
+    //     get_x_svtrb()
+    //     break
+    // case "pac_man_world_rally":
+    //     if (g.version === 243) {
+    //         get_x_pmwr_xdx()
+    //     }
+    //     if (g.version === 249) {
+    //         get_x_pmwr_ps2demo()
+    //     } else{
+    //         get_x_pmwr()
+    //     }
+    //     break
+    // case "hot_wheels_velocity_x":
+    //     if (g.version === 183) {
+    //         get_x_hwvx()
+    //     } else {
+    //         get_x_hwvx_proto()
+    //     }
+    //     break
+    // case "motor_mayhem":
+    //     x_mm()
+    //     break
+    // default:
+    //     console.log("?")
+    //     // html = get_x_static(g.file_name, false);
+    // }
 
+    generate_sha1()
+
+
+
+}
+
+async function generate_sha1() {
+    const sha1_from_buffer = await crypto.subtle.digest('SHA-1', globalThis.buffer);
+                    const hashArray = Array.from(new Uint8Array(sha1_from_buffer));
+                    let file_buffer
+                      const hexHash = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    sha1_array.push({
+        hash:hexHash,
+        name:g.file_name,
+    }
+    )
 }
 
 document.getElementById("file_input").addEventListener("change", input_file);

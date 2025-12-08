@@ -54,6 +54,34 @@ function divisible(value, divisibility) {
     return remainder === 0 ? value : value + (divisibility - remainder);
 }
 
+function print_sha1_files() {
+    let str_table_start = `<plaintext><table class="h">
+    <tbody>
+        <tr>
+            <th>file name</th>
+            <th>hash</th>
+        </tr>`
+    let str_table_end = `</tbody>
+    <tfoot>
+        <tr>
+            <th colspan="2">${sha1_array.length} files Seen</th>
+        </tr>
+    </tfoot>
+</table>
+<hr/>
+`
+
+    let str_table = ''
+    for (let i = 0; i < sha1_array.length; i++) {
+        str_table += `<tr>
+            <td>${sha1_array[i].name}</td>
+            <td>${sha1_array[i].hash}</td>
+        </tr>`
+    }
+    file_editor.innerHTML = str_table_start + str_table + str_table_end
+
+}
+
 function array_log(array_index=0) {
 
     let if_section = 'if('
@@ -66,6 +94,7 @@ function array_log(array_index=0) {
         if (temp_array__[0].lost_offsets !== "") {
             print_totals()
         } else {
+
             file_editor.innerHTML = "no values found"
             file_viewer.innerHTML = "no values found"
         }
@@ -2140,7 +2169,7 @@ function ß(type, o, n) {
                     ä(bcc_model, u32(o + n), get_bcc_model)
                     break
                 case 'bee_movie_game':
-                        ä(bmg_model, u32(o + n), get_bmg_model)
+                    ä(bmg_model, u32(o + n), get_bmg_model)
                     break
                 case 'snoopy_vs_the_red_baron':
                     ä(svtrb_model, u32(o + n), get_svtrb_model)
