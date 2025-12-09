@@ -5,6 +5,7 @@ async function input_file(event) {
     const lastFileIndex = files.length - 1;
 
     globalThis.sha1_array = []
+    globalThis.sha1_file_list_index = []
 
     Object.keys(files).forEach(i => {
         const reader = new FileReader();
@@ -43,7 +44,7 @@ async function input_file(event) {
 
                     filecheck()
 
-
+                    // sha1_file_list_index.push(i)
 
                     console.log(`%c ${g.file_name} || ${i}/${lastFileIndex}`, 'color:#ff10ff')
                     for (let temp_array_index = 0; temp_array_index < temp_array__.length; temp_array_index++) {
