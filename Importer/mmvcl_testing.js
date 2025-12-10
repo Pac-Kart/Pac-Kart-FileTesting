@@ -7,7 +7,10 @@ function x_mm() {
             offset: 0,
             array: []
         },
-        p_animation: 0,
+        p_animation: {
+            offset: 0,
+            array: []
+        },
         p_sound: {
             offset: 0,
             array: []
@@ -20,6 +23,11 @@ function x_mm() {
         p_model: 0,
         multilinked: [],
         ä_array: [],
+        p_model: {
+            offset: 0,
+            array: [],
+            array_type: [],
+        },
         p_offset: {
             offset: 0,
             array: [],
@@ -63,50 +71,9 @@ function x_mm() {
     globalThis.mm_world_132_36_20 = []
     globalThis.mm_unknown_4_4t4_20 = []
 
-    log_array.p_texture.offset = patchlistoffset
-    for (let i = 0; i < u32(20); i++) {
-        log_array.p_texture.array.push(u32(patchlistoffset + (i * 8)))
-    }
-    patchlistoffset += u32(20) * 8
-    log_array.p_sound.offset = patchlistoffset
-    for (let i = 0; i < u32(32); i++) {
-        log_array.p_sound.array.push(u32(patchlistoffset + (i * 8)))
-    }
+    mm_get_patch_list(12, patchlistoffset)
 
-    patchlistoffset += u32(32) * 8
-
-    // globalpatcharray = []
-    log_array.p_offset.offset = offset_mid - (u32(16) * 4)
-    if (log_array.p_offset.offset !== patchlistoffset) {
-        alert("dif")
-    }
-    for (let i = 1; (i - 1) < u32(16); i++) {
-        log_array.p_offset.array.push(u32(offset_mid - (i * 4)))
-    }
-    log_array.p_offset.array = log_array.p_offset.array.reverse()
-    let _2ndarray = []
-    for (let patchoffset of log_array.p_offset.array) {
-        _2ndarray.push(u32(patchoffset + offset_mid))
-    }
-    log_array.p_offset.pointers = _2ndarray.slice(0)
-
-    log_array.multilinked = []
-    let temp__2ndarray = _2ndarray.length
-    for (let i = 0; i < temp__2ndarray; i++) {
-        let temp = _2ndarray[i]
-        _2ndarray[i] = '?'
-        if (_2ndarray.indexOf(temp) !== -1) {
-            log_array.multilinked.push(temp)
-        }
-    }
-    log_array.multilinked = uniq(log_array.multilinked)
-
-    function uniq(a) {
-        var seen = {};
-        return a.filter(function(item) {
-            return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-        });
-    }
+    globalThis.old_log_array = structuredClone(log_array)
 
     let cals = (u32(20) * 8) + (u32(32) * 8) + (u32(16) * 4) + 60
     if (cals === offset_mid) {} else {
@@ -130,6 +97,135 @@ function x_mm() {
     }
     for (let i = 0; i < u32(52); i++) {
         get_mm_model_texture_anims_list(u32(56) + (i * 12) + offset_mid)
+    }
+
+    print_logarray(log_array)
+
+}
+
+function mm_get_patch_list(o, patch_offset) {
+    patchlistoffset = patch_offset
+    log_array.p_texture.offset = patchlistoffset
+    for (let i = 0; i < u32(o + 8); i++) {
+        log_array.p_texture.array.push(u32(patchlistoffset + (i * 8)))
+    }
+    patchlistoffset += u32(o + 8) * 8
+    log_array.p_sound.offset = patchlistoffset
+    for (let i = 0; i < u32(o + 20); i++) {
+        log_array.p_sound.array.push(u32(patchlistoffset + (i * 8)))
+    }
+    patchlistoffset += u32(o + 20) * 8
+
+    log_array.p_offset.offset = patchlistoffset
+    for (let i = 0; i < u32(o + 4); i++) {
+        log_array.p_offset.array.push(u32(patchlistoffset + (i * 4)))
+    }
+
+    let _2ndarray = []
+    for (let patchoffset of log_array.p_offset.array) {
+        _2ndarray.push(u32(patchoffset + offset_mid))
+        // if (u32(patchoffset + offset_mid) === 0) {
+        //     console.log(patchoffset,offset_mid)
+        // }
+    }
+    log_array.p_offset.pointers = _2ndarray.slice(0)
+
+    log_array.multilinked = []
+    let temp__2ndarray = _2ndarray.length
+    for (let i = 0; i < temp__2ndarray; i++) {
+        let temp = _2ndarray[i]
+        _2ndarray[i] = '?'
+        if (_2ndarray.indexOf(temp) !== -1) {
+            log_array.multilinked.push(temp)
+        }
+    }
+
+    // log_array.p_offset.offset = offset_mid - (u32(16) * 4)
+    // if (log_array.p_offset.offset !== patchlistoffset) {
+    //     alert("dif")
+    // }
+
+    // for (let i = 1; (i - 1) < u32(16); i++) {
+    //     log_array.p_offset.array.push(u32(offset_mid - (i * 4)))
+    // }
+    // log_array.p_offset.array = log_array.p_offset.array.reverse()
+    // let _2ndarray = []
+    // for (let patchoffset of log_array.p_offset.array) {
+    //     _2ndarray.push(u32(patchoffset + offset_mid))
+    // }
+    // log_array.p_offset.pointers = _2ndarray.slice(0)
+
+    // log_array.multilinked = []
+    // let temp__2ndarray = _2ndarray.length
+    // for (let i = 0; i < temp__2ndarray; i++) {
+    //     let temp = _2ndarray[i]
+    //     _2ndarray[i] = '?'
+    //     if (_2ndarray.indexOf(temp) !== -1) {
+    //         log_array.multilinked.push(temp)
+    //     }
+    // }
+    // log_array.multilinked = uniq(log_array.multilinked)
+
+    // function uniq(a) {
+    //     var seen = {};
+    //     return a.filter(function(item) {
+    //         return seen.hasOwnProperty(item) ? false : (seen[item] = true);
+    //     });
+    // }
+    // patchlistoffset = patch_offset
+    // log_array.p_texture.offset = patchlistoffset
+    // for (let i = 0; i < u32(o + 16); i++) {
+    //     log_array.p_texture.array.push(u32(patchlistoffset + (i * 8)))
+    // }
+    // patchlistoffset += u32(o + 16) * 8
+    // log_array.p_animation.offset = patchlistoffset
+    // for (let i = 0; i < u32(o + 52); i++) {
+    //     log_array.p_animation.array.push(u32(patchlistoffset + (i * 8)))
+    // }
+    // patchlistoffset += u32(o + 52) * 8
+    // log_array.p_sound.offset = patchlistoffset
+    // for (let i = 0; i < u32(o + 28); i++) {
+    //     log_array.p_sound.array.push(u32(patchlistoffset + (i * 8)))
+    // }
+
+}
+
+function bcc_get_offset_patch_list(o, patch_offset) {
+    patchlistoffset = patch_offset
+    log_array.p_model.offset = patchlistoffset
+
+    let array_type_offset = 6
+    if (g.console === "wii") {
+        array_type_offset = 4
+    }
+
+    for (let i = 0; i < u32(o + 56); i++) {
+        log_array.p_model.array.push(u32(patchlistoffset + (i * 8)))
+        log_array.p_model.array_type.push(u16(patchlistoffset + (i * 8) + array_type_offset))
+    }
+    patchlistoffset += u32(o + 56) * 8
+    log_array.p_offset.offset = patchlistoffset
+    for (let i = 0; i < u32(o + 12); i++) {
+        log_array.p_offset.array.push(u32(patchlistoffset + (i * 4)))
+    }
+
+    let _2ndarray = []
+    for (let patchoffset of log_array.p_offset.array) {
+        _2ndarray.push(u32(patchoffset + offset_mid))
+        // if (u32(patchoffset + offset_mid) === 0) {
+        //     console.log(patchoffset,offset_mid)
+        // }
+    }
+    log_array.p_offset.pointers = _2ndarray.slice(0)
+
+    log_array.multilinked = []
+    let temp__2ndarray = _2ndarray.length
+    for (let i = 0; i < temp__2ndarray; i++) {
+        let temp = _2ndarray[i]
+        _2ndarray[i] = '?'
+        if (_2ndarray.indexOf(temp) !== -1) {
+            log_array.multilinked.push(temp)
+        }
     }
 
 }
@@ -167,7 +263,10 @@ function get_mm_mm_texture_anims_20(o) {
 
 }
 
-function get_mm_mm_texture_anims_20_4(o) {// ü(1, [u32, 0], o)
+function get_mm_mm_texture_anims_20_4(o) {
+    /*ü(1, [u32, 0], o)*/
+    ß('p_texture', o, 0)
+
 }
 
 function get_mm_mm_texture_anims_8(o) {
@@ -176,15 +275,13 @@ function get_mm_mm_texture_anims_8(o) {
 }
 
 function get_mm_model(o) {
-if(u16(o+0) !==4101 ||u32(o+44) ||u32(o+60) ) 
-ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
+    if (u16(o + 0) !== 4101 || u32(o + 44) || u32(o + 60))
+        ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
 
-    
-    for (let i = 0; i < u16(o+2); i++) {
-    // ö(u32(o + 12) + (i*4), get_mm_model_12)
+    for (let i = 0; i < u16(o + 2); i++) {// ö(u32(o + 12) + (i*4), get_mm_model_12)
     }
-    for (let i = 0; i < u16(o+2); i++) {
-    ö(u32(o + 8) + (i*24), get_mm_model_8)
+    for (let i = 0; i < u16(o + 2); i++) {
+        ö(u32(o + 8) + (i * 24), get_mm_model_8)
     }
 
 }
@@ -194,8 +291,8 @@ function get_mm_model_12(o) {
     ü(1, [f32, 0], o)
 }
 function get_mm_model_8(o) {
-if(u8(o+1) ||u8(o+3) )
-ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u32, 4, u32, 8, u32, 12,u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
+    if (u8(o + 1) || u8(o + 3))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
 
     for (let i = 0; i < u8(o + 2); i++) {
         ö(u32(o + 8) + (i * 32), get_mm_model_8_8)
@@ -217,32 +314,31 @@ if(u8(o+1) ||u8(o+3) )
 
     */
 
-//     if (u32(o+12) > 1730240) {
-// ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u32, 4, u32, 8, u32, 12,u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
-//     }
+    //     if (u32(o+12) > 1730240) {
+    // ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u32, 4, u32, 8, u32, 12,u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
+    //     }
 
     // ö(u32(o + 20), get_mm_model_8_20)
     // //strings
 
 }
 
-
 function get_mm_model_8_20(o) {
-console.log(get_string(o, 0, false))
+    console.log(get_string(o, 0, false))
 }
 
 function get_mm_model_8_8(o) {
-    // if (u16(o + 0) || u32(o + 8) || u8(o + 21))
+    if (u16(o + 0) || u32(o + 8) || u8(o + 21))
         ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u8, 28, u8, 29, u8, 30, u8, 31, ], o)
-    // if (u32(o + 16) === 2) {
-    //     ö(u32(o + 12), get_mm_model_8_8_12)
-    // }
+    ß('p_texture', o, 24)
+    if (u32(o + 16) === 2) {
+        ö(u32(o + 12), get_mm_model_8_8_12)
+    }
 
 }
 
-function get_mm_model_8_8_12(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u8(o + 18) || u8(o + 19) !== 96 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) !== 50331648 || u32(o + 36) !== 33554908 || u32(o + 40) !== 16778244 || u32(o + 44) !== 1812037632 || u8(o + 49) !== 128 || u8(o + 50) || u8(o + 51) || u16(o + 52) !== 16384 || u8(o + 55) !== 48 || u32(o + 56) !== 1298 || u32(o + 60) || u32(o + 64) !== 16777475 || u8(o + 68) !== 1 || u8(o + 69) !== 128 || u8(o + 71) !== 108)
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+function get_mm_model_8_8_12(o) {// if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u8(o + 18) || u8(o + 19) !== 96 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) !== 50331648 || u32(o + 36) !== 33554908 || u32(o + 40) !== 16778244 || u32(o + 44) !== 1812037632 || u8(o + 49) !== 128 || u8(o + 50) || u8(o + 51) || u16(o + 52) !== 16384 || u8(o + 55) !== 48 || u32(o + 56) !== 1298 || u32(o + 60) || u32(o + 64) !== 16777475 || u8(o + 68) !== 1 || u8(o + 69) !== 128 || u8(o + 71) !== 108)
+// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
 }
 
 function get_model_anims_1(o) {// if (u32(o + 0) !== 1 || u32(o + 4) !== 3 || f32(o + 8) !== 1 || f32(o + 12) !== 10 || u32(o + 16) !== 2 || u32(o + 20) !== 14 || u32(o + 24) !== 8470480 || u32(o + 28) !== 8470496 || u32(o + 32) !== 8470512 || u32(o + 36) !== 8470608 || u32(o + 40) !== 10 || u32(o + 44) !== 8470560 || u32(o + 48) !== 4 || u8(o + 52) !== 160 || u8(o + 53) !== 91 || u8(o + 54) !== 92 || u8(o + 55) !== 20 || u8(o + 56) !== 48 || u8(o + 57) !== 80 || u8(o + 58) !== 92 || u8(o + 59) !== 20 || u8(o + 60) !== 16 || u8(o + 61) !== 188 || u8(o + 62) !== 3 || u8(o + 63) !== 120)
@@ -274,17 +370,16 @@ function get_model_anims_1_44(o) {
 }
 
 function get_model_anims_2(o) {
-if(u32(o+20) ||u32(o+24) ||u32(o+28) ) 
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12,u8, 13,u8, 14,u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    if (u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
-    for (let i = 0; i < u32(o); i++) {
-    // ö(u32(o + 16) + (i*32), get_model_anims_2_16)
+    for (let i = 0; i < u32(o); i++) {// ö(u32(o + 16) + (i*32), get_model_anims_2_16)
     }
 
 }
 
 function get_model_anims_2_16(o) {
-ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31, ], o)
+    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31, ], o)
 }
 
 function get_mm_texture(o) {// ü(1, [u16, 0, u16, 2,u16, 4,u16, 6, u32, 8, u32, 12], o)
@@ -467,7 +562,7 @@ function get_mm_unknown_4_4t1(o) {
         break
     case 1:
         ö(u32(o + 20), get_mm_unknown_4_4t1_20t1)
-        //patch texture
+        ß('p_texture', o, 52)
         break
     default:
         console.log("?")
@@ -524,13 +619,14 @@ function get_mm_unknown_4_4t2(o) {
         ä(models, u32(o + 16), get_mm_model)
         break
     case 1:
-        //texture
+        ß('p_texture', o, 16)
         break
     default:
         console.log(o)
     }
     ö(u32(o + 12), get_mm_unknown_4_4t2_12)
 
+    ß('p_texture', o, 92)
     ö(u32(o + 96), get_mm_unknown_4_4t2_96)
     ö(u32(o + 100), get_mm_unknown_4_4t2_100)
 
@@ -567,7 +663,9 @@ function get_mm_unknown_4_4t2_100_20(o) {
     if (u8(o + 0) !== 255 || u8(o + 1) !== 255 || u8(o + 2) !== 255 || u8(o + 3) !== 255 || u32(o + 4) !== 2 || f32(o + 8) !== 0.25 || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, ], o)
 }
-function get_mm_unknown_4_4t2_100_4(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12, u32, 16], o)
+function get_mm_unknown_4_4t2_100_4(o) {
+    /*ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12, u32, 16], o)*/
+    ß('p_texture', o, 12)
 }
 
 function get_mm_unknown_4_4t2_156(o) {
@@ -680,8 +778,7 @@ function get_mm_unknown_4_4t8(o) {
     }
 
 }
-function get_mm_unknown_4_4t8_16(o) {
-        // ü(1, [f32, 0, u32, 4, f32, 8], o)
+function get_mm_unknown_4_4t8_16(o) {// ü(1, [f32, 0, u32, 4, f32, 8], o)
 }
 function get_mm_unknown_4_4t8_24(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8], o)
 }
@@ -715,8 +812,7 @@ function get_mm_unknown_4_4t27_28(o) {
 
 }
 
-function get_mm_unknown_4_4t27_28_4(o) {
-        // ü(1, [f32, 0, u32, 4, f32, 8], o)
+function get_mm_unknown_4_4t27_28_4(o) {// ü(1, [f32, 0, u32, 4, f32, 8], o)
 }
 
 function get_mm_unknown_4_4t28(o) {
@@ -801,8 +897,7 @@ function get_mm_unknown_4_8t3(o) {
 function get_mm_unknown_4_8t4(o) {
     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
-function get_mm_unknown_4_8t8(o) {
-        // ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u32, 24], o)
+function get_mm_unknown_4_8t8(o) {// ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u32, 24], o)
 }
 
 function get_car_132(o) {
@@ -931,7 +1026,7 @@ function get_car_model_sec_48_12_24(o) {
         break
     case 2:
     case 5:
-        //TEX0: 4
+        ß('p_texture', o, 4)
         break
     default:
         console.log(o)
@@ -1208,6 +1303,7 @@ function get_car2(o) {
 function get_car2_88(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) !== 14922304 || u32(o + 56) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, f32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
+    ß('p_texture', o, 24)
     //maybe? car2_88 = car_144
     ä(car_model_sec, u32(o + 0), get_car_model_sec)
     ä(texts, u32(o + 16), get_mm_text)
@@ -1335,8 +1431,8 @@ function get_car3_44(o) {
 }
 
 function get_car3_44_48(o) {
-if(f32(o+0) !==100 ||u32(o+4) ||u32(o+8) ||u32(o+12) ) 
-ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    if (f32(o + 0) !== 100 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_car3_44_20(o) {
@@ -1404,6 +1500,7 @@ function get_mm_sound_controls_8_12(o) {
 function get_mm_sound_section(o) {
     if (u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    ß('p_sound', o, 24)
 }
 
 function get_mm_interface_24(o) {
@@ -1451,9 +1548,10 @@ function get_mm_interface_16(o) {
 }
 
 function get_mm_interface_16_16t0(o) {
-
     if (u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+
+    ß('p_texture', o, 4)
     ö(u32(o + 16), get_mm_interface_16_16t0_16)
 
 }
@@ -1469,7 +1567,10 @@ function get_mm_interface_16_16t0_16(o) {
 
 }
 
-function get_mm_interface_16_16t0_16_4(o) {// ü(1, [u32, 0], o)
+function get_mm_interface_16_16t0_16_4(o) {
+    /*ü(1, [u32, 0], o)*/
+    ß('p_texture', o, 0)
+
 }
 
 function get_mm_interface_16_16t1(o) {
@@ -1498,6 +1599,7 @@ function get_mm_text_0(o) {// console.log(get_string(o, 0, false))
 function get_mm_font(o) {
     if (u8(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+    ß('p_texture', o, 0)
     for (let i = 0; i < u32(o + 24); i++) {
         ö(u32(o + 28) + (i * 32), get_mm_font_32)
     }
@@ -1951,6 +2053,7 @@ function get_mm_world_132(o) {
 function get_mm_world_later(o) {
     if (u32(o + 0) !== 32768258 || u32(o + 4) || u32(o + 8) || f32(o + 12) !== 200 || u32(o + 16) !== 45 || u32(o + 24) !== 2 || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+    ß('p_texture', o, 20)
     ö(u32(o + 28), get_mm_world_later_28)
     ö(u32(o + 32), get_mm_world_later_32)
 
@@ -1975,7 +2078,10 @@ function get_mm_world_later_32_20(o) {
     if (u8(o + 0) !== 255 || u8(o + 1) !== 255 || u8(o + 2) !== 255 || u8(o + 3) !== 255 || u32(o + 4) !== 2 || f32(o + 8) !== 1 || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, ], o)
 }
-function get_mm_world_later_32_4(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12, u32, 16], o)
+function get_mm_world_later_32_4(o) {
+    /*ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12, u32, 16], o)*/
+    ß('p_texture', o, 12)
+
 }
 
 function get_mm_world_140(o) {

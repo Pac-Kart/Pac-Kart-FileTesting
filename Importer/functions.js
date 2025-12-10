@@ -697,10 +697,22 @@ function array_log(array_index=0) {
                     if (a.a.length > 10) {
                         _3rd = `${a.a.reduce( (a, b) => Math.min(a, b), Infinity)} - ${a.a.reduce( (a, b) => Math.max(a, b), -Infinity)}`
                     } else {
+                        // _3rd = a.a.sort(function(a, b) {
+                        //     return a - b;
+                        // }).toString()
+                        // // _3rd = a.a.toString()
                         _3rd = a.a.sort(function(a, b) {
                             return a - b;
-                        }).toString()
-                        // _3rd = a.a.toString()
+                        })
+                        if (_3rd.toString().length > 75) {
+                            let new_3rd = []
+                            new_3rd.push(_3rd[0])
+                            new_3rd.push(_3rd[_3rd.length - 1])
+                            _3rd = new_3rd.toString().replace(',',' - ')
+                        } else {
+                            _3rd = a.a.toString()
+                        }
+
                     }
                 }
             }
@@ -796,8 +808,16 @@ function array_log(array_index=0) {
                     } else {
                         _3rd = a.a.sort(function(a, b) {
                             return a - b;
-                        }).toString()
-                        // _3rd = a.a.toString()
+                        })
+                        if (_3rd.toString().length > 75) {
+                            let new_3rd = []
+                            new_3rd.push(_3rd[0])
+                            new_3rd.push(_3rd[_3rd.length - 1])
+                            _3rd = new_3rd.toString()
+                        } else {
+                            _3rd = a.a.toString()
+                        }
+
                     }
                 }
             }
@@ -922,12 +942,12 @@ function ü(mode, array, offset) {
                 if (temp_array__[temp_array_index].offset_check.sound.includes(array[i + 1])) {} else {
                     temp_array__[temp_array_index].offset_check.sound.push(array[i + 1])
                 }
-            } else if (log_array.p_model.array.includes(offset + array[i + 1] - offset_mid)) {
+            } else if (log_array?.p_model?.array?.includes(offset + array[i + 1] - offset_mid)) {
                 html += `P_M`
                 if (temp_array__[temp_array_index].offset_check.model.includes(array[i + 1])) {} else {
                     temp_array__[temp_array_index].offset_check.model.push(array[i + 1])
                 }
-            } else if (log_array.p_animation.array.includes(offset + array[i + 1] - offset_mid)) {
+            } else if (log_array?.p_animation?.array?.includes(offset + array[i + 1] - offset_mid)) {
                 html += `P_A`
                 if (temp_array__[temp_array_index].offset_check.texture_anim.includes(array[i + 1])) {} else {
                     temp_array__[temp_array_index].offset_check.texture_anim.push(array[i + 1])
@@ -2275,9 +2295,9 @@ function print_logarray(log) {
         temp_array__[0].totalnotfound.ANIM.min += old_a - new_a
         temp_array__[0].totalnotfound.ANIM.max += old_a
     }
-    new_a = log_array.p_model.array.length
-    old_a = old_log_array.p_model.array.length
-    if (log_array.p_model.array.length) {
+    new_a = log_array?.p_model?.array?.length
+    old_a = old_log_array?.p_model?.array?.length
+    if (log_array?.p_model?.array?.length) {
         html += `MDL0: ${old_a - new_a}/${old_a} | `
         diff = true
     }
@@ -2309,6 +2329,9 @@ function logsearch() {
     temp_array__[0].lost_offsets += html.replaceAll('\n', "<br>")
     function get_log(rest_of_them, s) {
         let html = s + '\n'
+        if (rest_of_them == undefined) {
+            return html
+        }
         for (let array_entry of rest_of_them) {
             let value_notfount = true
             let i
@@ -2441,7 +2464,6 @@ function compare_if_2_table(s) {
     }
     console.log(found_diff)
 }
-
 
 function html_to_import(inputHtml) {
     // Parse the input HTML string into a DOM object
@@ -3359,7 +3381,7 @@ function html_to_info(inputHtml) {
                     // offset
                     // function_sec_id_name
 
-                    jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid,true)}"],\n`;
+                    jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid, true)}"],\n`;
 
                     if (is_case !== false) {
                         offsets += is_case
@@ -3393,7 +3415,7 @@ function html_to_info(inputHtml) {
                     let tableid = cells[2].children[0].href.split("#")[1]
 
                     // jsFunction += `    section_` + offset + `: [???? 1],\n`;
-                    jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid,true)}"],\n`;
+                    jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid, true)}"],\n`;
 
                     let is_ii = 'ii'
                     is_i === 0 ? is_ii = 'i' : 0;
@@ -3422,7 +3444,7 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
                     } else if (cells[2].innerHTML.includes("href")) {
                         let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
                         // jsFunction += `    section_` + offset + `: [???? 3],\n`;
-                        jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid,true)}"],\n`;
+                        jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid, true)}"],\n`;
                         offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
@@ -3986,7 +4008,7 @@ ${export_id_html}
 
 }
 
-function check_if_in_list_sec_id_list(str_functionName,is_info = false) {
+function check_if_in_list_sec_id_list(str_functionName, is_info=false) {
 
     let str_random = ''
     let in_list = false
@@ -4004,23 +4026,23 @@ function check_if_in_list_sec_id_list(str_functionName,is_info = false) {
     } else {
         if (is_info === true) {
             return "change this"
-        }else {
+        } else {
 
-        let str_temp_random = ''
-        for (let i = 0; i < 4; i++) {
-            let a = Math.floor(Math.random() * 255)
-            while (a < 48 || a > 122 || a === 92 || a === 96) {
-                a = Math.floor(Math.random() * 255)
+            let str_temp_random = ''
+            for (let i = 0; i < 4; i++) {
+                let a = Math.floor(Math.random() * 255)
+                while (a < 48 || a > 122 || a === 92 || a === 96) {
+                    a = Math.floor(Math.random() * 255)
+                }
+                str_temp_random += String.fromCharCode(a)
             }
-            str_temp_random += String.fromCharCode(a)
-        }
-        str_random = str_temp_random
+            str_random = str_temp_random
 
-        function_sec_id_name.push({
-            name: str_functionName,
-            sec_id: str_temp_random,
-        })
-    }
+            function_sec_id_name.push({
+                name: str_functionName,
+                sec_id: str_temp_random,
+            })
         }
+    }
     return str_random
 }

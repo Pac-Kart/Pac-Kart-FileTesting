@@ -83,49 +83,49 @@ function choose_game_type() {
 
     let html = '';
     g.datapack_end = buffer.byteLength;
-    // switch (g.game) {
-    // case "bigfoot_collision_course":
-    //     get_x_bcc()
-    //     break
-    // case "bee_movie_game":
-    //     if (g.version === 288) {
-    //         get_x_bmg_demo()
-    //     }else{
-    //     get_x_bmg()
-    //     }
-    //     break
-    // case "bee_movie_game":
-    //     get_x_bmg()
-    //     break
-    // case "snoopy_vs_the_red_baron":
-    //     get_x_svtrb()
-    //     break
-    // case "pac_man_world_rally":
-    //     if (g.version === 243) {
-    //         get_x_pmwr_xdx()
-    //     }
-    //     if (g.version === 249) {
-    //         get_x_pmwr_ps2demo()
-    //     } else{
-    //         get_x_pmwr()
-    //     }
-    //     break
-    // case "hot_wheels_velocity_x":
-    //     if (g.version === 183) {
-    //         get_x_hwvx()
-    //     } else {
-    //         get_x_hwvx_proto()
-    //     }
-    //     break
-    // case "motor_mayhem":
-    //     x_mm()
-    //     break
-    // default:
-    //     console.log("?")
-    //     // html = get_x_static(g.file_name, false);
-    // }
+    switch (g.game) {
+    case "bigfoot_collision_course":
+        get_x_bcc()
+        break
+    case "bee_movie_game":
+        if (g.version === 288) {
+            get_x_bmg_demo()
+        }else{
+        get_x_bmg()
+        }
+        break
+    case "bee_movie_game":
+        get_x_bmg()
+        break
+    case "snoopy_vs_the_red_baron":
+        get_x_svtrb()
+        break
+    case "pac_man_world_rally":
+        if (g.version === 243) {
+            get_x_pmwr_xdx()
+        }
+        if (g.version === 249) {
+            get_x_pmwr_ps2demo()
+        } else{
+            get_x_pmwr()
+        }
+        break
+    case "hot_wheels_velocity_x":
+        if (g.version === 183) {
+            get_x_hwvx()
+        } else {
+            get_x_hwvx_proto()
+        }
+        break
+    case "motor_mayhem":
+        x_mm()
+        break
+    default:
+        console.log("?")
+        // html = get_x_static(g.file_name, false);
+    }
 
-    generate_sha1()
+    // generate_sha1()
 
 
 
