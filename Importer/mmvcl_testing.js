@@ -70,8 +70,12 @@ function x_mm() {
     globalThis.mm_world_132_36 = []
     globalThis.mm_world_132_36_20 = []
     globalThis.mm_unknown_4_4t4_20 = []
+    globalThis.mm_model_anims_1_36 = []
+    globalThis.mm_model_anims_1_44 = []
+    globalThis.mm_unknown_4_4t29_4_32 = []
+    globalThis.mm_car3_44_0 = []
 
-    mm_get_patch_list(12, patchlistoffset)
+    get_mm_patch_list(12, patchlistoffset)
 
     globalThis.old_log_array = structuredClone(log_array)
 
@@ -103,7 +107,7 @@ function x_mm() {
 
 }
 
-function mm_get_patch_list(o, patch_offset) {
+function get_mm_patch_list(o, patch_offset) {
     patchlistoffset = patch_offset
     log_array.p_texture.offset = patchlistoffset
     for (let i = 0; i < u32(o + 8); i++) {
@@ -118,94 +122,6 @@ function mm_get_patch_list(o, patch_offset) {
 
     log_array.p_offset.offset = patchlistoffset
     for (let i = 0; i < u32(o + 4); i++) {
-        log_array.p_offset.array.push(u32(patchlistoffset + (i * 4)))
-    }
-
-    let _2ndarray = []
-    for (let patchoffset of log_array.p_offset.array) {
-        _2ndarray.push(u32(patchoffset + offset_mid))
-        // if (u32(patchoffset + offset_mid) === 0) {
-        //     console.log(patchoffset,offset_mid)
-        // }
-    }
-    log_array.p_offset.pointers = _2ndarray.slice(0)
-
-    log_array.multilinked = []
-    let temp__2ndarray = _2ndarray.length
-    for (let i = 0; i < temp__2ndarray; i++) {
-        let temp = _2ndarray[i]
-        _2ndarray[i] = '?'
-        if (_2ndarray.indexOf(temp) !== -1) {
-            log_array.multilinked.push(temp)
-        }
-    }
-
-    // log_array.p_offset.offset = offset_mid - (u32(16) * 4)
-    // if (log_array.p_offset.offset !== patchlistoffset) {
-    //     alert("dif")
-    // }
-
-    // for (let i = 1; (i - 1) < u32(16); i++) {
-    //     log_array.p_offset.array.push(u32(offset_mid - (i * 4)))
-    // }
-    // log_array.p_offset.array = log_array.p_offset.array.reverse()
-    // let _2ndarray = []
-    // for (let patchoffset of log_array.p_offset.array) {
-    //     _2ndarray.push(u32(patchoffset + offset_mid))
-    // }
-    // log_array.p_offset.pointers = _2ndarray.slice(0)
-
-    // log_array.multilinked = []
-    // let temp__2ndarray = _2ndarray.length
-    // for (let i = 0; i < temp__2ndarray; i++) {
-    //     let temp = _2ndarray[i]
-    //     _2ndarray[i] = '?'
-    //     if (_2ndarray.indexOf(temp) !== -1) {
-    //         log_array.multilinked.push(temp)
-    //     }
-    // }
-    // log_array.multilinked = uniq(log_array.multilinked)
-
-    // function uniq(a) {
-    //     var seen = {};
-    //     return a.filter(function(item) {
-    //         return seen.hasOwnProperty(item) ? false : (seen[item] = true);
-    //     });
-    // }
-    // patchlistoffset = patch_offset
-    // log_array.p_texture.offset = patchlistoffset
-    // for (let i = 0; i < u32(o + 16); i++) {
-    //     log_array.p_texture.array.push(u32(patchlistoffset + (i * 8)))
-    // }
-    // patchlistoffset += u32(o + 16) * 8
-    // log_array.p_animation.offset = patchlistoffset
-    // for (let i = 0; i < u32(o + 52); i++) {
-    //     log_array.p_animation.array.push(u32(patchlistoffset + (i * 8)))
-    // }
-    // patchlistoffset += u32(o + 52) * 8
-    // log_array.p_sound.offset = patchlistoffset
-    // for (let i = 0; i < u32(o + 28); i++) {
-    //     log_array.p_sound.array.push(u32(patchlistoffset + (i * 8)))
-    // }
-
-}
-
-function bcc_get_offset_patch_list(o, patch_offset) {
-    patchlistoffset = patch_offset
-    log_array.p_model.offset = patchlistoffset
-
-    let array_type_offset = 6
-    if (g.console === "wii") {
-        array_type_offset = 4
-    }
-
-    for (let i = 0; i < u32(o + 56); i++) {
-        log_array.p_model.array.push(u32(patchlistoffset + (i * 8)))
-        log_array.p_model.array_type.push(u16(patchlistoffset + (i * 8) + array_type_offset))
-    }
-    patchlistoffset += u32(o + 56) * 8
-    log_array.p_offset.offset = patchlistoffset
-    for (let i = 0; i < u32(o + 12); i++) {
         log_array.p_offset.array.push(u32(patchlistoffset + (i * 4)))
     }
 
@@ -278,7 +194,8 @@ function get_mm_model(o) {
     if (u16(o + 0) !== 4101 || u32(o + 44) || u32(o + 60))
         ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
 
-    for (let i = 0; i < u16(o + 2); i++) {// ö(u32(o + 12) + (i*4), get_mm_model_12)
+    for (let i = 0; i < u16(o + 2); i++) {
+        ö(u32(o + 12) + (i * 4), get_mm_model_12)
     }
     for (let i = 0; i < u16(o + 2); i++) {
         ö(u32(o + 8) + (i * 24), get_mm_model_8)
@@ -286,9 +203,8 @@ function get_mm_model(o) {
 
 }
 
-function get_mm_model_12(o) {
-    //render
-    ü(1, [f32, 0], o)
+function get_mm_model_12(o) {//render
+// ü(1, [f32, 0], o)
 }
 function get_mm_model_8(o) {
     if (u8(o + 1) || u8(o + 3))
@@ -318,79 +234,144 @@ function get_mm_model_8(o) {
     // ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u32, 4, u32, 8, u32, 12,u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
     //     }
 
-    // ö(u32(o + 20), get_mm_model_8_20)
+    ö(u32(o + 20), get_mm_model_8_20)
     // //strings
 
 }
 
-function get_mm_model_8_20(o) {
-    console.log(get_string(o, 0, false))
+function get_mm_model_8_20(o) {// console.log(get_string(o, 0, false))
 }
 
 function get_mm_model_8_8(o) {
     if (u16(o + 0) || u32(o + 8) || u8(o + 21))
-        ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u8, 28, u8, 29, u8, 30, u8, 31, ], o)
+        ü(1, [u16, 0, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)
     ß('p_texture', o, 24)
-    if (u32(o + 16) === 2) {
-        ö(u32(o + 12), get_mm_model_8_8_12)
+
+    ö(u32(o + 12), get_mm_model_8_8_12)
+
+    switch (u8(o + 3)) {
+    case 0:
+        // u8
+        break
+    case 4:
+        ö(u32(o + 28), get_mm_model_8_8_28t4)
+        break
     }
 
 }
 
-function get_mm_model_8_8_12(o) {// if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u8(o + 18) || u8(o + 19) !== 96 || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) !== 50331648 || u32(o + 36) !== 33554908 || u32(o + 40) !== 16778244 || u32(o + 44) !== 1812037632 || u8(o + 49) !== 128 || u8(o + 50) || u8(o + 51) || u16(o + 52) !== 16384 || u8(o + 55) !== 48 || u32(o + 56) !== 1298 || u32(o + 60) || u32(o + 64) !== 16777475 || u8(o + 68) !== 1 || u8(o + 69) !== 128 || u8(o + 71) !== 108)
-// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+function get_mm_model_8_8_12(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+
+    if (old_log_array.p_offset.array.includes(o + 20 - offset_mid)) {
+        ö(u32(o + 20), get_mm_model_8_8_12_20)
+    }
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_mm_model_8_8_12_28)
+    }
+    if (old_log_array.p_offset.array.includes(o + 36 - offset_mid)) {// ö(u32(o + 36), get_mm_model_8_8_12_36)
+    }
+    if (old_log_array.p_offset.array.includes(o + 44 - offset_mid)) {// ö(u32(o + 44), get_mm_model_8_8_12_44)
+    }
+    if (old_log_array.p_offset.array.includes(o + 52 - offset_mid)) {// ö(u32(o + 52), get_mm_model_8_8_12_52)
+    }
+    if (old_log_array.p_offset.array.includes(o + 60 - offset_mid)) {// ö(u32(o + 60), get_mm_model_8_8_12_60)
+    }
+    if (old_log_array.p_offset.array.includes(o + 68 - offset_mid)) {// ö(u32(o + 68), get_mm_model_8_8_12_68)
+    }
 }
 
-function get_model_anims_1(o) {// if (u32(o + 0) !== 1 || u32(o + 4) !== 3 || f32(o + 8) !== 1 || f32(o + 12) !== 10 || u32(o + 16) !== 2 || u32(o + 20) !== 14 || u32(o + 24) !== 8470480 || u32(o + 28) !== 8470496 || u32(o + 32) !== 8470512 || u32(o + 36) !== 8470608 || u32(o + 40) !== 10 || u32(o + 44) !== 8470560 || u32(o + 48) !== 4 || u8(o + 52) !== 160 || u8(o + 53) !== 91 || u8(o + 54) !== 92 || u8(o + 55) !== 20 || u8(o + 56) !== 48 || u8(o + 57) !== 80 || u8(o + 58) !== 92 || u8(o + 59) !== 20 || u8(o + 60) !== 16 || u8(o + 61) !== 188 || u8(o + 62) !== 3 || u8(o + 63) !== 120)
-// ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u8, 60, u8, 61, u8, 62, u8, 63, ], o)
-
-// console.log(u32(o+16))
-// ö(u32(o + 24), get_model_anims_1_24)
-//ö(u32(o + 28), get_model_anims_1_28)
-//ö(u32(o + 32), get_model_anims_1_32)
-//ö(u32(o + 36), get_model_anims_1_36)
-//ö(u32(o + 44), get_model_anims_1_44)
-
+function get_mm_model_8_8_12_20(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-
-function get_model_anims_1_24(o) {
+function get_mm_model_8_8_12_28(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_model_anims_1_28(o) {
+function get_mm_model_8_8_12_36(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_model_anims_1_32(o) {
+function get_mm_model_8_8_12_44(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_model_anims_1_36(o) {
+function get_mm_model_8_8_12_52(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_model_anims_1_44(o) {
+function get_mm_model_8_8_12_60(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_8_8_12_68(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_model_anims_2(o) {
+function get_mm_model_8_8_28t4(o) {
+    if (u16(o + 0) !== 1 || u16(o + 2) !== 2 || u16(o + 4) || u16(o + 6) || u16(o + 8) !== 2 || u16(o + 10) !== 3 || u16(o + 12) !== 5 || u16(o + 14) !== 6 || u16(o + 16) !== 4 || u16(o + 18) !== 4 || u16(o + 20) !== 6 || u16(o + 22) !== 7 || u16(o + 24) !== 9 || u16(o + 26) !== 10 || u16(o + 28) !== 8 || u16(o + 30) !== 8 || u16(o + 32) !== 10 || u16(o + 34) !== 11 || u16(o + 36) !== 13 || u16(o + 38) !== 14 || u16(o + 40) !== 12 || u16(o + 42) !== 12 || u16(o + 44) !== 14 || u16(o + 46) !== 15 || u16(o + 48) !== 13 || u16(o + 50) !== 6 || u16(o + 52) !== 16 || u16(o + 54) !== 16 || u16(o + 56) !== 6 || u16(o + 58) !== 17 || u16(o + 60) !== 18 || u16(o + 62) !== 19 || u16(o + 64) !== 12 || u16(o + 66) !== 12 || u16(o + 68) !== 19 || u16(o + 70) !== 7 || u16(o + 72) || u16(o + 74) || u16(o + 76) || u16(o + 78))
+        ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u16, 8, u16, 10, u16, 12, u16, 14, u16, 16, u16, 18, u16, 20, u16, 22, u16, 24, u16, 26, u16, 28, u16, 30, u16, 32, u16, 34, u16, 36, u16, 38, u16, 40, u16, 42, u16, 44, u16, 46, u16, 48, u16, 50, u16, 52, u16, 54, u16, 56, u16, 58, u16, 60, u16, 62, u16, 64, u16, 66, u16, 68, u16, 70, u16, 72, u16, 74, u16, 76, u16, 78], o)
+}
+
+function get_mm_model_anims_1(o) {
+    // ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u8, 60, u8, 61, u8, 62, u8, 63], o)
+
+    if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
+        ö(u32(o + 24), get_mm_model_anims_1_24)
+    }
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_mm_model_anims_1_28)
+    }
+    if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
+        ö(u32(o + 32), get_mm_model_anims_1_32)
+    }
+    if (old_log_array.p_offset.array.includes(o + 36 - offset_mid)) {
+        // ä(mm_model_anims_1_36, u32(o + 36), get_mm_model_anims_1_36)
+        // sometimes get_mm_model_anims_1_36
+        ö(u32(o + 36), get_mm_model_anims_1_36)
+    }
+    if (old_log_array.p_offset.array.includes(o + 44 - offset_mid)) {
+        // ä(mm_model_anims_1_44, u32(o + 44), get_mm_model_anims_1_44)
+        // sometimes get_mm_model_anims_1?
+        ö(u32(o + 44), get_mm_model_anims_1_44)
+    }
+
+}
+
+function get_mm_model_anims_1_24(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_anims_1_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_anims_1_32(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_anims_1_44(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_anims_1_36(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_mm_model_anims_2(o) {
     if (u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
-    for (let i = 0; i < u32(o); i++) {// ö(u32(o + 16) + (i*32), get_model_anims_2_16)
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 16) + (i * 32), get_mm_model_anims_2_16)
     }
 
 }
 
-function get_model_anims_2_16(o) {
-    ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31, ], o)
+function get_mm_model_anims_2_16(o) {// ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)
 }
 
-function get_mm_texture(o) {// ü(1, [u16, 0, u16, 2,u16, 4,u16, 6, u32, 8, u32, 12], o)
+function get_mm_texture(o) {
+    // ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u32, 8, u32, 12], o)
+
+    ö(u32(o + 8), get_mm_texture_8)
+
+}
+
+function get_mm_texture_8(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_mm_sounds(o) {
-    if (u32(o + 8) || u32(o + 12)) {
+    if (u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    }
     //vag file
-    // ö(u32(o + 4), get_mm_sound_vag)
+    ö(u32(o + 4), get_mm_sound_vag)
 }
 
 function get_mm_sound_vag(o) {// g.endian = false
@@ -399,9 +380,8 @@ function get_mm_sound_vag(o) {// g.endian = false
 }
 
 function get_mm_basic(o) {
-    if (u32(o + 4) !== 16 || u32(o + 8) || u32(o + 12)) {
+    if (u32(o + 4) !== 16 || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    }
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 8), get_mm_basic_04)
     }
@@ -411,13 +391,13 @@ function get_mm_basic(o) {
 function get_mm_basic_04(o) {
     if (g.file_name === "VEHICLES.XPS") {
         if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(u32(o + 4))) {
-            ö(u32(o), get_car)
+            ö(u32(o), get_mm_car)
         } else if ([10, 11, 101, 102, 103].includes(u32(o + 4))) {
             ä(interface, u32(o), get_mm_interface)
         } else if ([200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220].includes(u32(o + 4))) {
-            ä(car2, u32(o), get_car2)
+            ä(car2, u32(o), get_mm_car2)
         } else if ([100].includes(u32(o + 4))) {
-            ö(u32(o), get_car3)
+            ö(u32(o), get_mm_car3)
         } else {
             console.log('?')
         }
@@ -427,12 +407,12 @@ function get_mm_basic_04(o) {
 
 }
 
-function get_car(o) {
+function get_mm_car(o) {
     if (u32(o + 12) || f32(o + 60) !== 5000 || f32(o + 64) !== 10 || u32(o + 72) || u32(o + 80) || u32(o + 116) || u32(o + 128) !== 14711136 || u32(o + 148) || u32(o + 168) || u32(o + 188) || u32(o + 192) || u32(o + 196) || u32(o + 200) !== 3 || u32(o + 216) || u32(o + 220) || u32(o + 224) !== 5 || u32(o + 232) !== 7 || u32(o + 240) !== 4 || u32(o + 248) || u32(o + 252))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, u32, 72, f32, 76, u32, 80, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188, u32, 192, u32, 196, u32, 200, u32, 204, u32, 208, u32, 212, u32, 216, u32, 220, u32, 224, u32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252, ], o)
 
-    ä(model_anims_1, u32(o + 92), get_model_anims_1)
-    ä(model_anims_2, u32(o + 96), get_model_anims_2)
+    ä(model_anims_1, u32(o + 92), get_mm_model_anims_1)
+    ä(model_anims_2, u32(o + 96), get_mm_model_anims_2)
 
     ä(mm_unknown, u32(o + 104), get_mm_unknown)
     ä(mm_unknown, u32(o + 108), get_mm_unknown)
@@ -440,33 +420,33 @@ function get_car(o) {
     ä(mm_sound_section, u32(o + 120), get_mm_sound_section)
     ä(mm_sound_section, u32(o + 124), get_mm_sound_section)
     ä(mm_sound_section, u32(o + 128), get_mm_sound_section)
-    ö(u32(o + 132), get_car_132)
-    ö(u32(o + 136), get_car_136)
-    ö(u32(o + 140), get_car_140)
-    ö(u32(o + 144), get_car_144)
-    ö(u32(o + 152), get_car_152)
-    ö(u32(o + 156), get_car_156)
-    ö(u32(o + 160), get_car_160)
-    ö(u32(o + 164), get_car_164)
-    ö(u32(o + 172), get_car_172)
-    ö(u32(o + 176), get_car_172)
+    ö(u32(o + 132), get_mm_car_132)
+    ö(u32(o + 136), get_mm_car_136)
+    ö(u32(o + 140), get_mm_car_140)
+    ö(u32(o + 144), get_mm_car_144)
+    ö(u32(o + 152), get_mm_car_152)
+    ö(u32(o + 156), get_mm_car_156)
+    ö(u32(o + 160), get_mm_car_160)
+    ö(u32(o + 164), get_mm_car_164)
+    ö(u32(o + 172), get_mm_car_172)
+    ö(u32(o + 176), get_mm_car_172)
     //same as 172
-    ö(u32(o + 180), get_car_172)
+    ö(u32(o + 180), get_mm_car_172)
     //same as 172
-    ö(u32(o + 184), get_car_172)
+    ö(u32(o + 184), get_mm_car_172)
     //same as 172
     for (let i = 0; i < u32(o + 200); i++) {
-        ö(u32(o + 204) + (i * 8), get_car_204)
+        ö(u32(o + 204) + (i * 8), get_mm_car_204)
     }
     for (let i = 0; i < u32(o + 208); i++) {
-        ö(u32(o + 212) + (i * 48), get_car_212)
+        ö(u32(o + 212) + (i * 48), get_mm_car_212)
     }
-    ö(u32(o + 228), get_car_228)
+    ö(u32(o + 228), get_mm_car_228)
     for (let i = 0; i < u32(o + 232); i++) {
-        ö(u32(o + 236) + (i * 12), get_car_236)
+        ö(u32(o + 236) + (i * 12), get_mm_car_236)
     }
     for (let i = 0; i < u32(o + 240); i++) {
-        ö(u32(o + 244) + (i * 8), get_car_244)
+        ö(u32(o + 244) + (i * 8), get_mm_car_244)
     }
 
 }
@@ -503,7 +483,7 @@ function get_mm_unknown_4(o) {
         ö(u32(o + 8), get_mm_unknown_4_8t8)
         break
     case 6:
-        ä(car3_44, u32(o + 4), get_car3_44)
+        ä(car3_44, u32(o + 4), get_mm_car3_44)
         ö(u32(o + 8), get_mm_unknown_4_8t1)
         break
     case 8:
@@ -525,7 +505,7 @@ function get_mm_unknown_4(o) {
     case 15:
         break
     case 25:
-        ä(car2, u32(o + 4), get_car2)
+        ä(car2, u32(o + 4), get_mm_car2)
         ö(u32(o + 8), get_mm_unknown_4_8t1)
         break
     case 26:
@@ -565,7 +545,7 @@ function get_mm_unknown_4_4t1(o) {
         ß('p_texture', o, 52)
         break
     default:
-        console.log("?")
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u16, 18, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, f32, 76, f32, 80, u32, 84, u8, 88, u8, 89, u8, 90, u8, 91, f32, 92, ], o)
     }
     for (let i = 0; i < u32(o + 36); i++) {
         ö(u32(o + 40) + (i * 32), get_mm_unknown_4_4t1_40)
@@ -622,7 +602,7 @@ function get_mm_unknown_4_4t2(o) {
         ß('p_texture', o, 16)
         break
     default:
-        console.log(o)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, f32, 48, f32, 52, u32, 56, f32, 60, f32, 64, u8, 68, u8, 69, u8, 70, u8, 71, f32, 72, f32, 76, f32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, ], o)
     }
     ö(u32(o + 12), get_mm_unknown_4_4t2_12)
 
@@ -724,7 +704,7 @@ function get_mm_unknown_4_4t2_96(o) {
         //floats?
         break
     default:
-        console.log(o)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
     }
 
 }
@@ -846,10 +826,38 @@ function get_mm_unknown_4_4t29(o) {
 }
 
 function get_mm_unknown_4_4t29_4(o) {
-    if (u32(o + 12) || f32(o + 16) !== 100)
-        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28], o)
-    ä(models, u32(o + 28), get_mm_model)
+    if (u32(o + 12) || f32(o + 16) !== 100 || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
+    ä(models, u32(o + 28), get_mm_model)
+    ä(mm_unknown_4_4t29_4_32, u32(o + 32), get_mm_unknown_4_4t29_4_32)
+
+}
+
+function get_mm_unknown_4_4t29_4_32(o) {
+    if (u32(o + 0) !== 1 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    ä(mm_unknown, u32(o + 4), get_mm_unknown)
+    ö(u32(o + 8), get_mm_unknown_4_4t29_4_32_8)
+
+}
+
+function get_mm_unknown_4_4t29_4_32_4(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 4), get_mm_unknown_4_4t29_4_32_4_4)
+
+}
+
+function get_mm_unknown_4_4t29_4_32_4_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_mm_unknown_4_4t29_4_32_8(o) {
+    if (u32(o + 8) || u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_mm_unknown_4_8t1(o) {
@@ -872,7 +880,7 @@ function get_mm_unknown_4_8t1(o) {
         ö(u32(o + 60), get_mm_unknown_4_8t1_60t4)
         break
     default:
-        console.log("?")
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
     }
 
 }
@@ -900,78 +908,78 @@ function get_mm_unknown_4_8t4(o) {
 function get_mm_unknown_4_8t8(o) {// ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u32, 24], o)
 }
 
-function get_car_132(o) {
+function get_mm_car_132(o) {
     if (u8(o + 2) !== 1 || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_136(o) {
+function get_mm_car_136(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_140(o) {
+function get_mm_car_140(o) {
     if (u32(o + 12) || u32(o + 32) || u32(o + 48) || u32(o + 56) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 104) || u32(o + 108))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u8, 36, u8, 37, u8, 38, u8, 39, f32, 40, f32, 44, u32, 48, f32, 52, u32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, f32, 80, f32, 84, f32, 88, f32, 92, f32, 96, u32, 100, u32, 104, u32, 108, ], o)
-    ä(car_model_sec, u32(o + 16), get_car_model_sec)
+    ä(car_model_sec, u32(o + 16), get_mm_car_model_sec)
 
-    ä(model_anims_1, u32(o + 20), get_model_anims_1)
-    ä(model_anims_1, u32(o + 24), get_model_anims_1)
-    ä(model_anims_1, u32(o + 28), get_model_anims_1)
+    ä(model_anims_1, u32(o + 20), get_mm_model_anims_1)
+    ä(model_anims_1, u32(o + 24), get_mm_model_anims_1)
+    ä(model_anims_1, u32(o + 28), get_mm_model_anims_1)
 
     ä(texts, u32(o + 100), get_mm_text)
 
 }
 
-function get_car_model_sec(o) {
+function get_mm_car_model_sec(o) {
     if (u8(o + 29) !== 1 || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 
     for (let i = 0; i < u32(o + 0); i++) {
-        ö(u32(o + 4) + (i * 4), get_car_model_sec_4)
+        ö(u32(o + 4) + (i * 4), get_mm_car_model_sec_4)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        ö(u32(o + 12) + (i * 8), get_car_model_sec_12)
+        ö(u32(o + 12) + (i * 8), get_mm_car_model_sec_12)
     }
 
-    ä(model_anims_1, u32(o + 16), get_model_anims_1)
-    ä(model_anims_2, u32(o + 20), get_model_anims_2)
-    ö(u32(o + 32), get_car_model_sec_32)
-    ö(u32(o + 36), get_car_model_sec_36)
-    ö(u32(o + 40), get_car_model_sec_40)
+    ä(model_anims_1, u32(o + 16), get_mm_model_anims_1)
+    ä(model_anims_2, u32(o + 20), get_mm_model_anims_2)
+    ö(u32(o + 32), get_mm_car_model_sec_32)
+    ö(u32(o + 36), get_mm_car_model_sec_36)
+    ö(u32(o + 40), get_mm_car_model_sec_40)
 
     for (let i = 0; i < u32(o + 44); i++) {
-        ö(u32(o + 48) + (i * 20), get_car_model_sec_48)
+        ö(u32(o + 48) + (i * 20), get_mm_car_model_sec_48)
     }
-    ö(u32(o + 52), get_car_model_sec_52)
+    ö(u32(o + 52), get_mm_car_model_sec_52)
 
-    ä(car_140_16_56, u32(o + 56), get_car_model_sec_56)
+    ä(car_140_16_56, u32(o + 56), get_mm_car_model_sec_56)
 
 }
 
-function get_car_model_sec_12(o) {
+function get_mm_car_model_sec_12(o) {
     // ü(1, [u32, 0, u32, 4], o)
     ä(models, u32(o + 0), get_mm_model)
 
 }
 
-function get_car_model_sec_32(o) {
+function get_mm_car_model_sec_32(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_36(o) {
+function get_mm_car_model_sec_36(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_4(o) {
+function get_mm_car_model_sec_4(o) {
     // ü(1, [u32, 0], o)
     ä(models, u32(o + 0), get_mm_model)
 
 }
-function get_car_model_sec_40(o) {
+function get_mm_car_model_sec_40(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_48(o) {
+function get_mm_car_model_sec_48(o) {
     // ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16], o)
     switch (u32(o + 4)) {
     case 0:
@@ -981,7 +989,7 @@ function get_car_model_sec_48(o) {
         ä(mm_unknown_4_4t4, u32(o + 8), get_mm_unknown_4_4t4)
         break
     case 6:
-        ö(u32(o + 8), get_car_model_sec_48_8t6)
+        ö(u32(o + 8), get_mm_car_model_sec_48_8t6)
         break
     case 7:
     case 10:
@@ -989,34 +997,32 @@ function get_car_model_sec_48(o) {
         break
     default:
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16], o)
-
-        console.log("?")
     }
 
-    ö(u32(o + 12), get_car_model_sec_48_12)
-    ö(u32(o + 16), get_car_model_sec_48_16)
+    ö(u32(o + 12), get_mm_car_model_sec_48_12)
+    ö(u32(o + 16), get_mm_car_model_sec_48_16)
 }
 
-function get_car_model_sec_48_8t6(o) {
+function get_mm_car_model_sec_48_8t6(o) {
     if (u8(o + 0) || u8(o + 1) !== 1 || u8(o + 2) || u8(o + 3) !== 1 || u8(o + 4) !== 1 || u8(o + 5) !== 3 || u8(o + 6) !== 10 || u8(o + 7) !== 1 || f32(o + 8) !== 50 || f32(o + 12) !== 500 || u32(o + 16) !== 10000 || u32(o + 20) || u32(o + 24) || f32(o + 28) !== -300 || u32(o + 32) || u32(o + 36) || u32(o + 40) !== 14185856 || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
-    ö(u32(o + 40), get_car_model_sec_48_8t6_40)
+    ö(u32(o + 40), get_mm_car_model_sec_48_8t6_40)
 
 }
 
-function get_car_model_sec_48_8t6_40(o) {
+function get_mm_car_model_sec_48_8t6_40(o) {
     if (u32(o + 0) || u32(o + 4) || f32(o + 8) !== 1 || u32(o + 12) || f32(o + 16) !== 60 || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_car_model_sec_48_12(o) {
+function get_mm_car_model_sec_48_12(o) {
     if (u32(o + 12) || u32(o + 20) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-    ö(u32(o + 24), get_car_model_sec_48_12_24)
+    ö(u32(o + 24), get_mm_car_model_sec_48_12_24)
 
 }
 
-function get_car_model_sec_48_12_24(o) {
+function get_mm_car_model_sec_48_12_24(o) {
     if (u8(o + 3) || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 
@@ -1029,204 +1035,204 @@ function get_car_model_sec_48_12_24(o) {
         ß('p_texture', o, 4)
         break
     default:
-        console.log(o)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        ö(u32(o + 12) + (i * 32), get_car_model_sec_48_12_24_12)
+        ö(u32(o + 12) + (i * 32), get_mm_car_model_sec_48_12_24_12)
     }
     for (let i = 0; i < u32(o + 16); i++) {
-        ö(u32(o + 20) + (i * 32), get_car_model_sec_48_12_24_20)
+        ö(u32(o + 20) + (i * 32), get_mm_car_model_sec_48_12_24_20)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        ö(u32(o + 28) + (i * 12), get_car_model_sec_48_12_24_28)
+        ö(u32(o + 28) + (i * 12), get_mm_car_model_sec_48_12_24_28)
     }
 
-    ö(u32(o + 32), get_car_model_sec_48_12_24_32)
-    ö(u32(o + 36), get_car_model_sec_48_12_24_36)
-    ö(u32(o + 40), get_car_model_sec_48_12_24_40)
+    ö(u32(o + 32), get_mm_car_model_sec_48_12_24_32)
+    ö(u32(o + 36), get_mm_car_model_sec_48_12_24_36)
+    ö(u32(o + 40), get_mm_car_model_sec_48_12_24_40)
 
 }
 
-function get_car_model_sec_48_12_24_32(o) {
+function get_mm_car_model_sec_48_12_24_32(o) {
     if (f32(o + 0) !== 100 || f32(o + 4) !== 300 || u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_48_12_24_36(o) {
+function get_mm_car_model_sec_48_12_24_36(o) {
     if (u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_model_sec_48_12_24_40(o) {
+function get_mm_car_model_sec_48_12_24_40(o) {
     if (u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_car_model_sec_48_12_24_12(o) {
+function get_mm_car_model_sec_48_12_24_12(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_model_sec_48_12_24_20(o) {
+function get_mm_car_model_sec_48_12_24_20(o) {
     if (u32(o + 12) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_model_sec_48_12_24_28(o) {
+function get_mm_car_model_sec_48_12_24_28(o) {
     if (u8(o + 3) !== 255)
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8], o)
 }
 
-function get_car_model_sec_48_16(o) {
+function get_mm_car_model_sec_48_16(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_52(o) {
+function get_mm_car_model_sec_52(o) {
     if (u32(o + 12) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 }
-function get_car_model_sec_56(o) {
+function get_mm_car_model_sec_56(o) {
     if (u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
     for (let i = 0; i < u32(o); i++) {
-        ö(u32(o + 4) + (i * 28), get_car_model_sec_56_4)
+        ö(u32(o + 4) + (i * 28), get_mm_car_model_sec_56_4)
     }
-    ä(model_anims_2, u32(o + 8), get_model_anims_2)
+    ä(model_anims_2, u32(o + 8), get_mm_model_anims_2)
 
 }
 
-function get_car_model_sec_56_4(o) {
+function get_mm_car_model_sec_56_4(o) {
     if (u8(o + 1) !== 1 || u8(o + 3) || u32(o + 20))
         ü(1, [u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24], o)
 
     ä(models, u32(o + 8), get_mm_model)
 
-    ö(u32(o + 12), get_car_model_sec_56_4_12)
-    ö(u32(o + 16), get_car_model_sec_56_4_16)
+    ö(u32(o + 12), get_mm_car_model_sec_56_4_12)
+    ö(u32(o + 16), get_mm_car_model_sec_56_4_16)
     ä(mm_unknown_4_4t4, u32(o + 24), get_mm_unknown_4_4t4)
 
 }
 
-function get_car_model_sec_56_4_12(o) {
+function get_mm_car_model_sec_56_4_12(o) {
     if (u32(o + 12))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, ], o)
 }
-function get_car_model_sec_56_4_16(o) {
+function get_mm_car_model_sec_56_4_16(o) {
     if (u32(o + 12))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, ], o)
 }
 
-function get_car_144(o) {
+function get_mm_car_144(o) {
     if (u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u16(o + 44) || u32(o + 48) || u32(o + 52) !== 14 || u32(o + 56) || f32(o + 60) !== 2000 || u32(o + 64) || f32(o + 68) !== 90 || f32(o + 72) !== 30 || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u16, 44, u16, 46, u32, 48, u32, 52, u32, 56, f32, 60, u32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
 
-    ä(car_model_sec, u32(o + 0), get_car_model_sec)
-    ä(car_model_sec, u32(o + 4), get_car_model_sec)
-    ä(car_model_sec, u32(o + 8), get_car_model_sec)
-    ä(car_model_sec, u32(o + 12), get_car_model_sec)
+    ä(car_model_sec, u32(o + 0), get_mm_car_model_sec)
+    ä(car_model_sec, u32(o + 4), get_mm_car_model_sec)
+    ä(car_model_sec, u32(o + 8), get_mm_car_model_sec)
+    ä(car_model_sec, u32(o + 12), get_mm_car_model_sec)
 }
 
-function get_car_152(o) {
+function get_mm_car_152(o) {
     if (f32(o + 0) !== 50 || f32(o + 4) !== 2 || u32(o + 8) || f32(o + 12) !== 100 || u32(o + 16) !== 14834272 || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
     ä(mm_unknown, u32(o + 16), get_mm_unknown)
 
 }
 
-function get_car_156(o) {
+function get_mm_car_156(o) {
     if (u32(o + 0) || u32(o + 4) !== 120 || u32(o + 8) || f32(o + 12) !== 2 || f32(o + 16) !== 1 || f32(o + 20) !== 0.30000001192092896 || f32(o + 24) !== 150 || f32(o + 28) !== 30 || f32(o + 32) !== 30 || u32(o + 36) || f32(o + 44) !== 1.5 || f32(o + 48) !== 10 || f32(o + 52) !== 10 || f32(o + 56) !== 4 || u32(o + 60))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60, ], o)
 }
-function get_car_160(o) {
+function get_mm_car_160(o) {
     if (u32(o + 12) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 60) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || f32(o + 100) !== 0.004999999888241291 || u32(o + 124) || f32(o + 132) !== 0.699999988079071 || f32(o + 136) !== 0.8999999761581421 || f32(o + 212) !== 0.6000000238418579 || u32(o + 244) || u32(o + 248) || u32(o + 252))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, f32, 48, f32, 52, f32, 56, u32, 60, f32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, f32, 96, f32, 100, f32, 104, f32, 108, f32, 112, f32, 116, u32, 120, u32, 124, f32, 128, f32, 132, f32, 136, f32, 140, f32, 144, f32, 148, f32, 152, f32, 156, f32, 160, f32, 164, f32, 168, f32, 172, f32, 176, f32, 180, f32, 184, f32, 188, f32, 192, f32, 196, f32, 200, f32, 204, f32, 208, f32, 212, u32, 216, u32, 220, u32, 224, f32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252, ], o)
 
-    ä(car3_44_44, u32(o + 216), get_car3_44_44)
-    ö(u32(o + 220), get_car_160_220)
-    ö(u32(o + 224), get_car_160_220)
+    ä(car3_44_44, u32(o + 216), get_mm_car3_44_44)
+    ö(u32(o + 220), get_mm_car_160_220)
+    ö(u32(o + 224), get_mm_car_160_220)
 
 }
 
-function get_car_160_220(o) {
+function get_mm_car_160_220(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 16) || u32(o + 28) || u32(o + 32) || u32(o + 44) || u32(o + 48) || u32(o + 60) || u32(o + 64) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 92) || u32(o + 96) || u32(o + 108) || u32(o + 112) || u32(o + 124) || f32(o + 132) !== 90 || f32(o + 136) !== 90 || f32(o + 140) !== 45)
         ü(1, [u32, 0, f32, 4, f32, 8, u32, 12, u32, 16, f32, 20, f32, 24, u32, 28, u32, 32, f32, 36, f32, 40, u32, 44, u32, 48, f32, 52, f32, 56, u32, 60, u32, 64, f32, 68, u32, 72, u32, 76, u32, 80, f32, 84, f32, 88, u32, 92, u32, 96, f32, 100, f32, 104, u32, 108, u32, 112, f32, 116, f32, 120, u32, 124, f32, 128, f32, 132, f32, 136, f32, 140, f32, 144, f32, 148, f32, 152, f32, 156, f32, 160, f32, 164, f32, 168, f32, 172, ], o)
 }
 
-function get_car_164(o) {
+function get_mm_car_164(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 20) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
     ä(interface, u32(o + 16), get_mm_interface)
     ä(interface, u32(o + 24), get_mm_interface)
     ä(texts, u32(o + 40), get_mm_text)
-    ö(u32(o + 44), get_car_164_44)
+    ö(u32(o + 44), get_mm_car_164_44)
 
 }
 
-function get_car_164_44(o) {
+function get_mm_car_164_44(o) {
     if (u8(o + 3) !== 255 || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
 }
 
-function get_car_172(o) {
+function get_mm_car_172(o) {
     if (f32(o + 4) !== 1 || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, u32, 44, ], o)
 
     for (let i = 0; i < u32(o + 40); i++) {
-        ö(u32(o + 44) + (i * 120), get_car_172_44)
+        ö(u32(o + 44) + (i * 120), get_mm_car_172_44)
     }
 
 }
 
-function get_car_172_44(o) {
+function get_mm_car_172_44(o) {
     if (u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 92))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116], o)
     for (let i = 0; i < u32(o + 96); i++) {
-        ö(u32(o + 100) + (i * 4), get_car_172_44_100)
+        ö(u32(o + 100) + (i * 4), get_mm_car_172_44_100)
     }
-    ö(u32(o + 104), get_car_172_44_104)
-    ö(u32(o + 108), get_car_172_44_108)
-    ö(u32(o + 112), get_car_172_44_112)
-    ö(u32(o + 116), get_car_172_44_116)
-    ö(u32(o + 88), get_car_172_44_88)
+    ö(u32(o + 104), get_mm_car_172_44_104)
+    ö(u32(o + 108), get_mm_car_172_44_108)
+    ö(u32(o + 112), get_mm_car_172_44_112)
+    ö(u32(o + 116), get_mm_car_172_44_116)
+    ö(u32(o + 88), get_mm_car_172_44_88)
 
 }
 
-function get_car_172_44_100(o) {
+function get_mm_car_172_44_100(o) {
     // ü(1, [u32, 0], o)
-    ä(car_172_44_100_0, u32(o + 0), get_car_172_44_100_0)
+    ä(car_172_44_100_0, u32(o + 0), get_mm_car_172_44_100_0)
 
 }
 
-function get_car_172_44_100_0(o) {
+function get_mm_car_172_44_100_0(o) {
     if (u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
-    ö(u32(o + 0), get_car_172_44_100_0_0)
+    ö(u32(o + 0), get_mm_car_172_44_100_0_0)
     for (let i = 0; i < u32(o + 4); i++) {
-        ö(u32(o + 8) + (i * 32), get_car_172_44_100_0_8)
+        ö(u32(o + 8) + (i * 32), get_mm_car_172_44_100_0_8)
     }
 
 }
 
-function get_car_172_44_100_0_0(o) {// console.log(get_string(o, 0, false))
+function get_mm_car_172_44_100_0_0(o) {// console.log(get_string(o, 0, false))
 }
-function get_car_172_44_100_0_8(o) {
+function get_mm_car_172_44_100_0_8(o) {
     if (u32(o + 4) || u32(o + 12))
         ü(1, [f32, 0, u32, 4, f32, 8, u32, 12, f32, 16, f32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_car_172_44_104(o) {
+function get_mm_car_172_44_104(o) {
     if (u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 }
-function get_car_172_44_108(o) {
+function get_mm_car_172_44_108(o) {
     if (u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_172_44_112(o) {
+function get_mm_car_172_44_112(o) {
     if (u32(o + 4) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, u32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_172_44_116(o) {// console.log(get_string(o, 0, false))
+function get_mm_car_172_44_116(o) {// console.log(get_string(o, 0, false))
 }
-function get_car_172_44_88(o) {
+function get_mm_car_172_44_88(o) {
     if (u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
@@ -1242,49 +1248,49 @@ function get_car_172_44_88(o) {
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
     }
 }
-function get_car_204(o) {
+function get_mm_car_204(o) {
     // ü(1, [u32, 0, u32, 4], o)
-    ö(u32(o + 4), get_car_140)
+    ö(u32(o + 4), get_mm_car_140)
 
 }
 
-function get_car_212(o) {
+function get_mm_car_212(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44], o)
 }
-function get_car_228(o) {
+function get_mm_car_228(o) {
     if (u32(o + 0) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car_236(o) {
+function get_mm_car_236(o) {
     // ü(1, [u32, 0, u32, 4, u32, 8], o)
     for (let i = 0; i < u32(o); i++) {
-        ö(u32(o + 4) + (i * 20), get_car_model_sec_48)
+        ö(u32(o + 4) + (i * 20), get_mm_car_model_sec_48)
     }
-    ä(model_anims_2, u32(o + 8), get_model_anims_2)
+    ä(model_anims_2, u32(o + 8), get_mm_model_anims_2)
 
 }
 
-function get_car_244(o) {
+function get_mm_car_244(o) {
     // ü(1, [u32, 0, u32, 4], o)
-    ö(u32(o + 4), get_car_244_4)
+    ö(u32(o + 4), get_mm_car_244_4)
 }
 
-function get_car_244_4(o) {
+function get_mm_car_244_4(o) {
     if (u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
     for (let i = 0; i < u32(o); i++) {
-        ö(u32(o + 4) + (i * 4), get_car_244_4_4)
+        ö(u32(o + 4) + (i * 4), get_mm_car_244_4_4)
     }
 
 }
 
-function get_car_244_4_4(o) {
+function get_mm_car_244_4_4(o) {
     if (u8(o + 2) || u8(o + 3))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3], o)
 }
 
-function get_car2(o) {
+function get_mm_car2(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 12) || u32(o + 36) || u32(o + 64) || u32(o + 68) || u32(o + 84) || u32(o + 104) || u32(o + 108))
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, u32, 32, u32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, ], o)
     ä(models, u32(o + 20), get_mm_model)
@@ -1292,52 +1298,52 @@ function get_car2(o) {
     ä(mm_unknown, u32(o + 76), get_mm_unknown)
     ä(mm_unknown, u32(o + 80), get_mm_unknown)
 
-    ö(u32(o + 88), get_car2_88)
-    ö(u32(o + 92), get_car2_92)
+    ö(u32(o + 88), get_mm_car2_88)
+    ö(u32(o + 92), get_mm_car2_92)
     for (let i = 0; i < u32(o + 96); i++) {
-        ö(u32(o + 100) + (i * 20), get_car2_100)
+        ö(u32(o + 100) + (i * 20), get_mm_car2_100)
     }
 
 }
 
-function get_car2_88(o) {
+function get_mm_car2_88(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 20) !== 14922304 || u32(o + 56) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, f32, 60, f32, 64, f32, 68, f32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
     ß('p_texture', o, 24)
     //maybe? car2_88 = car_144
-    ä(car_model_sec, u32(o + 0), get_car_model_sec)
+    ä(car_model_sec, u32(o + 0), get_mm_car_model_sec)
     ä(texts, u32(o + 16), get_mm_text)
 
     ä(mm_unknown, u32(o + 20), get_mm_unknown)
-    ä(model_anims_2, u32(o + 28), get_model_anims_2)
+    ä(model_anims_2, u32(o + 28), get_mm_model_anims_2)
 
 }
 
-function get_car2_92(o) {
+function get_mm_car2_92(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
 }
-function get_car2_100(o) {
+function get_mm_car2_100(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 16))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16], o)
-    ö(u32(o + 12), get_car2_100_12)
+    ö(u32(o + 12), get_mm_car2_100_12)
 
 }
 
-function get_car2_100_12(o) {
+function get_mm_car2_100_12(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 12) || u8(o + 16) || u8(o + 17) || u8(o + 18) || u8(o + 19) !== 1 || u32(o + 20) || u32(o + 28))
         ü(1, [u32, 0, f32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, ], o)
-    ö(u32(o + 24), get_car2_100_12_24)
+    ö(u32(o + 24), get_mm_car2_100_12_24)
 
 }
 
-function get_car2_100_12_24(o) {
+function get_mm_car2_100_12_24(o) {
     if (u8(o + 0) || u16(o + 2) || u32(o + 16) !== 1 || u32(o + 32) || u32(o + 36) || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u16, 2, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
-    ö(u32(o + 12), get_car2_100_12_24_12)
-    ö(u32(o + 20), get_car2_100_12_24_20)
+    ö(u32(o + 12), get_mm_car2_100_12_24_12)
+    ö(u32(o + 20), get_mm_car2_100_12_24_20)
     for (let i = 0; i < u32(o + 24); i++) {
-        ö(u32(o + 28) + (i * 12), get_car2_100_12_24_28)
+        ö(u32(o + 28) + (i * 12), get_mm_car2_100_12_24_28)
     }
 
     switch (u8(o + 1)) {
@@ -1347,106 +1353,110 @@ function get_car2_100_12_24(o) {
     case 2:
         break
     default:
-        console.log("?")
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
     }
 
-    ö(u32(o + 40), get_car2_100_12_24_40)
+    ö(u32(o + 40), get_mm_car2_100_12_24_40)
 
 }
 
-function get_car2_100_12_24_12(o) {
+function get_mm_car2_100_12_24_12(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car2_100_12_24_20(o) {
+function get_mm_car2_100_12_24_20(o) {
     if (u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
-function get_car2_100_12_24_28(o) {
+function get_mm_car2_100_12_24_28(o) {
     if (u8(o + 3) !== 255)
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8], o)
 }
-function get_car2_100_12_24_40(o) {
+function get_mm_car2_100_12_24_40(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, f32, 4, f32, 8, u32, 12, f32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_car3(o) {
+function get_mm_car3(o) {
     if (f32(o + 0) !== 1000 || f32(o + 4) !== 1500 || u32(o + 8) !== 111 || u32(o + 12) !== 72 || u32(o + 16) !== 113 || u32(o + 20) !== 114 || u32(o + 24) !== 112 || u32(o + 28) || u32(o + 32) !== 14207344 || u32(o + 36) !== 14372560 || u32(o + 40) !== 14387712 || u32(o + 44) !== 14197072)
         ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 
-    ö(u32(o + 32), get_car3_32)
+    ö(u32(o + 32), get_mm_car3_32)
 
     ä(interface, u32(o + 36), get_mm_interface)
     ä(interface, u32(o + 40), get_mm_interface)
 
-    ä(car3_44, u32(o + 44), get_car3_44)
+    ä(car3_44, u32(o + 44), get_mm_car3_44)
 
 }
 
-function get_car3_32(o) {
+function get_mm_car3_32(o) {
     if (u32(o + 0) !== 110 || u32(o + 4) || u32(o + 8) !== 1052672 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) !== 1 || u32(o + 28) !== 14207392 || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
-    ö(u32(o + 28), get_car3_32_28)
+    ö(u32(o + 28), get_mm_car3_32_28)
 
 }
 
-function get_car3_32_28(o) {
+function get_mm_car3_32_28(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_car3_44(o) {
+function get_mm_car3_44(o) {
     if (u8(o + 10) || u8(o + 11) || u32(o + 24) || u32(o + 28) || u32(o + 52))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
 
     switch (u8(o + 4)) {
     case 0:
+        if (old_log_array.p_offset.array.includes(o + 0 - offset_mid)) {
+            // ö(u32(o + 28), get_mm_model_8_8_12_28)
+            ä(models, u32(o + 0), get_mm_model)
+        }
         break
     case 1:
-        ä(car_model_sec, u32(o + 0), get_car_model_sec)
+        ä(car_model_sec, u32(o + 0), get_mm_car_model_sec)
         break
     default:
-        console.log(o)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
     }
-    ö(u32(o + 20), get_car3_44_20)
+    ö(u32(o + 20), get_mm_car3_44_20)
 
     ä(mm_unknown, u32(o + 32), get_mm_unknown)
     ä(mm_unknown, u32(o + 36), get_mm_unknown)
     ä(mm_sound_controls, u32(o + 40), get_mm_sound_controls)
 
-    ä(car3_44_44, u32(o + 44), get_car3_44_44)
-    ö(u32(o + 48), get_car3_44_48)
+    ä(car3_44_44, u32(o + 44), get_mm_car3_44_44)
+    ö(u32(o + 48), get_mm_car3_44_48)
 
     for (let i = 0; i < u32(o + 56); i++) {
-        ö(u32(o + 60) + (i * 20), get_car_model_sec_48)
+        ö(u32(o + 60) + (i * 20), get_mm_car_model_sec_48)
     }
     for (let i = 0; i < u32(o + 64); i++) {
-        ö(u32(o + 68) + (i * 4), get_car3_44_68)
+        ö(u32(o + 68) + (i * 4), get_mm_car3_44_68)
     }
 
-    ä(model_anims_2, u32(o + 72), get_model_anims_2)
+    ä(model_anims_2, u32(o + 72), get_mm_model_anims_2)
     ä(models, u32(o + 76), get_mm_model)
 
 }
 
-function get_car3_44_48(o) {
+function get_mm_car3_44_48(o) {
     if (f32(o + 0) !== 100 || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
-function get_car3_44_20(o) {
+function get_mm_car3_44_20(o) {
     if (u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
-function get_car3_44_68(o) {
+function get_mm_car3_44_68(o) {
     // ü(1, [u32, 0], o)
     ä(mm_unknown, u32(o + 0), get_mm_unknown)
 
 }
 
-function get_car3_44_44(o) {
+function get_mm_car3_44_44(o) {
     if (u32(o + 4) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 
@@ -1531,7 +1541,7 @@ function get_mm_interface_16(o) {
         break
     default:
         if (u32(o + 16)) {
-            console.log('?')
+            ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
         }
     }
     ö(u32(o + 32), get_mm_interface_16_32)
@@ -1935,9 +1945,11 @@ function get_mm_world(o) {
     for (let i = 0; i < u32(o + 48); i++) {
         ö(u32(o + 52) + (i * 80), get_mm_world_52)
     }
-    for (let i = 0; i < u32(o + 56); i++) {// ö(u32(o + 60) + (i *4), get_mm_world_60)
+    for (let i = 0; i < u32(o + 56); i++) {
+        ö(u32(o + 60) + (i * 4), get_mm_world_60)
     }
-    for (let i = 0; i < u32(o + 64); i++) {// ö(u32(o + 68) + (i* 4), get_mm_world_68)
+    for (let i = 0; i < u32(o + 64); i++) {
+        ö(u32(o + 68) + (i * 4), get_mm_world_68)
     }
     for (let i = 0; i < u32(o + 80); i++) {
         ö(u32(o + 84) + (i * 76), get_mm_world_84)
@@ -1977,15 +1989,13 @@ function get_mm_world(o) {
 function get_mm_world_52(o) {
     if (u8(o + 15) !== 255 || u8(o + 31) !== 255 || u8(o + 47) !== 255 || u8(o + 68) !== 205 || u8(o + 69) !== 205 || u8(o + 70) !== 205 || u8(o + 71) !== 205 || u8(o + 72) !== 205 || u8(o + 73) !== 205 || u8(o + 74) !== 205 || u8(o + 75) !== 205 || u8(o + 76) !== 205 || u8(o + 77) !== 205 || u8(o + 78) !== 205 || u8(o + 79) !== 205)
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, f32, 20, f32, 24, u8, 28, u8, 29, u8, 30, u8, 31, f32, 32, f32, 36, f32, 40, u8, 44, u8, 45, u8, 46, u8, 47, f32, 48, f32, 52, f32, 56, f32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71, u8, 72, u8, 73, u8, 74, u8, 75, u8, 76, u8, 77, u8, 78, u8, 79], o)
-    ä(car3_44_44, u32(o + 64), get_car3_44_44)
+    ä(car3_44_44, u32(o + 64), get_mm_car3_44_44)
 
 }
 
-function get_mm_world_60(o) {
-    ü(1, [u32, 0], o)
+function get_mm_world_60(o) {// ü(1, [u32, 0], o)
 }
-function get_mm_world_68(o) {
-    ü(1, [u32, 0], o)
+function get_mm_world_68(o) {// ü(1, [u32, 0], o)
 }
 function get_mm_world_84(o) {
     if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68))
@@ -2003,7 +2013,7 @@ function get_mm_world_100(o) {
     if (u32(o + 16) || u32(o + 32) || u32(o + 36))
         ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u32, 24, f32, 28, u32, 32, u32, 36, u32, 40], o)
     ö(u32(o + 24), get_mm_world_100_24)
-    ä(car3_44, u32(o + 40), get_car3_44)
+    ä(car3_44, u32(o + 40), get_mm_car3_44)
 
 }
 
@@ -2087,13 +2097,13 @@ function get_mm_world_later_32_4(o) {
 function get_mm_world_140(o) {
     if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 60))
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, f32, 52, u32, 56, u32, 60], o)
-    ä(car3_44, u32(o + 36), get_car3_44)
+    ä(car3_44, u32(o + 36), get_mm_car3_44)
 }
 
 function get_mm_world_148(o) {
     if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 28) || u8(o + 36) !== 1 || u8(o + 39))
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, u32, 44], o)
-    ä(car3_44, u32(o + 40), get_car3_44)
+    ä(car3_44, u32(o + 40), get_mm_car3_44)
 
 }
 
