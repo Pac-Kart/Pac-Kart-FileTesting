@@ -194,6 +194,12 @@ function get_mm_model(o) {
     if (u16(o + 0) !== 4101 || u32(o + 44) || u32(o + 60))
         ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
 
+    globalThis.modeltypeval = u32(o + 4)
+    // if (o === 753724) {
+    // ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
+    // ü(3, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
+    // }
+
     for (let i = 0; i < u16(o + 2); i++) {
         ö(u32(o + 12) + (i * 4), get_mm_model_12)
     }
@@ -209,6 +215,17 @@ function get_mm_model_12(o) {//render
 function get_mm_model_8(o) {
     if (u8(o + 1) || u8(o + 3))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
+
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+
+        for (let i = 0; i < u32(o + 4); i++) {
+            ö(u32(o + 12) + (i * 48), get_mm_model_8_12)
+        }
+    }
+
+    // if (o === 753788) {
+    // ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
+    // }
 
     for (let i = 0; i < u8(o + 2); i++) {
         ö(u32(o + 8) + (i * 32), get_mm_model_8_8)
@@ -241,13 +258,56 @@ function get_mm_model_8(o) {
 
 function get_mm_model_8_20(o) {// console.log(get_string(o, 0, false))
 }
+function get_mm_model_8_12(o) {
+    if (f32(o + 28) !== 1.9999998807907104 || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, u32, 36, u32, 40, u32, 44], o)
+}
 
 function get_mm_model_8_8(o) {
     if (u16(o + 0) || u32(o + 8) || u8(o + 21))
         ü(1, [u16, 0, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)
     ß('p_texture', o, 24)
 
-    ö(u32(o + 12), get_mm_model_8_8_12)
+    // probably
+    switch (modeltypeval) {
+    case 0:
+        // ö(u32(o + 12), get_mm_model_8_8_12t0)
+        break
+    case 4:
+        ö(u32(o + 12), get_mm_model_8_8_12t4)
+        break
+    case 9:
+        ö(u32(o + 12), get_mm_model_8_8_12t9)
+        break
+    case 36:
+        ö(u32(o + 12), get_mm_model_8_8_12t36)
+        break
+    case 37:
+        ö(u32(o + 12), get_mm_model_8_8_12t37)
+        break
+    case 45:
+        ö(u32(o + 12), get_mm_model_8_8_12t45)
+        break
+    case 46:
+        ö(u32(o + 12), get_mm_model_8_8_12t46)
+        break
+    case 47:
+        ö(u32(o + 12), get_mm_model_8_8_12t47)
+        break
+    case 48:
+        ö(u32(o + 12), get_mm_model_8_8_12t48)
+        break
+    case 55:
+        ö(u32(o + 12), get_mm_model_8_8_12t55)
+        break
+    default:
+        console.log(modeltypeval)
+        // ,9,4,46,36,45,37,48,47,55
+    }
+
+    // ö(u32(o + 12), get_mm_model_8_8_12)
+
+    // offset [12] not type 20
 
     switch (u8(o + 3)) {
     case 0:
@@ -260,47 +320,114 @@ function get_mm_model_8_8(o) {
 
 }
 
+function get_mm_model_8_8_12t0(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // model_data
+}
+function get_mm_model_8_8_12t4(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 32,48 bytes
+}
+function get_mm_model_8_8_12t9(o) {
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) !== 459008 || u32(o + 20) !== 612624 || u32(o + 24) !== 524544 || u32(o + 28) !== 614976 || u32(o + 32) !== 132608 || u32(o + 36) !== 615808 || u32(o + 40) !== 131841 || u32(o + 44) !== 618256 || u32(o + 48) !== 16712452 || u32(o + 52) !== 621136 || u32(o + 56) || u32(o + 60))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+
+    ö(u32(o + 20), get_mm_model_8_8_12t9_20)
+    ö(u32(o + 28), get_mm_model_8_8_12t9_28)
+    ö(u32(o + 36), get_mm_model_8_8_12t9_36)
+    ö(u32(o + 44), get_mm_model_8_8_12t9_44)
+    ö(u32(o + 52), get_mm_model_8_8_12t9_52)
+
+}
+
+function get_mm_model_8_8_12t9_20(o) {
+    // 2352
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_mm_model_8_8_12t9_28(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // 832 bytes
+}
+function get_mm_model_8_8_12t9_36(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // 2448 bytes
+}
+function get_mm_model_8_8_12t9_44(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // 2880 bytes
+}
+function get_mm_model_8_8_12t9_52(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // 2240 bytes
+}
+
+function get_mm_model_8_8_12t36(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 32,192
+}
+function get_mm_model_8_8_12t37(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 96,112
+}
+function get_mm_model_8_8_12t45(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 48,64,80
+}
+function get_mm_model_8_8_12t46(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 
+}
+function get_mm_model_8_8_12t47(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 32,48,64,80,96
+}
+function get_mm_model_8_8_12t48(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 48,64,96
+}
+function get_mm_model_8_8_12t55(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 32,48,64
+}
+
 function get_mm_model_8_8_12(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+    // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+
+    // 32-72208 bytes
 
     if (old_log_array.p_offset.array.includes(o + 20 - offset_mid)) {
         ö(u32(o + 20), get_mm_model_8_8_12_20)
+        ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, u16, 16, u8, 18, u8, 19, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u16, 52, u8, 54, u8, 55, u32, 56, u32, 60, u32, 64, u8, 68, u8, 69, u8, 70, u8, 71], o)
+
     }
     if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
         ö(u32(o + 28), get_mm_model_8_8_12_28)
     }
-    if (old_log_array.p_offset.array.includes(o + 36 - offset_mid)) {// ö(u32(o + 36), get_mm_model_8_8_12_36)
+    if (old_log_array.p_offset.array.includes(o + 36 - offset_mid)) {
+        ö(u32(o + 36), get_mm_model_8_8_12_36)
     }
-    if (old_log_array.p_offset.array.includes(o + 44 - offset_mid)) {// ö(u32(o + 44), get_mm_model_8_8_12_44)
+    if (old_log_array.p_offset.array.includes(o + 44 - offset_mid)) {
+        ö(u32(o + 44), get_mm_model_8_8_12_44)
     }
-    if (old_log_array.p_offset.array.includes(o + 52 - offset_mid)) {// ö(u32(o + 52), get_mm_model_8_8_12_52)
+    if (old_log_array.p_offset.array.includes(o + 52 - offset_mid)) {
+        ö(u32(o + 52), get_mm_model_8_8_12_52)
     }
-    if (old_log_array.p_offset.array.includes(o + 60 - offset_mid)) {// ö(u32(o + 60), get_mm_model_8_8_12_60)
+    if (old_log_array.p_offset.array.includes(o + 60 - offset_mid)) {
+        ö(u32(o + 60), get_mm_model_8_8_12_60)
     }
-    if (old_log_array.p_offset.array.includes(o + 68 - offset_mid)) {// ö(u32(o + 68), get_mm_model_8_8_12_68)
+    if (old_log_array.p_offset.array.includes(o + 68 - offset_mid)) {
+        ö(u32(o + 68), get_mm_model_8_8_12_68)
     }
 }
 
 function get_mm_model_8_8_12_20(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_mm_model_8_8_12_28(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// 720 bytes?
 }
-function get_mm_model_8_8_12_36(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_36(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_mm_model_8_8_12_44(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_44(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_mm_model_8_8_12_52(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_52(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_mm_model_8_8_12_60(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_60(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_mm_model_8_8_12_68(o) {
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_mm_model_8_8_12_68(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_mm_model_8_8_28t4(o) {
@@ -410,6 +537,8 @@ function get_mm_basic_04(o) {
 function get_mm_car(o) {
     if (u32(o + 12) || f32(o + 60) !== 5000 || f32(o + 64) !== 10 || u32(o + 72) || u32(o + 80) || u32(o + 116) || u32(o + 128) !== 14711136 || u32(o + 148) || u32(o + 168) || u32(o + 188) || u32(o + 192) || u32(o + 196) || u32(o + 200) !== 3 || u32(o + 216) || u32(o + 220) || u32(o + 224) !== 5 || u32(o + 232) !== 7 || u32(o + 240) !== 4 || u32(o + 248) || u32(o + 252))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, u32, 72, f32, 76, u32, 80, f32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188, u32, 192, u32, 196, u32, 200, u32, 204, u32, 208, u32, 212, u32, 216, u32, 220, u32, 224, u32, 228, u32, 232, u32, 236, u32, 240, u32, 244, u32, 248, u32, 252, ], o)
+    ß('p_texture', o, 88)
+    ß('p_texture', o, 100)
 
     ä(model_anims_1, u32(o + 92), get_mm_model_anims_1)
     ä(model_anims_2, u32(o + 96), get_mm_model_anims_2)
@@ -1340,6 +1469,7 @@ function get_mm_car2_100_12(o) {
 function get_mm_car2_100_12_24(o) {
     if (u8(o + 0) || u16(o + 2) || u32(o + 16) !== 1 || u32(o + 32) || u32(o + 36) || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u16, 2, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+
     ö(u32(o + 12), get_mm_car2_100_12_24_12)
     ö(u32(o + 20), get_mm_car2_100_12_24_20)
     for (let i = 0; i < u32(o + 24); i++) {
@@ -1351,6 +1481,7 @@ function get_mm_car2_100_12_24(o) {
         ä(models, u32(o + 4), get_mm_model)
         break
     case 2:
+        ß('p_texture', o, 4)
         break
     default:
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
@@ -1379,7 +1510,12 @@ function get_mm_car2_100_12_24_40(o) {
 
 function get_mm_car3(o) {
     if (f32(o + 0) !== 1000 || f32(o + 4) !== 1500 || u32(o + 8) !== 111 || u32(o + 12) !== 72 || u32(o + 16) !== 113 || u32(o + 20) !== 114 || u32(o + 24) !== 112 || u32(o + 28) || u32(o + 32) !== 14207344 || u32(o + 36) !== 14372560 || u32(o + 40) !== 14387712 || u32(o + 44) !== 14197072)
-        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+        ü(1, [f32, 0, f32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+    ß('p_texture', o, 8)
+    ß('p_texture', o, 12)
+    ß('p_texture', o, 16)
+    ß('p_texture', o, 20)
+    ß('p_texture', o, 24)
 
     ö(u32(o + 32), get_mm_car3_32)
 
@@ -1392,7 +1528,9 @@ function get_mm_car3(o) {
 
 function get_mm_car3_32(o) {
     if (u32(o + 0) !== 110 || u32(o + 4) || u32(o + 8) !== 1052672 || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) !== 1 || u32(o + 28) !== 14207392 || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+    ß('p_texture', o, 0)
+
     ö(u32(o + 28), get_mm_car3_32_28)
 
 }
@@ -1409,7 +1547,6 @@ function get_mm_car3_44(o) {
     switch (u8(o + 4)) {
     case 0:
         if (old_log_array.p_offset.array.includes(o + 0 - offset_mid)) {
-            // ö(u32(o + 28), get_mm_model_8_8_12_28)
             ä(models, u32(o + 0), get_mm_model)
         }
         break
