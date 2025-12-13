@@ -195,10 +195,6 @@ function get_mm_model(o) {
         ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
 
     globalThis.modeltypeval = u32(o + 4)
-    // if (o === 753724) {
-    // ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
-    // ü(3, [u16, 0, u16, 2, u32, 4, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u8, 48, u8, 49, u8, 50, u8, 51, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, ], o)
-    // }
 
     for (let i = 0; i < u16(o + 2); i++) {
         ö(u32(o + 12) + (i * 4), get_mm_model_12)
@@ -271,34 +267,35 @@ function get_mm_model_8_8(o) {
     // probably
     switch (modeltypeval) {
     case 0:
+        ü(1, [u16, 0, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u8, 28, u8, 29, u8, 30, u8, 31], o)
         // ö(u32(o + 12), get_mm_model_8_8_12t0)
         break
     case 4:
-        ö(u32(o + 12), get_mm_model_8_8_12t4)
+        // ö(u32(o + 12), get_mm_model_8_8_12t4)
         break
     case 9:
-        ö(u32(o + 12), get_mm_model_8_8_12t9)
+        // ö(u32(o + 12), get_mm_model_8_8_12t9)
         break
     case 36:
-        ö(u32(o + 12), get_mm_model_8_8_12t36)
+        // ö(u32(o + 12), get_mm_model_8_8_12t36)
         break
     case 37:
-        ö(u32(o + 12), get_mm_model_8_8_12t37)
+        // ö(u32(o + 12), get_mm_model_8_8_12t37)
         break
     case 45:
-        ö(u32(o + 12), get_mm_model_8_8_12t45)
+        // ö(u32(o + 12), get_mm_model_8_8_12t45)
         break
     case 46:
-        ö(u32(o + 12), get_mm_model_8_8_12t46)
+        // ö(u32(o + 12), get_mm_model_8_8_12t46)
         break
     case 47:
-        ö(u32(o + 12), get_mm_model_8_8_12t47)
+        // ö(u32(o + 12), get_mm_model_8_8_12t47)
         break
     case 48:
-        ö(u32(o + 12), get_mm_model_8_8_12t48)
+        // ö(u32(o + 12), get_mm_model_8_8_12t48)
         break
     case 55:
-        ö(u32(o + 12), get_mm_model_8_8_12t55)
+        // ö(u32(o + 12), get_mm_model_8_8_12t55)
         break
     default:
         console.log(modeltypeval)

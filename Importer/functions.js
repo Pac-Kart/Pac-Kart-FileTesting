@@ -708,7 +708,7 @@ function array_log(array_index=0) {
                             let new_3rd = []
                             new_3rd.push(_3rd[0])
                             new_3rd.push(_3rd[_3rd.length - 1])
-                            _3rd = new_3rd.toString().replace(',',' - ')
+                            _3rd = new_3rd.toString().replace(',', ' - ')
                         } else {
                             _3rd = a.a.toString()
                         }
@@ -4045,4 +4045,14 @@ function check_if_in_list_sec_id_list(str_functionName, is_info=false) {
         }
     }
     return str_random
+}
+
+function remove_hr_space(html) {
+    let new_html = html.replaceAll('<hr>\n\n', '<hr>\n')
+    if (html.includes('<hr>\n\n')) {
+        console.log(new_html)
+    } else {
+        console.log('no hr space')
+    }
+
 }
