@@ -68,7 +68,7 @@ function print_sha1_files() {
         </tr>
     </tfoot>
 </table>
-<hr/>
+<hr>
 `
 
     sha1_array.sort( (a, b) => {
@@ -160,7 +160,7 @@ function array_log(array_index=0) {
         </tr>
     </tfoot>
 </table>
-<hr/>
+<hr>
 `
     if (last === 0) {} else {
         console.groupCollapsed('vertical')
@@ -765,7 +765,7 @@ function array_log(array_index=0) {
         </tr>
     </tfoot>
 </table>
-<hr/>
+<hr>
 `
     }
 
@@ -4055,4 +4055,33 @@ function remove_hr_space(html) {
         console.log('no hr space')
     }
 
+}
+
+function replace_switch(str_html) {
+    let split = str_html.split('\n')
+    let new_html = ""
+    for (let i = 0; i < split.length; i++) {
+        if (split[i].includes('<a')) {
+            let padding = "                "
+            if (split[i].includes("&nbsp;")) {
+
+                let temp_split = split[i].split("&nbsp;")
+                temp_split = temp_split[1].split("<a")
+
+                new_html += padding + "&nbsp;<a" + temp_split[1].replace(`">`, `">${temp_split[0].trim()} `)
+
+            } else {
+                let temp_split = split[i].split("<a")
+
+                new_html += padding + "<a" + temp_split[1].replace(`">`, `">${temp_split[0].trim()} `)
+            }
+
+        } else {
+            new_html += split[i]
+            // null
+        }
+        new_html += "\n"
+
+    }
+    console.log(new_html)
 }
