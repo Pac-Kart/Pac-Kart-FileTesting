@@ -52,7 +52,7 @@ async function input_file(event) {
                         temp_array__[temp_array_index].console += `<a class='f'> ${g.file_name}</a><hr><br>`
                         }
                     }
-                    if (pk_debug && lastFileIndex == Number(i)) {
+                    if (lastFileIndex == Number(i)) {
                         array_log()
                     }
                     //sorted by a-z, also by size

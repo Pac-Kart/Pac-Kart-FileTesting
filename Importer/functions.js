@@ -4048,12 +4048,18 @@ function check_if_in_list_sec_id_list(str_functionName, is_info=false) {
 }
 
 function remove_hr_space(html) {
-    let new_html = html.replaceAll('<hr>\n\n', '<hr>\n')
-    if (html.includes('<hr>\n\n')) {
-        console.log(new_html)
-    } else {
-        console.log('no hr space')
+
+    let if_extra_lines = true;
+    let new_html = html
+    while (if_extra_lines) {
+        if (html.includes("<hr>\n\n")) {
+            new_html = html.replaceAll('<hr>\n\n', '<hr>\n')
+        } else {
+            if_extra_lines = false
+        }
     }
+
+    return new_html
 
 }
 

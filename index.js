@@ -9,10 +9,7 @@ const hide_console = getElementSafely('hide_console_view');
 var packart_hide_console = false;
 const drag_bar = getElementSafely('drag_bar');
 const check_offset_input = getElementSafely('check_offset');
-const pk_debug = true
-if (pk_debug) {
-    file_input.multiple = true
-}
+file_input.multiple = true
 
 if (drag_bar) {
     drag_bar.addEventListener("mousedown", handleDragBar);
