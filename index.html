@@ -35,15 +35,16 @@
                   border-top: solid 1px #9d9898;
                   border-right: solid 1px #9d9898;
                   width: 100%;box-sizing:border-box;white-space:nowrap;">
-                        <span style="display: inline-block;width: 20%" id="data_types_bar">
+                        <span style="display: inline-block;width: 40%" id="data_types_bar">
                             <label for='file_input' data-is_active="false" class="data_bar_options" id="main_program__audio_button">Open File(s)</label>
+                            <span class="data_bar_options" id="format_text_button">Format Text</span>
                         </span>
-                        <span id="_2nd_data_bar">
-                            <input accesskey="h" id="hide_console_view" type="checkbox" style="">
-                            <label for="hide_console_view" style="padding:1%;">hide console</label>
-                            <input accesskey="l" id="show_debug" type="checkbox" style="">
-                            <label for="show_debug" style="padding:1%;">find lost offets</label>
-                            <input accesskey="o" id="check_offset" type="number">
+                        <span id="_2nd_data_bar" style="width: 50%;display: inline-flex;align-items: flex-start;">
+                            <input accesskey="h" id="hide_console_view" type="checkbox" style="width: 5%">
+                            <label for="hide_console_view" style="width: 25%;padding:1%;">hide console</label>
+                            <input accesskey="l" id="show_debug" type="checkbox" style="width:5%">
+                            <label for="show_debug" style="width: 30%;padding:1%;">find lost offets</label>
+                            <input accesskey="o" id="check_offset" type="number" style="width: 27%">
                         </span>
                     </div>
                     <div style="white-space:nowrap" id="outer_program"><div class='noselect' style="padding-left:5px;width: 30%;height: 100%;overflow-y: auto;border: solid 1px #9d9898;display: inline-block;height:100%;box-sizing: border-box;" id="file_viewer" tabindex="0"></div><div style="background: #f2f2f2;width:0.5%;cursor: col-resize;display: inline-block;height:100%;" id="drag_bar"></div><div id="file_editor" style="width:69.5%;border:solid 1px #9d9898;display: inline-block;height:100%;overflow:auto;box-sizing: border-box;"></div>

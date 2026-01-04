@@ -1,3 +1,194 @@
+function format_button_clicked() {
+    file_editor.innerHTML = ''
+
+    file_viewer.innerHTML = `
+<div style="
+    height: 100%;
+    width: 100%;
+"> <p>format text</p>
+<span style="
+    width: 100%;
+    height: 93%;
+    display: inline-grid;
+    align-content: start;
+">
+<a id="generate_tables" class="test_line_click">generate_tables</a>
+<a id="format_table" class="test_line_click">format_table</a>
+<a id="format_switch" class="test_line_click">format_switch</a>
+</span>
+</div>
+`
+
+        document.getElementById("generate_tables").addEventListener("click", format_text_editor_generate);
+        document.getElementById("format_table").addEventListener("click", format_text_editor_table);
+        document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
+
+
+    // format_text_editor_generate()
+
+    function format_text_editor_generate() {
+        // file_editor.innerHTML = `<div style:inline-flex:>
+        // </div>`
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate tables<br>
+        paste a full html table from the docs or just sections</p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_sec</p>
+            <textarea id="copy_sec"></textarea><br><hr>
+            <p>copy_import</p>
+            <textarea id="copy_import"></textarea><br><hr>
+            <p>copy_add</p>
+            <textarea id="copy_add"></textarea><br><hr>
+            <p>copy_edit</p>
+            <textarea id="copy_edit"></textarea><br><hr>
+            <p>copy_export</p>
+            <textarea id="copy_export"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = html_to_all_sec(html)
+
+            copy_all.value = `
+/* start sec id list */
+${object_html.sec_id_html}
+/* end sec id list */
+/////////////////////
+/* start import list */
+${object_html.import_html}
+/* end import list */
+/////////////////////
+/* start add list */
+${object_html.edit_html}
+/* end add list */
+/////////////////////
+/* start info list */
+${object_html.info_html}
+/* end info list */
+/////////////////////
+/* start export list */
+${object_html.export_id_html}
+/* end export list */
+`
+
+            copy_sec.value = object_html.sec_id_html
+            copy_import.value = object_html.import_html
+            copy_add.value = object_html.edit_html
+            copy_edit.value = object_html.info_html
+            copy_export.value = object_html.export_id_html
+
+        }
+        // paste_html
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_sec.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_import.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_add.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_edit.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_export.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function format_text_editor_table() {
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>update tables<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = remove_hr_space(html)
+
+            copy_all.value = object_html
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+
+    }
+    function format_text_editor_switch() {
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>replace switch<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = replace_switch(html)
+
+            copy_all.value = object_html
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+        function copy_from_textarea(e) {
+            let element = e.srcElement
+            let string_value = element.value
+            string_value.replace('    ','\n')
+            document.getElementById("format_text_button").innerHTML+= `<textarea style="height:50%;" id='copy_remove_element'>${string_value}</textarea>`
+            document.getElementById("copy_remove_element").select()
+            document.execCommand('copy')
+
+            element.style.color = 'blue'
+            document.getElementById("copy_remove_element").remove()
+
+        }
+
+
+    // document.getElementById("generate_tables").addEventListener("click", generate_tables_clicked);
+
+}
+
 function get_string(begin, end, is_no_end) {
 
     let temp_string
@@ -289,6 +480,9 @@ function array_log(array_index=0) {
     }
     let switchhtml = ''
     if (temp_array__[array_index].switch.array.length) {
+        temp_array__[array_index].switch.array.sort((a, b) => a - b)
+        temp_array__[array_index].switch.no_offset_array.sort((a, b) => a - b)
+        temp_array__[array_index].switch.no_val_array.sort((a, b) => a - b)
         let switchhtmlfuntions = ''
         switchhtml = `
         switch (${temp_array__[array_index].switch.type.name}(o + ${temp_array__[array_index].switch.type_offset})) {`
@@ -1517,7 +1711,12 @@ function html_to_import(inputHtml) {
 
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
 
                     offsets += `
@@ -2058,7 +2257,12 @@ function html_to_eximport(inputHtml) {
                     }
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
 
                     let xsec = "x.section_" + offset
@@ -2433,37 +2637,6 @@ function print_multilink(s) {
     }
     console.log(html)
 }
-function compare_if_2_table(s) {
-    let splitarray = s.split('||')
-    splitarray[0] = splitarray[0].replace('if', '')
-    splitarray[splitarray.length - 1] = splitarray[splitarray.length - 1].replace('\n', '')
-    console.log(splitarray)
-
-    let index_array = []
-    for (let i = 0; i < temp_array__[7].subarrays.length; i++) {
-        index_array.push(temp_array__[7].subarrays[i].number)
-    }
-
-    let found_diff = []
-
-    for (let i = 0; i < splitarray.length; i++) {
-        let not_0 = false
-        let value = Number(splitarray[0].split('o +')[1].split(')')[0])
-        let tableindex = index_array.indexOf(value)
-
-        let temptable = temp_array__[7].subarrays[tableindex]
-
-        for (let table_array_entry of temptable.a) {
-            if (table_array_entry !== 0) {
-                not_0 = true
-            }
-        }
-        if (not_0) {
-            found_diff.push(value)
-        }
-    }
-    console.log(found_diff)
-}
 
 function html_to_import(inputHtml) {
     // Parse the input HTML string into a DOM object
@@ -2708,7 +2881,12 @@ function html_to_import(inputHtml) {
                     // }
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
 
                     offsets += `
@@ -3067,7 +3245,12 @@ function html_to_edit(inputHtml) {
                     // }
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
 
                     offsets += `
@@ -3429,7 +3612,12 @@ function html_to_info(inputHtml) {
                     // }
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
 
                     offsets += `
@@ -3551,14 +3739,14 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
 }
 
 function html_to_sec_list() {
-    let html = "--- section list ---\n\n"
+    let html = ""
     for (let section of function_sec_id_name) {
         html += `
     case '${section.sec_id}':
         return "${section.name}"
     break`
     }
-    html += " \n\n --- section list ---\n\n"
+    html += ""
     return html
 }
 
@@ -3820,7 +4008,12 @@ function html_to_export(inputHtml) {
                     // }
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
-                        offsetamount = cells[2].innerHTML.split("based on amount [")[1].split("]")[0].trim()
+                        let split_array = cells[2].innerHTML.split("based on amount [")
+                        if (split_array.length === 1){
+                            offsetamount = '???'
+                        }else{
+                        offsetamount = split_array[1].split("]")[0].trim()
+                        }
                     }
                     // offsets+=''
 
@@ -3984,6 +4177,14 @@ function html_to_all_sec(inputHtml) {
     let sec_id_html = html_to_sec_list(inputHtml)
     let export_id_html = html_to_export(inputHtml)
 
+    return {
+        import_html: import_html,
+        edit_html: edit_html,
+        info_html: info_html,
+        sec_id_html: sec_id_html,
+        export_id_html: export_id_html,
+    }
+
     console.log(`
 /* start sec id list */
 ${sec_id_html}
@@ -4089,5 +4290,7 @@ function replace_switch(str_html) {
         new_html += "\n"
 
     }
-    console.log(new_html)
+    return new_html
 }
+
+document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
