@@ -15,14 +15,15 @@ function format_button_clicked() {
 <a id="generate_tables" class="test_line_click">generate_tables</a>
 <a id="format_table" class="test_line_click">format_table</a>
 <a id="format_switch" class="test_line_click">format_switch</a>
+<a id="print_string_locations" class="test_line_click">print_string_locations</a>
 </span>
 </div>
 `
 
-        document.getElementById("generate_tables").addEventListener("click", format_text_editor_generate);
-        document.getElementById("format_table").addEventListener("click", format_text_editor_table);
-        document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
-
+    document.getElementById("generate_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("format_table").addEventListener("click", format_text_editor_table);
+    document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
+    document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
 
     // format_text_editor_generate()
 
@@ -135,7 +136,6 @@ ${object_html.export_id_html}
 
         copy_all.addEventListener("click", (e) => copy_from_textarea(e))
 
-
     }
     function format_text_editor_switch() {
 
@@ -171,19 +171,61 @@ ${object_html.export_id_html}
 
     }
 
-        function copy_from_textarea(e) {
-            let element = e.srcElement
-            let string_value = element.value
-            string_value.replace('    ','\n')
-            document.getElementById("format_text_button").innerHTML+= `<textarea style="height:50%;" id='copy_remove_element'>${string_value}</textarea>`
-            document.getElementById("copy_remove_element").select()
-            document.execCommand('copy')
+    function print_string_locations_click() {
 
-            element.style.color = 'blue'
-            document.getElementById("copy_remove_element").remove()
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>js file in first textarea<br> html document in 2<br>
+        this will replace <br>&lt;a href="#some_section"&gt;offset&lt;/a&gt;<br>with offset string based on js file<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_js_string"></textarea><br><br>
+            </div>
+            <div stlye="padding:1%;"><textarea id="paste_docs"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_string</p>
+            <textarea id="js_string"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_docs").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_js_string.value
+            let docs_html = paste_docs.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_js = find_get_string_from_js_file(html)
+            let object_html = doc_replace_offsets_to_string(docs_html, string_from_js)
+
+            js_string.value = string_from_js
+            copy_all.value = object_html
 
         }
 
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function copy_from_textarea(e) {
+        let element = e.srcElement
+        let string_value = element.value
+        string_value.replace('    ', '\n')
+        document.getElementById("format_text_button").innerHTML += `<textarea style="height:50%;" id='copy_remove_element'>${string_value}</textarea>`
+        document.getElementById("copy_remove_element").select()
+        document.execCommand('copy')
+
+        element.style.color = 'blue'
+        document.getElementById("copy_remove_element").remove()
+
+    }
 
     // document.getElementById("generate_tables").addEventListener("click", generate_tables_clicked);
 
@@ -480,9 +522,9 @@ function array_log(array_index=0) {
     }
     let switchhtml = ''
     if (temp_array__[array_index].switch.array.length) {
-        temp_array__[array_index].switch.array.sort((a, b) => a - b)
-        temp_array__[array_index].switch.no_offset_array.sort((a, b) => a - b)
-        temp_array__[array_index].switch.no_val_array.sort((a, b) => a - b)
+        temp_array__[array_index].switch.array.sort( (a, b) => a - b)
+        temp_array__[array_index].switch.no_offset_array.sort( (a, b) => a - b)
+        temp_array__[array_index].switch.no_val_array.sort( (a, b) => a - b)
         let switchhtmlfuntions = ''
         switchhtml = `
         switch (${temp_array__[array_index].switch.type.name}(o + ${temp_array__[array_index].switch.type_offset})) {`
@@ -1712,10 +1754,10 @@ function html_to_import(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
 
@@ -2258,10 +2300,10 @@ function html_to_eximport(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
 
@@ -2882,10 +2924,10 @@ function html_to_import(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
 
@@ -3246,10 +3288,10 @@ function html_to_edit(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
 
@@ -3613,10 +3655,10 @@ function html_to_info(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
 
@@ -4009,10 +4051,10 @@ function html_to_export(inputHtml) {
                     let offsetamount = "___$$$___"
                     if (cells[2].innerHTML.includes("based on amount")) {
                         let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1){
+                        if (split_array.length === 1) {
                             offsetamount = '???'
-                        }else{
-                        offsetamount = split_array[1].split("]")[0].trim()
+                        } else {
+                            offsetamount = split_array[1].split("]")[0].trim()
                         }
                     }
                     // offsets+=''
@@ -4291,6 +4333,62 @@ function replace_switch(str_html) {
 
     }
     return new_html
+}
+
+function find_get_string_from_js_file(string) {
+
+    let string_new_value = string.split('\n')
+
+    let string_return = ''
+    let i = 0
+    for (let line of string_new_value) {
+
+        if (line !== "") {
+            if (line.includes("get_string")) {
+                let new_line = line?.replace('function get_', '')
+                // new_line = new_line.replace('(o) {','')
+                new_line = new_line.split('(o)')[0]
+                let split_line = new_line.split('_')
+                let last_num = split_line[split_line.length - 1]
+                split_line.pop()
+                split_line = split_line.join('_')
+                string_return += `LINE: ${i} - ${split_line} [${last_num}]\n`
+            }
+        }
+
+        i++
+    }
+    return string_return
+}
+
+function doc_replace_offsets_to_string(doc_string, js_string) {
+    let something_changed = false
+    let split_js_string = js_string.split('\n')
+    for (let line of split_js_string) {
+        if (line !== "") {
+
+            line = line.split(' - ')[1].trim()
+            let split_line = line.split('[')
+            let last_line = split_line[1].replace(']', '')
+            let final_line = split_line[0].trim() + "_" + last_line
+
+            let match_string = `<a href="#${final_line}">offset</a>`
+
+            if (doc_string.includes(match_string)) {
+                something_changed = true
+                doc_string = doc_string.replace(match_string, "offset string")
+
+            }
+
+        }
+
+    }
+    if (something_changed === true) {
+        return doc_string
+    } else {
+        return "no change"
+    }
+
 }
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
