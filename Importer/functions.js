@@ -12,15 +12,17 @@ function format_button_clicked() {
     display: inline-grid;
     align-content: start;
 ">
-<a id="generate_tables" class="test_line_click">generate_tables</a>
-<a id="format_table" class="test_line_click">format_table</a>
+<a id="generate_full_tables" class="test_line_click">generate_full_tables</a>
+<a id="generate_sec_tables" class="test_line_click">generate_sec_tables</a></a>
+<a id="format_table" class="test_line_click">format_table</a></a>
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
 </span>
 </div>
 `
 
-    document.getElementById("generate_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("generate_full_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("generate_sec_tables").addEventListener("click", format_generate_sec_tables);
     document.getElementById("format_table").addEventListener("click", format_text_editor_table);
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
@@ -34,7 +36,86 @@ function format_button_clicked() {
         file_editor.innerHTML = `
         <div style="height:22%;overflow:scroll;">
         <p>generate tables<br>
-        paste a full html table from the docs or just sections</p>
+        paste a full html table from the docs<br>
+        this will paste all sections in the unordered list</p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_sec</p>
+            <textarea id="copy_sec"></textarea><br><hr>
+            <p>copy_import</p>
+            <textarea id="copy_import"></textarea><br><hr>
+            <p>copy_add</p>
+            <textarea id="copy_add"></textarea><br><hr>
+            <p>copy_edit</p>
+            <textarea id="copy_edit"></textarea><br><hr>
+            <p>copy_export</p>
+            <textarea id="copy_export"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = html_to_all_sec(html)
+
+            copy_all.value = `
+/* start sec id list */
+${object_html.sec_id_html}
+/* end sec id list */
+/////////////////////
+/* start import list */
+${object_html.import_html}
+/* end import list */
+/////////////////////
+/* start add list */
+${object_html.edit_html}
+/* end add list */
+/////////////////////
+/* start info list */
+${object_html.info_html}
+/* end info list */
+/////////////////////
+/* start export list */
+${object_html.export_id_html}
+/* end export list */
+`
+
+            copy_sec.value = object_html.sec_id_html
+            copy_import.value = object_html.import_html
+            copy_add.value = object_html.edit_html
+            copy_edit.value = object_html.info_html
+            copy_export.value = object_html.export_id_html
+
+        }
+        // paste_html
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_sec.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_import.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_add.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_edit.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_export.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function format_generate_sec_tables() {
+        // file_editor.innerHTML = `<div style:inline-flex:>
+        // </div>`
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate tables<br>
+        paste a section table from the docs</p>
             <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
             </div>
         </div>
@@ -4288,6 +4369,11 @@ function check_if_in_list_sec_id_list(str_functionName, is_info=false) {
         }
     }
     return str_random
+}
+
+function format_full_doc(string) {
+
+    return
 }
 
 function remove_hr_space(html) {

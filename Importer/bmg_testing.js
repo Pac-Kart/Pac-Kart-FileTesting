@@ -110,7 +110,7 @@ function get_bmg_directory(o, end_offset) {
 }
 
 function get_bmg_datapack(o, e) {
-    if (u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u32(o + 184))
+    // if (u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u32(o + 184))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
 
     let end_datapack = o + e
@@ -130,28 +130,30 @@ function get_bmg_datapack(o, e) {
 
     globalThis.old_log_array = structuredClone(log_array)
 
-    for (let i = 0; i < u32(o + 100); i++) {
-        ö(u32(o + 132) + (i * 8), get_bmg_datapack_132)
-    }
+    if (false) {
 
-    for (let i = 0; i < u32(o + 48); i++) {
-        ö(u32(o + 60) + (i * 12), get_bmg_texture_anim)
-    }
+        for (let i = 0; i < u32(o + 100); i++) {
+            ö(u32(o + 132) + (i * 8), get_bmg_datapack_132)
+        }
 
-    switch (g.type) {
-    case 1:
-    case 3:
-        get_bmg_basic(offset_mid)
-        break
-    case 4:
-        get_bmg_world(offset_mid)
-        break
-    default:
-        console.log("?")
-    }
+        for (let i = 0; i < u32(o + 48); i++) {
+            ö(u32(o + 60) + (i * 12), get_bmg_texture_anim)
+        }
 
-    if (u32(o + 24)) {
-        // get_test_temp(offset_mid + u32(o + 24))
+        switch (g.type) {
+        case 1:
+        case 3:
+            get_bmg_basic(offset_mid)
+            break
+        case 4:
+            get_bmg_world(offset_mid)
+            break
+        default:
+            console.log("?")
+        }
+
+        if (u32(o + 24)) {// get_test_temp(offset_mid + u32(o + 24))
+        }
     }
 
     if (u32(o + 4)) {
@@ -168,26 +170,30 @@ function get_bmg_datapack(o, e) {
         }
         globalThis.pk_audio_end_offset = end_after_datapack
 
+        let array_audio_test = []
+
         for (let i = 0; i < u32(o + 32); i++) {
             get_bmg_basic_audio(after_datapack + (i * 8), end_after_datapack)
         }
+
+        for (let i = 0; i < u32(o + 20); i++) {
+        get_bmg_texture_offset_list(2726336 + i*4,2726336)
+        }
+
 
         // ö(u32(o + 24), get_test_temp)
         // ä(test_temp, u32(o + 24), get_test_temp)
         // ä(test_temp, u32(o + 24), get_test_temp)
         // get_bmg_world_60 ?
-        console.log(pk_audio_end_offset, "pk_audio_end_offset", pk_audio_end_offset - index_patch_list)
+        console.log(`
+        pk_audio_end_offset = ${pk_audio_end_offset},
+        end_after_datapack = ${end_after_datapack}
+        mid: ${offset_mid}
+
+        pk_audio_end_offset - index_patch_list = ${pk_audio_end_offset - index_patch_list}
+        `)
     }
 
-}
-
-function get_bmg_basic_audio_pc(o, e) {
-    ü(1, [u32, 0], o)
-    get_bmg_basic_audio_pc_0(e + u32(o), e)
-}
-
-function get_bmg_basic_audio_pc_0(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184, u32, 188], o)
 }
 
 function get_test_temp(o) {
@@ -214,17 +220,17 @@ function get_bmg_basic_audio_0(o, e) {
     }
 }
 function get_bmg_basic_audio_0_0twii(o, end, e) {
-    if (u32(o + 0) !== 1179861555)
+    // if (u32(o + 0) !== 1179861555)
         ü(1, [u32, 0], o)
     // FSB3 file
 }
 function get_bmg_basic_audio_0_0tpc(o, end, e) {
-    if (u32(o + 0) !== 1179011410)
+    // if (u32(o + 0) !== 1179011410)
         ü(1, [u32, 0], o)
     // RIFF file
 }
 function get_bmg_basic_audio_4(o, e) {
-    if (u8(o + 8) !== 16 || u8(o + 9) || u8(o + 10) || u8(o + 11))
+    // if (u8(o + 8) !== 16 || u8(o + 9) || u8(o + 10) || u8(o + 11))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16], o)
     get_bmg_basic_audio_4_0(e + u32(o + 0), e)
 }
@@ -236,6 +242,57 @@ function get_bmg_basic_audio_4_0(o) {
     }
 
 }
+
+function get_bmg_texture_offset_list(o,section_offset) {
+    // ü(1, [u32, 0], o)
+
+    get_bmg_texture_offset_list_0(u32(o) + section_offset, section_offset)
+
+}
+
+function get_bmg_texture_offset_list_0(o,section_offset) {
+        ü(1, [u8, 0,u8, 1,u8, 2,u8, 3, u8, 4,u8, 5,u8, 6,u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    if (u32(o + 8)) {
+    get_bmg_texture_offset_list_0_8(u32(o + 8) + section_offset, section_offset)
+    }
+    if (u32(o + 12)) {
+    get_bmg_texture_offset_list_0_12(u32(o + 12) + section_offset, section_offset)
+    }
+    if (u32(o + 16)) {
+    get_bmg_texture_offset_list_0_16(u32(o + 16) + section_offset, section_offset)
+    }
+    if (u32(o + 20)) {
+    get_bmg_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
+    }
+}
+
+function get_bmg_texture_offset_list_0_8(o,section_offset) {
+    ü(1, [u32, 0], o)
+    //start texture data prob
+
+}
+function get_bmg_texture_offset_list_0_12(o,section_offset) {
+    ü(1, [u32, 0], o)
+
+}
+function get_bmg_texture_offset_list_0_16(o,section_offset) {
+    // ü(1, [u32, 0], o)
+    // offset string
+
+    // console.log(get_string(o, 0, false))
+
+}
+function get_bmg_texture_offset_list_0_20(o,section_offset) {
+    ü(1, [u32, 0], o)
+
+}
+// some talbe at 2721568
+// table end 2726308
+// could be 108 ?
+
+// another table starts 2726336
+// ends 2727467
 
 function get_bmg_audio_list(o, f, afteroffsetlist, end_datapack, datapackoffset) {
     if (u16(o + 16) !== 4096 || u16(o + 18) !== 32767 || u32(o + 20) || u32(o + 24) || u32(o + 28))
@@ -661,7 +718,7 @@ function get_bmg_world_176_28(o) {
 
 function get_bmg_basic(o) {
     if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_bmg_basic_4)
 
@@ -687,7 +744,7 @@ function get_bmg_basic_4(o) {
 
 function get_bmg_model(o) {
     if (u32(o + 28))
-    ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, f32, 72, f32, 76], o)
+        ü(1, [u16, 0, u16, 2, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, f32, 60, f32, 64, f32, 68, f32, 72, f32, 76], o)
 
     ö(u32(o + 4), get_bmg_model_4)
     for (let i = 0; i < u32(o + 16); i++) {
@@ -1128,7 +1185,7 @@ function get_bmg_datapack_132(o) {
 
 function get_bmg_model_anim_2_type_b(o) {
     if (u32(o + 0) !== 2852208671 || u32(o + 12) || u32(o + 24) || u32(o + 28))
-    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ö(u32(o + 8), get_bmg_model_anim_2_type_b_8)
     ö(u32(o + 16), get_bmg_model_anim_2_type_b_16)
@@ -1164,7 +1221,7 @@ function get_bmg_model_anim_2_type_b_20_40(o) {
 
 function get_bmg_model_anim_2_type_c(o) {
     if (u32(o + 0) !== 131077 || u32(o + 12) || u32(o + 16) || u32(o + 40) || u32(o + 44))
-    ü(1, [u32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+        ü(1, [u32, 0, f32, 4, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
     for (let i = 0; i < u32(o + 20); i++) {
         ö(u32(o + 24) + (i * 2), get_bmg_model_anim_2_type_c_24)
