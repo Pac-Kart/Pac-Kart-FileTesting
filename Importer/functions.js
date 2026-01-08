@@ -2536,7 +2536,17 @@ function ß(type, o, n) {
                     ä(svtrb_model, u32(o + n), get_svtrb_model)
                     break
                 case 'pac_man_world_rally':
-                    ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
+                    switch (g.version) {
+                    case 243:
+                        ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
+                        break
+                    case 249:
+                        ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
+                        break
+                    default:
+                        ä(pmwr_model, u32(o + n), get_pmwr_model)
+
+                    }
                     break
                 }
 

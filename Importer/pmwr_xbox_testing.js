@@ -4954,8 +4954,8 @@ function get_pmwr_xdx_model_12(o) {// ü(1, [f32, 0], o)
 }
 
 function get_pmwr_xdx_texture_anims_0(o) {
-    if (u32(o + 0) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
+    // if (u32(o + 0) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 
     ö(u32(o + 4), get_pmwr_xdx_texture_anims_0_4)
     ö(u32(o + 12), get_pmwr_xdx_texture_anims_0_12)
