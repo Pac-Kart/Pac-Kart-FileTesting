@@ -71,7 +71,7 @@ function get_svtrb_directory(o, end_offset) {
     globalThis.svtrb_car_0_76_4_4 = []
     globalThis.svtrb_car_0_76_4_4_128 = []
     globalThis.svtrb_interface_72_24t1_12t1 = []
-    globalThis.svtrb_font_4 = []
+    globalThis.svtrb_some_model_anims_section = []
     globalThis.svtrb_unknown_4_4t5 = []
     globalThis.svtrb_unknown_4_4t2_112_0 = []
     globalThis.svtrb_world_4 = []
@@ -241,7 +241,9 @@ function get_svtrb_texture(o) {
 
 function get_svtrb_texture_8(o) {// texture data
 }
-function get_svtrb_texture_12(o) {// console.log(get_string(o, 0, false))
+function get_svtrb_texture_12(o) {
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
+// console.log(get_string(o, 0, false))
 }
 function get_svtrb_texture_psp(o) {
     if (u8(o + 0) !== 1 || u8(o + 1) !== 2 || u8(o + 5) || u32(o + 8) !== 52 || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48))
@@ -7054,7 +7056,7 @@ function get_svtrb_font(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
     ß('p_texture', o, 0)
 
-    ä(svtrb_font_4, u32(o + 4), get_svtrb_font_4)
+    ä(svtrb_some_model_anims_section, u32(o + 4), get_svtrb_some_model_anims_section)
 
     ö(u32(o + 28), get_svtrb_font_28)
     for (let i = 0; i < u32(o + 32); i++) {
@@ -7063,27 +7065,27 @@ function get_svtrb_font(o) {
 
 }
 
-function get_svtrb_font_4(o) {
-    if (u8(o + 0) !== 5 || u8(o + 1) || u8(o + 2) !== 1 || u8(o + 3) || u32(o + 40) || u32(o + 44))
+function get_svtrb_some_model_anims_section(o) {
+    // if (u8(o + 0) !== 5 || u8(o + 1) || u8(o + 2) !== 1 || u8(o + 3) || u32(o + 40) || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
     for (let i = 0; i < u32(o + 20); i++) {
-        ö(u32(o + 24) + (i * 2), get_svtrb_font_4_24)
+        ö(u32(o + 24) + (i * 2), get_svtrb_some_model_anims_section_24)
     }
     for (let i = 0; i < u32(o + 28); i++) {
-        ö(u32(o + 32) + (i * 24), get_svtrb_font_4_32)
+        ö(u32(o + 32) + (i * 24), get_svtrb_some_model_anims_section_32)
     }
-    ö(u32(o + 36), get_svtrb_font_4_36)
+    ö(u32(o + 36), get_svtrb_some_model_anims_section_36)
 
 }
 
-function get_svtrb_font_4_24(o) {/*ü(1, [u16, 0], o)*/
+function get_svtrb_some_model_anims_section_24(o) {/*ü(1, [u16, 0], o)*/
 }
-function get_svtrb_font_4_32(o) {
+function get_svtrb_some_model_anims_section_32(o) {
     if (u8(o + 18) || u8(o + 19) || u8(o + 21) || u8(o + 23))
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23], o)
 }
-function get_svtrb_font_4_36(o) {// console.log(get_string(o, 0, false))
+function get_svtrb_some_model_anims_section_36(o) {// console.log(get_string(o, 0, false))
 
 }
 
