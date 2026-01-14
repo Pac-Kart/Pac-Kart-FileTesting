@@ -17,6 +17,7 @@ function format_button_clicked() {
 <a id="format_table" class="test_line_click">format_table</a></a>
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
+<a id="generate_sha1_array" class="test_line_click">generate_sha1_array</a>
 </span>
 </div>
 `
@@ -26,6 +27,7 @@ function format_button_clicked() {
     document.getElementById("format_table").addEventListener("click", format_text_editor_table);
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
+    document.getElementById("generate_sha1_array").addEventListener("click", print_generate_sha1_array);
 
     // format_text_editor_generate()
 
@@ -288,6 +290,41 @@ ${object_html.export_id_html}
 
             js_string.value = string_from_js
             copy_all.value = object_html
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_generate_sha1_array() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>print from sha1 docs<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = get_sha1_array_from_docs(html)
+
+            copy_all.value = string_from_docs
 
         }
 
@@ -4484,6 +4521,33 @@ function doc_replace_offsets_to_string(doc_string, js_string) {
     } else {
         return "no change"
     }
+
+}
+
+function get_sha1_array_from_docs(string) {
+    let tr_split = string.split("<tr>")
+
+    let array_name = []
+    let array_sha1 = []
+    for (let tr_table of tr_split) {
+        let section = tr_table.split('</tr>')[0]
+        if (section.includes('<td>')) {
+        let split_td = section.split('<td>')
+        let td_name = split_td[1].split("</td>")[0]
+        let td_sha1 = split_td[2].split("</td>")[0]
+
+        array_name.push(`"${td_name}"`)
+        array_sha1.push(`"${td_sha1}"`)
+        }else{
+
+        }
+    }
+    let html = `{
+    name:[${array_name}],
+    sha1:[${array_sha1}],
+    }`
+
+    return html
 
 }
 
