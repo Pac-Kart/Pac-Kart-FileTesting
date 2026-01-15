@@ -15,10 +15,10 @@ function get_x_hwvx_proto() {
     }
 
     for (let i = 0; i < u32(12); i++) {
-        get_hwvx_proto_directory(16 + (i * 24), 16 + (u32(12) * 24))
+        get_hwvx_proto_directory(16 + (i * 24))
     }
 }
-function get_hwvx_proto_directory(o, end_offset) {
+function get_hwvx_proto_directory(o) {
     let next_offset = o + 24
     globalThis.log_array = {
         p_texture: {
@@ -175,6 +175,7 @@ function get_hwvx_proto_datapack(o) {
         // console.log(final_audio,afteroffsetlist)
     }
 
+    console.log(end_datapack)
     offset_mid = end_datapack + (u32(o + 12) * 4) + ((u32(o + 16) + u32(o + 28) + u32(o + 52) + u32(o + 56)) * 8);
 
     // if (u32(o + 68)) {
