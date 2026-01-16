@@ -18,6 +18,9 @@ function format_button_clicked() {
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
 <a id="generate_sha1_array" class="test_line_click">generate_sha1_array</a>
+<a id="generate_array_view_top_functions" class="test_line_click">generate_array_view_top_functions</a>
+<a id="generate_array_view_file_header_functions" class="test_line_click">generate_array_view_file_header_functions</a>
+<a id="generate_array_view_directory_functions" class="test_line_click">generate_array_view_directory_functions</a>
 </span>
 </div>
 `
@@ -28,6 +31,9 @@ function format_button_clicked() {
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
     document.getElementById("generate_sha1_array").addEventListener("click", print_generate_sha1_array);
+    document.getElementById("generate_array_view_top_functions").addEventListener("click", print_generate_array_view_top_functions);
+    document.getElementById("generate_array_view_file_header_functions").addEventListener("click", print_generate_array_view_file_header_functions);
+    document.getElementById("generate_array_view_directory_functions").addEventListener("click", print_generate_array_view_directory_functions);
 
     // format_text_editor_generate()
 
@@ -325,6 +331,84 @@ ${object_html.export_id_html}
             let string_from_docs = get_sha1_array_from_docs(html)
 
             copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_generate_array_view_top_functions() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>print_generate_array_view_top_functions<br>
+        </p>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        paste_html_changed()
+
+        function paste_html_changed() {
+            let string = get_array_view_functions()
+
+            copy_all.value = string
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_generate_array_view_file_header_functions() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>print_generate_array_view_file_header_functions<br>
+        </p>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        paste_html_changed()
+
+        function paste_html_changed() {
+            let string = generate_file_table_for_array_view()
+
+            copy_all.value = string
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+  function print_generate_array_view_directory_functions() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>print_generate_array_view_file_header_functions<br>
+        </p>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        paste_html_changed()
+
+        function paste_html_changed() {
+            let string = generate_directory_table_for_file_view()
+
+            copy_all.value = string
 
         }
 
@@ -4532,15 +4616,13 @@ function get_sha1_array_from_docs(string) {
     for (let tr_table of tr_split) {
         let section = tr_table.split('</tr>')[0]
         if (section.includes('<td>')) {
-        let split_td = section.split('<td>')
-        let td_name = split_td[1].split("</td>")[0]
-        let td_sha1 = split_td[2].split("</td>")[0]
+            let split_td = section.split('<td>')
+            let td_name = split_td[1].split("</td>")[0]
+            let td_sha1 = split_td[2].split("</td>")[0]
 
-        array_name.push(`"${td_name}"`)
-        array_sha1.push(`"${td_sha1}"`)
-        }else{
-
-        }
+            array_name.push(`"${td_name}"`)
+            array_sha1.push(`"${td_sha1}"`)
+        } else {}
     }
     let html = `{
     name:[${array_name}],
@@ -4550,5 +4632,341 @@ function get_sha1_array_from_docs(string) {
     return html
 
 }
+
+function get_array_view_functions() {
+    let html = ''
+
+    let array_versions = ['mm', 'hwvx_proto', 'hwvx_gc', 'hwvx_pc', 'hwvx_ps2', 'svtrb_pc', 'svtrb_psp', 'svtrb_ps2', 'pmwr_gc', 'pmwr_pc', 'pmwr_ps2_demo', 'pmwr_ps2', 'pmwr_psp', 'pmwr_xbox', 'bmg_demo', 'bmg_pc', 'bmg_wii', 'bcc_pc', 'bcc_wii']
+
+    for (let string of array_versions) {
+
+        html += `
+function get_${string}_sec_id(string) {
+    switch (string) {
+    default:
+        return null
+    }
+}
+async function im_${string}_x(index) {
+    x.push({
+        sec_id: "AAAA",
+        format: [],
+        game: g.game,
+        console: g.console,
+        name: g.file_name,
+    })
+
+    // im_${string}_file_header(0, 0, x[index].format)
+}
+
+function ex_${string}_x(o, x) {
+
+    g = {
+        divisibility: 16,
+        divisible_prev_value: [],
+        type_string:g.type_string,
+        debug: pk_debug,
+        endian: g.endian,
+        file_dir_type: 0,
+        ordered_ref: 0,
+        unordered_ref: 0,
+        m: 0,
+        oa: [],
+        texture_patch_array: [],
+        animation_patch_array: [],
+        sound_patch_array: [],
+        model_patch_array: [],
+        tex_anims: 0,
+        /*
+        need to get arrays here
+        */
+    }
+
+    globalThis.directory_buffer = new ArrayBuffer(268435455)
+
+    buffer_array.push(directory_buffer)
+    dynamic_buffer = directory_buffer
+
+    let time_array = []
+    let a = Date.now()
+
+    // ex_${string}_file_header(o,x)
+
+    time_array.push(Date.now() - a)
+
+    console.pk_log("saved in " + time_array)
+
+}
+
+///////////////////////////////////////////////
+`
+
+    }
+
+    return html
+}
+
+function generate_file_table_for_array_view() {
+    let html = ''
+
+    let array_versions = ['hwvx_proto', 'hwvx_gc', 'hwvx_pc', 'hwvx_ps2', 'svtrb_pc', 'svtrb_psp', 'svtrb_ps2', 'pmwr_gc', 'pmwr_pc', 'pmwr_ps2_demo', 'pmwr_ps2', 'pmwr_psp', 'pmwr_xbox', 'bmg_demo', 'bmg_pc', 'bmg_wii', 'bcc_pc', 'bcc_wii']
+
+    for (let string of array_versions) {
+html+=
+        `   case 'gjbf':
+        return "${string}_file_header"
+        break
+
+
+function im_${string}_file_header(o, i, x) {
+    x.push({
+        id: gen_id(),
+        sec_id: "gjbf",
+        u32_0: u32(o + 0),
+        u32_4: u32(o + 4),
+        u32_8: u32(o + 8),
+        directory: [],
+    });
+
+    let directory_offset = (u32(12) * 24) + 16
+
+    let time_array = []
+    for (let i = 0; i < u32(12); i++) {
+        let a = Date.now()
+        im_${string}_directory(16 + (i * 24), i, x[i].directory, directory_offset)
+        time_array.push(Date.now() - a)
+    }
+    console.pk_log("saved in " + time_array)
+
+    return x[i].id
+    // 16 bytes;
+
+}
+
+function add_${string}_file_header() {
+    return {
+        id: gen_id(),
+        sec_id: "gjbf",
+        u32_0: 0,
+        u32_4: 0,
+        u32_8: 0,
+        directory: [],
+    };
+
+}
+
+// 
+function info_${string}_file_header() {
+    return {
+        sec_id: "gjbf",
+        multi: 0,
+        u32_0: {n:"magic 1"},
+        u32_4: {n:"magic 2"},
+        u32_8: {n:"version"},
+        section_12: ["]7Zf"],
+    };
+
+}
+
+function ex_${string}_file_header(o, x) {
+    let e = o + 16
+    su32(0, x.u32_0)
+    su32(4, x.u32_4)
+    su32(8, x.u32_8)
+    su32(12, x[0].directory.length)
+
+    let global = ((x[0].directory.length) * 24) + 16
+    e = e + (x[0].directory.length * 24)
+
+    let time_array = []
+    for (let i = 0; i < x[0].directory.length; i++) {
+        let a = Date.now()
+
+        e = ex_${string}_directory(16 + (i * 24), e, x[0].directory[i], global)
+        time_array.push(Date.now() - a)
+
+    }
+
+    console.pk_log("saved in " + time_array)
+
+    g.debug ? ex_debug(o, x.sec_id) : 0;
+    return e
+}
+//////////
+
+`
+    }
+    return html
+
+}
+
+function generate_directory_table_for_file_view() {
+    let html = ''
+
+    let array_versions = ['hwvx_proto', 'hwvx_gc', 'svtrb_pc',]
+
+    for (let string of array_versions) {
+        let is_geo_patch;
+        let is_geo_patch_info;
+        let is_geo_patch_export;
+        if (string === "svtrb_pc") {
+            is_geo_patch_import = `u32(o + 16) ? im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;`
+            is_geo_patch_info = "['E@3Z']"
+            is_geo_patch_export = `e = ex_${string}_datapack(16 + (i * 24), e, x[0].section_datapack[i], global)
+`
+        }else{
+            is_geo_patch_import = `
+    switch (u32(o + 4)) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 8:
+    case 9:
+    case 10:
+        u32(o + 16) ? im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
+        break;
+    case 7:
+        u32(o + 16) ? im_${string}_geo_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
+        break;
+    }
+`
+            is_geo_patch_info = "{s: null}"
+            is_geo_patch_export =`
+switch (x.u32_4) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 8:
+    case 9:
+    case 10:
+        e = ex_${string}_datapack(16 + (i * 24), e, x[0].section_datapack[i], global)
+        break;
+    case 7:
+        e = ex_${string}_geo_datapack(16 + (i * 24), e, x[0].section_datapack[i], global)
+        break;
+    }
+
+`
+        }
+html+=
+
+    `    case ']7Zf':
+        return "${string}_directory"
+        break
+
+function im_${string}_directory(o, i, x, global) {
+    let next_offset = o + 24
+
+       g = {
+            divisible_prev_value: [],
+            debug: pk_debug,
+            type_string:g.type_string,
+            game: g.game,
+            console: g.console,
+            file_version: u32(8),
+            file_dir_type: 0,
+            file_name: g.file_name,
+            endian: g.endian,
+            datapack_offset: 0,
+            datapack_ref: 0,
+            ordered_ref: 0,
+            unordered_ref: 0,
+            m: 0,
+            texture_patch_ref: 0,
+            animation_patch_ref: 0,
+            sound_patch_ref: 0,
+            model_patch_ref: 0,
+            models_array: [],
+               // other arrays heres 
+          }
+
+    g.file_dir_type = return_directory_type(u32(o + 4))
+
+    x.push({
+        id: gen_id(),
+        sec_id: "]7Zf",
+        u32_0: u32(o + 0),
+        u32_4: u32(o + 4),
+        u32_8: u32(o + 8),
+        u32_12: u32(o + 12),
+        u32_16: u32(o + 16),
+        section_datapack: [],
+    });
+
+    ${is_geo_patch_import}
+    return x[i].id
+    // 24 bytes;
+
+}
+
+function add_${string}_directory() {
+    return {
+        id: gen_id(),
+        sec_id: "]7Zf",
+        u32_0: 0,
+        u32_4: 0,
+        u32_8: 0,
+        u32_12: 0,
+        u32_16: 0,
+        section_datapack: [],
+    };
+
+}
+
+function info_${string}_directory() {
+    return {
+        sec_id: "]7Zf",
+        multi: 1,
+        u32_0: {n:"version"},
+        u32_4: {n:"file type"},
+        u32_8:  {n:"index"},
+        u32_12: 0,
+        u32_16: {
+             {n:"length"},
+        },
+        section_datapack: ${is_geo_patch_info},
+    };
+
+}
+
+
+function ex_${string}_directory(o, e, x, global) {
+    g.oa = []
+    g.texture_patch_array = []
+    g.animation_patch_array = []
+    g.sound_patch_array = []
+    g.model_patch_array = []
+    // add other arrays heres later
+
+    let ce = e
+    g.file_dir_type = return_directory_type(x.u32_4)
+
+    su32(o + 0, x.u32_0)
+    su32(o + 4, x.u32_4)
+    su32(o + 8, x.u32_8)
+    su32(o + 12, x.u32_12)
+    su32(o + 20, e - global)
+
+    ${is_geo_patch_export}
+    dynamic_buffer = directory_buffer
+    su32(o + 16, datapack_buffer.byteLength + patch_buffer.byteLength + ordered_buffer.byteLength)
+
+    g.debug ? ex_debug(o, x.sec_id) : 0;
+    return e
+}
+///////////
+`
+    }
+    return html
+
+}
+
+
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
