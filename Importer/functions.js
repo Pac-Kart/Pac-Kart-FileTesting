@@ -21,6 +21,8 @@ function format_button_clicked() {
 <a id="generate_array_view_top_functions" class="test_line_click">generate_array_view_top_functions</a>
 <a id="generate_array_view_file_header_functions" class="test_line_click">generate_array_view_file_header_functions</a>
 <a id="generate_array_view_directory_functions" class="test_line_click">generate_array_view_directory_functions</a>
+<a id="format_sec_id_from_ex_debug" class="test_line_click">format_sec_id_from_ex_debug</a>
+<a id="format_replace_debug_id_with_sec_id" class="test_line_click">format_replace_debug_id_with_sec_id</a>
 </span>
 </div>
 `
@@ -34,6 +36,8 @@ function format_button_clicked() {
     document.getElementById("generate_array_view_top_functions").addEventListener("click", print_generate_array_view_top_functions);
     document.getElementById("generate_array_view_file_header_functions").addEventListener("click", print_generate_array_view_file_header_functions);
     document.getElementById("generate_array_view_directory_functions").addEventListener("click", print_generate_array_view_directory_functions);
+    document.getElementById("format_sec_id_from_ex_debug").addEventListener("click", print_format_sec_id_from_ex_debug);
+    document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
 
     // format_text_editor_generate()
 
@@ -390,7 +394,7 @@ ${object_html.export_id_html}
 
     }
 
-  function print_generate_array_view_directory_functions() {
+    function print_generate_array_view_directory_functions() {
 
         file_editor.innerHTML = `
         <div style="height:44%;overflow:scroll;">
@@ -409,6 +413,76 @@ ${object_html.export_id_html}
             let string = generate_directory_table_for_file_view()
 
             copy_all.value = string
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_format_sec_id_from_ex_debug() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>format pmwr pc to add sec_id list<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = get_sec_id_from_exdebug_funtion(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_format_replace_debug_id_with_sec_id() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>format pmwr pc to edit debug function<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = get_format_replace_debug_id_with_sec_id(html)
+
+            copy_all.value = string_from_docs
 
         }
 
@@ -4712,8 +4786,7 @@ function generate_file_table_for_array_view() {
     let array_versions = ['hwvx_proto', 'hwvx_gc', 'hwvx_pc', 'hwvx_ps2', 'svtrb_pc', 'svtrb_psp', 'svtrb_ps2', 'pmwr_gc', 'pmwr_pc', 'pmwr_ps2_demo', 'pmwr_ps2', 'pmwr_psp', 'pmwr_xbox', 'bmg_demo', 'bmg_pc', 'bmg_wii', 'bcc_pc', 'bcc_wii']
 
     for (let string of array_versions) {
-html+=
-        `   case 'gjbf':
+        html += `   case 'gjbf':
         return "${string}_file_header"
         break
 
@@ -4803,7 +4876,7 @@ function ex_${string}_file_header(o, x) {
 function generate_directory_table_for_file_view() {
     let html = ''
 
-    let array_versions = ['hwvx_proto', 'hwvx_gc', 'svtrb_pc',]
+    let array_versions = ['hwvx_proto', 'hwvx_gc', 'svtrb_pc', ]
 
     for (let string of array_versions) {
         let is_geo_patch;
@@ -4814,7 +4887,7 @@ function generate_directory_table_for_file_view() {
             is_geo_patch_info = "['E@3Z']"
             is_geo_patch_export = `e = ex_${string}_datapack(16 + (i * 24), e, x[0].section_datapack[i], global)
 `
-        }else{
+        } else {
             is_geo_patch_import = `
     switch (u32(o + 4)) {
     case 1:
@@ -4834,7 +4907,7 @@ function generate_directory_table_for_file_view() {
     }
 `
             is_geo_patch_info = "{s: null}"
-            is_geo_patch_export =`
+            is_geo_patch_export = `
 switch (x.u32_4) {
     case 1:
     case 2:
@@ -4854,9 +4927,8 @@ switch (x.u32_4) {
 
 `
         }
-html+=
-
-    `    case ']7Zf':
+        html +=
+        `    case ']7Zf':
         return "${string}_directory"
         break
 
@@ -4967,6 +5039,50 @@ function ex_${string}_directory(o, e, x, global) {
 
 }
 
+function get_sec_id_from_exdebug_funtion(string) {
+    let string_sec_id_function = ''
+    let array_functions = string.split("function ex_")
 
+    let array_name = []
+    let array_sec_id = []
+    for (let string_function of array_functions) {
+        if (string_function.includes(`g.debug ? ex_debug(o, "`)) {
+            string_function = string_function.split(`") : 0;`)[0]
+            let string_name = string_function.split(`(o,`)[0]
+            let string_sec_id = string_function.split(`g.debug ? ex_debug(o, "`)[1]
+
+            array_name.push(`"${string_name}"`)
+            array_sec_id.push(`"${string_sec_id}"`)
+
+            string_sec_id_function+= `
+    case '${string_sec_id}':
+        return "pmwr_pc_${string_name}"
+        break`
+        }
+    }
+
+    let html = `{
+    name:[${array_name}],
+    sha1:[${array_sec_id}],
+    }`
+
+    return html + string_sec_id_function
+
+}
+
+function get_format_replace_debug_id_with_sec_id(string) {
+    let array_lines = string.split("\n")
+    let string_new = ""
+
+    for (let line of array_lines) {
+            if (line.includes(`g.debug ? ex_debug(o, "`)) {
+                line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
+            }
+        string_new+= line + "\n"
+    }
+
+    return string_new
+
+}
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
