@@ -23,6 +23,7 @@ function format_button_clicked() {
 <a id="generate_array_view_directory_functions" class="test_line_click">generate_array_view_directory_functions</a>
 <a id="format_sec_id_from_ex_debug" class="test_line_click">format_sec_id_from_ex_debug</a>
 <a id="format_replace_debug_id_with_sec_id" class="test_line_click">format_replace_debug_id_with_sec_id</a>
+<a id="format_pmwr_pc_add_sec_id" class="test_line_click">format_pmwr_pc_add_sec_id</a>
 </span>
 </div>
 `
@@ -38,6 +39,7 @@ function format_button_clicked() {
     document.getElementById("generate_array_view_directory_functions").addEventListener("click", print_generate_array_view_directory_functions);
     document.getElementById("format_sec_id_from_ex_debug").addEventListener("click", print_format_sec_id_from_ex_debug);
     document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
+    document.getElementById("format_pmwr_pc_add_sec_id").addEventListener("click", print_format_pmwr_pc_add_sec_id);
 
     // format_text_editor_generate()
 
@@ -489,6 +491,43 @@ ${object_html.export_id_html}
         copy_all.addEventListener("click", (e) => copy_from_textarea(e))
 
     }
+
+    function print_format_pmwr_pc_add_sec_id() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>js import tables in first textarea<br> array in 2nd<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_js_import_string"></textarea><br><br>
+            </div>
+            <div stlye="padding:1%;"><textarea id="paste_js_export_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_string</p>
+            <textarea id="js_string"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_js_export_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let string_import = paste_js_import_string.value
+            let string_export = paste_js_export_string.value
+
+            let string_from_js = get_format_replace_x_with_sec_id(string_import,string_export)
+
+            copy_all.value = string_from_js
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
 
     function copy_from_textarea(e) {
         let element = e.srcElement
@@ -5063,7 +5102,7 @@ function get_sec_id_from_exdebug_funtion(string) {
 
     let html = `{
     name:[${array_name}],
-    sha1:[${array_sec_id}],
+    sec_id:[${array_sec_id}],
     }`
 
     return html + string_sec_id_function
@@ -5079,6 +5118,27 @@ function get_format_replace_debug_id_with_sec_id(string) {
                 line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
             }
         string_new+= line + "\n"
+    }
+
+    return string_new
+
+}
+
+function get_format_replace_x_with_sec_id(string_html, array_sec_ids) {
+
+let string_new = ''
+   let array_split_html = string_html.split('function im_')
+
+    for (let string_function of array_split_html) {
+        let string_end = string_function.split('}')[0]
+        let name = string_end.split('(o')[0]
+        let index = array_sec_ids.name.indexOf(name)
+
+        let sec_id = array_sec_ids.sec_id[index]
+
+        string_function = string_function.replace('x.push({',`x.push({sec_id: "${sec_id}",`)
+
+        string_new+= `function im_${string_function}`
     }
 
     return string_new
