@@ -41,11 +41,7 @@ function format_button_clicked() {
     document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
     document.getElementById("format_pmwr_pc_add_sec_id").addEventListener("click", print_format_pmwr_pc_add_sec_id);
 
-    // format_text_editor_generate()
-
     function format_text_editor_generate() {
-        // file_editor.innerHTML = `<div style:inline-flex:>
-        // </div>`
 
         file_editor.innerHTML = `
         <div style="height:22%;overflow:scroll;">
@@ -158,7 +154,7 @@ ${object_html.export_id_html}
                 return
             }
 
-            let object_html = html_to_all_sec(html)
+            let object_html = html_to_listed_sec(html)
 
             copy_all.value = `
 /* start sec id list */
@@ -518,7 +514,7 @@ ${object_html.export_id_html}
             let string_import = paste_js_import_string.value
             let string_export = paste_js_export_string.value
 
-            let string_from_js = get_format_replace_x_with_sec_id(string_import,string_export)
+            let string_from_js = get_format_replace_x_with_sec_id(string_import, string_export)
 
             copy_all.value = string_from_js
 
@@ -527,7 +523,6 @@ ${object_html.export_id_html}
         copy_all.addEventListener("click", (e) => copy_from_textarea(e))
 
     }
-
 
     function copy_from_textarea(e) {
         let element = e.srcElement
@@ -2005,7 +2000,7 @@ function html_to_import(inputHtml) {
                     if (cells[2].innerHTML.includes("string")) {
                         let propertyName = "section_" + offset;
 
-                        jsFunction += `    ${propertyName}: [im_string(u32(o + ${offset}), 0, false)],\n`;
+                        jsFunction += `    ${propertyName}: im_string(u32(o + ${offset}), 0, false),\n`;
 
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
@@ -3178,7 +3173,7 @@ function html_to_import(inputHtml) {
                     if (cells[2].innerHTML.includes("string")) {
                         let propertyName = "section_" + offset;
 
-                        jsFunction += `    ${propertyName}: [im_string(u32(o + ${offset}), 0, false)],\n`;
+                        jsFunction += `    ${propertyName}: im_string(u32(o + ${offset}), 0, false),\n`;
 
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
@@ -4537,6 +4532,60 @@ function html_to_export(inputHtml) {
 }
 
 function html_to_all_sec(inputHtml) {
+    let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
+    unordered = unordered.split('</section>')[0]
+
+    let array_h2_split = unordered.split('<h2 id=')
+    let array_list_first_entry = true;
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("linked to by:<br>")) {
+            if (array_list_first_entry) {
+                array_list_first_entry = false
+            } else {
+                array_list_of_sections.push(string_html_section)
+                string_html_section = ''
+            }
+        } else {
+            string_html_section += string_table
+        }
+    }
+
+    // console.log(string_html_section)
+
+    let import_html = ''
+    let edit_html = ''
+    let info_html = ''
+    let sec_id_html = ''
+    let export_id_html = ''
+        globalThis.function_sec_id_name = []
+    for (let section of array_list_of_sections) {
+        import_html += html_to_import(section)
+        edit_html += html_to_edit(section)
+        info_html += html_to_info(section)
+        sec_id_html += html_to_sec_list(section)
+        export_id_html += html_to_export(section)
+    }
+
+    // globalThis.function_sec_id_name = []
+    // let import_html = html_to_import(inputHtml)
+    // let edit_html = html_to_edit(inputHtml)
+    // let info_html = html_to_info(inputHtml)
+    // let sec_id_html = html_to_sec_list(inputHtml)
+    // let export_id_html = html_to_export(inputHtml)
+
+    return {
+        import_html: import_html,
+        edit_html: edit_html,
+        info_html: info_html,
+        sec_id_html: sec_id_html,
+        export_id_html: export_id_html,
+    }
+
+}
+
+function html_to_listed_sec(inputHtml) {
     globalThis.function_sec_id_name = []
     let import_html = html_to_import(inputHtml)
     let edit_html = html_to_edit(inputHtml)
@@ -4551,28 +4600,6 @@ function html_to_all_sec(inputHtml) {
         sec_id_html: sec_id_html,
         export_id_html: export_id_html,
     }
-
-    console.log(`
-/* start sec id list */
-${sec_id_html}
-/* end sec id list */
-/////////////////////
-/* start import list */
-${import_html}
-/* end import list */
-/////////////////////
-/* start add list */
-${edit_html}
-/* end add list */
-/////////////////////
-/* start info list */
-${info_html}
-/* end info list */
-/////////////////////
-/* start export list */
-${export_id_html}
-/* end export list */
-`)
 
 }
 
@@ -4966,8 +4993,7 @@ switch (x.u32_4) {
 
 `
         }
-        html +=
-        `    case ']7Zf':
+        html += `    case ']7Zf':
         return "${string}_directory"
         break
 
@@ -5093,7 +5119,7 @@ function get_sec_id_from_exdebug_funtion(string) {
             array_name.push(`"${string_name}"`)
             array_sec_id.push(`"${string_sec_id}"`)
 
-            string_sec_id_function+= `
+            string_sec_id_function += `
     case '${string_sec_id}':
         return "pmwr_pc_${string_name}"
         break`
@@ -5114,10 +5140,10 @@ function get_format_replace_debug_id_with_sec_id(string) {
     let string_new = ""
 
     for (let line of array_lines) {
-            if (line.includes(`g.debug ? ex_debug(o, "`)) {
-                line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
-            }
-        string_new+= line + "\n"
+        if (line.includes(`g.debug ? ex_debug(o, "`)) {
+            line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
+        }
+        string_new += line + "\n"
     }
 
     return string_new
@@ -5126,8 +5152,8 @@ function get_format_replace_debug_id_with_sec_id(string) {
 
 function get_format_replace_x_with_sec_id(string_html, array_sec_ids) {
 
-let string_new = ''
-   let array_split_html = string_html.split('function im_')
+    let string_new = ''
+    let array_split_html = string_html.split('function im_')
 
     for (let string_function of array_split_html) {
         let string_end = string_function.split('}')[0]
@@ -5136,9 +5162,9 @@ let string_new = ''
 
         let sec_id = array_sec_ids.sec_id[index]
 
-        string_function = string_function.replace('x.push({',`x.push({sec_id: "${sec_id}",`)
+        string_function = string_function.replace('x.push({', `x.push({sec_id: "${sec_id}",`)
 
-        string_new+= `function im_${string_function}`
+        string_new += `function im_${string_function}`
     }
 
     return string_new
