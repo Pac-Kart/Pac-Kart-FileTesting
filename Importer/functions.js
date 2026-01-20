@@ -1923,7 +1923,6 @@ function html_to_import(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -2041,9 +2040,6 @@ function html_to_import(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -2468,7 +2464,6 @@ function html_to_eximport(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -2591,9 +2586,6 @@ function html_to_eximport(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -3096,7 +3088,6 @@ function html_to_import(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -3218,9 +3209,6 @@ function html_to_import(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -3460,7 +3448,6 @@ function html_to_edit(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -3582,9 +3569,6 @@ function html_to_edit(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -3824,7 +3808,6 @@ function html_to_info(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -3948,9 +3931,6 @@ function html_to_info(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -4210,7 +4190,6 @@ function html_to_export(inputHtml) {
 
                             } else {
                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "unknown":
                                 case "mysterious":
                                     description = 'multi offset'
                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
@@ -4346,9 +4325,6 @@ function html_to_export(inputHtml) {
                 } else if (description === 'multi offset') {
 
                     switch (ishook) {
-                    case "unknown":
-                        multilink_amount = "04"
-                        break
                     case "mysterious":
                         multilink_amount = "64"
                         break
@@ -4540,18 +4516,22 @@ function html_to_all_sec(inputHtml) {
     let array_list_of_sections = []
     let string_html_section = ''
     for (let string_table of array_h2_split) {
-        if (string_table.includes("linked to by:<br>")) {
-            if (array_list_first_entry) {
-                array_list_first_entry = false
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                if (array_list_first_entry) {
+                    array_list_first_entry = false
+                string_html_section += "<h2 id=" + string_table
+                } else {
+                    array_list_of_sections.push(string_html_section)
+                    string_html_section = ''
+                    string_html_section += "<h2 id=" + string_table
+                }
+
             } else {
-                array_list_of_sections.push(string_html_section)
-                string_html_section = ''
+            string_html_section += "<h2 id=" + string_table
             }
-        } else {
-            string_html_section += string_table
         }
     }
-
     // console.log(string_html_section)
 
     let import_html = ''
@@ -4559,8 +4539,8 @@ function html_to_all_sec(inputHtml) {
     let info_html = ''
     let sec_id_html = ''
     let export_id_html = ''
-        globalThis.function_sec_id_name = []
     for (let section of array_list_of_sections) {
+        globalThis.function_sec_id_name = []
         import_html += html_to_import(section)
         edit_html += html_to_edit(section)
         info_html += html_to_info(section)
