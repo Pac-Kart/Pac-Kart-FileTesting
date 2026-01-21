@@ -12,8 +12,10 @@ function format_button_clicked() {
     display: inline-grid;
     align-content: start;
 ">
-<a id="generate_full_tables" class="test_line_click">generate_full_tables</a>
+<a id="generate_unordered_tables" class="test_line_click">generate_unordered_tables</a>
+<a id="generate_world_tables" class="test_line_click">generate_world_tables</a>
 <a id="generate_sec_tables" class="test_line_click">generate_sec_tables</a></a>
+<a id="generate_ordered_section" class="test_line_click">generate_ordered_section</a></a>
 <a id="format_table" class="test_line_click">format_table</a></a>
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
@@ -28,8 +30,10 @@ function format_button_clicked() {
 </div>
 `
 
-    document.getElementById("generate_full_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("generate_unordered_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("generate_world_tables").addEventListener("click", format_generate_world_tables);
     document.getElementById("generate_sec_tables").addEventListener("click", format_generate_sec_tables);
+    document.getElementById("generate_ordered_section").addEventListener("click", format_generate_ordered_section);
     document.getElementById("format_table").addEventListener("click", format_text_editor_table);
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
@@ -77,6 +81,83 @@ function format_button_clicked() {
             }
 
             let object_html = html_to_all_sec(html)
+
+            copy_all.value = `
+/* start sec id list */
+${object_html.sec_id_html}
+/* end sec id list */
+/////////////////////
+/* start import list */
+${object_html.import_html}
+/* end import list */
+/////////////////////
+/* start add list */
+${object_html.edit_html}
+/* end add list */
+/////////////////////
+/* start info list */
+${object_html.info_html}
+/* end info list */
+/////////////////////
+/* start export list */
+${object_html.export_id_html}
+/* end export list */
+`
+
+            copy_sec.value = object_html.sec_id_html
+            copy_import.value = object_html.import_html
+            copy_add.value = object_html.edit_html
+            copy_edit.value = object_html.info_html
+            copy_export.value = object_html.export_id_html
+
+        }
+        // paste_html
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_sec.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_import.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_add.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_edit.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_export.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function format_generate_world_tables() {
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate tables<br>
+        paste a full html table from the docs<br>
+        this will paste all sections from the world list</p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_sec</p>
+            <textarea id="copy_sec"></textarea><br><hr>
+            <p>copy_import</p>
+            <textarea id="copy_import"></textarea><br><hr>
+            <p>copy_add</p>
+            <textarea id="copy_add"></textarea><br><hr>
+            <p>copy_edit</p>
+            <textarea id="copy_edit"></textarea><br><hr>
+            <p>copy_export</p>
+            <textarea id="copy_export"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = html_to_world_sec(html)
 
             copy_all.value = `
 /* start sec id list */
@@ -220,6 +301,38 @@ ${object_html.export_id_html}
             }
 
             let object_html = remove_hr_space(html)
+
+            copy_all.value = object_html
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+    function format_generate_ordered_section() {
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate ordered list<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = get_print_ordered_list_functions(html)
 
             copy_all.value = object_html
 
@@ -4520,7 +4633,7 @@ function html_to_all_sec(inputHtml) {
             if (string_table.includes("linked to by:<br>")) {
                 if (array_list_first_entry) {
                     array_list_first_entry = false
-                string_html_section += "<h2 id=" + string_table
+                    string_html_section += "<h2 id=" + string_table
                 } else {
                     array_list_of_sections.push(string_html_section)
                     string_html_section = ''
@@ -4528,10 +4641,12 @@ function html_to_all_sec(inputHtml) {
                 }
 
             } else {
-            string_html_section += "<h2 id=" + string_table
+                string_html_section += "<h2 id=" + string_table
             }
         }
     }
+    array_list_of_sections.push(string_html_section)
+
     // console.log(string_html_section)
 
     let import_html = ''
@@ -4548,12 +4663,63 @@ function html_to_all_sec(inputHtml) {
         export_id_html += html_to_export(section)
     }
 
-    // globalThis.function_sec_id_name = []
-    // let import_html = html_to_import(inputHtml)
-    // let edit_html = html_to_edit(inputHtml)
-    // let info_html = html_to_info(inputHtml)
-    // let sec_id_html = html_to_sec_list(inputHtml)
-    // let export_id_html = html_to_export(inputHtml)
+    return {
+        import_html: import_html,
+        edit_html: edit_html,
+        info_html: info_html,
+        sec_id_html: sec_id_html,
+        export_id_html: export_id_html,
+    }
+
+}
+
+function html_to_world_sec(inputHtml) {
+    let ordered = inputHtml.split('File Specific Section</h2>')[1]
+    ordered = ordered.split('unordered_list">Unordered List</h2>')[0]
+
+    let array_h2_split = ordered.split('<h2 id=')
+    let array_list_first_entry = true;
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+        let string_check_first_line = string_table.split('\n')[0]
+        if (string_check_first_line.includes("world")) {
+            if (string_table.includes("<table")) {
+                if (string_table.includes("linked to by:<br>")) {
+                    if (array_list_first_entry) {
+                        array_list_first_entry = false
+                        string_html_section += "<h2 id=" + string_table
+                    } else {
+                        array_list_of_sections.push(string_html_section)
+                        string_html_section = ''
+                        string_html_section += "<h2 id=" + string_table
+                    }
+
+                } else {
+                    string_html_section += "<h2 id=" + string_table
+                }
+            }
+
+        } else {// skip
+        }
+    }
+    array_list_of_sections.push(string_html_section)
+
+    // console.log(string_html_section)
+
+    let import_html = ''
+    let edit_html = ''
+    let info_html = ''
+    let sec_id_html = ''
+    let export_id_html = ''
+    for (let section of array_list_of_sections) {
+        globalThis.function_sec_id_name = []
+        import_html += html_to_import(section)
+        edit_html += html_to_edit(section)
+        info_html += html_to_info(section)
+        sec_id_html += html_to_sec_list(section)
+        export_id_html += html_to_export(section)
+    }
 
     return {
         import_html: import_html,
@@ -5148,6 +5314,146 @@ function get_format_replace_x_with_sec_id(string_html, array_sec_ids) {
     }
 
     return string_new
+
+}
+
+function get_print_ordered_list_functions(string_html) {
+    let string_type = "bmg_demo"
+    let ordered_list = string_html.split('in order the sections contained are:<br>')[1]
+    ordered_list = ordered_list.split("<hr>")[0]
+    let array_ordered_list = ordered_list.split(`<a href="#`)
+    let string_ordered_list_arrays = ''
+    for (let tag of array_ordered_list) {
+        if (tag.includes(string_type)) {
+            let string_tag = tag.split(`">`)[0]
+            string_ordered_list_arrays += `        ${string_tag}: [],\n`
+        }
+    }
+
+    let file_specific = string_html.split('Ordered List File Specific Section')[1]
+    file_specific = file_specific.split('<hr>')[0]
+    file_specific_tr = file_specific.split('<tr>')
+    let string_file_type = ''
+    let string_ex_file_type = ''
+    for (let string_tr of file_specific_tr) {
+        array_td = string_tr.split("<td>")
+        if (array_td.length === 1) {// skip
+        } else {
+
+            let string_case = array_td[1]
+            string_case = string_case.split('</td>')[0]
+            string_case = string_case.split('=')[1].trim()
+
+            let string_function = array_td[2]
+            string_function = string_function.split(`href="#`)[1]
+            string_function = string_function.split(`">`)[0]
+            string_file_type += `
+        case "${string_case}":
+            im_${string_function}(o, x[0].file_specific)
+            break
+`
+            string_ex_file_type += `
+        case "${string_case}":
+                e = ex_${string_function}(o, x.file_specific[0])
+            break
+`
+
+        }
+    }
+
+    let array_h2_split = string_html.split('<h2 id="')
+    let string_unordered_list = ''
+    let string_ex_unorderd_arrays = ''
+    let string_g_array_ex = ''
+    let string_generate_id_offset = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                string_table = string_table.split(`">`)[0]
+                string_unordered_list += `            ${string_table}: [],\n`
+                string_ex_unorderd_arrays+= `            ${string_table}_array: [],\n`
+                string_g_array_ex+=`            g.${string_table}_array = []\n`
+                string_generate_id_offset+=`            generate_id_offset_array(g.${string_table}_array = [], x.${string_table})\n`
+            }
+        }
+    }
+
+    let string_ordered_list_function = `
+function im_${string_type}_ordered(o, x) {
+
+    x.push({
+        sec_id: "ordr",
+        id: gen_id(),
+    ${string_ordered_list_arrays}
+    })
+
+    im_${string_type}_unordered(o,x[0].unordered)
+    g.ordered_ref = x[0]
+
+    switch (g.file_dir_type) {
+    ${string_file_type}
+    default:
+        console.pk_log('file type is not set')
+    }
+
+
+}
+
+function im_${string_type}_unordered(o,x) {
+    x.push({
+            sec_id: "4unr",
+            ${string_unordered_list}
+        })
+    g.unordered_ref = x[0]
+
+}
+
+export list:
+${string_ex_unorderd_arrays}
+
+g list:
+${string_g_array_ex}
+
+ex_ordered:
+
+function ex_${string_type}_ordered(o, x) {
+    globalThis.ordered_buffer = new ArrayBuffer(268435455)
+
+    buffer_array.push(ordered_buffer)
+    dynamic_buffer = ordered_buffer
+
+    let aftero = o
+    let e = o
+    o = 0
+    g.m = o
+    g.unordered_ref = x.unordered[0]
+    g.ordered_ref = x
+
+    ex_${string_type}_unordered(x.unordered[0])
+
+    switch (g.file_dir_type) {
+    ${string_ex_file_type}
+    default:
+        console.pk_log('file type is not set')
+    }
+
+    let current_patch_list_divis = divisible(g.divisible_prev_value[0], g.divisible_prev_value[1])
+    let patch_list_divis = divisible(g.divisible_prev_value[0] + 1, 4)
+    e -= current_patch_list_divis
+    e += patch_list_divis
+
+    ordered_buffer = ordered_buffer.slice(0, e)
+
+    buffer_array[buffer_array.length - 1] = ordered_buffer
+
+    return e + aftero
+}
+function ex_${string_type}_unordered(x) {
+${string_generate_id_offset}
+
+}
+`
+    return string_ordered_list_function
 
 }
 
