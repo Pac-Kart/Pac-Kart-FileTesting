@@ -12,7 +12,9 @@ function format_button_clicked() {
     display: inline-grid;
     align-content: start;
 ">
+<a id="generate_all_ordered_tables" class="test_line_click">generate_all_ordered_tables</a>
 <a id="generate_unordered_tables" class="test_line_click">generate_unordered_tables</a>
+<a id="generate_ordered_tables" class="test_line_click">generate_ordered_tables</a>
 <a id="generate_world_tables" class="test_line_click">generate_world_tables</a>
 <a id="generate_sec_tables" class="test_line_click">generate_sec_tables</a></a>
 <a id="generate_ordered_section" class="test_line_click">generate_ordered_section</a></a>
@@ -30,7 +32,9 @@ function format_button_clicked() {
 </div>
 `
 
+    document.getElementById("generate_all_ordered_tables").addEventListener("click", format_generate_all_ordered_tables);
     document.getElementById("generate_unordered_tables").addEventListener("click", format_text_editor_generate);
+    document.getElementById("generate_ordered_tables").addEventListener("click", format_text_editor_generate_ordered);
     document.getElementById("generate_world_tables").addEventListener("click", format_generate_world_tables);
     document.getElementById("generate_sec_tables").addEventListener("click", format_generate_sec_tables);
     document.getElementById("generate_ordered_section").addEventListener("click", format_generate_ordered_section);
@@ -80,7 +84,149 @@ function format_button_clicked() {
                 return
             }
 
-            let object_html = html_to_all_sec(html)
+            let object_html = html_to_all_unordered_sec(html)
+
+            copy_all.value = `
+/* start sec id list */
+${object_html.sec_id_html}
+/* end sec id list */
+/////////////////////
+/* start import list */
+${object_html.import_html}
+/* end import list */
+/////////////////////
+/* start add list */
+${object_html.edit_html}
+/* end add list */
+/////////////////////
+/* start info list */
+${object_html.info_html}
+/* end info list */
+/////////////////////
+/* start export list */
+${object_html.export_id_html}
+/* end export list */
+`
+
+            copy_sec.value = object_html.sec_id_html
+            copy_import.value = object_html.import_html
+            copy_add.value = object_html.edit_html
+            copy_edit.value = object_html.info_html
+            copy_export.value = object_html.export_id_html
+
+        }
+        // paste_html
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_sec.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_import.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_add.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_edit.addEventListener("click", (e) => copy_from_textarea(e))
+        copy_export.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+
+    function format_generate_all_ordered_tables() {
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate tables<br>
+        paste a full html table from the docs<br>
+        this will paste all sections in the ordered list</p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = html_to_all_ordered(html)
+
+            copy_all.value = `
+/* start sec id list */
+${object_html.sec_id_html}
+/* end sec id list */
+/////////////////////
+/* start import list */
+${object_html.import_html}
+/* end import list */
+/////////////////////
+/* start add list */
+${object_html.edit_html}
+/* end add list */
+/////////////////////
+/* start info list */
+${object_html.info_html}
+/* end info list */
+/////////////////////
+/* start export list */
+${object_html.export_id_html}
+/* end export list */
+/* start list */
+${object_html.list}
+/* end list */
+/* start world list */
+${object_html.world}
+/* end world list */
+`
+
+            // copy_all.value = object_html.sec_id_html
+
+        }
+        // paste_html
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function format_text_editor_generate_ordered() {
+
+        file_editor.innerHTML = `
+        <div style="height:22%;overflow:scroll;">
+        <p>generate tables<br>
+        paste a full html table from the docs<br>
+        this will paste all sections in the unordered list</p>
+            <div stlye="padding:1%;"><textarea id="paste_html"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:77%;overflow:scroll;">
+            <p>copy_all</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_sec</p>
+            <textarea id="copy_sec"></textarea><br><hr>
+            <p>copy_import</p>
+            <textarea id="copy_import"></textarea><br><hr>
+            <p>copy_add</p>
+            <textarea id="copy_add"></textarea><br><hr>
+            <p>copy_edit</p>
+            <textarea id="copy_edit"></textarea><br><hr>
+            <p>copy_export</p>
+            <textarea id="copy_export"></textarea><br><hr>
+        </div>
+        `
+
+        document.getElementById("paste_html").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_html.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = html_to_all_ordered_sec(html)
 
             copy_all.value = `
 /* start sec id list */
@@ -2097,7 +2243,7 @@ function html_to_import(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -2641,7 +2787,7 @@ function html_to_eximport(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -3262,7 +3408,7 @@ function html_to_import(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -3622,7 +3768,7 @@ function html_to_edit(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -3982,7 +4128,7 @@ function html_to_info(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -4367,7 +4513,7 @@ function html_to_export(inputHtml) {
                         let bintype = "//"
 
                         for (let i = 0; i < tabletds.length; i += 3) {
-                            if (tabletds[i].innerText.trim() === typeoffset) {
+                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
                                 bintype = tabletds[i + 1].innerText
                                 i += 10000
                             }
@@ -4620,7 +4766,157 @@ function html_to_export(inputHtml) {
 
 }
 
-function html_to_all_sec(inputHtml) {
+function html_to_all_ordered(inputHtml) {
+    let ordered = inputHtml.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
+    unordered = ordered.split('unordered_list">Unordered List</h2>')[0]
+    let array_h2_split = unordered.split('<h2 id=')
+    let array_list_first_entry = true;
+    let first_table = true
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                if (array_list_first_entry) {
+                    array_list_first_entry = false
+                    string_html_section += "<h2 id=" + string_table
+                } else {
+                    array_list_of_sections.push(string_html_section)
+                    string_html_section = ''
+                    string_html_section += "<h2 id=" + string_table
+                }
+
+            } else {
+                if (first_table === true) {
+                    first_table = false
+                } else {
+                    string_html_section += "<h2 id=" + string_table
+                }
+            }
+        }
+    }
+    array_list_of_sections.push(string_html_section)
+
+
+
+
+
+    unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
+    unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
+
+    array_h2_split = unordered.split('<h2 id=')
+    array_list_first_entry = true;
+    string_html_section = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                if (array_list_first_entry) {
+                    array_list_first_entry = false
+                    string_html_section += "<h2 id=" + string_table
+                } else {
+                    array_list_of_sections.push(string_html_section)
+                    string_html_section = ''
+                    string_html_section += "<h2 id=" + string_table
+                }
+
+            } else {
+                string_html_section += "<h2 id=" + string_table
+            }
+        }
+    }
+    array_list_of_sections.push(string_html_section)
+
+
+
+
+    
+    let import_html = ''
+    let edit_html = ''
+    let info_html = ''
+    let sec_id_html = ''
+    let export_id_html = ''
+    for (let section of array_list_of_sections) {
+        globalThis.function_sec_id_name = []
+        import_html += html_to_import(section)
+        edit_html += html_to_edit(section)
+        info_html += html_to_info(section)
+        sec_id_html += html_to_sec_list(section)
+        export_id_html += html_to_export(section)
+    }
+
+    let list = get_print_ordered_list_functions(inputHtml)
+    let world = html_to_world_sec(inputHtml)
+
+
+    let world_html = world.import_html + world.export_id_html
+
+    return {
+        import_html: import_html,
+        edit_html: edit_html,
+        info_html: info_html,
+        sec_id_html: sec_id_html,
+        export_id_html: export_id_html,
+        list: list,
+        world: world_html,
+    }
+
+}
+
+
+function html_to_all_ordered_sec(inputHtml) {
+    let ordered = inputHtml.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
+    unordered = ordered.split('unordered_list">Unordered List</h2>')[0]
+    let array_h2_split = unordered.split('<h2 id=')
+    let array_list_first_entry = true;
+    let first_table = true
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                if (array_list_first_entry) {
+                    array_list_first_entry = false
+                    string_html_section += "<h2 id=" + string_table
+                } else {
+                    array_list_of_sections.push(string_html_section)
+                    string_html_section = ''
+                    string_html_section += "<h2 id=" + string_table
+                }
+
+            } else {
+                if (first_table === true) {
+                    first_table = false
+                } else {
+                    string_html_section += "<h2 id=" + string_table
+                }
+            }
+        }
+    }
+    array_list_of_sections.push(string_html_section)
+    let import_html = ''
+    let edit_html = ''
+    let info_html = ''
+    let sec_id_html = ''
+    let export_id_html = ''
+    for (let section of array_list_of_sections) {
+        globalThis.function_sec_id_name = []
+        import_html += html_to_import(section)
+        edit_html += html_to_edit(section)
+        info_html += html_to_info(section)
+        sec_id_html += html_to_sec_list(section)
+        export_id_html += html_to_export(section)
+    }
+
+    return {
+        import_html: import_html,
+        edit_html: edit_html,
+        info_html: info_html,
+        sec_id_html: sec_id_html,
+        export_id_html: export_id_html,
+    }
+
+}
+function html_to_all_unordered_sec(inputHtml) {
     let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
     unordered = unordered.split('</section>')[0]
 
@@ -4685,23 +4981,10 @@ function html_to_world_sec(inputHtml) {
         let string_check_first_line = string_table.split('\n')[0]
         if (string_check_first_line.includes("world")) {
             if (string_table.includes("<table")) {
-                if (string_table.includes("linked to by:<br>")) {
-                    if (array_list_first_entry) {
-                        array_list_first_entry = false
-                        string_html_section += "<h2 id=" + string_table
-                    } else {
-                        array_list_of_sections.push(string_html_section)
-                        string_html_section = ''
-                        string_html_section += "<h2 id=" + string_table
-                    }
-
-                } else {
-                    string_html_section += "<h2 id=" + string_table
-                }
+                string_html_section += "<h2 id=" + string_table
             }
-
-        } else {// skip
         }
+
     }
     array_list_of_sections.push(string_html_section)
 
@@ -5318,15 +5601,28 @@ function get_format_replace_x_with_sec_id(string_html, array_sec_ids) {
 }
 
 function get_print_ordered_list_functions(string_html) {
-    let string_type = "bmg_demo"
+    let get_type_string = string_html.split('<a class="link" href="#')[1]
+    let string_type = get_type_string.split(`_file_header">`)[0]
+
     let ordered_list = string_html.split('in order the sections contained are:<br>')[1]
     ordered_list = ordered_list.split("<hr>")[0]
     let array_ordered_list = ordered_list.split(`<a href="#`)
     let string_ordered_list_arrays = ''
+    let string_ordered_list_ex_function = ''
     for (let tag of array_ordered_list) {
         if (tag.includes(string_type)) {
             let string_tag = tag.split(`">`)[0]
             string_ordered_list_arrays += `        ${string_tag}: [],\n`
+
+            if (string_tag.includes('unordered') || string_tag.includes('offset_patch_list') || string_tag.includes('file_specific_section')) {// skip
+            } else {
+                string_ordered_list_ex_function += `
+    if (g.ordered_ref.${string_tag}.length) {
+        e = ex_ma(g.ordered_ref.${string_tag}, g.${string_tag}_array, ex_${string_tag}, e, g.m)
+    }
+`
+            }
+
         }
     }
 
@@ -5371,9 +5667,9 @@ function get_print_ordered_list_functions(string_html) {
             if (string_table.includes("linked to by:<br>")) {
                 string_table = string_table.split(`">`)[0]
                 string_unordered_list += `            ${string_table}: [],\n`
-                string_ex_unorderd_arrays+= `            ${string_table}_array: [],\n`
-                string_g_array_ex+=`            g.${string_table}_array = []\n`
-                string_generate_id_offset+=`            generate_id_offset_array(g.${string_table}_array = [], x.${string_table})\n`
+                string_ex_unorderd_arrays += `            ${string_table}_array: [],\n`
+                string_g_array_ex += `            g.${string_table}_array = []\n`
+                string_generate_id_offset += `            generate_id_offset_array(g.${string_table}_array = [], x.${string_table})\n`
             }
         }
     }
@@ -5452,6 +5748,14 @@ function ex_${string_type}_unordered(x) {
 ${string_generate_id_offset}
 
 }
+function ex_${string_type}_ordered_list_layout(o) {
+
+${string_ordered_list_ex_function}
+
+}
+/*
+e = ex_${string_type}_ordered_list_layout(e)
+place in basic_04 & world functions
 `
     return string_ordered_list_function
 

@@ -162,6 +162,7 @@ function get_bmg_demo_basic_audio_0(o, e) {
     let start = e + u32(o + 0)
     let end = start + u32(o + 4)
     get_bmg_demo_basic_audio_0_0(start, end, e)
+    get_bmg_demo_basic_end(end)
 
     if (pk_audio_end_offset < end) {
         pk_audio_end_offset = end
@@ -172,6 +173,16 @@ function get_bmg_demo_basic_audio_0_0(o, end, e) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
 
 }
+function get_bmg_demo_basic_end(o) {
+    console.log(get_string(o, 0, false))
+    console.log(o)
+    
+    // if (u32(o + 24) !== 2 || u32(o + 64) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92))
+        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
+
+}
+
+
 
 function bmg_demo_get_index_patch_list(o, patch_offset) {
     patchlistoffset = patch_offset
