@@ -21,6 +21,7 @@ function format_button_clicked() {
 <a id="format_table" class="test_line_click">format_table</a></a>
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
+<a id="linked_to_by_doc_table" class="test_line_click">linked_to_by_doc_table</a>
 <a id="generate_sha1_array" class="test_line_click">generate_sha1_array</a>
 <a id="generate_array_view_top_functions" class="test_line_click">generate_array_view_top_functions</a>
 <a id="generate_array_view_file_header_functions" class="test_line_click">generate_array_view_file_header_functions</a>
@@ -41,6 +42,7 @@ function format_button_clicked() {
     document.getElementById("format_table").addEventListener("click", format_text_editor_table);
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
+    document.getElementById("linked_to_by_doc_table").addEventListener("click", print_linked_to_by_doc_table);
     document.getElementById("generate_sha1_array").addEventListener("click", print_generate_sha1_array);
     document.getElementById("generate_array_view_top_functions").addEventListener("click", print_generate_array_view_top_functions);
     document.getElementById("generate_array_view_file_header_functions").addEventListener("click", print_generate_array_view_file_header_functions);
@@ -125,7 +127,6 @@ ${object_html.export_id_html}
         copy_export.addEventListener("click", (e) => copy_from_textarea(e))
 
     }
-
 
     function format_generate_all_ordered_tables() {
 
@@ -556,6 +557,47 @@ ${object_html.export_id_html}
             let object_html = doc_replace_offsets_to_string(docs_html, string_from_js)
 
             js_string.value = string_from_js
+            copy_all.value = object_html
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_linked_to_by_doc_table() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>name of section to print<br> html document in 2<br>
+        this will generate a linked to by section<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_name"></textarea><br><br>
+            </div>
+            <div stlye="padding:1%;"><textarea id="paste_docs"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+            <p>copy_string</p>
+            <textarea id="js_string"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_docs").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_name.value
+            let docs_html = paste_docs.value
+
+            if (html === "") {
+                return
+            }
+
+            let object_html = doc_generate_linked_to_string(docs_html, html)
+
             copy_all.value = object_html
 
         }
@@ -2088,355 +2130,355 @@ function ä(a, o, f) {
     }
 }
 
-function html_to_import(inputHtml) {
-    // Parse the input HTML string into a DOM object
-    const parser = new DOMParser();
-    doc = parser.parseFromString(inputHtml, 'text/html');
-
-    let jsFunction = ''
-
-    const h2_amount = doc.getElementsByTagName('h2');
-    const table_amount = doc.getElementsByTagName('table');
-    for (let i = 0; i < h2_amount.length; i++) {
-        h2Element = h2_amount[i]
-        const table = table_amount[i]
-
-        // Find the <h2> element to extract the function name
-        // const h2Element = doc.querySelector('h2');
-        if (!h2Element) {
-            return "Failed to find the function name";
-        }
-
-        const functionName = h2Element.id;
-
-        // Find all the <tr> elements within the <table> for data extraction
-        // const table = doc.querySelector('table');
-        const rows = table.querySelectorAll('tr');
-
-        // Initialize the JavaScript function string
-        jsFunction += "function im_" + functionName + "(o, ";
-        let is_i = 0
-        if (table.children[1].children[0].children[0].innerText.includes('per') || i === 0) {
-            is_i = 'i'
-            jsFunction += `i ,`
-        }
-        let am_bytes = `\n// ${table.children[1].children[0].children[0].innerText.split('byte')[0].trim()} bytes;\n`
-        jsFunction += `x) {\n`
-
-        // Initialize an empty object for storing the data
-        jsFunction += 'x.push({\n';
-
-        let offsets = ''
-
-        if (is_i === "i") {
-            jsFunction += `    id: gen_id(),\n`
-        }
-
-        // Loop through the table rows to extract data
-        rows.forEach( (row, index) => {
-            if (index === 0) {
-                // Skip the header row
-                return;
-            }
-            let multilink_amount = 0
-
-            const cells = row.querySelectorAll('td');
-            if (cells.length === 3) {
-                const offset = cells[0].textContent;
-                let type;
-                switch (cells[1].textContent) {
-                case "u32":
-                case "u16":
-                case "u8":
-                    type = cells[1].textContent;
-                    break;
-                case "float":
-                    type = "f32"
-                    break;
-                default:
-                    type = "// unknown"
-                }
-
-                // const type = cells[1].textContent;
-                let description
-                let ishook = false
-
-                if (cells[2].children.length) {
-                    if (cells[2].children.length === 1 && cells[2].children[0].tagName === "A") {
-                        let href = cells[2].children[0].href.split("#")[1]
-                        doc.getElementById(href)
-                        let t_h2_amount = doc.getElementsByTagName('h2');
-                        let ttable_amount = doc.getElementsByTagName('table');
-                        for (let ii = 1; ii < h2_amount.length; ii++) {
-                            t_h2_amount = h2_amount[ii]
-                            const table = ttable_amount[ii]
-
-                            if (t_h2_amount.id === href) {
-                                if (table.children[1].children[0].children[0].innerText.includes('per')) {
-                                    description = 'multi offset'
-                                    multilink_amount = parseInt(table.children[1].children[0].children[0].innerText.split("b")[0].trim())
-                                } else {
-                                    description = 'offset'
-                                }
-                                ii += 1000
-
-                            } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
-                                    description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
-                                    description = 'unordered'
-                                }
-
-                            }
-
-                        }
-
-                        // description = 'offset'
-                    } else {
-                        description = 'unknown'
-                    }
-                } else {
-                    if (cells[2].innerText.trim() === "0") {
-                        description = '0'
-                    } else {
-                        description = 'normal'
-                    }
-                }
-
-                let is_case = false
-
-                if (cells[2].innerHTML.includes("based on type")) {
-                    let cases = cells[2].innerHTML.split('\n')
-                    is_case = ""
-                    for (let i = 0; i < cases.length; i++) {
-                        if (cases[i].includes("href")) {
-                            let casescomma = cases[i].split(`">`)[1].split("=")[0].trim().split(",")
-                            for (let ii = 0; ii < casescomma.length; ii++) {
-                                is_case += `    case ${casescomma[ii].trim()}:\n`
-                            }
-                            let tableid = cases[i].split("#")[1].split(`">`)[0].trim()
-                            let is_un = is_unordered(cases[i])
-                            // let is_un = "unknown"
-                            if (is_un === 'y') {
-                                is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
-
-                            } else {
-                                let is_ordered = getisordered(tableid)
-
-                                is_case += `x[${is_i}].section_` + offset + ` = in_ml(u32(o + ${offset}), g.${tableid}_array, im_` + tableid + `, g.` + is_ordered + `ordered_ref.${tableid});\n`;
-                            }
-                            is_case += "    break;\n"
-
-                        }
-
-                    }
-                    if (is_case === "") {
-                        is_case = false
-                    } else {
-                        let typeoffset = cells[2].innerHTML.split("based on type [")[1].split("<br>")[0].split("]")[0].trim()
-                        typeoffset = typeoffset.replace(/[^0-9]*/, '')
-
-                        let tabletds = table.getElementsByTagName("TD");
-                        let bintype = "//"
-
-                        for (let i = 0; i < tabletds.length; i += 3) {
-                            if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
-                                bintype = tabletds[i + 1].innerText
-                                i += 10000
-                            }
-                        }
-                        is_case = "switch(" + bintype + "(o + " + typeoffset + ")){\n" + is_case + "}"
-                    }
-
-                }
-
-                if (description === "normal") {
-
-                    if (cells[2].innerHTML.includes("string")) {
-                        let propertyName = "section_" + offset;
-
-                        jsFunction += `    ${propertyName}: im_string(u32(o + ${offset}), 0, false),\n`;
-
-                    } else if (cells[2].innerHTML.includes("amount")) {
-                        let propertyName = type + "_" + offset;
-
-                        // Add the data extraction code to the function string
-                        jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//amount?\n`;
-                    } else if (cells[2].innerHTML.includes("patch")) {
-                        let propertyName = type + "_" + offset;
-                        getpatch(cells[2].innerHTML, offset, propertyName, type)
-
-                    } else {
-
-                        // Generate the property name for the data
-                        let propertyName = type + "_" + offset;
-
-                        // Add the data extraction code to the function string
-                        jsFunction += `    ${propertyName}: ${type}(o + ${offset}),\n`;
-                    }
-
-                } else if (description === 'offset') {
-                    let tableid = cells[2].children[0].href.split("#")[1]
-
-                    jsFunction += "    section_" + offset + ": [],\n";
-
-                    if (is_case !== false) {
-                        offsets += is_case
-                    } else {
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
-                    }
-
-                } else if (description === 'unordered') {
-                    let tableid = cells[2].children[0].href.split("#")[1].trim()
-                    let is_ordered = getisordered(tableid)
-
-                    jsFunction += `    ` + is_ordered + `ordered_` + tableid + "_" + offset + `: 0,\n`;
-
-                    offsets += `x[${is_i}].` + is_ordered + `ordered_` + tableid + "_" + offset + ` = in_ml(u32(o + ${offset}), g.${tableid}_array, im_` + tableid + `, g.` + is_ordered + `ordered_ref.${tableid});\n`;
-                } else if (description === 'multi offset') {
-
-                    switch (ishook) {
-                    case "mysterious":
-                        multilink_amount = "64"
-                        break
-                    }
-
-                    console.log('/?')
-                    let tableid = cells[2].children[0].href.split("#")[1]
-
-                    jsFunction += `    section_` + offset + `: [],\n`;
-
-                    let is_ii = 'ii'
-                    is_i === 0 ? is_ii = 'i' : 0;
-
-                    if (is_case !== false) {
-                        offsets += is_case
-                    }
-
-                    let offsetamount = "___$$$___"
-                    if (cells[2].innerHTML.includes("based on amount")) {
-                        let split_array = cells[2].innerHTML.split("based on amount [")
-                        if (split_array.length === 1) {
-                            offsetamount = '???'
-                        } else {
-                            offsetamount = split_array[1].split("]")[0].trim()
-                        }
-                    }
-
-                    offsets += `
-for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
-    im_` + tableid + `(u32(o + ${offset}) + (${is_ii} * ${multilink_amount}) + g.m, ${is_ii}, x[${is_i}].section_` + offset + `);
-}\n`;
-                } else if (description === '0') {} else {
-
-                    if (cells[2].innerHTML.includes("based on type")) {
-                        offsets += is_case
-                        jsFunction += `    section_` + offset + `: [],\n`;
-                    } else if (cells[2].innerHTML.includes("href")) {
-                        let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
-                        jsFunction += `    section_` + offset + `: [],\n`;
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
-                    } else if (cells[2].innerHTML.includes("amount")) {
-                        let propertyName = type + "_" + offset;
-
-                        // Add the data extraction code to the function string
-                        jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//amount?\n`;
-
-                    } else {
-                        let propertyName = type + "_" + offset;
-
-                        // Add the data extraction code to the function string
-                        jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//check this\n`;
-                    }
-                }
-            }
-
-        }
-        );
-
-        if (i === 0) {
-            offsets += `return x[${is_i}].id`
-        }
-
-        // return x[0].id
-
-        // Close the data object and the function
-        jsFunction += '});\n';
-        if (offsets === '') {
-            if (is_i === 0) {
-                jsFunction += am_bytes + `\n}\n`
-            } else {
-                jsFunction += `\n}\n`
-            }
-        } else {
-            if (is_i === 0 || i === 0) {
-                jsFunction += `\n ${offsets} ${am_bytes}\n}\n`
-            } else {
-                jsFunction += `\n ${offsets}\n}\n`
-            }
-
-        }
-
-    }
-    console.log(jsFunction)
-
-    function is_unordered(cases) {
-        let href = cases.split("href")[1].split("#")[1].split(`"`)[0]
-        doc.getElementById(href)
-        let t_h2_amount = doc.getElementsByTagName('h2');
-        let ttable_amount = doc.getElementsByTagName('table');
-        let temp = ''
-        for (let ii = 1; ii < h2_amount.length; ii++) {
-            t_h2_amount = h2_amount[ii]
-            const table = ttable_amount[ii]
-
-            if (t_h2_amount.id === href) {
-                if (table.children[1].children[0].children[0].innerText.includes('per')) {
-                    temp = 'y'
-                    multilink_amount = parseInt(table.children[1].children[0].children[0].innerText.split("b")[0].trim())
-                } else {
-                    temp = 'y'
-                }
-                ii += 1000
-
-            } else {
-                temp = 'unordered'
-            }
-
-        }
-
-        // description = 'offset'
-        return temp
-    }
-    function getisordered(html) {
-        let a = 'un'
-        switch (html) {
-        case "model_animation_1":
-        case "model_animation_2":
-        case "models":
-            a = ''
-            break;
-        }
-        return a
-    }
-    function getpatch(cells, offset, propertyName, type) {
-        if (cells.toLowerCase().includes("texture")) {
-            jsFunction += `    texture_` + offset + `: im_patch(g.texture_patch_ref, o + ${offset}),\n`;
-        } else if (cells.toLowerCase().includes("animation")) {
-            jsFunction += `    animation_` + offset + `: im_patch(g.animation_patch_ref, o + ${offset}),\n`;
-        } else if (cells.toLowerCase().includes("sound")) {
-            jsFunction += `    sound_` + offset + `: im_patch(g.sound_patch_ref, o + ${offset}),\n`;
-        } else if (cells.toLowerCase().includes("model")) {
-            jsFunction += `    model_` + offset + `: im_patch(g.model_ref, o + ${offset}),\n`;
-        } else {
-            jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//patch?\n`;
-        }
-    }
-
-}
+// function html_to_import(inputHtml) {
+//     // Parse the input HTML string into a DOM object
+//     const parser = new DOMParser();
+//     doc = parser.parseFromString(inputHtml, 'text/html');
+
+//     let jsFunction = ''
+
+//     const h2_amount = doc.getElementsByTagName('h2');
+//     const table_amount = doc.getElementsByTagName('table');
+//     for (let i = 0; i < h2_amount.length; i++) {
+//         h2Element = h2_amount[i]
+//         const table = table_amount[i]
+
+//         // Find the <h2> element to extract the function name
+//         // const h2Element = doc.querySelector('h2');
+//         if (!h2Element) {
+//             return "Failed to find the function name";
+//         }
+
+//         const functionName = h2Element.id;
+
+//         // Find all the <tr> elements within the <table> for data extraction
+//         // const table = doc.querySelector('table');
+//         const rows = table.querySelectorAll('tr');
+
+//         // Initialize the JavaScript function string
+//         jsFunction += "function im_" + functionName + "(o, ";
+//         let is_i = 0
+//         if (table.children[1].children[0].children[0].innerText.includes('per') || i === 0) {
+//             is_i = 'i'
+//             jsFunction += `i ,`
+//         }
+//         let am_bytes = `\n// ${table.children[1].children[0].children[0].innerText.split('byte')[0].trim()} bytes;\n`
+//         jsFunction += `x) {\n`
+
+//         // Initialize an empty object for storing the data
+//         jsFunction += 'x.push({\n';
+
+//         let offsets = ''
+
+//         if (is_i === "i") {
+//             jsFunction += `    id: gen_id(),\n`
+//         }
+
+//         // Loop through the table rows to extract data
+//         rows.forEach( (row, index) => {
+//             if (index === 0) {
+//                 // Skip the header row
+//                 return;
+//             }
+//             let multilink_amount = 0
+
+//             const cells = row.querySelectorAll('td');
+//             if (cells.length === 3) {
+//                 const offset = cells[0].textContent;
+//                 let type;
+//                 switch (cells[1].textContent) {
+//                 case "u32":
+//                 case "u16":
+//                 case "u8":
+//                     type = cells[1].textContent;
+//                     break;
+//                 case "float":
+//                     type = "f32"
+//                     break;
+//                 default:
+//                     type = "// unknown"
+//                 }
+
+//                 // const type = cells[1].textContent;
+//                 let description
+//                 let ishook = false
+
+//                 if (cells[2].children.length) {
+//                     if (cells[2].children.length === 1 && cells[2].children[0].tagName === "A") {
+//                         let href = cells[2].children[0].href.split("#")[1]
+//                         doc.getElementById(href)
+//                         let t_h2_amount = doc.getElementsByTagName('h2');
+//                         let ttable_amount = doc.getElementsByTagName('table');
+//                         for (let ii = 1; ii < h2_amount.length; ii++) {
+//                             t_h2_amount = h2_amount[ii]
+//                             const table = ttable_amount[ii]
+
+//                             if (t_h2_amount.id === href) {
+//                                 if (table.children[1].children[0].children[0].innerText.includes('per')) {
+//                                     description = 'multi offset'
+//                                     multilink_amount = parseInt(table.children[1].children[0].children[0].innerText.split("b")[0].trim())
+//                                 } else {
+//                                     description = 'offset'
+//                                 }
+//                                 ii += 1000
+
+//                             } else {
+//                                 switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
+//                                 case "mysterious":
+//                                     description = 'multi offset'
+//                                     ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+//                                     break
+//                                 default:
+//                                     description = 'unordered'
+//                                 }
+
+//                             }
+
+//                         }
+
+//                         // description = 'offset'
+//                     } else {
+//                         description = 'unknown'
+//                     }
+//                 } else {
+//                     if (cells[2].innerText.trim() === "0") {
+//                         description = '0'
+//                     } else {
+//                         description = 'normal'
+//                     }
+//                 }
+
+//                 let is_case = false
+
+//                 if (cells[2].innerHTML.includes("based on type")) {
+//                     let cases = cells[2].innerHTML.split('\n')
+//                     is_case = ""
+//                     for (let i = 0; i < cases.length; i++) {
+//                         if (cases[i].includes("href")) {
+//                             let casescomma = cases[i].split(`">`)[1].split("=")[0].trim().split(",")
+//                             for (let ii = 0; ii < casescomma.length; ii++) {
+//                                 is_case += `    case ${casescomma[ii].trim()}:\n`
+//                             }
+//                             let tableid = cases[i].split("#")[1].split(`">`)[0].trim()
+//                             let is_un = is_unordered(cases[i])
+//                             // let is_un = "unknown"
+//                             if (is_un === 'y') {
+//                                 is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+
+//                             } else {
+//                                 let is_ordered = getisordered(tableid)
+
+//                                 is_case += `x[${is_i}].section_` + offset + ` = in_ml(u32(o + ${offset}), g.${tableid}_array, im_` + tableid + `, g.` + is_ordered + `ordered_ref.${tableid});\n`;
+//                             }
+//                             is_case += "    break;\n"
+
+//                         }
+
+//                     }
+//                     if (is_case === "") {
+//                         is_case = false
+//                     } else {
+//                         let typeoffset = cells[2].innerHTML.split("based on type [")[1].split("<br>")[0].split("]")[0].trim()
+//                         typeoffset = typeoffset.replace(/[^0-9]*/, '')
+
+//                         let tabletds = table.getElementsByTagName("TD");
+//                         let bintype = "//"
+
+//                         for (let i = 0; i < tabletds.length; i += 3) {
+//                             if (String(parseInt(tabletds[i].innerText.trim(), 10)) === typeoffset) {
+//                                 bintype = tabletds[i + 1].innerText
+//                                 i += 10000
+//                             }
+//                         }
+//                         is_case = "switch(" + bintype + "(o + " + typeoffset + ")){\n" + is_case + "}"
+//                     }
+
+//                 }
+
+//                 if (description === "normal") {
+
+//                     if (cells[2].innerHTML.includes("string")) {
+//                         let propertyName = "section_" + offset;
+
+//                         jsFunction += `    ${propertyName}: im_string(u32(o + ${offset}), 0, false),\n`;
+
+//                     } else if (cells[2].innerHTML.includes("amount")) {
+//                         let propertyName = type + "_" + offset;
+
+//                         // Add the data extraction code to the function string
+//                         jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//amount?\n`;
+//                     } else if (cells[2].innerHTML.includes("patch")) {
+//                         let propertyName = type + "_" + offset;
+//                         getpatch(cells[2].innerHTML, offset, propertyName, type)
+
+//                     } else {
+
+//                         // Generate the property name for the data
+//                         let propertyName = type + "_" + offset;
+
+//                         // Add the data extraction code to the function string
+//                         jsFunction += `    ${propertyName}: ${type}(o + ${offset}),\n`;
+//                     }
+
+//                 } else if (description === 'offset') {
+//                     let tableid = cells[2].children[0].href.split("#")[1]
+
+//                     jsFunction += "    section_" + offset + ": [],\n";
+
+//                     if (is_case !== false) {
+//                         offsets += is_case
+//                     } else {
+//                         offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+//                     }
+
+//                 } else if (description === 'unordered') {
+//                     let tableid = cells[2].children[0].href.split("#")[1].trim()
+//                     let is_ordered = getisordered(tableid)
+
+//                     jsFunction += `    ` + is_ordered + `ordered_` + tableid + "_" + offset + `: 0,\n`;
+
+//                     offsets += `x[${is_i}].` + is_ordered + `ordered_` + tableid + "_" + offset + ` = in_ml(u32(o + ${offset}), g.${tableid}_array, im_` + tableid + `, g.` + is_ordered + `ordered_ref.${tableid});\n`;
+//                 } else if (description === 'multi offset') {
+
+//                     switch (ishook) {
+//                     case "mysterious":
+//                         multilink_amount = "64"
+//                         break
+//                     }
+
+//                     console.log('/?')
+//                     let tableid = cells[2].children[0].href.split("#")[1]
+
+//                     jsFunction += `    section_` + offset + `: [],\n`;
+
+//                     let is_ii = 'ii'
+//                     is_i === 0 ? is_ii = 'i' : 0;
+
+//                     if (is_case !== false) {
+//                         offsets += is_case
+//                     }
+
+//                     let offsetamount = "___$$$___"
+//                     if (cells[2].innerHTML.includes("based on amount")) {
+//                         let split_array = cells[2].innerHTML.split("based on amount [")
+//                         if (split_array.length === 1) {
+//                             offsetamount = '???'
+//                         } else {
+//                             offsetamount = split_array[1].split("]")[0].trim()
+//                         }
+//                     }
+
+//                     offsets += `
+// for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
+//     im_` + tableid + `(u32(o + ${offset}) + (${is_ii} * ${multilink_amount}) + g.m, ${is_ii}, x[${is_i}].section_` + offset + `);
+// }\n`;
+//                 } else if (description === '0') {} else {
+
+//                     if (cells[2].innerHTML.includes("based on type")) {
+//                         offsets += is_case
+//                         jsFunction += `    section_` + offset + `: [],\n`;
+//                     } else if (cells[2].innerHTML.includes("href")) {
+//                         let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
+//                         jsFunction += `    section_` + offset + `: [],\n`;
+//                         offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
+//                     } else if (cells[2].innerHTML.includes("amount")) {
+//                         let propertyName = type + "_" + offset;
+
+//                         // Add the data extraction code to the function string
+//                         jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//amount?\n`;
+
+//                     } else {
+//                         let propertyName = type + "_" + offset;
+
+//                         // Add the data extraction code to the function string
+//                         jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//check this\n`;
+//                     }
+//                 }
+//             }
+
+//         }
+//         );
+
+//         if (i === 0) {
+//             offsets += `return x[${is_i}].id`
+//         }
+
+//         // return x[0].id
+
+//         // Close the data object and the function
+//         jsFunction += '});\n';
+//         if (offsets === '') {
+//             if (is_i === 0) {
+//                 jsFunction += am_bytes + `\n}\n`
+//             } else {
+//                 jsFunction += `\n}\n`
+//             }
+//         } else {
+//             if (is_i === 0 || i === 0) {
+//                 jsFunction += `\n ${offsets} ${am_bytes}\n}\n`
+//             } else {
+//                 jsFunction += `\n ${offsets}\n}\n`
+//             }
+
+//         }
+
+//     }
+//     console.log(jsFunction)
+
+//     function is_unordered(cases) {
+//         let href = cases.split("href")[1].split("#")[1].split(`"`)[0]
+//         doc.getElementById(href)
+//         let t_h2_amount = doc.getElementsByTagName('h2');
+//         let ttable_amount = doc.getElementsByTagName('table');
+//         let temp = ''
+//         for (let ii = 1; ii < h2_amount.length; ii++) {
+//             t_h2_amount = h2_amount[ii]
+//             const table = ttable_amount[ii]
+
+//             if (t_h2_amount.id === href) {
+//                 if (table.children[1].children[0].children[0].innerText.includes('per')) {
+//                     temp = 'y'
+//                     multilink_amount = parseInt(table.children[1].children[0].children[0].innerText.split("b")[0].trim())
+//                 } else {
+//                     temp = 'y'
+//                 }
+//                 ii += 1000
+
+//             } else {
+//                 temp = 'unordered'
+//             }
+
+//         }
+
+//         // description = 'offset'
+//         return temp
+//     }
+//     function getisordered(html) {
+//         let a = 'un'
+//         switch (html) {
+//         case "model_animation_1":
+//         case "model_animation_2":
+//         case "models":
+//             a = ''
+//             break;
+//         }
+//         return a
+//     }
+//     function getpatch(cells, offset, propertyName, type) {
+//         if (cells.toLowerCase().includes("texture")) {
+//             jsFunction += `    texture_` + offset + `: im_patch(g.texture_patch_ref, o + ${offset}),\n`;
+//         } else if (cells.toLowerCase().includes("animation")) {
+//             jsFunction += `    animation_` + offset + `: im_patch(g.animation_patch_ref, o + ${offset}),\n`;
+//         } else if (cells.toLowerCase().includes("sound")) {
+//             jsFunction += `    sound_` + offset + `: im_patch(g.sound_patch_ref, o + ${offset}),\n`;
+//         } else if (cells.toLowerCase().includes("model")) {
+//             jsFunction += `    model_` + offset + `: im_patch(g.model_ref, o + ${offset}),\n`;
+//         } else {
+//             jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//patch?\n`;
+//         }
+//     }
+
+// }
 
 function html_to_export(inputHtml) {
     let html = inputHtml.split("function")
@@ -2722,12 +2764,11 @@ function html_to_eximport(inputHtml) {
                                 ii += 1000
 
                             } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
+                                let check_if_mys = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+                                if (check_if_mys.endsWith("mysterious")) {
                                     description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
+                                    ishook = "mysterious"
+                                } else {
                                     description = 'unordered'
                                 }
 
@@ -3346,12 +3387,11 @@ function html_to_import(inputHtml) {
                                 ii += 1000
 
                             } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
+                                let check_if_mys = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+                                if (check_if_mys.endsWith("mysterious")) {
                                     description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
+                                    ishook = "mysterious"
+                                } else {
                                     description = 'unordered'
                                 }
 
@@ -3706,12 +3746,11 @@ function html_to_edit(inputHtml) {
                                 ii += 1000
 
                             } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
+                                let check_if_mys = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+                                if (check_if_mys.endsWith("mysterious")) {
                                     description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
+                                    ishook = "mysterious"
+                                } else {
                                     description = 'unordered'
                                 }
 
@@ -4066,12 +4105,11 @@ function html_to_info(inputHtml) {
                                 ii += 1000
 
                             } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
+                                let check_if_mys = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+                                if (check_if_mys.endsWith("mysterious")) {
                                     description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
+                                    ishook = "mysterious"
+                                } else {
                                     description = 'unordered'
                                 }
 
@@ -4448,12 +4486,11 @@ function html_to_export(inputHtml) {
                                 ii += 1000
 
                             } else {
-                                switch (cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()) {
-                                case "mysterious":
+                                let check_if_mys = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
+                                if (check_if_mys.endsWith("mysterious")) {
                                     description = 'multi offset'
-                                    ishook = cells[2].innerHTML.split(`href="#`)[1].split(`"`)[0].trim()
-                                    break
-                                default:
+                                    ishook = "mysterious"
+                                } else {
                                     description = 'unordered'
                                 }
 
@@ -4797,10 +4834,6 @@ function html_to_all_ordered(inputHtml) {
     }
     array_list_of_sections.push(string_html_section)
 
-
-
-
-
     unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
     unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
 
@@ -4826,10 +4859,6 @@ function html_to_all_ordered(inputHtml) {
     }
     array_list_of_sections.push(string_html_section)
 
-
-
-
-    
     let import_html = ''
     let edit_html = ''
     let info_html = ''
@@ -4847,7 +4876,6 @@ function html_to_all_ordered(inputHtml) {
     let list = get_print_ordered_list_functions(inputHtml)
     let world = html_to_world_sec(inputHtml)
 
-
     let world_html = world.import_html + world.export_id_html
 
     return {
@@ -4861,7 +4889,6 @@ function html_to_all_ordered(inputHtml) {
     }
 
 }
-
 
 function html_to_all_ordered_sec(inputHtml) {
     let ordered = inputHtml.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
@@ -4918,7 +4945,8 @@ function html_to_all_ordered_sec(inputHtml) {
 }
 function html_to_all_unordered_sec(inputHtml) {
     let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
-    unordered = unordered.split('</section>')[0]
+    // unordered = unordered.split('</section>')[0]
+    unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
 
     let array_h2_split = unordered.split('<h2 id=')
     let array_list_first_entry = true;
@@ -5174,6 +5202,36 @@ function doc_replace_offsets_to_string(doc_string, js_string) {
     } else {
         return "no change"
     }
+
+}
+
+function doc_generate_linked_to_string(doc_string, string_name) {
+    // split on <h2
+    // if includes (value)
+    //     split on <tr>
+    //     end </tr>
+    let html_string = ''
+    array_hr_list = doc_string.split('<hr>')
+    for (let string_hr of array_hr_list) {
+        if (string_hr.includes(`(${string_name})`)) {
+            let table_name = string_hr.split('<h2 id="')[1]
+            table_name = table_name.split(`">`)[0]
+            let array_tr_list = string_hr.split('<tr>')
+            for (let string_tr of array_tr_list) {
+                if (string_tr.includes(`(${string_name})`)) {
+                    let offset = string_tr.split('<td>')[1]
+                    offset = offset.split('</td>')[0]
+
+                    html_string += `<a href="${table_name}">${table_name} [${offset}]</a><br>\n`
+
+                }
+            }
+        }
+    }
+    let html = `
+<p>multi linked to by:<br>
+    ${html_string}</p>`
+    return html
 
 }
 
