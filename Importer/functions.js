@@ -5222,7 +5222,7 @@ function doc_generate_linked_to_string(doc_string, string_name) {
                     let offset = string_tr.split('<td>')[1]
                     offset = offset.split('</td>')[0]
 
-                    html_string += `<a href="${table_name}">${table_name} [${offset}]</a><br>\n`
+                    html_string += `<a href="#${table_name}">${table_name} [${offset}]</a><br>\n`
 
                 }
             }

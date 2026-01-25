@@ -105,12 +105,12 @@ function get_bmg_directory(o, end_offset) {
         break
     }
 
-    print_logarray(log_array)
+    // print_logarray(log_array)
 
 }
 
 function get_bmg_datapack(o, e) {
-    // if (u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u32(o + 184))
+    if (u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 144) || u32(o + 148) || u32(o + 152) || u32(o + 156) || u32(o + 164) || u32(o + 168) || u32(o + 172) || u32(o + 176) || u32(o + 184))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
 
     if (u32(o + 80)) {// only xdx9
@@ -128,21 +128,17 @@ function get_bmg_datapack(o, e) {
     if (u32(o + 104)) {// some files
     // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
     }
-    if (u32(o + 136)) {
-        // some files
-        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
+    if (u32(o + 136)) {// some files
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
     }
-    if (u32(o + 140)) {
-        // some files
-        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
+    if (u32(o + 140)) {// some files
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
     }
-    if (u32(o + 160)) {
-        // some files
-        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
+    if (u32(o + 160)) {// some files
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
     }
-    if (u32(o + 180)) {
-        // some files
-        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
+    if (u32(o + 180)) {// some files
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, u32, 180, u32, 184], o)
     }
 
     let end_datapack = o + e
@@ -157,35 +153,33 @@ function get_bmg_datapack(o, e) {
     // if (index_patch_list === 21680096 && g.file_name === 'mcp.xdx9') {
     //     index_patch_list = 21679952
     // }
-    bmg_get_index_patch_list(o, index_patch_list)
-    bmg_get_offset_patch_list(o, offset_mid + u32(o))
+    // bmg_get_index_patch_list(o, index_patch_list)
+    // bmg_get_offset_patch_list(o, offset_mid + u32(o))
 
-    globalThis.old_log_array = structuredClone(log_array)
+    // globalThis.old_log_array = structuredClone(log_array)
 
+    // for (let i = 0; i < u32(o + 100); i++) {
+    //     ö(u32(o + 132) + (i * 8), get_bmg_datapack_132)
+    // }
 
-        for (let i = 0; i < u32(o + 100); i++) {
-            ö(u32(o + 132) + (i * 8), get_bmg_datapack_132)
-        }
+    // for (let i = 0; i < u32(o + 48); i++) {
+    //     ö(u32(o + 60) + (i * 12), get_bmg_texture_anim)
+    // }
 
-        for (let i = 0; i < u32(o + 48); i++) {
-            ö(u32(o + 60) + (i * 12), get_bmg_texture_anim)
-        }
+    // switch (g.type) {
+    // case 1:
+    // case 3:
+    //     get_bmg_basic(offset_mid)
+    //     break
+    // case 4:
+    //     get_bmg_world(offset_mid)
+    //     break
+    // default:
+    //     console.log("?")
+    // }
 
-        switch (g.type) {
-        case 1:
-        case 3:
-            get_bmg_basic(offset_mid)
-            break
-        case 4:
-            get_bmg_world(offset_mid)
-            break
-        default:
-            console.log("?")
-        }
-
-        if (u32(o + 24)) {
-            // get_test_temp(offset_mid + u32(o + 24))
-        }
+    if (u32(o + 24)) {// get_test_temp(offset_mid + u32(o + 24))
+    }
 
     // wii = padding
     let amt_offset = g.console === "pc" ? 188 : 192
@@ -204,7 +198,12 @@ function get_bmg_datapack(o, e) {
             get_bmg_basic_audio(after_datapack + (i * 8), end_after_datapack)
         }
 
-        end_after_datapack = end_after_datapack + u32(o + 4)
+        if (g.console === "pc") {
+            end_after_datapack = end_after_datapack + u32(o + 4)
+        } else {
+            end_after_datapack = divisible(end_after_datapack + u32(o + 4), 32)
+
+        }
 
         // ö(u32(o + 24), get_test_temp)
         // ä(test_temp, u32(o + 24), get_test_temp)
@@ -272,8 +271,7 @@ function get_bmg_basic_audio_4_0(o) {// console.log(get_string(o, 0, false))
 
 }
 
-function get_bmg_datapack_108(o) {
-    ü(1, [u32, 0], o)
+function get_bmg_datapack_108(o) {// ü(1, [u32, 0], o)
 }
 
 function get_bmg_texture_offset_list(o, section_offset) {
@@ -284,20 +282,112 @@ function get_bmg_texture_offset_list(o, section_offset) {
 }
 
 function get_bmg_texture_offset_list_0(o, section_offset) {
-    ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    let x = Math.pow(2, u8(o + 6))
+    let y = Math.pow(2, u8(o + 7))
+    let total_length = 0
+    switch (u8(o + 4)) {
+    case 24:
+        total_length = x * y * 3
+        break
+    case 69:
+        total_length = x * y / 2
+        break
+    case 160:
+        total_length = x * y * 4
+        break
+    case 197:
+        total_length = x * y / 2
+        break
+    case 198:
+        total_length = x * y / 2
+        break
+    case 202:
+        total_length = x * y
+        break
+    default:
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    }
+    let temp_pmwr_pc_texture_array;
+    let temp_2 = total_length
+    let start_texture = u32(o + 8)
+    let mipmap_start = u32(o + 8)
+    let calculate_12_length = total_length * 2
+    let calculate_20_length = total_length
+    // base line without mips its just x 2
+    // create padding ???
+    // 20 and 16 has mips
+    // 12 no mips
+    if (u8(o + 5)) {
+        // ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    if (u32(o + 8)) {
-        get_bmg_texture_offset_list_0_8(u32(o + 8) + section_offset, section_offset)
+        let mipmap_end = mipmap_start + total_length
+
+        let temp_mipmap_offset = 0
+
+        for (let i = 0; i < u8(o + 5) + 1; i++) {
+
+            // let temp_pmwr_pc_texture_array = convert_arraybuffer_base64(buffer.slice(mipmap_start, mipmap_end))
+
+            // x[ti].pmwr_pc_texture.push(temp_pmwr_pc_texture_array)
+            mipmap_start += temp_2
+            temp_mipmap_offset += temp_2
+            temp_2 = Math.round(temp_2 / 4)
+            if (u8(o + 5) !== i) {
+                total_length += temp_2
+                calculate_20_length+= temp_2
+            }
+
+        }
+
     }
-    if (u32(o + 12)) {
-        get_bmg_texture_offset_list_0_12(u32(o + 12) + section_offset, section_offset)
+    if (g.console === "pc") {
+        if (u32(o + 16)) {
+            get_bmg_pc_texture_offset_list_0_16(u32(o + 16) + section_offset, total_length, section_offset, start_texture)
+        }
+    } else {
+        let string = get_bmg_wii_texture_offset_list_0_16(u32(o + 16) + section_offset)
+
+        if (u32(o + 12)) {
+            let length_12 = u32(o + 12)
+            let length_8 = u32(o + 8)
+
+            if (calculate_12_length - (length_8 - length_12) === 0) {
+            } else {
+                ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+                console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8} | 12: ${length_12} | total_length: ${total_length} | calculate_12_length ${calculate_12_length}
+        diff: ${calculate_12_length - (length_8 - length_12)}`)
+            }
+        }
+        if (u32(o + 8)) {// if 20 = type 197,198
+        // if 12 = type 69,197
+        // if 08 = type 69,197,198
+        // get_bmg_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
+        }
+        if (u32(o + 20)) {
+            calculate_20_length = total_length
+            let length_20 = u32(o + 20)
+            let length_8 = u32(o + 8)
+
+            ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+                console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8}, offset: ${length_8 + section_offset} | 20: ${length_20}, offset ${section_offset + length_20} | total_length: ${total_length} | calculate_12_length ${calculate_20_length}
+        diff: ${calculate_20_length - (length_20 - length_8)}`)
+        }
     }
-    if (u32(o + 16)) {
-        get_bmg_texture_offset_list_0_16(u32(o + 16) + section_offset, section_offset)
-    }
-    if (u32(o + 20)) {
-        get_bmg_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
-    }
+    // 8064-8192
+
+    // if (u8(o + 5) === 0) {
+    // if (u32(o + 8)) {
+    //     get_bmg_texture_offset_list_0_8(u32(o + 8) + section_offset, total_length)
+    // }
+
+    // if (u32(o + 12)) {
+    //     get_bmg_texture_offset_list_0_12(u32(o + 12) + section_offset, section_offset)
+    // }
+    // if (u32(o + 20)) {
+    //     get_bmg_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
+    // }
+    // }
+
 }
 
 function get_bmg_texture_offset_list_0_8(o, section_offset) {
@@ -309,15 +399,25 @@ function get_bmg_texture_offset_list_0_12(o, section_offset) {
     ü(1, [u32, 0], o)
 
 }
-function get_bmg_texture_offset_list_0_16(o, section_offset) {
-    ü(1, [u32, 0], o)
+function get_bmg_pc_texture_offset_list_0_16(o, length, section_offset, offset_data) {
+    // ü(1, [u32, 0], o)
     // offset string
 
-    // console.log(get_string(o, 0, false))
+    let get_to_data = o - length
+    let data_from_offset = section_offset + offset_data
+    if (get_to_data === data_from_offset) {
+        console.log(`YAY | ${get_string(o, 0, false)} | legnth: ${length}, offset: ${o}`)
+    } else {
+        console.log(`WRONG | ${get_string(o, 0, false)} | legnth: ${length}, offset: ${o} get_to_data ${get_to_data} | data_from_offset ${data_from_offset}
+    Diff: ${get_to_data - data_from_offset}`)
+    }
 
 }
-function get_bmg_texture_offset_list_0_20(o, section_offset) {
-    ü(1, [u32, 0], o)
+
+function get_bmg_wii_texture_offset_list_0_16(o) {
+    return get_string(o, 0, false)
+}
+function get_bmg_texture_offset_list_0_20(o, section_offset) {// ü(1, [u32, 0], o)
 
 }
 // some talbe at 2721568
@@ -345,7 +445,7 @@ function get_bmg_audio_list(o, f, afteroffsetlist, end_datapack, datapackoffset)
 }
 
 function bmg_get_index_patch_list(o, patch_offset) {
-    ü(1, [u32, 0], patch_offset)
+    // ü(1, [u32, 0], patch_offset)
     patchlistoffset = patch_offset
     log_array.p_texture.offset = patchlistoffset
     for (let i = 0; i < u32(o + 16); i++) {
@@ -597,8 +697,7 @@ function get_bmg_world_60_92(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
-function get_bmg_world_60_88(o) {
-        // ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, f32, 32, u32, 36, f32, 40, f32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u8, 60, u8, 61, u8, 62, u8, 63, f32, 64, f32, 68, u32, 72, f32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u8, 88, u8, 89, u8, 90, u8, 91, u8, 92, u8, 93, u8, 94, u8, 95, u32, 96, f32, 100, u32, 104, f32, 108, u32, 112, u8, 116, u8, 117, u8, 118, u8, 119, u8, 120, u8, 121, u8, 122, u8, 123, u8, 124, u8, 125, u8, 126, u8, 127, f32, 128, f32, 132, f32, 136, f32, 140, u32, 144, u8, 148, u8, 149, u8, 150, u8, 151, u8, 152, u8, 153, u8, 154, u8, 155, u8, 156, u8, 157, u8, 158, u8, 159, f32, 160, f32, 164, f32, 168, f32, 172, u32, 176, u8, 180, u8, 181, u8, 182, u8, 183, u8, 184, u8, 185, u8, 186, u8, 187, u8, 188, u8, 189, u8, 190, u8, 191, f32, 192, f32, 196, f32, 200, f32, 204, u32, 208, u8, 212, u8, 213, u8, 214, u8, 215, u8, 216, u8, 217, u8, 218, u8, 219, u8, 220, u8, 221, u8, 222, u8, 223, f32, 224, f32, 228, f32, 232, f32, 236, u32, 240, u8, 244, u8, 245, u8, 246, u8, 247, u8, 248, u8, 249, u8, 250, u8, 251, u8, 252, u8, 253, u8, 254, u8, 255, f32, 256, f32, 260, f32, 264, f32, 268, u32, 272, u8, 276, u8, 277, u8, 278, u8, 279, u8, 280, u8, 281, u8, 282, u8, 283, u8, 284, u8, 285, u8, 286, u8, 287, f32, 288, u32, 292, f32, 296, f32, 300, u32, 304, u8, 308, u8, 309, u8, 310, u8, 311, u8, 312, u8, 313, u8, 314, u8, 315, u8, 316, u8, 317, u8, 318, u8, 319, f32, 320, f32, 324, f32, 328, f32, 332, u32, 336, u8, 340, u8, 341, u8, 342, u8, 343, u8, 344, u8, 345, u8, 346, u8, 347, u8, 348, u8, 349, u8, 350, u8, 351, f32, 352, f32, 356, f32, 360, f32, 364, u32, 368, u8, 372, u8, 373, u8, 374, u8, 375, u8, 376, u8, 377, u8, 378, u8, 379, u8, 380, u8, 381, u8, 382, u8, 383], o)
+function get_bmg_world_60_88(o) {// ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31, f32, 32, u32, 36, f32, 40, f32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u8, 60, u8, 61, u8, 62, u8, 63, f32, 64, f32, 68, u32, 72, f32, 76, u32, 80, u8, 84, u8, 85, u8, 86, u8, 87, u8, 88, u8, 89, u8, 90, u8, 91, u8, 92, u8, 93, u8, 94, u8, 95, u32, 96, f32, 100, u32, 104, f32, 108, u32, 112, u8, 116, u8, 117, u8, 118, u8, 119, u8, 120, u8, 121, u8, 122, u8, 123, u8, 124, u8, 125, u8, 126, u8, 127, f32, 128, f32, 132, f32, 136, f32, 140, u32, 144, u8, 148, u8, 149, u8, 150, u8, 151, u8, 152, u8, 153, u8, 154, u8, 155, u8, 156, u8, 157, u8, 158, u8, 159, f32, 160, f32, 164, f32, 168, f32, 172, u32, 176, u8, 180, u8, 181, u8, 182, u8, 183, u8, 184, u8, 185, u8, 186, u8, 187, u8, 188, u8, 189, u8, 190, u8, 191, f32, 192, f32, 196, f32, 200, f32, 204, u32, 208, u8, 212, u8, 213, u8, 214, u8, 215, u8, 216, u8, 217, u8, 218, u8, 219, u8, 220, u8, 221, u8, 222, u8, 223, f32, 224, f32, 228, f32, 232, f32, 236, u32, 240, u8, 244, u8, 245, u8, 246, u8, 247, u8, 248, u8, 249, u8, 250, u8, 251, u8, 252, u8, 253, u8, 254, u8, 255, f32, 256, f32, 260, f32, 264, f32, 268, u32, 272, u8, 276, u8, 277, u8, 278, u8, 279, u8, 280, u8, 281, u8, 282, u8, 283, u8, 284, u8, 285, u8, 286, u8, 287, f32, 288, u32, 292, f32, 296, f32, 300, u32, 304, u8, 308, u8, 309, u8, 310, u8, 311, u8, 312, u8, 313, u8, 314, u8, 315, u8, 316, u8, 317, u8, 318, u8, 319, f32, 320, f32, 324, f32, 328, f32, 332, u32, 336, u8, 340, u8, 341, u8, 342, u8, 343, u8, 344, u8, 345, u8, 346, u8, 347, u8, 348, u8, 349, u8, 350, u8, 351, f32, 352, f32, 356, f32, 360, f32, 364, u32, 368, u8, 372, u8, 373, u8, 374, u8, 375, u8, 376, u8, 377, u8, 378, u8, 379, u8, 380, u8, 381, u8, 382, u8, 383], o)
 }
 function get_bmg_world_224(o) {
     if (u16(o + 4) !== 10176 || u32(o + 8) || u16(o + 14) !== 8 || u32(o + 16) || u16(o + 22) !== 8 || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || f32(o + 60) !== 1 || u8(o + 82) || u8(o + 83) || u32(o + 84) || u32(o + 88) || u32(o + 92))
@@ -1211,7 +1310,7 @@ function get_bmg_texture_anim(o) {
 
 function get_bmg_datapack_132(o) {
     if (u32(o + 0))
-    ü(1, [u32, 0, u32, 4], o)
+        ü(1, [u32, 0, u32, 4], o)
     ä(bmg_text, u32(o + 4), get_bmg_text)
 
 }
@@ -1226,8 +1325,7 @@ function get_bmg_model_anim_2_type_b(o) {
 
 }
 
-function get_bmg_model_anim_2_type_b_8(o) {
-// console.log(get_string(o, 0, false))
+function get_bmg_model_anim_2_type_b_8(o) {// console.log(get_string(o, 0, false))
 }
 function get_bmg_model_anim_2_type_b_16(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
@@ -7366,9 +7464,9 @@ function get_bmg_interface_84_24_4t11_4(o) {
     case 102:
         ö(u32(o + 12), get_bmg_interface_84_24_4t11_4_12t102)
         break
-    // case 105:
-    //     ö(u32(o + 12), get_bmg_interface_84_24_4t11_4_12t105)
-    //     break
+        // case 105:
+        //     ö(u32(o + 12), get_bmg_interface_84_24_4t11_4_12t105)
+        //     break
     case 107:
         ö(u32(o + 12), get_bmg_interface_84_24_4t11_4_12t107)
         break
