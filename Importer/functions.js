@@ -22,6 +22,7 @@ function format_button_clicked() {
 <a id="format_switch" class="test_line_click">format_switch</a>
 <a id="print_string_locations" class="test_line_click">print_string_locations</a>
 <a id="linked_to_by_doc_table" class="test_line_click">linked_to_by_doc_table</a>
+<a id="unordered_linked_to_sections" class="test_line_click">unordered_linked_to_sections</a>
 <a id="generate_sha1_array" class="test_line_click">generate_sha1_array</a>
 <a id="generate_array_view_top_functions" class="test_line_click">generate_array_view_top_functions</a>
 <a id="generate_array_view_file_header_functions" class="test_line_click">generate_array_view_file_header_functions</a>
@@ -43,6 +44,7 @@ function format_button_clicked() {
     document.getElementById("format_switch").addEventListener("click", format_text_editor_switch);
     document.getElementById("print_string_locations").addEventListener("click", print_string_locations_click);
     document.getElementById("linked_to_by_doc_table").addEventListener("click", print_linked_to_by_doc_table);
+    document.getElementById("unordered_linked_to_sections").addEventListener("click", print_unordered_linked_to_sections);
     document.getElementById("generate_sha1_array").addEventListener("click", print_generate_sha1_array);
     document.getElementById("generate_array_view_top_functions").addEventListener("click", print_generate_array_view_top_functions);
     document.getElementById("generate_array_view_file_header_functions").addEventListener("click", print_generate_array_view_file_header_functions);
@@ -632,6 +634,41 @@ ${object_html.export_id_html}
             }
 
             let string_from_docs = get_sha1_array_from_docs(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_unordered_linked_to_sections() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>check docs to see if unordered has sections not correctly listed<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = check_unordered_linked_to_sections(html)
 
             copy_all.value = string_from_docs
 
@@ -5817,6 +5854,56 @@ place in basic_04 & world functions
 `
     return string_ordered_list_function
 
+}
+
+function check_unordered_linked_to_sections(inputHtml) {
+    let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
+    // unordered = unordered.split('</section>')[0]
+    unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
+
+    let array_h2_split = unordered.split('<h2 id=')
+    let array_list_first_entry = true;
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            if (string_table.includes("linked to by:<br>")) {
+                if (array_list_first_entry) {
+                    array_list_first_entry = false
+                    string_html_section += "<h2 id=" + string_table
+                } else {
+                    array_list_of_sections.push(string_html_section)
+                    string_html_section = ''
+                    string_html_section += "<h2 id=" + string_table
+                }
+
+            } else {
+                string_html_section += "<h2 id=" + string_table
+            }
+        }
+    }
+    array_list_of_sections.push(string_html_section)
+
+    let broke_array = 'broke list:'
+    for (let string_section of array_list_of_sections) {
+        let array_h2_split = string_section.split('<h2 id="')
+        let section_name = array_h2_split[1].split(`">`)[0]
+
+        for (let string_table of array_h2_split) {
+            if (string_table === "") {
+            } else {
+
+                let table_name = string_table.split(`">`)[0]
+
+                if (table_name.includes(section_name)) {// skip
+                } else {
+                    broke_array += `table_name: ${table_name} | section_name: ${section_name}\n`
+                }
+            }
+        }
+
+    }
+    return broke_array
 }
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
