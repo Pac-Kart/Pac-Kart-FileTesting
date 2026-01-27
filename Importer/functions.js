@@ -5735,7 +5735,8 @@ function get_print_ordered_list_functions(string_html) {
             string_case = string_case.split('</td>')[0]
             string_case = string_case.split('=')[1].trim()
 
-            let string_function = array_td[2]
+            if (array_td[2].includes('href="#')) {
+                            let string_function = array_td[2]
             string_function = string_function.split(`href="#`)[1]
             string_function = string_function.split(`">`)[0]
             string_file_type += `
@@ -5749,6 +5750,9 @@ function get_print_ordered_list_functions(string_html) {
             break
 `
 
+            }else{
+                // skip
+            }
         }
     }
 
@@ -5885,9 +5889,17 @@ function check_unordered_linked_to_sections(inputHtml) {
     array_list_of_sections.push(string_html_section)
 
     let broke_array = 'broke list:'
+    let list_of_linked_sections = '\n  <h4>just linked</h4> \n'
+    let list_of_multi_linked_sections = '\n <h4>multi linked</h4> \n'
     for (let string_section of array_list_of_sections) {
         let array_h2_split = string_section.split('<h2 id="')
         let section_name = array_h2_split[1].split(`">`)[0]
+
+        if (string_section.includes('multi linked to by:')) {
+        list_of_multi_linked_sections+= `<a href="#${section_name}">${section_name}</a><br>\n`
+        }else{
+        list_of_linked_sections+= `<a href="#${section_name}">${section_name}</a><br>\n`
+        }
 
         for (let string_table of array_h2_split) {
             if (string_table === "") {
@@ -5903,7 +5915,7 @@ function check_unordered_linked_to_sections(inputHtml) {
         }
 
     }
-    return broke_array
+    return broke_array + list_of_multi_linked_sections + list_of_linked_sections
 }
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
