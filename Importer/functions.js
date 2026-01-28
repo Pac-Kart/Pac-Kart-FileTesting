@@ -5704,12 +5704,18 @@ function get_print_ordered_list_functions(string_html) {
     let array_ordered_list = ordered_list.split(`<a href="#`)
     let string_ordered_list_arrays = ''
     let string_ordered_list_ex_function = ''
+    let string_unordered_section_name = ''
+    let string_file_specific_section_name = ''
     for (let tag of array_ordered_list) {
         if (tag.includes(string_type)) {
             let string_tag = tag.split(`">`)[0]
             string_ordered_list_arrays += `        ${string_tag}: [],\n`
 
-            if (string_tag.includes('unordered') || string_tag.includes('offset_patch_list') || string_tag.includes('file_specific_section')) {// skip
+            if (string_tag.includes('unordered')) {
+                string_unordered_section_name = string_tag
+
+            } else if (string_tag.includes('offset_patch_list')) {} else if (string_tag.includes('file_specific_section')) {
+                string_file_specific_section_name = string_tag
             } else {
                 string_ordered_list_ex_function += `
     if (g.ordered_ref.${string_tag}.length) {
@@ -5726,6 +5732,7 @@ function get_print_ordered_list_functions(string_html) {
     file_specific_tr = file_specific.split('<tr>')
     let string_file_type = ''
     let string_ex_file_type = ''
+    let string_basic = ''
     for (let string_tr of file_specific_tr) {
         array_td = string_tr.split("<td>")
         if (array_td.length === 1) {// skip
@@ -5736,22 +5743,32 @@ function get_print_ordered_list_functions(string_html) {
             string_case = string_case.split('=')[1].trim()
 
             if (array_td[2].includes('href="#')) {
-                            let string_function = array_td[2]
-            string_function = string_function.split(`href="#`)[1]
-            string_function = string_function.split(`">`)[0]
-            string_file_type += `
+                let string_function = array_td[2]
+                string_function = string_function.split(`href="#`)[1]
+                string_function = string_function.split(`">`)[0]
+                if (string_basic.includes("basic")) {
+                string_basic += `
         case "${string_case}":
-            im_${string_function}(o, x[0].file_specific)
+            im_${string_function}(o, x[0].${string_file_specific_section_name})
+            break
+            `
+                string_basic += `
+        case "${string_case}":
+                e = ex_${string_function}(o, x.${string_file_specific_section_name}[0])
+            break
+`                }
+                string_file_type += `
+        case "${string_case}":
+            im_${string_function}(o, x[0].${string_file_specific_section_name})
             break
 `
-            string_ex_file_type += `
+                string_ex_file_type += `
         case "${string_case}":
-                e = ex_${string_function}(o, x.file_specific[0])
+                e = ex_${string_function}(o, x.${string_file_specific_section_name}[0])
             break
 `
 
-            }else{
-                // skip
+            } else {// skip
             }
         }
     }
@@ -5782,7 +5799,7 @@ function im_${string_type}_ordered(o, x) {
     ${string_ordered_list_arrays}
     })
 
-    im_${string_type}_unordered(o,x[0].unordered)
+    im_${string_type}_unordered(o,x[0].${string_unordered_section_name})
     g.ordered_ref = x[0]
 
     switch (g.file_dir_type) {
@@ -5803,6 +5820,14 @@ function im_${string_type}_unordered(o,x) {
 
 }
 
+/*
+in baisc
+    switch (g.file_dir_type) {
+    ${string_basic}
+    default:
+        console.pk_log('file type is not set')
+    }
+*/
 export list:
 ${string_ex_unorderd_arrays}
 
@@ -5896,14 +5921,13 @@ function check_unordered_linked_to_sections(inputHtml) {
         let section_name = array_h2_split[1].split(`">`)[0]
 
         if (string_section.includes('multi linked to by:')) {
-        list_of_multi_linked_sections+= `<a href="#${section_name}">${section_name}</a><br>\n`
-        }else{
-        list_of_linked_sections+= `<a href="#${section_name}">${section_name}</a><br>\n`
+            list_of_multi_linked_sections += `<a href="#${section_name}">${section_name}</a><br>\n`
+        } else {
+            list_of_linked_sections += `<a href="#${section_name}">${section_name}</a><br>\n`
         }
 
         for (let string_table of array_h2_split) {
-            if (string_table === "") {
-            } else {
+            if (string_table === "") {} else {
 
                 let table_name = string_table.split(`">`)[0]
 
