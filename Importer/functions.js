@@ -5911,6 +5911,7 @@ function check_unordered_linked_to_sections(inputHtml) {
             }
         }
     }
+
     array_list_of_sections.push(string_html_section)
 
     let broke_array = 'broke list:'
@@ -5939,7 +5940,35 @@ function check_unordered_linked_to_sections(inputHtml) {
         }
 
     }
-    return broke_array + list_of_multi_linked_sections + list_of_linked_sections
+    // check if link
+    let ordered = inputHtml.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
+    // unordered = ordered.split('unordered_list">Unordered List</h2>')[0]
+    ordered = ordered.split('offset_patch_list">Offset Patch List')[0]
+    array_h2_split = ordered.split('<h2 id=')
+
+    let same_array = ""
+    for (let string_table of array_h2_split) {
+        if (string_table.includes("<table")) {
+            let array_tr_list = string_table.split('<tr')
+            for (let string_tr of array_tr_list) {
+                if (string_tr.includes(`based on amount [`)) {
+                    let string_amount = string_tr.split('based on amount [')[1]
+                    string_amount = string_amount.split(']')[0]
+                    let row = string_tr.split('<td>')[1]
+                    row= row.split('</td>')[0]
+
+                    row = String(Number(row))
+
+                    if (row === string_amount) {
+                    same_array += `row ${row} same ${string_tr}`
+                    }
+
+                }
+            }
+        }
+    }
+
+    return broke_array + same_array +  list_of_multi_linked_sections + list_of_linked_sections
 }
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
