@@ -30,6 +30,7 @@ function format_button_clicked() {
 <a id="format_sec_id_from_ex_debug" class="test_line_click">format_sec_id_from_ex_debug</a>
 <a id="format_replace_debug_id_with_sec_id" class="test_line_click">format_replace_debug_id_with_sec_id</a>
 <a id="format_pmwr_pc_add_sec_id" class="test_line_click">format_pmwr_pc_add_sec_id</a>
+<a id="check_js_i" class="test_line_click">check_js_i
 </span>
 </div>
 `
@@ -52,6 +53,7 @@ function format_button_clicked() {
     document.getElementById("format_sec_id_from_ex_debug").addEventListener("click", print_format_sec_id_from_ex_debug);
     document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
     document.getElementById("format_pmwr_pc_add_sec_id").addEventListener("click", print_format_pmwr_pc_add_sec_id);
+    document.getElementById("check_js_i").addEventListener("click", print_check_js_i);
 
     function format_text_editor_generate() {
 
@@ -861,6 +863,42 @@ ${object_html.export_id_html}
         copy_all.addEventListener("click", (e) => copy_from_textarea(e))
 
     }
+
+    function print_check_js_i() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>check js format for lost i paremetor<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = check_js_function_i(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
 
     function copy_from_textarea(e) {
         let element = e.srcElement
@@ -5747,16 +5785,17 @@ function get_print_ordered_list_functions(string_html) {
                 string_function = string_function.split(`href="#`)[1]
                 string_function = string_function.split(`">`)[0]
                 if (string_basic.includes("basic")) {
-                string_basic += `
+                    string_basic += `
         case "${string_case}":
             im_${string_function}(o, x[0].${string_file_specific_section_name})
             break
             `
-                string_basic += `
+                    string_basic += `
         case "${string_case}":
                 e = ex_${string_function}(o, x.${string_file_specific_section_name}[0])
             break
-`                }
+`
+                }
                 string_file_type += `
         case "${string_case}":
             im_${string_function}(o, x[0].${string_file_specific_section_name})
@@ -5955,12 +5994,12 @@ function check_unordered_linked_to_sections(inputHtml) {
                     let string_amount = string_tr.split('based on amount [')[1]
                     string_amount = string_amount.split(']')[0]
                     let row = string_tr.split('<td>')[1]
-                    row= row.split('</td>')[0]
+                    row = row.split('</td>')[0]
 
                     row = String(Number(row))
 
                     if (row === string_amount) {
-                    same_array += `row ${row} same ${string_tr}`
+                        same_array += `row ${row} same ${string_tr}`
                     }
 
                 }
@@ -5968,7 +6007,44 @@ function check_unordered_linked_to_sections(inputHtml) {
         }
     }
 
-    return broke_array + same_array +  list_of_multi_linked_sections + list_of_linked_sections
+    return broke_array + same_array + list_of_multi_linked_sections + list_of_linked_sections
+}
+
+function check_js_function_i(html) {
+    let check_these_function_array = []
+    let function_split = html.split("function ")
+    for (let function_string of function_split) {
+        if (function_string.includes("im_")) {
+            let string_type = function_string.split(')')[0]
+            let name = string_type.split('(')[0].trim()
+            let parameters_type = string_type.split('(')[1]
+            if (parameters_type.includes("i")) {
+                check_these_function_array.push(name)
+            }
+
+        } else {}
+
+    }
+
+    let wrong_array = "wrong"
+    for (let string_function_name of check_these_function_array) {
+        let check_string = `${string_function_name}(u32(`
+        if (html.includes(check_string)) {
+            let split_function = html.split(string_function_name)[1]
+            split_function = split_function.split(', x[')[0]
+            split_function = split_function.split(',')
+            if (split_function.length === 1) {
+                // should be 2
+                wrong_array += `${string_function_name} only 1`
+            }
+
+        } else {
+        }
+
+    }
+
+    return wrong_array
+
 }
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);

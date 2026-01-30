@@ -314,7 +314,7 @@ function get_hwvx_proto_datapack_76(o) {
 
 function get_hwvx_proto_triggers_and_actions(o) {
     // if (u32(o + 36))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40], o)
 
     switch (u32(o + 8)) {
         //1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 17, 22, 24, 28, 31, 33, 51, 64, 68, 104, 162, 269
@@ -440,14 +440,14 @@ function get_hwvx_proto_triggers_and_actions_4trest(o, a) {
     let _1st_length = (_1st_amnt * 4) + 4 + o
 
     for (let i = 0; i < _1st_amnt; i++) {
-    //     let check_val = u32(o + 4 + (i * 4)) + offset_mid
-    // if (old_log_array.p_offset.array.includes(check_val)) {
-    //     ü(1, [u32, 0, u32, 4 ], o + 4 + (i * 4))
-    // }else{
-    //     ü(1, [u32, 0 ], o + 4 + (i * 4))
-    // }
+        //     let check_val = u32(o + 4 + (i * 4)) + offset_mid
+        // if (old_log_array.p_offset.array.includes(check_val)) {
+        //     ü(1, [u32, 0, u32, 4 ], o + 4 + (i * 4))
+        // }else{
+        //     ü(1, [u32, 0 ], o + 4 + (i * 4))
+        // }
 
-        get_hwvx_proto_triggers_and_actions_4trest_1st(u32(o+4) + (i*4))
+        get_hwvx_proto_triggers_and_actions_4trest_1st(u32(o + 4) + (i * 4))
         // ö(u32(o + 4 + (i * 4)), get_hwvx_proto_triggers_and_actions_4trest_1st)
     }
 
@@ -459,9 +459,8 @@ function get_hwvx_proto_triggers_and_actions_4trest(o, a) {
     }
 
     o = _1st_length
-    for (let i = 0; i < _2nd_amnt; i++) {
-        // ö(u32(o + 4 + (i * 4)), get_hwvx_proto_triggers_and_actions_4trest_2nd)
-        // ä(hwvx_proto_triggers_and_actions_4trest_2nd, u32(o + 4) + (i*4), get_hwvx_proto_triggers_and_actions_4trest_2nd)
+    for (let i = 0; i < _2nd_amnt; i++) {// ö(u32(o + 4 + (i * 4)), get_hwvx_proto_triggers_and_actions_4trest_2nd)
+    // ä(hwvx_proto_triggers_and_actions_4trest_2nd, u32(o + 4) + (i*4), get_hwvx_proto_triggers_and_actions_4trest_2nd)
     }
 
     // console.log(`a:${o} e: ${end_length} | _1st_amnt: ${_1st_amnt} / ${_1st_length}  _2nd_amnt: ${_2nd_amnt} / ${_2nd_length}`)
@@ -907,8 +906,12 @@ function get_hwvx_proto_triggers_and_actions_20_4t39(o) {
 }
 
 function get_hwvx_proto_triggers_and_actions_20_4t3(o) {
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
     let amt = u32(o + 4)
+
+    if (o === 6200256) {
+        console.log('this')
+    }
 
     for (let i = 0; i < amt; i++) {
         ä(hwvx_proto_world_36_48_16, u32(o + 8 + (i * 4)), get_hwvx_proto_world_36_48_16)
@@ -1155,8 +1158,7 @@ function get_hwvx_proto_world_4_16_4(o) {
 
 }
 
-function get_hwvx_proto_world_4_20(o) {
-    // ü(1, [u32, 0], o)
+function get_hwvx_proto_world_4_20(o) {// ü(1, [u32, 0], o)
 }
 
 function get_hwvx_proto_world_12(o) {
@@ -1202,8 +1204,7 @@ function get_hwvx_proto_world_36_28(o) {
     if (u8(o + 17) !== 205 || u8(o + 20) !== 205 || u8(o + 21) !== 205 || u8(o + 22) !== 205 || u8(o + 23) !== 205 || u8(o + 24) !== 205 || u8(o + 25) !== 205 || u8(o + 26) !== 205 || u8(o + 27) !== 205 || u8(o + 28) !== 205 || u8(o + 29) !== 205 || u8(o + 30) !== 205 || u8(o + 31) !== 205)
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u8, 28, u8, 29, u8, 30, u8, 31], o)
 }
-function get_hwvx_proto_world_36_36(o) {
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+function get_hwvx_proto_world_36_36(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 function get_hwvx_proto_world_36_48(o) {
     if (u32(o + 0) || u32(o + 28))
@@ -1224,8 +1225,8 @@ function get_hwvx_proto_world_36_48(o) {
 }
 
 function get_hwvx_proto_world_36_48_8(o) {
-    if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 44) || u32(o + 56) || u32(o + 60))
-        ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
+    // if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 44) || u32(o + 56) || u32(o + 60))
+    ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60], o)
 
     ä(hwvx_proto_world_model_related, u32(o + 36), get_hwvx_proto_world_model_related)
 
@@ -1364,19 +1365,16 @@ function get_hwvx_proto_world_120_0(o) {
 
 }
 
-function get_hwvx_proto_world_124(o) {
-        // ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
+function get_hwvx_proto_world_124(o) {// ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
 }
-function get_hwvx_proto_world_132(o) {
-        // ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
+function get_hwvx_proto_world_132(o) {// ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
 }
-function get_hwvx_proto_world_140(o) {
-        // ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
+function get_hwvx_proto_world_140(o) {// ü(1, [u32, 0, f32, 4, f32, 8, f32, 12], o)
 }
 
 function get_hwvx_proto_collision(o) {
     // if (u32(o + 12) || u32(o + 28) || u32(o + 36) !== 13)
-        ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, f32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
+    ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, f32, 16, f32, 20, f32, 24, u32, 28, u32, 32, u32, 36, f32, 40, f32, 44, f32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
 
     for (let i = 0; i < u32(o + 68); i++) {
         ö(u32(o + 32) + (i * 80), get_hwvx_proto_collision_32)
@@ -1446,7 +1444,7 @@ function get_hwvx_proto_collision_84(o) {
 }
 function get_hwvx_proto_collision_link(o) {
     // if (u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 0), get_hwvx_proto_collision_settings)
     ö(u32(o + 4), get_hwvx_proto_collision_settings)
@@ -1454,7 +1452,7 @@ function get_hwvx_proto_collision_link(o) {
 
 function get_hwvx_proto_collision_settings(o) {
     // if (f32(o + 4) !== 5 || f32(o + 32) !== 1 || f32(o + 36) !== 1 || u32(o + 40) || u32(o + 44) || u32(o + 56) || u32(o + 84) || u32(o + 88) || u32(o + 92))
-        ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
+    ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, ], o)
 
     ä(hwvx_proto_unknown, u32(o + 48), get_hwvx_proto_unknown)
     ä(hwvx_proto_unknown_thing, u32(o + 52), get_hwvx_proto_unknown_thing)
@@ -2157,8 +2155,8 @@ function get_hwvx_proto_world_idk_48_8(o) {
 }
 
 function get_hwvx_proto_world_model_related(o) {
-    if (u8(o + 7))
-        ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    // if (u8(o + 7))
+    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
     switch (u8(o + 4)) {
     case 0:
@@ -2224,7 +2222,7 @@ function get_hwvx_proto_world_settings(o) {
     for (let i = 0; i < u32(o + 248); i++) {
         ö(u32(o + 252) + (i * 4), get_hwvx_proto_world_settings_244)
     }
-for (let i = 0; i < u32(o + 256); i++) {
+    for (let i = 0; i < u32(o + 256); i++) {
         ö(u32(o + 260) + (i * 12), get_hwvx_proto_world_settings_260)
     }
     if (old_log_array.p_offset.array.includes(o + 156 - offset_mid)) {
@@ -3010,7 +3008,7 @@ function get_hwvx_proto_interface_48(o) {
 
 function get_hwvx_proto_unknown(o) {
     // if (u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
     for (let i = 0; i < u32(o); i++) {
         ö(u32(o + 4) + (i * 12), get_hwvx_proto_unknown_4)
     }
@@ -3776,8 +3774,7 @@ function get_hwvx_proto_geo_list_4_4(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 
 }
 function get_hwvx_proto_geo_list_4_8(o) {// ü(1, [f32, 0], o)
 }
-function get_hwvx_proto_geo_list_4_16(o) {
-    // ü(1, [u8, 0], o)
+function get_hwvx_proto_geo_list_4_16(o) {// ü(1, [u8, 0], o)
 //random parts in model data?
 }
 
