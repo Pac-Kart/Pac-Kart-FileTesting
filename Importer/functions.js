@@ -30,7 +30,8 @@ function format_button_clicked() {
 <a id="format_sec_id_from_ex_debug" class="test_line_click">format_sec_id_from_ex_debug</a>
 <a id="format_replace_debug_id_with_sec_id" class="test_line_click">format_replace_debug_id_with_sec_id</a>
 <a id="format_pmwr_pc_add_sec_id" class="test_line_click">format_pmwr_pc_add_sec_id</a>
-<a id="check_js_i" class="test_line_click">check_js_i
+<a id="check_js_i" class="test_line_click">check_js_i</a>
+<a id="replace_ternary_with_and" class="test_line_click">replace_ternary_with_and</a>
 </span>
 </div>
 `
@@ -54,6 +55,7 @@ function format_button_clicked() {
     document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
     document.getElementById("format_pmwr_pc_add_sec_id").addEventListener("click", print_format_pmwr_pc_add_sec_id);
     document.getElementById("check_js_i").addEventListener("click", print_check_js_i);
+    document.getElementById("replace_ternary_with_and").addEventListener("click", print_replace_ternary_with_and);
 
     function format_text_editor_generate() {
 
@@ -819,6 +821,41 @@ ${object_html.export_id_html}
             }
 
             let string_from_docs = get_format_replace_debug_id_with_sec_id(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_replace_ternary_with_and() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>change ? to &&<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = get_format_replace_import_tern_with_and(html)
 
             copy_all.value = string_from_docs
 
@@ -5704,6 +5741,24 @@ function get_format_replace_debug_id_with_sec_id(string) {
     for (let line of array_lines) {
         if (line.includes(`g.debug ? ex_debug(o, "`)) {
             line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
+        }
+        string_new += line + "\n"
+    }
+
+    return string_new
+
+}
+
+function get_format_replace_import_tern_with_and(string) {
+    let array_lines = string.split("\n")
+    let string_new = ""
+
+    for (let line of array_lines) {
+        if (line.includes(`) ? im`)) {
+            line = line.replaceAll(") ? im",") && im")
+            line = line.replaceAll(") : 0;",");")
+        }else if (line.includes(`g.debug ? ex_debug(o, x.sec_id) : 0;`)) {
+            line = line.replaceAll("g.debug ? ex_debug(o, x.sec_id) : 0;","g.debug && ex_debug(o, x.sec_id);")
         }
         string_new += line + "\n"
     }
