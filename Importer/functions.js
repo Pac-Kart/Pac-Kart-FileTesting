@@ -31,7 +31,10 @@ function format_button_clicked() {
 <a id="format_replace_debug_id_with_sec_id" class="test_line_click">format_replace_debug_id_with_sec_id</a>
 <a id="format_pmwr_pc_add_sec_id" class="test_line_click">format_pmwr_pc_add_sec_id</a>
 <a id="check_js_i" class="test_line_click">check_js_i</a>
+<a id="ordered_world_sections_from_docs" class="test_line_click">ordered_world_sections_from_docs</a>
 <a id="replace_ternary_with_and" class="test_line_click">replace_ternary_with_and</a>
+<a id="world_order_single_file" class="test_line_click">world_order_single_file</a>
+<a id="world_order_all_file" class="test_line_click">world_order_all_file</a>
 </span>
 </div>
 `
@@ -55,7 +58,10 @@ function format_button_clicked() {
     document.getElementById("format_replace_debug_id_with_sec_id").addEventListener("click", print_format_replace_debug_id_with_sec_id);
     document.getElementById("format_pmwr_pc_add_sec_id").addEventListener("click", print_format_pmwr_pc_add_sec_id);
     document.getElementById("check_js_i").addEventListener("click", print_check_js_i);
+    document.getElementById("ordered_world_sections_from_docs").addEventListener("click", print_format_world_sections_from_docs);
     document.getElementById("replace_ternary_with_and").addEventListener("click", print_replace_ternary_with_and);
+    document.getElementById("world_order_single_file").addEventListener("click", print_world_order_single_file);
+    document.getElementById("world_order_all_file").addEventListener("click", print_world_order_all_file);
 
     function format_text_editor_generate() {
 
@@ -929,6 +935,92 @@ ${object_html.export_id_html}
             let string_from_docs = check_js_function_i(html)
 
             copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_format_world_sections_from_docs() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>format_world_sections_from_docs<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = format_world_sections_from_docs(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
+    function print_world_order_single_file() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>import a single file with world sections and this will generate a list based on offset order<br>
+        </p>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        paste_html_changed()
+
+        function paste_html_changed() {
+            let string = print_world_order_test_list_single_file()
+
+            copy_all.value = string
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+    function print_world_order_all_file() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>import all files with world sections and this will generate a list<br>
+        </p>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        paste_html_changed()
+
+        function paste_html_changed() {
+            let string = print_world_order_test_list_all_file()
+
+            copy_all.value = string
 
         }
 
@@ -5755,10 +5847,10 @@ function get_format_replace_import_tern_with_and(string) {
 
     for (let line of array_lines) {
         if (line.includes(`) ? im`)) {
-            line = line.replaceAll(") ? im",") && im")
-            line = line.replaceAll(") : 0;",");")
-        }else if (line.includes(`g.debug ? ex_debug(o, x.sec_id) : 0;`)) {
-            line = line.replaceAll("g.debug ? ex_debug(o, x.sec_id) : 0;","g.debug && ex_debug(o, x.sec_id);")
+            line = line.replaceAll(") ? im", ") && im")
+            line = line.replaceAll(") : 0;", ");")
+        } else if (line.includes(`g.debug ? ex_debug(o, x.sec_id) : 0;`)) {
+            line = line.replaceAll("g.debug ? ex_debug(o, x.sec_id) : 0;", "g.debug && ex_debug(o, x.sec_id);")
         }
         string_new += line + "\n"
     }
@@ -6093,13 +6185,110 @@ function check_js_function_i(html) {
                 wrong_array += `${string_function_name} only 1`
             }
 
-        } else {
-        }
+        } else {}
 
     }
 
     return wrong_array
 
 }
+
+function print_world_order_test_list_single_file() {
+    html = "<p>order:<br>\n"
+    let object_offset_list = {
+        offset_list: [],
+        fixed_list: [],
+        name_list: [],
+        file_list: [],
+    }
+    for (let array_section of temp_array__) {
+        let string_first_file_name = array_section.files[0]
+        let string_section_name = array_section.name
+        let number_offset = array_section.subarrays[0].o[0]
+        object_offset_list.offset_list.push(number_offset)
+        object_offset_list.fixed_list.push(number_offset)
+        object_offset_list.name_list.push(string_section_name)
+        object_offset_list.file_list.push(string_first_file_name)
+
+    }
+    object_offset_list.offset_list = object_offset_list.offset_list?.sort(function(a, b) {
+        return a - b;
+    });
+
+    for (let number_offset of object_offset_list.offset_list) {
+        let index = object_offset_list.fixed_list.indexOf(number_offset)
+        let string_section_name = object_offset_list.name_list[index]
+        let string_first_file_name = object_offset_list.file_list[index]
+
+        html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | offset = ${number_offset}<br>\n`
+
+    }
+    html += "</p>\n"
+
+    return html
+}
+
+function print_world_order_test_list_all_file() {
+html = "<p>order:<br>\n"
+
+let array_offset_list = []
+for (let array_section of temp_array__) {
+    let string_first_file_name = array_section.files[0]
+    let string_section_name = array_section.name
+    let number_offset = array_section.subarrays[0].o[0]
+    array_offset_list.push(number_offset)
+
+    html+= `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | offset = ${number_offset}<br>\n`
+}
+html+= "</p>\n"
+return html
+}
+
+
+function format_world_sections_from_docs(html) {
+let ordered = html.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
+ordered = ordered.split('offset_patch_list">Offset Patch List')[0]
+
+
+let temp_string = ordered.split('<p>order:<br>')[1]
+temp_string = temp_string.split("</p>")[0]
+
+// first get array from list
+let array = temp_string.split('<a href="#')
+let array_section_names = []
+for (let string of array) {
+    if (string.includes("order:<br>")) {
+    }else if (string === "\n") {
+    }else {
+    string = string.split(`">`)[0]
+    array_section_names.push(string)
+}}
+let string_new_tables = ""
+let tables_array = {
+    names:[],
+    html:[],
+}
+let array_h2_split = ordered.split(`<h2 id="`)
+    for (let string_table of array_h2_split) {
+        let match_name = string_table.split('\n')[0]
+            match_name = match_name.split(`">`)[0]
+            for (let name of array_section_names) {
+                if (match_name === name) {
+                    tables_array.html.push(`<h2 id="${string_table}`)
+                    tables_array.names.push(name)
+                }
+            }
+
+    }
+
+    for (let section of array_section_names) {
+        let index = tables_array.names.indexOf(section)
+        string_new_tables+= tables_array.html[index]
+    }
+
+    return string_new_tables
+
+}
+
 
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);

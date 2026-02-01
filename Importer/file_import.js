@@ -103,9 +103,8 @@ function choose_game_type() {
     case "pac_man_world_rally":
         if (g.version === 243) {
             get_x_pmwr_xdx()
-        }
-        if (g.version === 249) {
-            get_x_pmwr_ps2demo()
+        }else if (g.version === 249) {
+            get_x_pmwr_demo()
         } else{
             get_x_pmwr()
         }
