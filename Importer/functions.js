@@ -2467,7 +2467,7 @@ function ä(a, o, f) {
 //                             let is_un = is_unordered(cases[i])
 //                             // let is_un = "unknown"
 //                             if (is_un === 'y') {
-//                                 is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+//                                 is_case += `        u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
 
 //                             } else {
 //                                 let is_ordered = getisordered(tableid)
@@ -2710,7 +2710,7 @@ function html_to_export(inputHtml) {
             let xstring = ''
             let xpatch = ''
 
-            let xdebug = `\n    g.debug ? ex_debug(o, "`
+            let xdebug = `\n    g.debug && ex_debug(o, "`
             for (let i = 0; i < 4; i++) {
                 let a = Math.floor(Math.random() * 255)
                 while (a < 48 || a > 122) {
@@ -3150,7 +3150,7 @@ function html_to_eximport(inputHtml) {
         }
         );
 
-        let xdebug = `\n    g.debug ? ex_debug(o, "`
+        let xdebug = `\n    g.debug && ex_debug(o, "`
         for (let i = 0; i < 4; i++) {
             let a = Math.floor(Math.random() * 255)
             while (a < 48 || a > 122 || a === 92 || a === 96) {
@@ -3271,6 +3271,15 @@ function ß(type, o, n) {
                     default:
                         ä(pmwr_model, u32(o + n), get_pmwr_model)
 
+                    }
+                    break
+                    case "hot_wheels_velocity_x":
+                    if (g.version === 183) {
+                        ä(hwvx_model, u32(o + n), get_hwvx_model)
+                        // get_x_hwvx()
+                    } else {
+                        ä(hwvx_proto_model, u32(o + n), get_hwvx_proto_model)
+                        // get_x_hwvx_proto()
                     }
                     break
                 }
@@ -3630,7 +3639,7 @@ function html_to_import(inputHtml) {
                             let is_un = is_unordered(cases[i])
                             // let is_un = "unknown"
                             if (is_un === 'y') {
-                                is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                                is_case += `        u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
 
                             } else {
                                 let is_ordered = getisordered(tableid)
@@ -3695,7 +3704,7 @@ function html_to_import(inputHtml) {
                     if (is_case !== false) {
                         offsets += is_case
                     } else {
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
                     }
                     // if (cells[2].innerHTML.includes("based on type")) {
                     // offsets += `// CASE // u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
@@ -3754,7 +3763,7 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
                     } else if (cells[2].innerHTML.includes("href")) {
                         let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
                         jsFunction += `    section_` + offset + `: [],\n`;
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); // offset? \n`;
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
 
@@ -3989,7 +3998,7 @@ function html_to_edit(inputHtml) {
                             let is_un = is_unordered(cases[i])
                             // let is_un = "unknown"
                             if (is_un === 'y') {
-                                is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                                is_case += `        u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
 
                             } else {
                                 let is_ordered = getisordered(tableid)
@@ -4054,7 +4063,7 @@ function html_to_edit(inputHtml) {
                     if (is_case !== false) {
                         offsets += is_case
                     } else {
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
                     }
                     // if (cells[2].innerHTML.includes("based on type")) {
                     // offsets += `// CASE // u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
@@ -4113,7 +4122,7 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
                     } else if (cells[2].innerHTML.includes("href")) {
                         let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
                         jsFunction += `    section_` + offset + `: [],\n`;
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); // offset? \n`;
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
 
@@ -4348,7 +4357,7 @@ function html_to_info(inputHtml) {
                             let is_un = is_unordered(cases[i])
                             // let is_un = "unknown"
                             if (is_un === 'y') {
-                                is_case += `        u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                                is_case += `        u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
 
                             } else {
                                 let is_ordered = getisordered(tableid)
@@ -4415,7 +4424,7 @@ function html_to_info(inputHtml) {
                     if (is_case !== false) {
                         offsets += is_case
                     } else {
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); \n`;
                     }
                     // if (cells[2].innerHTML.includes("based on type")) {
                     // offsets += `// CASE // u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; \n`;
@@ -4476,7 +4485,7 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
                         let tableid = cells[2].innerHTML.split("href")[1].split("#")[1].split(`"`)[0].trim()
                         // jsFunction += `    section_` + offset + `: [???? 3],\n`;
                         jsFunction += `    section_${offset} : ["${check_if_in_list_sec_id_list(tableid, true)}"],\n`;
-                        offsets += `u32(o + ${offset}) ? im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `) : 0; // offset? \n`;
+                        offsets += `u32(o + ${offset}) && im_` + tableid + `(u32(o + ${offset}) + g.m,x[${is_i}]` + ".section_" + offset + `); // offset? \n`;
                     } else if (cells[2].innerHTML.includes("amount")) {
                         let propertyName = type + "_" + offset;
 
@@ -4917,7 +4926,7 @@ function html_to_export(inputHtml) {
         }
         );
 
-        let xdebug = `\n    g.debug ? ex_debug(o, x.sec_id) : 0;\n`
+        let xdebug = `\n    g.debug && ex_debug(o, x.sec_id) : 0;\n`
         // for (let i = 0; i < 4; i++) {
         //     let a = Math.floor(Math.random() * 255)
         //     while (a < 48 || a > 122 || a === 92 || a === 96) {
@@ -5619,7 +5628,7 @@ function ex_${string}_file_header(o, x) {
 
     console.pk_log("saved in " + time_array)
 
-    g.debug ? ex_debug(o, x.sec_id) : 0;
+    g.debug && ex_debug(o, x.sec_id) : 0;
     return e
 }
 //////////
@@ -5640,7 +5649,7 @@ function generate_directory_table_for_file_view() {
         let is_geo_patch_info;
         let is_geo_patch_export;
         if (string === "svtrb_pc") {
-            is_geo_patch_import = `u32(o + 16) ? im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;`
+            is_geo_patch_import = `u32(o + 16) && im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack);`
             is_geo_patch_info = "['E@3Z']"
             is_geo_patch_export = `e = ex_${string}_datapack(16 + (i * 24), e, x[0].section_datapack[i], global)
 `
@@ -5656,10 +5665,10 @@ function generate_directory_table_for_file_view() {
     case 8:
     case 9:
     case 10:
-        u32(o + 16) ? im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
+        u32(o + 16) && im_${string}_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
         break;
     case 7:
-        u32(o + 16) ? im_${string}_geo_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
+        u32(o + 16) && im_${string}_geo_datapack(next_offset + u32(o + 20), 0, x[i].section_datapack) : 0;
         break;
     }
 `
@@ -5785,7 +5794,7 @@ function ex_${string}_directory(o, e, x, global) {
     dynamic_buffer = directory_buffer
     su32(o + 16, datapack_buffer.byteLength + patch_buffer.byteLength + ordered_buffer.byteLength)
 
-    g.debug ? ex_debug(o, x.sec_id) : 0;
+    g.debug && ex_debug(o, x.sec_id) : 0;
     return e
 }
 ///////////
@@ -5802,10 +5811,10 @@ function get_sec_id_from_exdebug_funtion(string) {
     let array_name = []
     let array_sec_id = []
     for (let string_function of array_functions) {
-        if (string_function.includes(`g.debug ? ex_debug(o, "`)) {
+        if (string_function.includes(`g.debug && ex_debug(o, "`)) {
             string_function = string_function.split(`") : 0;`)[0]
             let string_name = string_function.split(`(o,`)[0]
-            let string_sec_id = string_function.split(`g.debug ? ex_debug(o, "`)[1]
+            let string_sec_id = string_function.split(`g.debug && ex_debug(o, "`)[1]
 
             array_name.push(`"${string_name}"`)
             array_sec_id.push(`"${string_sec_id}"`)
@@ -5832,7 +5841,7 @@ function get_format_replace_debug_id_with_sec_id(string) {
 
     for (let line of array_lines) {
         if (line.includes(`g.debug ? ex_debug(o, "`)) {
-            line = `g.debug ? ex_debug(o, x.sec_id) : 0;`
+            line = `g.debug && ex_debug(o, x.sec_id) : 0;`
         }
         string_new += line + "\n"
     }
@@ -5849,8 +5858,8 @@ function get_format_replace_import_tern_with_and(string) {
         if (line.includes(`) ? im`)) {
             line = line.replaceAll(") ? im", ") && im")
             line = line.replaceAll(") : 0;", ");")
-        } else if (line.includes(`g.debug ? ex_debug(o, x.sec_id) : 0;`)) {
-            line = line.replaceAll("g.debug ? ex_debug(o, x.sec_id) : 0;", "g.debug && ex_debug(o, x.sec_id);")
+        } else if (line.includes(`g.debug && ex_debug(o, x.sec_id) : 0;`)) {
+            line = line.replaceAll("g.debug && ex_debug(o, x.sec_id) : 0;", "g.debug && ex_debug(o, x.sec_id);")
         }
         string_new += line + "\n"
     }
