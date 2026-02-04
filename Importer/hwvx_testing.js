@@ -4603,13 +4603,30 @@ function get_hwvx_geo_list_4_16(o) {// ü(3, [u32, 0], o)
 }
 
 function get_hwvx_model(o) {
-    if (u16(o + 6) || u32(o + 60))
-        ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60, ], o)
+    // if (u16(o + 6) || u32(o + 60))
+        // ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60, ], o)
+        ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, u8, 44,u8, 45,u8, 46,u8, 47, u8, 48,u8, 49,u8, 50,u8, 51, f32, 52, f32, 56, u32, 60, ], o)
 
+
+    // switch(u16(o + 4)){
+    //     case 0:
+    //     break
+    //     case 7:
+    //     return
+    //     break
+    //     default:
+    //     ü(1, [u16, 0, u16, 2, u16, 4, u16, 6, u32, 8, u32, 12, f32, 16, f32, 20, f32, 24, f32, 28, f32, 32, f32, 36, f32, 40, f32, 44, f32, 48, f32, 52, f32, 56, u32, 60, ], o)
+    // }
     //gc = always 8195
     //ps2 = always 4101
     //pc = 2
     //
+
+    // if (u8(o + 47) !== 65) {
+    //     return
+    //     // 63 = normal
+    //     // 64 = normal +1 2768 struct
+    // }
     //
     switch (u16(o)) {
     case 2:
@@ -4714,10 +4731,10 @@ function get_hwvx_model_pc_8(o) {
     for (let i = 0; i < u8(o + 2); i++) {
         ö(u32(o + 8) + (i * 32), get_hwvx_model_pc_8_8)
     }
-    if (u32(o + 20) + offset_mid === o) {
-        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)
+    // if (u32(o + 20) + offset_mid === o) {
+    //     ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)
+    // }
      ö(u32(o + 12), get_hwvx_model_pc_8_12)
-    }
 
    //  if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
    // }
@@ -4748,27 +4765,48 @@ function get_hwvx_model_pc_8_8_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12,
 }
 
 function get_hwvx_model_pc_8_12(o) {
-    // if (u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
-    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
-    ö(u32(o + 0), get_hwvx_model_pc_8_12_0)
-    ö(u32(o + 4), get_hwvx_model_pc_8_12_4)
-    ö(u32(o + 8), get_hwvx_model_pc_8_12_8)
-    ö(u32(o + 12), get_hwvx_model_pc_8_12_12)
+    if (old_log_array.p_offset.array.includes(o + 0 - offset_mid)) {
+        get_hwvx_model_pc_8_12_type_a(o)
+    }else{
+        get_hwvx_model_pc_8_12_type_b(o)
+        return
+    }
+}
+
+function get_hwvx_model_pc_8_12_type_a(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    // }else{
+        // return
+    // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    // }
+
+    // ö(u32(o + 0), get_hwvx_model_pc_8_12_type_a_0)
+    // ö(u32(o + 4), get_hwvx_model_pc_8_12_type_a_4)
+    // ö(u32(o + 8), get_hwvx_model_pc_8_12_type_a_8)
+    // ö(u32(o + 12), get_hwvx_model_pc_8_12_type_a_12)
 
 }
 
-function get_hwvx_model_pc_8_12_0(o) {//same data 16 byte
-// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_model_pc_8_12_type_a_0(o) {//same data 16 byte
+ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_hwvx_model_pc_8_12_4(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_model_pc_8_12_type_a_4(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 //colors?
 }
-function get_hwvx_model_pc_8_12_8(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_model_pc_8_12_type_a_8(o) {
+    ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 //floats? vertex?
 }
-function get_hwvx_model_pc_8_12_12(o) {//3 floats? + 4 byte   // 
-// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_model_pc_8_12_type_a_12(o) {//3 floats? + 4 byte   // 
+ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
+function get_hwvx_model_pc_8_12_type_b(o) {
+ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+// array
+}
+
+
 
 function get_hwvx_model_pc_8_16(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
