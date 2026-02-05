@@ -5443,7 +5443,7 @@ function doc_generate_linked_to_string(doc_string, string_name) {
     }
     let html = `
 <p>multi linked to by:<br>
-    ${html_string}</p>`
+${html_string}</p>\n`
     return html
 
 }
