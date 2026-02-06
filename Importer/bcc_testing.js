@@ -89,8 +89,8 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_datapack_68_4trest_1st = []
     globalThis.bcc_datapack_68_4trest_2nd = []
     globalThis.bcc_world_20 = []
-    globalThis.bcc_weird = []
-    globalThis.bcc_interface_92_36t1_4 = []
+    globalThis.bcc_font = []
+    globalThis.bcc_text = []
     globalThis.bcc_interface_92_36t1_12 = []
     globalThis.bcc_interface_32 = []
     globalThis.bcc_interface_92_36t15_0 = []
@@ -106,7 +106,7 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_interface_92_68_4_4_16_12 = []
     globalThis.bcc_interface_92_36t1_12t1 = []
     globalThis.bcc_interface_92_36t1_12t0 = []
-    globalThis.bcc_weird_4 = []
+    globalThis.bcc_font_4 = []
     globalThis.bcc_interface_92_36t1_12t1_4t1_12 = []
     globalThis.bcc_interface_92_36t1_12t1_4t1_16 = []
     globalThis.bcc_interface_92_36t1_12t1_4t1_20 = []
@@ -122,7 +122,7 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_car_0_20_8 = []
     globalThis.bcc_car_0_20_12 = []
     globalThis.bcc_car_0_28_4_12_0 = []
-    globalThis.bcc_mysterious_4t2 = []
+    globalThis.bcc_strange = []
     globalThis.bcc_car_0_20_0_16_12_4_4 = []
     globalThis.bcc_car_0_20_0_16_16_4_4 = []
     globalThis.bcc_unknown_4_4t5 = []
@@ -141,13 +141,11 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_world_4_20t0 = []
     globalThis.bcc_something = []
     globalThis.bcc_object_100 = []
-    globalThis.bcc_world_176_12_0 = []
+    globalThis.bcc_var = []
     globalThis.bcc_world_28_80_0_0 = []
     globalThis.bcc_world_28_84_8_0 = []
     globalThis.bcc_world_28_84_24_0 = []
     globalThis.bcc_idk_36_40 = []
-    globalThis.bcc_world_settings_0_0_20 = []
-    globalThis.bcc_world_settings_0_0_32 = []
     globalThis.bcc_world_thing_88 = []
     globalThis.bcc_object_4 = []
     globalThis.bcc_world_link_type_0_16 = []
@@ -160,8 +158,8 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_idk_44_36_40 = []
     globalThis.bcc_world_link_type_0_28_4_12_0 = []
     globalThis.bcc_world_link_type_0_20_0_16_12_4_4 = []
-    globalThis.bcc_world_176_12_0_168_24_12t15_0 = []
-    globalThis.bcc_world_176_12_0_168_24_12t18_4 = []
+    globalThis.bcc_var_168_24_12t15_0 = []
+    globalThis.bcc_var_168_24_12t18_4 = []
 
     director_offset = o
     g.type = u32(o + 4)
@@ -199,8 +197,8 @@ function get_bcc_datapack(o, e) {
     }
     let index_patch_list = offset_mid - index_patch_list_amount
 
-    // bcc_get_index_patch_list(o, index_patch_list)
-    // bcc_get_offset_patch_list(o, offset_mid + u32(o))
+    bcc_get_index_patch_list(o, index_patch_list)
+    bcc_get_offset_patch_list(o, offset_mid + u32(o))
 
     globalThis.old_log_array = structuredClone(log_array)
 
@@ -230,9 +228,9 @@ function get_bcc_datapack(o, e) {
 
 }
 function get_bcc_share(o) {
-    if (u32(o + 0) !== 32 || u32(o + 4) || u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+    // if (u32(o + 0) !== 32 || u32(o + 4) || u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    ß('p_sound', o, 0)
+    // ß('p_sound', o, 0)
 
     ö(u32(o + 0), get_bcc_share_0)
     for (let i = 0; i < u32(o + 12); i++) {
@@ -252,7 +250,7 @@ function get_bcc_texture_anims(o) {
     if (u32(o + 0))
         ü(1, [u32, 0, u32, 4], o)
 
-    ä(bcc_interface_92_36t1_4, u32(o + 4), get_bcc_interface_92_36t1_4)
+    ä(bcc_text, u32(o + 4), get_bcc_text)
 
 }
 
@@ -544,7 +542,7 @@ function get_bcc_world_settings(o) {
     ö(u32(o + 112), get_bcc_world_settings_112)
     ö(u32(o + 124), get_bcc_world_settings_124)
     ö(u32(o + 132), get_bcc_world_settings_132)
-    ä(bcc_weird, u32(o + 228), get_bcc_weird)
+    ä(bcc_font, u32(o + 228), get_bcc_font)
 
 }
 
@@ -680,50 +678,50 @@ function get_bcc_flag_20(o) {
 function get_bcc_world_176_12(o) {
     /*ü(1, [u32, 0], o)*/
     ü(1, [u32, 0], o)
-    ä(bcc_world_176_12_0, u32(o + 0), get_bcc_world_176_12_0)
+    ä(bcc_var, u32(o + 0), get_bcc_var)
 
 }
 
-function get_bcc_world_176_12_0(o) {
+function get_bcc_var(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60) || u32(o + 64) || u32(o + 68) || u32(o + 72) || u32(o + 76) || u32(o + 80) || u32(o + 84) || u32(o + 88) || u32(o + 92) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u32(o + 112) || u32(o + 116) || u32(o + 120) || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136) || u32(o + 140) || u32(o + 144) || u32(o + 160) || u32(o + 172))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172], o)
 
-    ö(u32(o + 148), get_bcc_world_176_12_0_148)
-    ö(u32(o + 156), get_bcc_world_176_12_0_156)
+    ö(u32(o + 148), get_bcc_var_148)
+    ö(u32(o + 156), get_bcc_var_156)
     for (let i = 0; i < u32(o + 164); i++) {
-        ö(u32(o + 168) + (i * 36), get_bcc_world_176_12_0_168)
+        ö(u32(o + 168) + (i * 36), get_bcc_var_168)
     }
 
 }
 
-function get_bcc_world_176_12_0_148(o) {// console.log(get_string(o, 0, false))
+function get_bcc_var_148(o) {// console.log(get_string(o, 0, false))
 }
-function get_bcc_world_176_12_0_156(o) {
+function get_bcc_var_156(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ä(bcc_world_176_12_0, u32(o + 0), get_bcc_world_176_12_0)
+    ä(bcc_var, u32(o + 0), get_bcc_var)
 
 }
 
-function get_bcc_world_176_12_0_168(o) {
+function get_bcc_var_168(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) !== 1 || u32(o + 28) || u32(o + 32))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32], o)
 
-    ö(u32(o + 16), get_bcc_world_176_12_0_168_16)
+    ö(u32(o + 16), get_bcc_var_168_16)
     for (let i = 0; i < u32(o + 20); i++) {
-        ö(u32(o + 24) + (i * 24), get_bcc_world_176_12_0_168_24)
+        ö(u32(o + 24) + (i * 24), get_bcc_var_168_24)
     }
 
 }
 
-function get_bcc_world_176_12_0_168_16(o) {
+function get_bcc_var_168_16(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     switch (u32(o + 4)) {
     case 7:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_16_12t7)
+        ö(u32(o + 12), get_bcc_var_168_16_12t7)
         break
     case 21:
         ä(bcc_interface, u32(o + 12), get_bcc_interface)
@@ -734,39 +732,39 @@ function get_bcc_world_176_12_0_168_16(o) {
         }
     }
 
-    ö(u32(o + 16), get_bcc_world_176_12_0_168_16_16)
+    ö(u32(o + 16), get_bcc_var_168_16_16)
 
 }
 
-function get_bcc_world_176_12_0_168_16_12t7(o) {
+function get_bcc_var_168_16_12t7(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_bcc_world_176_12_0_168_16_16(o) {
+function get_bcc_var_168_16_16(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_bcc_world_176_12_0_168_24(o) {
+function get_bcc_var_168_24(o) {
     if (u32(o + 0) || u8(o + 4) !== 1 || u8(o + 6) || u8(o + 7))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20], o)
 
     switch (u32(o + 8)) {
     case 1:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_24_12t1)
+        ö(u32(o + 12), get_bcc_var_168_24_12t1)
         break
     case 5:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_24_12t5)
+        ö(u32(o + 12), get_bcc_var_168_24_12t5)
         break
     case 15:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_24_12t15)
+        ö(u32(o + 12), get_bcc_var_168_24_12t15)
         break
     case 17:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_24_12t17)
+        ö(u32(o + 12), get_bcc_var_168_24_12t17)
         break
     case 18:
-        ö(u32(o + 12), get_bcc_world_176_12_0_168_24_12t18)
+        ö(u32(o + 12), get_bcc_var_168_24_12t18)
         break
     default:
         if (u32(o + 12)) {
@@ -776,79 +774,79 @@ function get_bcc_world_176_12_0_168_24(o) {
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t1(o) {
+function get_bcc_var_168_24_12t1(o) {
     if (u8(o + 4) !== 2 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_bcc_world_176_12_0_168_24_12t1_0)
+    ö(u32(o + 0), get_bcc_var_168_24_12t1_0)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t1_0(o) {
+function get_bcc_var_168_24_12t1_0(o) {
     if (u8(o + 5) || u8(o + 7) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    ö(u32(o + 0), get_bcc_world_176_12_0_168_24_12t1_0_0)
+    ö(u32(o + 0), get_bcc_var_168_24_12t1_0_0)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t1_0_0(o) {
+function get_bcc_var_168_24_12t1_0_0(o) {
     if (u32(o + 0) || u32(o + 4) !== 11 || u8(o + 8) !== 4 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12], o)
 }
 
-function get_bcc_world_176_12_0_168_24_12t5(o) {
+function get_bcc_var_168_24_12t5(o) {
     if (u8(o + 4) !== 1 || u8(o + 5) || u8(o + 6) || u8(o + 7) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_bcc_world_176_12_0_168_24_12t5_0)
+    ö(u32(o + 0), get_bcc_var_168_24_12t5_0)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t5_0(o) {
+function get_bcc_var_168_24_12t5_0(o) {
     if (u8(o + 4) || u8(o + 5) !== 1 || u8(o + 6) || u8(o + 7) || u32(o + 12))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 
     ä(bcc_interface, u32(o), get_bcc_interface)
 
-    ö(u32(o + 8), get_bcc_world_176_12_0_168_24_12t5_0_8)
+    ö(u32(o + 8), get_bcc_var_168_24_12t5_0_8)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t5_0_8(o) {
+function get_bcc_var_168_24_12t5_0_8(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_bcc_world_176_12_0_168_24_12t15(o) {
+function get_bcc_var_168_24_12t15(o) {
     if (u32(o + 4) !== 2 || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    // ö(u32(o + 0), get_bcc_world_176_12_0_168_24_12t15_0)
-    ä(bcc_world_176_12_0, u32(o + 0), get_bcc_world_176_12_0)
+    // ö(u32(o + 0), get_bcc_var_168_24_12t15_0)
+    ä(bcc_var, u32(o + 0), get_bcc_var)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t15_0(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, ], o)
+function get_bcc_var_168_24_12t15_0(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, u32, 176, ], o)
 }
 
-function get_bcc_world_176_12_0_168_24_12t17(o) {
+function get_bcc_var_168_24_12t17(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
-function get_bcc_world_176_12_0_168_24_12t18(o) {
+function get_bcc_var_168_24_12t18(o) {
     if (u32(o + 0) || u32(o + 12) || u32(o + 16) !== 1 || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
     ä(bcc_something, u32(o + 4), get_bcc_something)
-    // ö(u32(o + 4), get_bcc_world_176_12_0_168_24_12t18_4)
-    ö(u32(o + 8), get_bcc_world_176_12_0_168_24_12t18_8)
+    // ö(u32(o + 4), get_bcc_var_168_24_12t18_4)
+    ö(u32(o + 8), get_bcc_var_168_24_12t18_8)
 
 }
 
-function get_bcc_world_176_12_0_168_24_12t18_4(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
+function get_bcc_var_168_24_12t18_4(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 }
-function get_bcc_world_176_12_0_168_24_12t18_8(o) {
+function get_bcc_var_168_24_12t18_8(o) {
     if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
@@ -924,8 +922,6 @@ function get_bcc_world_thing_88_24(o) {
 function get_bcc_basic(o) {
     if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    ß('p_texture', o, 0)
-    ß('p_sound', o, 0)
 
     ö(u32(o + 4), get_bcc_basic_4)
 
@@ -2014,7 +2010,7 @@ function get_bcc_mysterious(o) {
         ä(bcc_unknown, u32(o + 4), get_bcc_unknown)
         break
     case 2:
-        ä(bcc_mysterious_4t2, u32(o + 4), get_bcc_mysterious_4t2)
+        ä(bcc_strange, u32(o + 4), get_bcc_strange)
         break
     case 3:
         ö(u32(o + 4), get_bcc_mysterious_4t3)
@@ -2070,17 +2066,17 @@ function get_bcc_mysterious_4t3_16_4_0_24(o) {
         ü(1, [f32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12], o)
 }
 
-function get_bcc_mysterious_4t2(o) {
+function get_bcc_strange(o) {
     if (u32(o + 28) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, f32, 32, u32, 36, u32, 40, u32, 44], o)
 
     for (let i = 0; i < u32(o); i++) {
-        ö(u32(o + 4) + (i * 4), get_bcc_mysterious_4t2_4)
+        ö(u32(o + 4) + (i * 4), get_bcc_strange_4)
     }
 
 }
 
-function get_bcc_mysterious_4t2_4(o) {
+function get_bcc_strange_4(o) {
     /*ü(1, [u32, 0], o)*/
 
     ä(bcc_unknown, u32(o + 0), get_bcc_unknown)
@@ -2197,7 +2193,7 @@ function get_bcc_link(o) {
     if (u32(o + 0) || u32(o + 8) || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 48) || u32(o + 76))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
     ö(u32(o + 16), get_bcc_link_16)
-    ä(bcc_weird, u32(o + 28), get_bcc_weird)
+    ä(bcc_font, u32(o + 28), get_bcc_font)
 
     ö(u32(o + 32), get_bcc_interface)
     ö(u32(o + 36), get_bcc_link_36)
@@ -2273,47 +2269,47 @@ function get_bcc_link_16_4_0_20t7(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, f32, 20, u32, 24, u32, 28, ], o)
 }
 
-function get_bcc_weird(o) {
+function get_bcc_font(o) {
     if (u32(o + 16) !== 1 || u8(o + 32) || u8(o + 33) || u8(o + 34) || u8(o + 35) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u8, 32, u8, 33, u8, 34, u8, 35, u32, 36, u32, 40, u32, 44], o)
     ß('p_texture', o, 0)
 
-    ä(bcc_weird_4, u32(o + 4), get_bcc_weird_4)
-    ö(u32(o + 20), get_bcc_weird_20)
+    ä(bcc_font_4, u32(o + 4), get_bcc_font_4)
+    ö(u32(o + 20), get_bcc_font_20)
     for (let i = 0; i < u32(o + 24); i++) {
-        ö(u32(o + 28) + (i * 12), get_bcc_weird_28)
+        ö(u32(o + 28) + (i * 12), get_bcc_font_28)
     }
 
 }
-function get_bcc_weird_28(o) {
+function get_bcc_font_28(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8], o)
 }
 
-function get_bcc_weird_4(o) {
+function get_bcc_font_4(o) {
     if (u32(o + 0) !== 131077 || f32(o + 4) !== 35 || f32(o + 8) !== 33 || f32(o + 12) !== 1 || f32(o + 16) !== 1 || u32(o + 20) !== 384 || u32(o + 28) !== 353 || u32(o + 40) || u32(o + 44))
         ü(1, [u32, 0, f32, 4, f32, 8, f32, 12, f32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
     for (let i = 0; i < u32(o + 20); i++) {
-        ö(u32(o + 24) + (i * 2), get_bcc_weird_4_24)
+        ö(u32(o + 24) + (i * 2), get_bcc_font_4_24)
     }
     for (let i = 0; i < u32(o + 28); i++) {
-        ö(u32(o + 32) + (i * 24), get_bcc_weird_4_32)
+        ö(u32(o + 32) + (i * 24), get_bcc_font_4_32)
     }
-    ö(u32(o + 36), get_bcc_weird_4_36)
+    ö(u32(o + 36), get_bcc_font_4_36)
 
 }
 
-function get_bcc_weird_4_24(o) {// ü(1, [u16, 0], o)
+function get_bcc_font_4_24(o) {// ü(1, [u16, 0], o)
 }
-function get_bcc_weird_4_32(o) {
+function get_bcc_font_4_32(o) {
     if (u8(o + 17) || u32(o + 20))
         ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, u8, 16, u8, 17, u8, 18, u8, 19, u32, 20], o)
 }
-function get_bcc_weird_4_36(o) {// console.log(get_string(o, 0, false))
+function get_bcc_font_4_36(o) {// console.log(get_string(o, 0, false))
 }
 
-function get_bcc_weird_20(o) {
+function get_bcc_font_20(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 }
@@ -3095,7 +3091,7 @@ function get_bcc_object(o) {
     ö(u32(o + 44), get_bcc_object_44)
     ä(bcc_unknown, u32(o + 88), get_bcc_unknown)
 
-    ä(bcc_interface_92_36t1_4, u32(o + 100), get_bcc_interface_92_36t1_4)
+    ä(bcc_text, u32(o + 100), get_bcc_text)
 
     ö(u32(o + 108), get_bcc_object_108)
 
@@ -3877,12 +3873,12 @@ function get_bcc_interface_92_36t1(o) {
     if (u8(o + 3) !== 5)
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u16, 20, u16, 22, u16, 24, u8, 26, u8, 27, f32, 28], o)
 
-    ä(bcc_interface_92_36t1_4, u32(o + 4), get_bcc_interface_92_36t1_4)
+    ä(bcc_text, u32(o + 4), get_bcc_text)
     ö(u32(o + 8), get_bcc_interface_92_36t1_8)
 
     switch (u8(o + 2)) {
     case 0:
-        ä(bcc_weird, u32(o + 12), get_bcc_weird)
+        ä(bcc_font, u32(o + 12), get_bcc_font)
         break
     case 1:
         ä(bcc_interface_92_36t1_12t1, u32(o + 12), get_bcc_interface_92_36t1_12t1)
@@ -3897,15 +3893,15 @@ function get_bcc_interface_92_36t1(o) {
 
 }
 
-function get_bcc_interface_92_36t1_4(o) {
+function get_bcc_text(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
-    ö(u32(o + 0), get_bcc_interface_92_36t1_4_0)
+    ö(u32(o + 0), get_bcc_text_0)
 
 }
 
-function get_bcc_interface_92_36t1_4_0(o) {// console.log(get_string(o, 0, false))
+function get_bcc_text_0(o) {// console.log(get_string(o, 0, false))
 }
 function get_bcc_interface_92_36t1_12t0(o) {
     ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
@@ -3932,9 +3928,9 @@ function get_bcc_interface_92_36t1_12t1_4t0(o) {
     if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u32(o + 16) || u32(o + 20) || u32(o + 36) || u32(o + 40) || u32(o + 44))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, f32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
 
-    ä(bcc_weird, u32(o + 12), get_bcc_weird)
-    ä(bcc_weird, u32(o + 28), get_bcc_weird)
-    ä(bcc_weird, u32(o + 32), get_bcc_weird)
+    ä(bcc_font, u32(o + 12), get_bcc_font)
+    ä(bcc_font, u32(o + 28), get_bcc_font)
+    ä(bcc_font, u32(o + 32), get_bcc_font)
 
 }
 
@@ -3944,8 +3940,8 @@ function get_bcc_interface_92_36t1_12t1_4t1(o) {
 
     ä(bcc_interface_92_36t1_12t1_4t1_12, u32(o + 12), get_bcc_interface_92_36t1_12t1_4t1_12)
 
-    ä(bcc_weird, u32(o + 16), get_bcc_weird)
-    ä(bcc_weird, u32(o + 20), get_bcc_weird)
+    ä(bcc_font, u32(o + 16), get_bcc_font)
+    ä(bcc_font, u32(o + 20), get_bcc_font)
 
 }
 
@@ -3954,7 +3950,7 @@ function get_bcc_interface_92_36t1_12t1_4t1_12(o) {
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
     ß('p_texture', o, 0)
 
-    ä(bcc_weird_4, u32(o + 4), get_bcc_weird_4)
+    ä(bcc_font_4, u32(o + 4), get_bcc_font_4)
     ö(u32(o + 20), get_bcc_interface_92_36t1_12t1_4t1_12_20)
 
 }
@@ -3981,7 +3977,7 @@ function get_bcc_interface_92_36t1_8(o) {
 function get_bcc_interface_92_36t1_8_4(o) {
     // ü(1, [u32, 0], o)
 
-    ä(bcc_interface_92_36t1_4, u32(o + 0), get_bcc_interface_92_36t1_4)
+    ä(bcc_text, u32(o + 0), get_bcc_text)
 
 }
 

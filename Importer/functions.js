@@ -6083,7 +6083,11 @@ place in basic_04 & world functions
 function check_unordered_linked_to_sections(inputHtml) {
     let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
     // unordered = unordered.split('</section>')[0]
+    if (unordered.includes('offset_patch_list">Offset Patch List')) {
     unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
+    }else{
+    unordered = unordered.split('</section>')[0]
+    }
 
     let array_h2_split = unordered.split('<h2 id=')
     let array_list_first_entry = true;
