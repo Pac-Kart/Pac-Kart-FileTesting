@@ -3266,7 +3266,7 @@ function ß(type, o, n) {
                         ä(pmwr_xdx_model, u32(o + n), get_pmwr_xdx_model)
                         break
                     case 249:
-                        ä(pmwr_ps2demo_model, u32(o + n), get_pmwr_ps2demo_model)
+                        ä(pmwr_demo_model, u32(o + n), get_pmwr_demo_model)
                         break
                     default:
                         ä(pmwr_model, u32(o + n), get_pmwr_model)
