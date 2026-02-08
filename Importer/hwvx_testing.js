@@ -137,16 +137,16 @@ function get_hwvx_directory(o, end_offset) {
     */
 
     switch (g.type) {
-    // case 0:
-    // case 1:
-    // case 2:
-    // case 3:
-    // case 4:
-    // case 5:
-    // case 6:
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
     case 8:
-    // case 9:
-    // case 10:
+    case 9:
+    case 10:
         get_hwvx_datapack(end_offset + u32(o + 20))
         break
     // case 7:
@@ -294,7 +294,7 @@ function get_hwvx_datapack(o) {
     }
     if (u32(o + 68)) {
         for (let i = 0; i < u32(o + 64); i++) {
-            get_hwvx_trigger(offset_mid + u32(o + 68) + (i * 44))
+            get_hwvx_triggers_and_actions(offset_mid + u32(o + 68) + (i * 44))
         }
     }
 
@@ -369,40 +369,40 @@ function get_hwvx_datapack_76(o) {
     ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_hwvx_trigger(o) {
-    if (u32(o + 24) || u32(o + 32) || u32(o + 36) || u8(o + 41) || u8(o + 42) || u8(o + 43))
+function get_hwvx_triggers_and_actions(o) {
+    // if (u32(o + 24) || u32(o + 32) || u32(o + 36) || u8(o + 41) || u8(o + 42) || u8(o + 43))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, ], o)
 
     switch (u32(o + 8)) {
     case 1:
-        ö(u32(o + 4), get_hwvx_trigger_4t1)
+        ö(u32(o + 4), get_hwvx_triggers_and_actions_4t1)
         break
     case 3:
-        ö(u32(o + 4), get_hwvx_trigger_4t3)
+        ö(u32(o + 4), get_hwvx_triggers_and_actions_4t3)
         break
     case 5:
-        ö(u32(o + 4), get_hwvx_trigger_4t5)
+        ö(u32(o + 4), get_hwvx_triggers_and_actions_4t5)
         break
     case 6:
-        ö(u32(o + 4), get_hwvx_trigger_4t6)
+        ö(u32(o + 4), get_hwvx_triggers_and_actions_4t6)
         break
     default:
         ß('p_offset', u32(o + 4), offset_mid)
-        get_hwvx_trigger_4trest(u32(o + 4) + offset_mid, u32(o + 8))
+        get_hwvx_triggers_and_actions_4trest(u32(o + 4) + offset_mid, u32(o + 8))
     }
     if (u32(o + 4)) {// ü(0, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40,u8, 41,u8, 42,u8, 43,], o)
-    // get_hwvx_trigger_4test(u32(o + 4) + offset_mid)
+    // get_hwvx_triggers_and_actions_4test(u32(o + 4) + offset_mid)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        ö(u32(o + 12) + (i * 44), get_hwvx_trigger_12)
+        ö(u32(o + 12) + (i * 44), get_hwvx_triggers_and_actions_12)
     }
     for (let i = 0; i < u32(o + 28); i++) {
         ö(u32(o + 20) + (i * 24), get_hwvx_actions)
     }
 
 }
-function get_hwvx_trigger_4t1(o) {
+function get_hwvx_triggers_and_actions_4t1(o) {
     if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 
@@ -410,46 +410,46 @@ function get_hwvx_trigger_4t1(o) {
 
 }
 
-function get_hwvx_trigger_4t2(o) {
+function get_hwvx_triggers_and_actions_4t2(o) {
     // if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
     //     ü(3, [u32, 0], o)
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
-    // ä(hwvx_trigger_4t2_4, u32(o + 4), get_hwvx_trigger_4t2_4)
+    // ä(hwvx_triggers_and_actions_4t2_4, u32(o + 4), get_hwvx_triggers_and_actions_4t2_4)
 
 }
 
-function get_hwvx_trigger_4t2_4(o) {// ü(3, [u32, 0], o) //ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_triggers_and_actions_4t2_4(o) {// ü(3, [u32, 0], o) //ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 //some 64 byte strucute in world
 }
 
-function get_hwvx_trigger_4t3(o) {
+function get_hwvx_triggers_and_actions_4t3(o) {
     if (u32(o + 0) !== 1 || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
-    ö(u32(o + 4), get_hwvx_trigger_4t3_4)
-    // ä(hwvx_trigger_4t3_4, u32(o + 4), get_hwvx_trigger_4t3_4)
+    ö(u32(o + 4), get_hwvx_triggers_and_actions_4t3_4)
+    // ä(hwvx_triggers_and_actions_4t3_4, u32(o + 4), get_hwvx_triggers_and_actions_4t3_4)
 
 }
 
-function get_hwvx_trigger_4t3_4(o) {
+function get_hwvx_triggers_and_actions_4t3_4(o) {
     let check_val = o
     if (hwvx_Airbox.includes(check_val)) {
         return
     }
 
     console.log(o, offset_mid)
-    //duplicate found: get_hwvx_trigger_4t3_4 -> get_hwvx_Airbox
+    //duplicate found: get_hwvx_triggers_and_actions_4t3_4 -> get_hwvx_Airbox
 
 }
 
-function get_hwvx_trigger_4t5(o) {
+function get_hwvx_triggers_and_actions_4t5(o) {
     if (u32(o + 0) !== 1 || u32(o + 20) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, f32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
-    ö(u32(o + 4), get_hwvx_trigger_4t5_4)
+    ö(u32(o + 4), get_hwvx_triggers_and_actions_4t5_4)
 
     switch (u32(o + 16)) {
     case 0:
-        ö(u32(o + 12), get_hwvx_trigger_4t5_12t0)
+        ö(u32(o + 12), get_hwvx_triggers_and_actions_4t5_12t0)
         break
     case 21:
     case 22:
@@ -462,7 +462,7 @@ function get_hwvx_trigger_4t5(o) {
 
 }
 
-function get_hwvx_trigger_4t5_4(o) {
+function get_hwvx_triggers_and_actions_4t5_4(o) {
     let check_val = o
     if (hwvx_world_108.includes(check_val)) {
         return
@@ -483,7 +483,7 @@ function get_hwvx_trigger_4t5_4(o) {
     */
 }
 
-function get_hwvx_trigger_4t5_12t0(o) {
+function get_hwvx_triggers_and_actions_4t5_12t0(o) {
     let check_val = o
     if (hwvx_world_12.includes(check_val)) {
         return
@@ -492,16 +492,18 @@ function get_hwvx_trigger_4t5_12t0(o) {
 
 }
 
-function get_hwvx_trigger_4t6(o) {
+function get_hwvx_triggers_and_actions_4t6(o) {
 
     switch (u32(o)) {
     case 1:
     case 2:
         //trest
         ß('p_offset', u32(o + 4), offset_mid)
-        get_hwvx_trigger_4trest(o, 6)
+        get_hwvx_triggers_and_actions_4trest(o, 6)
         break
     case 4:
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+
         ä(hwvx_Airbox, u32(o + 4), get_hwvx_Airbox)
         // get_hwvx_Airbox
         ä(hwvx_Airbox, u32(o + 8), get_hwvx_Airbox)
@@ -523,14 +525,14 @@ function get_hwvx_trigger_4t6(o) {
     // ä(hwvx_world_12, u32(o + 12), get_hwvx_world_12)
 
 }
-function get_hwvx_trigger_4trest(o, a) {
+function get_hwvx_triggers_and_actions_4trest(o, a) {
     let end_length = (a * 4) + o
     let _1st_amnt = u32(o)
     let _1st_length = (_1st_amnt * 4) + 4 + o
 
     for (let i = 0; i < _1st_amnt; i++) {
-        get_hwvx_trigger_4trest_1st(u32(o + 4) + (i * 4))
-        ö(u32(o + 4 + (i * 4)), get_hwvx_trigger_4trest_1st)
+        get_hwvx_triggers_and_actions_4trest_1st(u32(o + 4) + (i * 4))
+        ö(u32(o + 4 + (i * 4)), get_hwvx_triggers_and_actions_4trest_1st)
     }
 
     let _2nd_amnt = 0
@@ -542,14 +544,14 @@ function get_hwvx_trigger_4trest(o, a) {
 
     o = _1st_length
     for (let i = 0; i < _2nd_amnt; i++) {
-        ö(u32(o + 4 + (i * 4)), get_hwvx_trigger_4trest_2nd)
-        // ä(hwvx_trigger_4trest_2nd, u32(o + 4) + (i*4), get_hwvx_trigger_4trest_2nd)
+        ö(u32(o + 4 + (i * 4)), get_hwvx_triggers_and_actions_4trest_2nd)
+        // ä(hwvx_triggers_and_actions_4trest_2nd, u32(o + 4) + (i*4), get_hwvx_triggers_and_actions_4trest_2nd)
     }
 
     // console.log(`a:${o} e: ${end_length} | _1st_amnt: ${_1st_amnt} / ${_1st_length}  _2nd_amnt: ${_2nd_amnt} / ${_2nd_length}`)
 }
 
-function get_hwvx_trigger_4trest_1st(o) {
+function get_hwvx_triggers_and_actions_4trest_1st(o) {
     let check_val = o
     if (hwvx_world_36_48.includes(check_val)) {
         return
@@ -573,32 +575,32 @@ function get_hwvx_trigger_4trest_1st(o) {
         return
     }
     // console.log(o,offset_mid)
-    // ä(hwvx_trigger_4trest_1st, o - offset_mid, get_hwvx_trigger_4trest_2nd)
+    // ä(hwvx_triggers_and_actions_4trest_1st, o - offset_mid, get_hwvx_triggers_and_actions_4trest_2nd)
 
 }
-function get_hwvx_trigger_4trest_2nd(o) {
+function get_hwvx_triggers_and_actions_4trest_2nd(o) {
     let check_val = o
     if (hwvx_world_12.includes(check_val)) {
         return
     }
 }
 
-function get_hwvx_trigger_4test(o) {
+function get_hwvx_triggers_and_actions_4test(o) {
     ü(3, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
-function get_hwvx_trigger_12(o) {
+function get_hwvx_triggers_and_actions_12(o) {
     if (u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
 
-    ö(u32(o + 4), get_hwvx_trigger_12_4)
+    ö(u32(o + 4), get_hwvx_triggers_and_actions_12_4)
 
 }
 
-function get_hwvx_trigger_12_4(o) {
+function get_hwvx_triggers_and_actions_12_4(o) {
     // if (u32(o + 0) !== 1 || u32(o + 20) || u32(o + 24) || u32(o + 28))
     if (u32(o) === 1) {
-        ö(u32(o + 4), get_hwvx_trigger_12_4_4)
+        ö(u32(o + 4), get_hwvx_triggers_and_actions_12_4_4)
         // ä(hwvx_world_76, u32(o + 12), get_hwvx_world_76)
 
         if (u32(o + 16) === 0) {
@@ -610,9 +612,9 @@ function get_hwvx_trigger_12_4(o) {
 
 }
 
-function get_hwvx_trigger_12_4_4(o) {
+function get_hwvx_triggers_and_actions_12_4_4(o) {
     // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
-    //get_hwvx_world_36_48_24 -> get_hwvx_trigger_12_4_4
+    //get_hwvx_world_36_48_24 -> get_hwvx_triggers_and_actions_12_4_4
 
     let check_val = o
     if (hwvx_world_76.includes(check_val)) {
@@ -909,7 +911,8 @@ function get_hwvx_actions_4t17(o) {
 }
 
 function get_hwvx_actions_4t2(o) {
-    // ü(3, [u32, 0], o) //ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    // ü(3, [u32, 0], o)
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
     let amt = u32(o + 4)
 
     for (let i = 0; i < amt; i++) {
@@ -1450,7 +1453,7 @@ function get_hwvx_world_36_48(o) {
 }
 
 function get_hwvx_Airbox(o) {
-    if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 44) || u8(o + 54) || u8(o + 55) || u32(o + 56) || u32(o + 60))
+    // if (u8(o + 12) !== 205 || u8(o + 13) !== 205 || u8(o + 14) !== 205 || u8(o + 15) !== 205 || u32(o + 44) || u8(o + 54) || u8(o + 55) || u32(o + 56) || u32(o + 60))
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, f32, 16, f32, 20, f32, 24, f32, 28, u32, 32, u32, 36, f32, 40, u32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u32, 56, u32, 60], o)
 
     ä(hwvx_world_model_related, u32(o + 36), get_hwvx_world_model_related)
@@ -1458,7 +1461,7 @@ function get_hwvx_Airbox(o) {
 }
 
 function get_hwvx_world_model_related(o) {
-    // ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
+    ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 
     switch (u8(o + 4)) {
     case 0:
@@ -4679,7 +4682,8 @@ function get_hwvx_model_gc_8_8_12(o) {
 function get_hwvx_model_gc_8_8_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
-function get_hwvx_model_gc_8_12(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+function get_hwvx_model_gc_8_12(o) {
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 function get_hwvx_model_gc_8_16(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
 }
