@@ -4926,7 +4926,7 @@ function html_to_export(inputHtml) {
         }
         );
 
-        let xdebug = `\n    g.debug && ex_debug(o, x.sec_id) : 0;\n`
+        let xdebug = `\n    g.debug && ex_debug(o, x.sec_id);\n`
         // for (let i = 0; i < 4; i++) {
         //     let a = Math.floor(Math.random() * 255)
         //     while (a < 48 || a > 122 || a === 92 || a === 96) {
@@ -5628,7 +5628,7 @@ function ex_${string}_file_header(o, x) {
 
     console.pk_log("saved in " + time_array)
 
-    g.debug && ex_debug(o, x.sec_id) : 0;
+    g.debug && ex_debug(o, x.sec_id);
     return e
 }
 //////////
@@ -5794,7 +5794,7 @@ function ex_${string}_directory(o, e, x, global) {
     dynamic_buffer = directory_buffer
     su32(o + 16, datapack_buffer.byteLength + patch_buffer.byteLength + ordered_buffer.byteLength)
 
-    g.debug && ex_debug(o, x.sec_id) : 0;
+    g.debug && ex_debug(o, x.sec_id);
     return e
 }
 ///////////
@@ -5841,7 +5841,7 @@ function get_format_replace_debug_id_with_sec_id(string) {
 
     for (let line of array_lines) {
         if (line.includes(`g.debug ? ex_debug(o, "`)) {
-            line = `g.debug && ex_debug(o, x.sec_id) : 0;`
+            line = `g.debug && ex_debug(o, x.sec_id);`
         }
         string_new += line + "\n"
     }

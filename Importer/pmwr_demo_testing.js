@@ -262,9 +262,14 @@ function get_pmwr_demo_world(o) {
 
     ö(u32(o + 0), get_pmwr_demo_world_0)
     ö(u32(o + 4), get_pmwr_demo_world_4)
-    ä(pmwr_demo_world_12, u32(o + 12), get_pmwr_demo_world_12)
+    for (let i = 0; i < u32(o + 8); i++) {
+    ä(pmwr_demo_world_12, u32(o + 12) + (i*128), get_pmwr_demo_world_12)
+    }
 
-    ä(pmwr_demo_world_20, u32(o + 20), get_pmwr_demo_world_20)
+    for (let i = 0; i < u32(o + 16); i++) {
+    ä(pmwr_demo_world_20, u32(o + 20) + (i*64), get_pmwr_demo_world_20)
+    }
+
 
     for (let i = 0; i < u32(o + 24); i++) {
         ö(u32(o + 28) + (i * 112), get_pmwr_demo_world_28)
@@ -273,7 +278,9 @@ function get_pmwr_demo_world(o) {
     for (let i = 0; i < u32(o + 40); i++) {
         ä(pmwr_demo_world_44, u32(o + 44) + (i * 144), get_pmwr_demo_world_44)
     }
-    ä(pmwr_demo_world_60, u32(o + 60), get_pmwr_demo_world_60)
+    for (let i = 0; i < u32(o + 56); i++) {
+    ä(pmwr_demo_world_60, u32(o + 60) + (i*80), get_pmwr_demo_world_60)
+    }
 
     for (let i = 0; i < u32(o + 64); i++) {
         ö(u32(o + 68) + (i * 96), get_pmwr_demo_world_68)
@@ -281,13 +288,23 @@ function get_pmwr_demo_world(o) {
     for (let i = 0; i < u32(o + 80); i++) {
         ö(u32(o + 84) + (i * 80), get_pmwr_demo_world_84)
     }
-    ä(pmwr_demo_world_92, u32(o + 92), get_pmwr_demo_world_92)
 
-    ä(pmwr_demo_world_100, u32(o + 100), get_pmwr_demo_world_100)
+    for (let i = 0; i < u32(o + 88); i++) {
+    ä(pmwr_demo_world_92, u32(o + 92) + (i*96), get_pmwr_demo_world_92)
+    }
 
-    ä(pmwr_demo_world_108, u32(o + 108), get_pmwr_demo_world_108)
 
-    ä(pmwr_demo_world_116, u32(o + 116), get_pmwr_demo_world_116)
+    for (let i = 0; i < u32(o + 96); i++) {
+    ä(pmwr_demo_world_100, u32(o + 100) + (i*80), get_pmwr_demo_world_100)
+    }
+
+    for (let i = 0; i < u32(o +104); i++) {
+    ä(pmwr_demo_world_108, u32(o + 108) + (i*80), get_pmwr_demo_world_108)
+    }
+
+    for (let i = 0; i < u32(o + 112); i++) {
+    ä(pmwr_demo_world_116, u32(o + 116) + (i*112), get_pmwr_demo_world_116)
+    }
 
     ö(u32(o + 120), get_pmwr_demo_world_120)
     ö(u32(o + 156), get_pmwr_demo_world_settings)
