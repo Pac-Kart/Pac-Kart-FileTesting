@@ -3857,7 +3857,7 @@ for (let ${is_ii} = 0; ${is_ii} < u32(o + ${offsetamount}); ${is_ii}++) {
         } else if (cells.toLowerCase().includes("sound")) {
             jsFunction += `    sound_` + offset + `: im_patch(g.sound_patch_ref, o + ${offset}),\n`;
         } else if (cells.toLowerCase().includes("model")) {
-            jsFunction += `    model_` + offset + `: im_patch(g.model_ref, o + ${offset}),\n`;
+            jsFunction += `    model_` + offset + `: in_models(o + ${offset}, g.models_array,im_${0}_models, g.ordered_ref.${0}_model),\n`;
         } else {
             jsFunction += `    ${propertyName}: ${type}(o + ${offset}),//patch?\n`;
         }
