@@ -258,10 +258,14 @@ function get_svtrb_texture_psp(o) {
 }
 
 function get_svtrb_texture_psp_12(o) {// console.log(get_string(o, 0, false))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48], o)
 }
-function get_svtrb_texture_psp_16(o) {// color table 1024 bytes
+function get_svtrb_texture_psp_16(o) {
+            ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48], o)
+// color table 1024 bytes
 }
 function get_svtrb_texture_psp_20(o) {//texture data
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48], o)
 }
 
 function svtrb_get_index_patch_list(o, patch_offset) {
@@ -5643,6 +5647,7 @@ function get_svtrb_world_mode_20_8t12_0(o) {
 
 function get_svtrb_world_mode_28(o) {
     /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)*/
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20], o)
 
     ö(u32(o + 0), get_svtrb_world_mode_28_0)
     ö(u32(o + 8), get_svtrb_world_mode_28_8)
@@ -6452,6 +6457,7 @@ function get_svtrb_world_mode_28_12t16(o) {
 
 function get_svtrb_world_mode_28_12t22(o) {
     /*ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)*/
+    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 0), get_svtrb_world_link)
 

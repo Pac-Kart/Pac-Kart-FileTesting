@@ -1028,7 +1028,6 @@ ${object_html.export_id_html}
 
     }
 
-
     function copy_from_textarea(e) {
         let element = e.srcElement
         let string_value = element.value
@@ -3269,11 +3268,11 @@ function ß(type, o, n) {
                         ä(pmwr_demo_model, u32(o + n), get_pmwr_demo_model)
                         break
                     default:
-                        ä(pmwr_model, u32(o + n), get_pmwr_model)
+                        ä(pmwr_models, u32(o + n), get_pmwr_models)
 
                     }
                     break
-                    case "hot_wheels_velocity_x":
+                case "hot_wheels_velocity_x":
                     if (g.version === 183) {
                         ä(hwvx_model, u32(o + n), get_hwvx_model)
                         // get_x_hwvx()
@@ -6084,9 +6083,9 @@ function check_unordered_linked_to_sections(inputHtml) {
     let unordered = inputHtml.split('unordered_list">Unordered List</h2>')[1]
     // unordered = unordered.split('</section>')[0]
     if (unordered.includes('offset_patch_list">Offset Patch List')) {
-    unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
-    }else{
-    unordered = unordered.split('</section>')[0]
+        unordered = unordered.split('offset_patch_list">Offset Patch List')[0]
+    } else {
+        unordered = unordered.split('</section>')[0]
     }
 
     let array_h2_split = unordered.split('<h2 id=')
@@ -6242,66 +6241,109 @@ function print_world_order_test_list_single_file() {
 }
 
 function print_world_order_test_list_all_file() {
-html = "<p>order:<br>\n"
+    html = "<p>order:<br>\n"
 
-let array_offset_list = []
-for (let array_section of temp_array__) {
-    let string_first_file_name = array_section.files[0]
-    let string_section_name = array_section.name
-    let number_offset = array_section.subarrays[0].o[0]
-    array_offset_list.push(number_offset)
+    let array_offset_list = []
+    for (let array_section of temp_array__) {
+        let string_first_file_name = array_section.files[0]
+        let string_section_name = array_section.name
+        let number_offset = array_section.subarrays[0].o[0]
+        array_offset_list.push(number_offset)
 
-    html+= `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | offset = ${number_offset}<br>\n`
+        html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | offset = ${number_offset}<br>\n`
+    }
+    html += "</p>\n"
+    return html
 }
-html+= "</p>\n"
-return html
-}
-
 
 function format_world_sections_from_docs(html) {
-let ordered = html.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
-ordered = ordered.split('offset_patch_list">Offset Patch List')[0]
+    let ordered = html.split('<p>The first part of the ordered list depends on the type of file</p>')[1]
+    ordered = ordered.split('offset_patch_list">Offset Patch List')[0]
 
+    let temp_string = ordered.split('<p>order:<br>')[1]
+    temp_string = temp_string.split("</p>")[0]
 
-let temp_string = ordered.split('<p>order:<br>')[1]
-temp_string = temp_string.split("</p>")[0]
-
-// first get array from list
-let array = temp_string.split('<a href="#')
-let array_section_names = []
-for (let string of array) {
-    if (string.includes("order:<br>")) {
-    }else if (string === "\n") {
-    }else {
-    string = string.split(`">`)[0]
-    array_section_names.push(string)
-}}
-let string_new_tables = ""
-let tables_array = {
-    names:[],
-    html:[],
-}
-let array_h2_split = ordered.split(`<h2 id="`)
+    // first get array from list
+    let array = temp_string.split('<a href="#')
+    let array_section_names = []
+    for (let string of array) {
+        if (string.includes("order:<br>")) {} else if (string === "\n") {} else {
+            string = string.split(`">`)[0]
+            array_section_names.push(string)
+        }
+    }
+    let string_new_tables = ""
+    let tables_array = {
+        names: [],
+        html: [],
+    }
+    let array_h2_split = ordered.split(`<h2 id="`)
     for (let string_table of array_h2_split) {
         let match_name = string_table.split('\n')[0]
-            match_name = match_name.split(`">`)[0]
-            for (let name of array_section_names) {
-                if (match_name === name) {
-                    tables_array.html.push(`<h2 id="${string_table}`)
-                    tables_array.names.push(name)
-                }
+        match_name = match_name.split(`">`)[0]
+        for (let name of array_section_names) {
+            if (match_name === name) {
+                tables_array.html.push(`<h2 id="${string_table}`)
+                tables_array.names.push(name)
             }
+        }
 
     }
 
     for (let section of array_section_names) {
         let index = tables_array.names.indexOf(section)
-        string_new_tables+= tables_array.html[index]
+        string_new_tables += tables_array.html[index]
     }
 
     return string_new_tables
 
 }
 
+function test_string(a) {
+    let lines_array = a.split('\n')
 
+    let new_line = ''
+    for (let line_string of lines_array) {
+        if (line_string.includes(' = in_ml(u32(o')) {
+            let after_equals = line_string.split(' = in_ml(u32(')[1]
+            let offset = after_equals.split(')')[0].trim()
+            let name = after_equals.split(');')[0]
+            name = name.split('ref.')[1].trim()
+            name = name.replace(')', '')
+
+            // ä(pmwr_xdx_interface, u32(o), get_pmwr_xdx_interface)
+
+            new_line += `ä(${name}, u32(${offset}), get_${name}) \n`
+
+        } else {
+            new_line += line_string + "\n"
+        }
+    }
+    console.log(new_line)
+}
+
+function get_from_replace(string) {
+    a_split = string.split('\n')
+
+    let new_line = ''
+    for (let line_string of a_split) {
+        if (line_string.includes(', x[')) {
+            let before_x = line_string.split(', x[')[0]
+            let after_x = line_string.split(', x[')[1]
+            let end_x = ''
+            if (after_x.includes(',')) {
+                end_x = after_x.split(',')[1]
+            } else {
+                end_x = after_x.split(')')[1] + ")"
+            }
+
+            new_line += `${before_x} ${end_x}\n`
+
+        } else {
+            new_line += line_string + "\n"
+        }
+    }
+    console.log(new_line)
+
+}
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);

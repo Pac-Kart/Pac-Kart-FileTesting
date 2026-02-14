@@ -101,7 +101,6 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_model_link = []
     globalThis.bcc_interface_84_24_4t11_4_12t4 = []
     globalThis.bcc_model_link_12_0 = []
-    globalThis.bcc_interface_84_24_4t11_4_12t1_12 = []
     globalThis.bcc_interface_92_68_4_4_16_12 = []
     globalThis.bcc_multi_font = []
     globalThis.bcc_interface_92_36t1_12t0 = []
@@ -113,7 +112,7 @@ function get_bcc_directory(o, end_offset) {
     globalThis.bcc_multi_font_4t0_28 = []
     globalThis.bcc_multi_font_4t0_32 = []
     globalThis.bcc_multi_font_4t1_12_4 = []
-    globalThis.bcc_texture_anims_4 = []
+    globalThis.bcc_datapack_text_link_4 = []
     globalThis.bcc_car_0_16 = []
     globalThis.bcc_car_0_36_0 = []
     globalThis.bcc_car_0_28_0 = []
@@ -222,7 +221,7 @@ function get_bcc_datapack(o, e) {
         console.log("?")
     }
     for (let i = 0; i < u32(o + 100); i++) {
-        get_bcc_texture_anims(offset_mid + u32(o + 132) + (i * 8))
+        get_bcc_datapack_text_link(offset_mid + u32(o + 132) + (i * 8))
     }
 
 }
@@ -245,7 +244,7 @@ function get_bcc_share_16(o) {
     ß('p_sound', o, 0)
 }
 
-function get_bcc_texture_anims(o) {
+function get_bcc_datapack_text_link(o) {
     if (u32(o + 0))
         ü(1, [u32, 0, u32, 4], o)
 
@@ -328,18 +327,26 @@ function get_bcc_world(o) {
 
     ä(bcc_world_4, u32(o + 4), get_bcc_world_4)
 
-    ä(bcc_world_12, u32(o + 12), get_bcc_world_12)
+    for (let i = 0; i < u32(o + 8); i++) {
+    ä(bcc_world_12, u32(o + 12) + (i*160), get_bcc_world_12)
+    }
 
     ö(u32(o + 28), get_bcc_world_28)
     ö(u32(o + 60), get_bcc_world_60)
     for (let i = 0; i < u32(o + 80); i++) {
         ö(u32(o + 84) + (i * 96), get_bcc_world_84)
     }
-    ä(bcc_world_92, u32(o + 92), get_bcc_world_92)
+    for (let i = 0; i < u32(o + 88); i++) {
+    ä(bcc_world_92, u32(o + 92) + (i*112), get_bcc_world_92)
+    }
 
-    ä(bcc_world_108, u32(o + 108), get_bcc_world_108)
+    for (let i = 0; i < u32(o + 104); i++) {
+    ä(bcc_world_108, u32(o + 108) + (i*96), get_bcc_world_108)
+    }
 
-    ä(bcc_world_116, u32(o + 116), get_bcc_world_116)
+    for (let i = 0; i < u32(o + 112); i++) {
+    ä(bcc_world_116, u32(o + 116) + (i*128), get_bcc_world_116)
+    }
 
     ö(u32(o + 120), get_bcc_world_120)
     ö(u32(o + 172), get_bcc_world_settings)
@@ -3670,20 +3677,6 @@ function get_bcc_interface_84_24_4t11_4_12t1(o) {
 }
 
 function get_bcc_interface_84_24_4t11_4_12t1_8(o) {// console.log(get_string(o, 0, false))
-}
-function get_bcc_interface_84_24_4t11_4_12t1_12(o) {
-    if (u32(o + 0) || u32(o + 4) || u8(o + 24) || u8(o + 25) || u8(o + 26) || u8(o + 27) !== 1 || u32(o + 28) || u32(o + 32) || u32(o + 36) || u8(o + 40) !== 1 || u8(o + 41) || u8(o + 42) || u8(o + 43) || u32(o + 44))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u8, 24, u8, 25, u8, 26, u8, 27, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u32, 44], o)
-
-    ö(u32(o + 8), get_bcc_interface_84_24_4t11_4_12t1_12_8)
-    ö(u32(o + 20), get_bcc_interface_84_24_4t11_4_12t1_12_20)
-
-}
-
-function get_bcc_interface_84_24_4t11_4_12t1_12_8(o) {// console.log(get_string(o, 0, false))
-}
-function get_bcc_interface_84_24_4t11_4_12t1_12_20(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, ], o)
 }
 
 function get_bcc_interface_84_24_4t11_4_12t1_20(o) {// console.log(get_string(o, 0, false))
