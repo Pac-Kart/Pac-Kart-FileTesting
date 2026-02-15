@@ -35,6 +35,7 @@ function format_button_clicked() {
 <a id="replace_ternary_with_and" class="test_line_click">replace_ternary_with_and</a>
 <a id="world_order_single_file" class="test_line_click">world_order_single_file</a>
 <a id="world_order_all_file" class="test_line_click">world_order_all_file</a>
+<a id="check_doc_links" class="test_line_click">check_doc_links</a>
 </span>
 </div>
 `
@@ -62,6 +63,7 @@ function format_button_clicked() {
     document.getElementById("replace_ternary_with_and").addEventListener("click", print_replace_ternary_with_and);
     document.getElementById("world_order_single_file").addEventListener("click", print_world_order_single_file);
     document.getElementById("world_order_all_file").addEventListener("click", print_world_order_all_file);
+    document.getElementById("check_doc_links").addEventListener("click", print_check_doc_links);
 
     function format_text_editor_generate() {
 
@@ -1028,6 +1030,41 @@ ${object_html.export_id_html}
 
     }
 
+    function print_check_doc_links() {
+
+        file_editor.innerHTML = `
+        <div style="height:44%;overflow:scroll;">
+        <p>get_check_doc_tables_if_href_not_linked<br>
+        </p>
+            <div stlye="padding:1%;"><textarea id="paste_doc_string"></textarea><br><br>
+            </div>
+        </div>
+        <div style="height:55%;overflow:scroll;">
+            <p>copy_table</p>
+            <textarea id="copy_all"></textarea><br><hr>
+        </div>
+        `
+
+        // document.getElementById("paste_js_string").addEventListener("change", paste_html_changed);
+        document.getElementById("paste_doc_string").addEventListener("change", paste_html_changed);
+
+        function paste_html_changed() {
+            let html = paste_doc_string.value
+
+            if (html === "") {
+                return
+            }
+
+            let string_from_docs = get_check_doc_tables_if_href_not_linked(html)
+
+            copy_all.value = string_from_docs
+
+        }
+
+        copy_all.addEventListener("click", (e) => copy_from_textarea(e))
+
+    }
+
     function copy_from_textarea(e) {
         let element = e.srcElement
         let string_value = element.value
@@ -1076,7 +1113,10 @@ function _Tx(array, f, n, offset, is_3) {
         console.log("broke", f.name)
         return
     }
-    if (array.a.includes(f(offset + n))) {} else {
+    if (array.a.includes(f(offset + n))) {
+        array.o.push(offset + n)
+
+    } else {
         if (is_3 === 1) {
             array.def.push(f)
             array.o.push(offset + n)
@@ -1664,7 +1704,8 @@ function array_log(array_index=0) {
         let _2nd_array = temp_array__[0].line
         document.getElementsByClassName('bar')[0].innerHTML = htmlbuttons
 
-        let sortedlines = temp_array__[0].line.sort(function(a, b) {
+        let sortedlines = structuredClone(temp_array__[0].line)
+        sortedlines.sort(function(a, b) {
             return a - b;
         }).toString()
 
@@ -6216,11 +6257,31 @@ function print_world_order_test_list_single_file() {
     for (let array_section of temp_array__) {
         let string_first_file_name = array_section.files[0]
         let string_section_name = array_section.name
-        let number_offset = array_section.subarrays[0].o[0]
-        object_offset_list.offset_list.push(number_offset)
-        object_offset_list.fixed_list.push(number_offset)
-        object_offset_list.name_list.push(string_section_name)
-        object_offset_list.file_list.push(string_first_file_name)
+
+        if (array_section.subarrays[0].o.length === 1) {
+            let number_offset = array_section.subarrays[0].o[0]
+            object_offset_list.offset_list.push(number_offset)
+            object_offset_list.fixed_list.push(number_offset)
+            object_offset_list.name_list.push(string_section_name)
+            object_offset_list.file_list.push(string_first_file_name)
+
+        } else {
+            let number_offset_array = array_section.subarrays[0].o?.sort(function(a, b) {
+                return a - b;
+            });
+
+            let first = number_offset_array[0]
+            let last = number_offset_array[number_offset_array.length - 1]
+            object_offset_list.offset_list.push(first, last)
+            object_offset_list.fixed_list.push(first, last)
+            object_offset_list.name_list.push(string_section_name + " FIRST", string_section_name + " LAST")
+            object_offset_list.file_list.push(string_first_file_name, string_first_file_name)
+        }
+
+        // array_offset_list.push(first,last)
+
+        // html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | FIRST offset = ${first}<br>\n`
+        // html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | LAST offset = ${last}<br>\n`
 
     }
     object_offset_list.offset_list = object_offset_list.offset_list?.sort(function(a, b) {
@@ -6247,10 +6308,17 @@ function print_world_order_test_list_all_file() {
     for (let array_section of temp_array__) {
         let string_first_file_name = array_section.files[0]
         let string_section_name = array_section.name
-        let number_offset = array_section.subarrays[0].o[0]
-        array_offset_list.push(number_offset)
+        let number_offset_array = array_section.subarrays[0].o?.sort(function(a, b) {
+            return a - b;
+        });
 
-        html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | offset = ${number_offset}<br>\n`
+        let first = number_offset_array[0]
+        let last = number_offset_array[number_offset_array.length - 1]
+
+        array_offset_list.push(first, last)
+
+        html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | FIRST offset = ${first}<br>\n`
+        html += `<a href="#${string_section_name}">${string_section_name}</a> = ${string_first_file_name} | LAST offset = ${last}<br>\n`
     }
     html += "</p>\n"
     return html
@@ -6344,6 +6412,54 @@ function get_from_replace(string) {
         }
     }
     console.log(new_line)
+
+}
+function get_check_doc_tables_if_href_not_linked(string_html) {
+    let html = ''
+    let array_h2_split = string_html.split('<h2 id=')
+    let array_list_of_sections = []
+    let string_html_section = ''
+    for (let string_table of array_h2_split) {
+
+        // if (string_table.includes("<table")) {
+            if (string_table.includes(`"`)) {
+                string_table = string_table.replace(`"`, '')
+            }
+
+            let section_name = string_table.split(`">`)[0]
+            array_list_of_sections.push(section_name)
+
+        // }
+    }
+
+    let split_line = string_html.split(`\n`)
+    let i = 0
+    for (let line of split_line) {
+
+        i++
+        if (line.includes(`<a href="`)) {
+            if (line.includes(`index.html`)) {// skip
+            } else {
+
+                let href_string = line.split(`<a href="`)[1]
+
+                href_string = href_string.split(`">`)[0]
+                if (href_string.includes("#")) {
+                    href_string = href_string.replace('#', '')
+                } else {
+                    html += `${href_string} no # | LINE ${i} \n`
+                }
+                href_string = href_string.trim()
+
+                if (array_list_of_sections.includes(href_string)) {// true
+                } else if (href_string === "") {} else {
+                    html += `${href_string} not found | LINE ${i} \n`
+                }
+            }
+        }
+    }
+
+    return html
 
 }
 document.getElementById("format_text_button").addEventListener("click", format_button_clicked);
