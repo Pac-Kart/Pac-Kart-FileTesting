@@ -123,8 +123,8 @@ function get_bcc_datapack(o, e) {
 
     globalThis.old_log_array = structuredClone(log_array)
 
-    // if (u32(o + 24)) {
-    // ö(u32(o + 24), get_bcc_24)
+    // if (u32(o + 132)) {
+    //     ö(u32(o + 132), get_bcc_132)
     // }
     // switch (g.type) {
     // case 0:
@@ -195,10 +195,19 @@ function get_bcc_datapack(o, e) {
         }
     }
 
-    // for (let i = 0; i < u32(o + 100); i++) {
-    //     get_bcc_datapack_text_link(offset_mid + u32(o + 132) + (i * 8))
-    // }
+    for (let i = 0; i < u32(o + 100); i++) {
+        get_bcc_datapack_text_link(offset_mid + u32(o + 132) + (i * 8))
+    }
 
+}
+function get_bcc_132(o) {
+    ü(1, [u32, 0, u32, 4], o)
+}
+function get_bcc_136(o) {// ü(1, [u32, 0, u32, 4], o)
+// not ordered offset
+}
+function get_bcc_140(o) {// ü(1, [u32, 0, u32, 4], o)
+// not ordered offset
 }
 function get_bcc_basic_audio(o, e) {
     /*ü(1, [u32, 0, u32, 4], o)*/
@@ -217,9 +226,8 @@ function get_bcc_basic_audio_0(o, e) {
 
 }
 function get_bcc_basic_audio_0_0twii(o, end, e) {
-    // if (u32(o + 0) !== 1179861555)
-    ü(1, [u32, 0], o)
-    // FSB3 file
+    if (u32(o + 0) !== 1179861555)
+        ü(1, [u32, 0], o)
 }
 function get_bcc_basic_audio_0_0tpc(o, end, e) {
     if (u32(o + 0) !== 1179011410)
@@ -227,7 +235,7 @@ function get_bcc_basic_audio_0_0tpc(o, end, e) {
     // RIFF file
 }
 function get_bcc_basic_audio_4(o, e) {
-    if (u8(o + 8) !== 16 || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 12) !== 2 || u32(o + 16) !== 20)
+    if (u8(o + 8) !== 16 || u8(o + 9) || u8(o + 10) || u8(o + 11))
         ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16], o)
     get_bcc_basic_audio_4_0(e + u32(o + 0), e)
 }
@@ -246,112 +254,112 @@ function get_bcc_texture_offset_list(o, section_offset) {
 }
 
 function get_bcc_texture_offset_list_0(o, section_offset) {
-    // if (u8(o + 0) !== 1 || u8(o + 1) !== 3 || u32(o + 12) || u32(o + 20) || u32(o + 24) || u32(o + 28))
+    if (u32(o + 12) || u32(o + 24) || u32(o + 28))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    // let x = Math.pow(2, u8(o + 6))
-    // let y = Math.pow(2, u8(o + 7))
-    // let total_length = 0
-    // switch (u8(o + 4)) {
-    // case 24:
-    //     total_length = x * y * 3
-    //     break
-    // case 69:
-    //     total_length = x * y / 2
-    //     break
-    // case 160:
-    //     total_length = x * y * 4
-    //     break
-    // case 197:
-    //     total_length = x * y / 2
-    //     break
-    // case 198:
-    //     total_length = x * y / 2
-    //     break
-    // case 202:
-    //     total_length = x * y
-    //     break
-    // default:
-    //     ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    let x = Math.pow(2, u8(o + 6))
+    let y = Math.pow(2, u8(o + 7))
+    let total_length = 0
+    switch (u8(o + 4)) {
+    case 24:
+        total_length = x * y * 3
+        break
+    case 69:
+        total_length = x * y / 2
+        break
+    case 160:
+        total_length = x * y * 4
+        break
+    case 197:
+        total_length = x * y / 2
+        break
+    case 198:
+        total_length = x * y / 2
+        break
+    case 202:
+        total_length = x * y
+        break
+    default:
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+    }
+    let temp_pmwr_pc_texture_array;
+    let temp_2 = total_length
+    let start_texture = u32(o + 8)
+    let mipmap_start = u32(o + 8)
+    let calculate_12_length = total_length * 2
+    let calculate_20_length = total_length
+    // base line without mips its just x 2
+    // create padding ???
+    // 20 and 16 has mips
+    // 12 no mips
+    if (u8(o + 5)) {
+        // ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+        let mipmap_end = mipmap_start + total_length
+
+        let temp_mipmap_offset = 0
+
+        for (let i = 0; i < u8(o + 5) + 1; i++) {
+
+            // let temp_pmwr_pc_texture_array = convert_arraybuffer_base64(buffer.slice(mipmap_start, mipmap_end))
+
+            // x[ti].pmwr_pc_texture.push(temp_pmwr_pc_texture_array)
+            mipmap_start += temp_2
+            temp_mipmap_offset += temp_2
+            temp_2 = Math.round(temp_2 / 4)
+            if (u8(o + 5) !== i) {
+                total_length += temp_2
+                calculate_20_length += temp_2
+            }
+
+        }
+
+    }
+    if (g.console === "pc") {
+        if (u32(o + 16)) {
+            get_bcc_pc_texture_offset_list_0_16(u32(o + 16) + section_offset, total_length, section_offset, start_texture)
+        }
+    } else {
+        let string = get_bcc_wii_texture_offset_list_0_16(u32(o + 16) + section_offset)
+
+        if (u32(o + 12)) {
+            let length_12 = u32(o + 12)
+            let length_8 = u32(o + 8)
+
+            if (calculate_12_length - (length_8 - length_12) === 0) {} else {
+                ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+                console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8} | 12: ${length_12} | total_length: ${total_length} | calculate_12_length ${calculate_12_length}
+        diff: ${calculate_12_length - (length_8 - length_12)}`)
+            }
+        }
+        if (u32(o + 8)) {// if 20 = type 197,198
+        // if 12 = type 69,197
+        // if 08 = type 69,197,198
+        // get_bcc_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
+        }
+        if (u32(o + 20)) {
+            calculate_20_length = total_length
+            let length_20 = u32(o + 20)
+            let length_8 = u32(o + 8)
+
+            ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+            console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8}, offset: ${length_8 + section_offset} | 20: ${length_20}, offset ${section_offset + length_20} | total_length: ${total_length} | calculate_12_length ${calculate_20_length}
+        diff: ${calculate_20_length - (length_20 - length_8)}`)
+        }
+    }
+    // 8064-8192
+
+    // if (u8(o + 5) === 0) {
+    // if (u32(o + 8)) {
+    //     get_bcc_texture_offset_list_0_8(u32(o + 8) + section_offset, total_length)
     // }
-    // let temp_pmwr_pc_texture_array;
-    // let temp_2 = total_length
-    // let start_texture = u32(o + 8)
-    // let mipmap_start = u32(o + 8)
-    // let calculate_12_length = total_length * 2
-    // let calculate_20_length = total_length
-    // // base line without mips its just x 2
-    // // create padding ???
-    // // 20 and 16 has mips
-    // // 12 no mips
-    // if (u8(o + 5)) {
-    //     // ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
-    //     let mipmap_end = mipmap_start + total_length
-
-    //     let temp_mipmap_offset = 0
-
-    //     for (let i = 0; i < u8(o + 5) + 1; i++) {
-
-    //         // let temp_pmwr_pc_texture_array = convert_arraybuffer_base64(buffer.slice(mipmap_start, mipmap_end))
-
-    //         // x[ti].pmwr_pc_texture.push(temp_pmwr_pc_texture_array)
-    //         mipmap_start += temp_2
-    //         temp_mipmap_offset += temp_2
-    //         temp_2 = Math.round(temp_2 / 4)
-    //         if (u8(o + 5) !== i) {
-    //             total_length += temp_2
-    //             calculate_20_length += temp_2
-    //         }
-
-    //     }
-
+    // if (u32(o + 12)) {
+    //     get_bcc_texture_offset_list_0_12(u32(o + 12) + section_offset, section_offset)
     // }
-    // if (g.console === "pc") {
-    //     if (u32(o + 16)) {
-    //         get_bcc_pc_texture_offset_list_0_16(u32(o + 16) + section_offset, total_length, section_offset, start_texture)
-    //     }
-    // } else {
-    //     let string = get_bcc_wii_texture_offset_list_0_16(u32(o + 16) + section_offset)
-
-    //     if (u32(o + 12)) {
-    //         let length_12 = u32(o + 12)
-    //         let length_8 = u32(o + 8)
-
-    //         if (calculate_12_length - (length_8 - length_12) === 0) {} else {
-    //             ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    //             console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8} | 12: ${length_12} | total_length: ${total_length} | calculate_12_length ${calculate_12_length}
-    //     diff: ${calculate_12_length - (length_8 - length_12)}`)
-    //         }
-    //     }
-    //     if (u32(o + 8)) {// if 20 = type 197,198
-    //     // if 12 = type 69,197
-    //     // if 08 = type 69,197,198
-    //     // get_bcc_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
-    //     }
-    //     if (u32(o + 20)) {
-    //         calculate_20_length = total_length
-    //         let length_20 = u32(o + 20)
-    //         let length_8 = u32(o + 8)
-
-    //         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
-    //         console.log(`| ${string} | section_offset ${section_offset} | 8: ${length_8}, offset: ${length_8 + section_offset} | 20: ${length_20}, offset ${section_offset + length_20} | total_length: ${total_length} | calculate_12_length ${calculate_20_length}
-    //     diff: ${calculate_20_length - (length_20 - length_8)}`)
-    //     }
+    // if (u32(o + 20)) {
+    //     get_bcc_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
     // }
-    // // 8064-8192
-
-    // // if (u8(o + 5) === 0) {
-    // // if (u32(o + 8)) {
-    // //     get_bcc_texture_offset_list_0_8(u32(o + 8) + section_offset, total_length)
-    // // }
-
-    // // if (u32(o + 12)) {
-    // //     get_bcc_texture_offset_list_0_12(u32(o + 12) + section_offset, section_offset)
-    // // }
-    // // if (u32(o + 20)) {
-    // //     get_bcc_texture_offset_list_0_20(u32(o + 20) + section_offset, section_offset)
-    // // }
-    // // }
+    // }
 
 }
 
@@ -364,12 +372,10 @@ function get_bcc_texture_offset_list_0_12(o, section_offset) {
     ü(1, [u32, 0], o)
 
 }
-function get_bcc_pc_texture_offset_list_0_16(o) {
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+function get_bcc_pc_texture_offset_list_0_16(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
 }
-function get_bcc_wii_texture_offset_list_0_16(o) {
-    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+function get_bcc_wii_texture_offset_list_0_16(o) {// ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
 
 }
 function get_bcc_share(o) {
@@ -391,8 +397,8 @@ function get_bcc_share_16(o) {
 }
 
 function get_bcc_datapack_text_link(o) {
-    if (u32(o + 0))
-        ü(1, [u32, 0, u32, 4], o)
+    // if (u32(o + 0))
+    ü(1, [u32, 0, u32, 4], o)
 
     ä(bcc_text, u32(o + 4), get_bcc_text)
 

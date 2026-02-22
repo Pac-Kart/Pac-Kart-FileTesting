@@ -281,7 +281,9 @@ function get_pmwr_ordered(o) {
     get_pmwr_offset_patch_list(u32(g.datapack_offset) + offset_mid)
 
     let gsharedonly = get_pmwr_texture(u32(g.datapack_offset + 24) + offset_mid)
-
+    for (let i = 0; i < u32(g.datapack_offset + 48); i++) {
+        get_pmwr_texture_animation_section(u32(g.datapack_offset + 60) + offset_mid + (i * 12))
+    }
     get_pmwr_offset_patch_list(u32(g.datapack_offset) + offset_mid)
 
     switch (g.type) {
@@ -302,10 +304,6 @@ function get_pmwr_ordered(o) {
     default:
         console.log("later")
     }
-
-    // for (let i = 0; i < u32(g.datapack_offset + 48); i++) {
-    //     get_pmwr_texture_animation_section(u32(g.datapack_offset + 60) + (i * 12) + offset_mid, i)
-    // }
 
     return
 
@@ -343,14 +341,14 @@ function get_pmwr_basic(o) {
 }
 
 function get_pmwr_world(o) {
-    ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u8, 96, u8, 97, u8, 98, u8, 99, u8, 100, u8, 101, u8, 102, u8, 103, u8, 104, u8, 105, u8, 106, u8, 107, u8, 108, u8, 109, u8, 110, u8, 111, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u8, 124, u8, 125, u8, 126, u8, 127, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u8, 152, u8, 153, u8, 154, u8, 155, u32, 156, ], o)
-        ä(pmwr_world_settings, u32(o + 0), get_pmwr_world_settings)
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u8, 96, u8, 97, u8, 98, u8, 99, u8, 100, u8, 101, u8, 102, u8, 103, u8, 104, u8, 105, u8, 106, u8, 107, u8, 108, u8, 109, u8, 110, u8, 111, u8, 112, u8, 113, u8, 114, u8, 115, u32, 116, u32, 120, u8, 124, u8, 125, u8, 126, u8, 127, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u8, 152, u8, 153, u8, 154, u8, 155, u32, 156, ], o)
+    ä(pmwr_world_settings, u32(o + 0), get_pmwr_world_settings)
 
     ö(u32(o + 4), get_pmwr_collision)
     ö(u32(o + 12), get_pmwr_world_12)
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_world_20(u32(o + 20) + (ii * 16) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 16), get_pmwr_world_20)
     }
 
     ö(u32(o + 8), get_pmwr_world_08)
@@ -361,7 +359,7 @@ function get_pmwr_world(o) {
 
     ö(u32(o + 24), get_pmwr_world_24)
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_world_32(u32(o + 32) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 4), get_pmwr_world_32)
     }
 
 }
@@ -369,10 +367,10 @@ function get_pmwr_collision(o) {
     // ü(3, [u32, 0], o)
     ;// switch(u32(o + 88)){
     //    case 0:
-    ö(u32(o + 32), get_pmwr_collision_32t0)
+    // ö(u32(o + 32), get_pmwr_collision_32t0)
     //    break;
     //    case 1:
-    ö(u32(o + 32), get_pmwr_collision_32t1)
+    // ö(u32(o + 32), get_pmwr_collision_32t1)
     //    break;
 
     let typefunction
@@ -386,19 +384,19 @@ function get_pmwr_collision(o) {
     }
 
     for (let i = 0; i < u32(o + 68); i++) {
-        typefunction(u32(o + 32) + (i * 48) + offset_mid, i)
+        ö(u32(o + 32) + (i * 48), typefunction)
     }
 
     for (let i = 0; i < (u32(o + 52) * u32(o + 56) * u32(o + 60)); i++) {
-        get_pmwr_collision_64(u32(o + 64) + (i * 4) + offset_mid, i)
+        ö(u32(o + 64) + (i * 4), get_pmwr_collision_64)
     }
 
     for (let i = 0; i < u32(o + 72); i++) {
-        get_pmwr_collision_76(u32(o + 76) + (i * 32) + offset_mid, i)
+        ö(u32(o + 76) + (i * 32), get_pmwr_collision_76)
     }
 
     for (let i = 0; i < u32(o + 80); i++) {
-        get_pmwr_collision_84(u32(o + 84) + (i * 64) + offset_mid, i)
+        ö(u32(o + 84) + (i * 64), get_pmwr_collision_84)
     }
 }
 
@@ -425,7 +423,7 @@ function get_pmwr_collision_64(o) {
 function get_pmwr_collision_32t0(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 44); ii++) {
-        get_pmwr_collision_32t0_40(u32(o + 40) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 40) + (ii * 4), get_pmwr_collision_32t0_40)
     }
 
 }
@@ -437,18 +435,18 @@ function get_pmwr_collision_32t0_40(o) {
 function get_pmwr_collision_32t1(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 32); ii++) {
-        get_pmwr_collision_32t1_36(u32(o + 36) + (ii * 2) + offset_mid, ii)
+        ö(u32(o + 36) + (ii * 2), get_pmwr_collision_32t1_36)
     }
 
     for (let ii = 0; ii < u32(o + 44); ii++) {
-        get_pmwr_collision_32t1_40(u32(o + 40) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 40) + (ii * 12), get_pmwr_collision_32t1_40)
     }
 
 }
 function get_pmwr_collision_32t1_40(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_collision_32t1_40_00(u32(o + 0) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 0) + (ii * 32), get_pmwr_collision_32t1_40_00)
     }
 
 }
@@ -523,7 +521,7 @@ function get_pmwr_world_20(o) {
             break
         }
         for (let ii = 0; ii < u32(o + 8); ii++) {
-            typefunction(u32(o + 12) + (ii * typeamount) + offset_mid, ii);
+            ö(u32(o + 12) + (ii * typeamount), typefunction)
         }
 
     }
@@ -555,13 +553,13 @@ function get_pmwr_world_20_12t2(o) {
     ö(u32(o + 56), get_pmwr_world_20_12t2_56)
 
     for (let ii = 0; ii < u32(o + 60); ii++) {
-        get_pmwr_world_20_12t2_64(u32(o + 64) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 64) + (ii * 4), get_pmwr_world_20_12t2_64)
     }
     ö(u32(o + 72), get_pmwr_world_20_12t2_72)
     ö(u32(o + 76), get_pmwr_world_20_12t2_76)
 
     for (let ii = 0; ii < u32(o + 104); ii++) {
-        get_pmwr_world_20_12t2_100(u32(o + 100) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 100) + (ii * 4), get_pmwr_world_20_12t2_100)
     }
 
 }
@@ -583,7 +581,7 @@ function get_pmwr_world_20_12t2_64(o) {
 function get_pmwr_world_20_12t2_76(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_world_20_12t2_76_12(u32(o + 12) + (i * 4) + offset_mid, i)
+        ö(u32(o + 12) + (i * 4), get_pmwr_world_20_12t2_76_12)
     }
 
 }
@@ -598,15 +596,13 @@ function get_pmwr_world_20_12t2_76_12(o) {
 }
 function get_pmwr_world_20_12t2_72(o, t) {
     ;for (let i = 0; i < t; i++) {
-        get_pmwr_world_20_12t2_72_00(u32(o + 0) + (i * 4) + offset_mid, i)
+        ö(u32(o + 0) + (i * 4), get_pmwr_world_20_12t2_72_00)
     }
 
 }
 function get_pmwr_world_20_12t2_72_00(o) {
     // ü(3, [u32, 0], o)
     ä(pmwr_world_20_12t5, u32(o + 0), get_pmwr_world_20_12t5)
-
-    // get_pmwr_world_20_12t5(u32(o + 0) + (ii * 112) + offset_mid, ii)
 
 }
 function get_pmwr_world_20_12t3(o) {
@@ -635,7 +631,6 @@ function get_pmwr_world_20_12t4_128t1(o) {
 }
 function get_pmwr_world_20_12t5(o) {
     // ü(3, [u32, 0], o)
-    // ä(pmwr_models, u32(o + 100), get_pmwr_models)
     ß('p_model', o, 100)
 
 }
@@ -724,11 +719,11 @@ function get_pmwr_world_08(o) {
     // ü(3, [u32, 0], o)
 
     for (let i = 0; i < u32(o + 28); i++) {
-        get_pmwr_world_08_16(u32(o + 16) + (i * 80) + offset_mid, i)
+        ö(u32(o + 16) + (i * 80), get_pmwr_world_08_16)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        get_pmwr_world_08_20(u32(o + 20) + (i * 4) + offset_mid, i)
+        ö(u32(o + 20) + (i * 4), get_pmwr_world_08_20)
     }
 
 }
@@ -740,15 +735,15 @@ function get_pmwr_world_08_20(o) {
 function get_pmwr_world_08_16(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 8); ii++) {
-        get_pmwr_world_08_16_12(u32(o + 12) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 12) + (ii * 4), get_pmwr_world_08_16_12)
     }
 
     for (let ii = 0; ii < u32(o + 56); ii++) {
-        get_pmwr_world_08_16_12(u32(o + 60) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 60) + (ii * 4), get_pmwr_world_08_16_12)
     }
 
     for (let ii = 0; ii < u32(o + 64); ii++) {
-        get_pmwr_world_08_16_12(u32(o + 68) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 68) + (ii * 4), get_pmwr_world_08_16_12)
     }
 
 }
@@ -762,22 +757,22 @@ function get_pmwr_world_12(o) {
     // ü(3, [u32, 0], o)
 
     for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_world_12_00(u32(o + 0) + (i * 128) + offset_mid, i)
+        ö(u32(o + 0) + (i * 128), get_pmwr_world_12_00)
     }
 
 }
 function get_pmwr_world_12_00(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 48); ii++) {
-        get_pmwr_world_12_00_52(u32(o + 52) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 52) + (ii * 4), get_pmwr_world_12_00_52)
     }
 
     for (let ii = 0; ii < u32(o + 48); ii++) {
-        get_pmwr_world_12_00_56(u32(o + 56) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 56) + (ii * 4), get_pmwr_world_12_00_56)
     }
 
     for (let ii = 0; ii < u32(o + 60); ii++) {
-        get_pmwr_world_12_00_64(u32(o + 64) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 64) + (ii * 4), get_pmwr_world_12_00_64)
     }
 }
 function get_pmwr_world_12_00_64(o) {
@@ -803,11 +798,11 @@ function get_pmwr_world_32(o) {
 function get_pmwr_world_24(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_world_24_04(u32(o + 4) + (i * 4) + offset_mid, i)
+        ö(u32(o + 4) + (i * 4), get_pmwr_world_24_04)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_world_24_12(u32(o + 12) + (i * 4) + offset_mid, i)
+        ö(u32(o + 12) + (i * 4), get_pmwr_world_24_12)
     }
 
 }
@@ -822,8 +817,19 @@ function get_pmwr_world_24_12(o) {
 
 }
 
-function get_pmwr_texture(o) {// ü(3, [u32, 0], o)// let e = o + (u32(g.datapack_offset + 20) * 64)
+function get_pmwr_texture(o) {
+    // ü(3, [u32, 0], o)
+    let e = o + (u32(g.datapack_offset + 20) * 64)
+    for (let i = 0; i < u32(g.datapack_offset + 20); i++) {
+        ö(u32(o + 4 + (i * 64)), get_pmwr_texture_4)
+        ö(u32(o + 8 + (i * 64)), get_pmwr_texture_8)
+    }
+    return e
 
+}
+function get_pmwr_texture_4(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_texture_8(o) {// ü(3, [u32, 0], o)
 }
 
 function get_pmwr_texture_animation_section(o) {
@@ -837,11 +843,11 @@ function get_pmwr_pmwr_texture_anim_1(o) {
     ö(u32(o + 4), get_pmwr_pmwr_texture_anim_1_1)
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_pmwr_texture_anim_1_2(u32(o + 12) + (i * 12) + offset_mid, i)
+        ö(u32(o + 12) + (i * 12), get_pmwr_pmwr_texture_anim_1_2)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_pmwr_texture_anim_1_3(u32(o + 20) + (i * 16) + offset_mid, i)
+        ö(u32(o + 20) + (i * 16), get_pmwr_pmwr_texture_anim_1_3)
     }
 
     // 48 bytes;
@@ -850,7 +856,7 @@ function get_pmwr_pmwr_texture_anim_1(o) {
 function get_pmwr_pmwr_texture_anim_1_1(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_pmwr_texture_anim_1_1_1(u32(o + 4) + (i * 4) + offset_mid, i)
+        ö(u32(o + 4) + (i * 4), get_pmwr_pmwr_texture_anim_1_1_1)
     }
 
     // 32 bytes;
@@ -858,7 +864,7 @@ function get_pmwr_pmwr_texture_anim_1_1(o) {
 }
 function get_pmwr_pmwr_texture_anim_1_1_1(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ß('p_texture', o, 0)
 
 }
 function get_pmwr_pmwr_texture_anim_1_2(o) {
@@ -895,54 +901,29 @@ function get_pmwr_share(o, gshareoffset) {
     for (let i = 0, ii = 0; i < u32(o) && u32(o + i) !== 0; i += 4,
     ii++) {
         get_pmwr_models(u32(o + i) + o, ii)
-
     }
 
-    function getpmwr_textureshrae(o) {
-        // ü(3, [u32, 0], o)}
-        function gettsoundshare(o) {
-            // ü(3, [u32, 0], o)}
-            function getpmwr_modelshare(o) {// ü(3, [u32, 0], o)}
+    function getpmwr_textureshrae(o) {// ü(3, [u32, 0], o)}
+    }
+    function gettsoundshare(o) {// ü(3, [u32, 0], o)}
+    }
+    function getpmwr_modelshare(o) {// ü(3, [u32, 0], o)}
 
-            }
-        }
     }
 }
-function get_pmwr_models(offset, index) {
-    // g.ordered_ref.pmwr_models.push({
-    //     id: gen_id(),
-    //     magic: u16(offset),
-    //     name: get_string(u32(offset + 8) + offset_mid, 0, false),
-    //     sections: [],
-    //     second_names: [],
-    //     name_padding: 0,
-    //     visibility: {
-    //         x1: f32(offset + 16),
-    //         y1: f32(offset + 20),
-    //         z1: f32(offset + 24),
-    //         w1: f32(offset + 28),
-    //         x2: f32(offset + 32),
-    //         y2: f32(offset + 36),
-    //         z2: f32(offset + 40),
-    //         w2: f32(offset + 44),
-    //         x3: f32(offset + 48),
-    //         y3: f32(offset + 52),
-    //         z3: f32(offset + 56),
-    //         w3: f32(offset + 60),
-    //     }
-    // })
+function get_pmwr_models(o, index) {
+    ö(u32(o + 8), get_pmwr_frame_text_0)
 
-    // for (let i = 0; i < u32(offset + 8); i++) {
-    //     get_sub_section_12(u32(offset + 12) + offset_mid + i)
-    // }
-
-    // u32(offset + 8)
+    for (let i = 0; i < u16(o + 2); i++) {
+        ö(u32(o + 4) + (i * 8), get_models_04)
+        ö(u32(o + 12) + (i * 4), get_models_12)
+    }
 
     function get_sub_section_12(offset, i) {}
     function get_pmwr_GC_pmwr_models_04_04_00_80(o) {
         // ü(3, [u32, 0], o)
         ;for (let i = 0; i < u32(o + 8); i++) {
-            get_pmwr_GC_pmwr_models_04_04_00_80_00(u32(o + 0) + (i * 32) + offset_mid, i)
+            ö(u32(o + 0) + (i * 32), get_pmwr_GC_pmwr_models_04_04_00_80_00)
         }
 
         ö(u32(o + 4), get_pmwr_GC_pmwr_models_04_04_00_80_04)
@@ -978,14 +959,10 @@ function get_pmwr_models(offset, index) {
         let e = o + 24;
 
         for (let ii = 0; ii < u8(o + 20); ii++) {
-            get_pmwr_GC_pmwr_models_04_04_00_76_08(u32(o + 8) + (ii * 1) + offset_mid, ii)
+            ö(u32(o + 8) + (ii * 1), get_pmwr_GC_pmwr_models_04_04_00_76_08)
         }
         ö(u32(o + 12), get_pmwr_GC_pmwr_models_04_04_00_76_12)
         u32(o + 16) ? e = get_pmwr_GC_pmwr_models_04_04_00_76_16(u32(o + 16) + offset_mid, u32(o + 4)) : 0;
-
-        // for (let ii = 0; ii < u32(o + 4); ii++) {
-        //     get_pmwr_GC_pmwr_models_04_04_00_76_16(u32(o + 16) + (ii * 1) + offset_mid, ii)
-        // }
 
     }
     function get_pmwr_GC_pmwr_models_04_04_00_76_08(o) {
@@ -1003,10 +980,51 @@ function get_pmwr_models(offset, index) {
     }
 }
 
+function get_models_04(o) {
+    for (let i = 0; i < u32(o); i++) {
+        ö(u32(o + 4) + (i * 4), get_models_04_4)
+    }
+}
+
+function get_models_04_4(o) {
+    ö(u32(o + 0), get_models_04_4_0)
+}
+function get_models_04_4_0(o) {
+    ß('p_animation', o, 24)
+    ß('p_animation', o, 36)
+    ß('p_texture', o, 40)
+
+    ö(u32(o + 68), get_models_04_4_0_68)
+    ö(u32(o + 72), get_models_04_4_0_72)
+    ö(u32(o + 76), get_models_04_4_0_76)
+    ö(u32(o + 80), get_models_04_4_0_80)
+    ö(u32(o + 84), get_models_04_4_0_84)
+    ö(u32(o + 92), get_models_04_4_0_92)
+}
+function get_models_04_4_0_68(o) {// ?
+}
+function get_models_04_4_0_72(o) {// ?
+}
+function get_models_04_4_0_76(o) {// ?
+}
+function get_models_04_4_0_80(o) {// ?
+}
+function get_models_04_4_0_84(o) {// ?
+}
+function get_models_04_4_0_92(o) {
+    ö(u32(o + 12), get_models_04_4_0_92_12)
+}
+
+function get_models_04_4_0_92_12(o) {// ?
+}
+
+function get_models_12(o) {// ?
+}
+
 function get_pmwr_model_animation_2(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_model_animation_2_1(u32(o + 16) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 32), get_pmwr_model_animation_2_1)
     }
 
 }
@@ -1018,292 +1036,92 @@ function get_pmwr_model_animation_2_1(o) {
 }
 //
 
-function get_pmwr_model_animation_1(o) {// ü(3, [u32, 0], o)
-// switch (u32(o + 0)) {
-// case 1:
-// case 4:
-//     if (u32(o + 16) === 1) {
-//         ö(u32(o + 28), get_pmwr_model_animation_1_28t1)
-//     } else if (u32(o + 16) === 28) {
-//         console.log(u32(o + 4))
-//         ö(u32(o + 28), get_pmwr_model_animation_1_28t28)
-//     }
-//     break;
-// case 3:
-//     if (u32(o + 16) === 1) {
-//         ö(u32(o + 28), get_pmwr_model_animation_1_28t3)
-//     }
-//     break
-// case 5:
-//     break;
-// }
+function get_pmwr_model_animation_1(o) {
+    // ü(3, [u32, 0], o)
+    if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
+        ö(u32(o + 24), get_pmwr_model_animation_1_24)
+    }
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_pmwr_model_animation_1_28)
+    }
+    if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
+        ö(u32(o + 32), get_pmwr_model_animation_1_32)
+    }
+    if (old_log_array.p_offset.array.includes(o + 52 - offset_mid)) {
+        switch (u32(o + 4)) {
+        case 291:
+        case 35:
+            ö(u32(o + 52), get_pmwr_model_animation_1_52t35)
+            break;
+        case 163:
+        case 419:
+            ö(u32(o + 52), get_pmwr_model_animation_1_52t163)
+            break;
+        case 11:
+        case 67:
+            break;
+        }
+    }
 
-// switch (u32(o + 0)) {
-// case 1:
-// case 4:
-//     if (u32(o + 16) === 1) {
-//         ö(u32(o + 24), get_pmwr_model_animation_1_24t1)
-//     } else if (u32(o + 16) === 28) {
-//         ö(u32(o + 24), get_pmwr_model_animation_1_24t28)
-//     }
-//     break;
-// case 3:
-//     ö(u32(o + 24), get_pmwr_model_animation_1_24t3)
-//     break;
-// case 5:
-//     break;
-// }
+}
+function get_pmwr_model_animation_1_24(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_28(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_32(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35(o) {
+    // ü(3, [u32, 0], o)
 
-// // for (let ii = 0; ii < u32(o + 40); ii++) {
-// //     get_pmwr_model_animation_1_32(u32(o + 32) + (ii * 4) + offset_mid, ii)
-// // }
-// if (u32(o + 32) && u32(o + 40)) {
-//     get_pmwr_model_animation_1_32(u32(o + 32) + offset_mid)
-// }
-
-// switch (u32(o + 0)) {
-// case 1:
-// case 4:
-//     ö(u32(o + 36), get_pmwr_model_animation_1_36)
-//     break;
-// case 3:
-//     if (u32(o + 32) && u32(o + 36)) {
-
-//         let end = u32(o + 32) + (temp_obj._40_amount * 4) + offset_mid
-//         let begin = u32(o + 36) + offset_mid
-//     }
-//     ö(u32(o + 36), get_pmwr_model_animation_1_36t3)
-//     break
-// case 5:
-//     break
-// }
-
-// switch (u32(o + 0)) {
-// case 1:
-// case 4:
-//     ö(u32(o + 44), get_pmwr_model_animation_1_44)
-//     break;
-// case 3:
-// case 5:
-//     break;
-// }
-
-// switch (u32(o + 4)) {
-// case 291:
-//     if (u32(o + 32) && u32(o + 52)) {
-//         let end = u32(o + 40) * 4 + u32(o + 32) + offset_mid
-//         let begin = u32(o + 52) + offset_mid
-//     }
-// case 35:
-//     ö(u32(o + 52), get_pmwr_model_animation_1_52t35)
-//     break;
-// case 163:
-// case 419:
-//     ö(u32(o + 52), get_pmwr_model_animation_1_52t163)
-//     break;
-// case 11:
-// case 67:
-//     break;
-// }
-
-// function get_pmwr_model_animation_1_24t1(o) {
-// ü(3, [u32, 0], o)
-//     ;o > temp_obj.main_padding_end ? temp_obj.main_padding_end = o : 0;
-// }
-// function get_pmwr_model_animation_1_24t28(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 28 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 28 : 0;
-// }
-// function get_pmwr_model_animation_1_28t1(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 12 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 12 : 0;
-// }
-
-// function get_pmwr_model_animation_1_28t3(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 16 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 16 : 0;
-// }
-
-// function get_pmwr_model_animation_1_28t28(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 68 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 68 : 0;
-// }
-// function get_pmwr_model_animation_1_24t3(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 4 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 4 : 0;
-// }
-// function get_pmwr_model_animation_1_32(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = (temp_obj._40_amount * 4);
-
-//     // ;
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-
-// }
-// function get_pmwr_model_animation_1_44(o) {
-// ü(3, [u32, 0], o)
-
-//     let temppmwr_idk = (temp_obj._1_44_end);
-
-//     temppmwr_idk > temp_obj.main_padding_end ? temp_obj.main_padding_end = temppmwr_idk : 0;
-// }
-// function get_pmwr_model_animation_1_36(o, t) {
-//     let temppmwr_idk
-//     if (t !== 67) {
-//         temppmwr_idk = (temp_obj._40_amount * temp_obj._48_amount) * 4
-//     } else {
-//         temppmwr_idk = 1152
-//     }
-
-//     ;o < temp_obj._1_44_end ? temp_obj._1_44_end = o : 0;
-//     temppmwr_idk + o > temp_obj.main_padding_end ? temp_obj.main_padding_end = temppmwr_idk + o : 0;
-// }
-
-// function get_pmwr_model_animation_1_36t3(o, t) {
-//     let temppmwr_idk
-//     if (t === 1) {
-//         temppmwr_idk = ((temp_obj._40_amount - 1) * 96)
-//     } else {
-//         temppmwr_idk = ((temp_obj._40_amount - 1) * 128)
-//     }
-
-//     ;// o < temp_obj._1_44_end ? temp_obj._1_44_end = o : 0;
-//     temppmwr_idk + o > temp_obj.main_padding_end ? temp_obj.main_padding_end = temppmwr_idk + o : 0;
-
-// }
-// function get_pmwr_model_animation_1_52t35(o) {
-// ü(3, [u32, 0], o)
-//     // if (o === 12556940) {
-//     //     console.log('?')
-//     // }
-//     temp_obj._sub_00_amount = u32(o + 0)
-//     temp_obj._sub_04_amount = u32(o + 4)
-//     temp_obj._sub_08_amount = u32(o + 8);
-
-//     if (u32(o + 12) && u32(o + 0)) {
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 12) + offset_mid : 0;
-//         get_pmwr_model_animation_1_52t35_12(u32(o + 12) + offset_mid)
-//     } else {
-//     }
-
-//     if (u32(o + 24) && u32(o + 0)) {
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 24) + offset_mid : 0;
-
-//         get_pmwr_model_animation_1_52t35_24(u32(o + 24) + offset_mid)
-//     } else {
-//     }
-
-//     if (u32(o + 20) && u32(o + 4)) {
-//         if (u32(o + 24) && u32(o + 0)) {
-//         }
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 20) + offset_mid : 0;
-
-//         get_pmwr_model_animation_1_52t35_20(u32(o + 20) + offset_mid)
-//     } else {
-//     }
-
-//     if (u32(o + 28) && u32(o + 4)) {
-//         if (g.pmwr_model_animation_1_array.length === 12) {// console.log('?')
-//         }
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 28) + offset_mid : 0;
-
-//         get_pmwr_model_animation_1_52t35_28(u32(o + 28) + offset_mid)
-//     } else {
-//     }
-
-//     if (u32(o + 16) && u32(o + 8)) {
-//         if (u32(o + 28) && u32(o + 4)) {
-//         }
-
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 16) + offset_mid : 0;
-
-//         get_pmwr_model_animation_1_52t35_16(u32(o + 16) + offset_mid)
-//     } else {
-//     }
-
-//     if (u32(o + 32) && u32(o + 8)) {
-
-//         temp_obj._52t35_padding === 0 ? temp_obj._52t35_padding = u32(o + 32) + offset_mid : 0;
-
-//         get_pmwr_model_animation_1_52t35_32(u32(o + 32) + offset_mid)
-//     } else {
-//     }
-//     o + 36 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 36 : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_12(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = (temp_obj._sub_00_amount * 2);
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_24(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = (temp_obj._sub_00_amount * 4);
-
-//     // ;
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_20(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = (temp_obj._sub_04_amount * 2);
-
-//     // ;
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_28(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = ((temp_obj._40_amount * 2) * temp_obj._sub_04_amount) * 4;
-
-//     // ;
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_16(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = (temp_obj._sub_08_amount * 2);
-
-//     // ;
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t35_32(o) {
-// ü(3, [u32, 0], o)
-//     let bufferamt = temp_obj._40_amount * (temp_obj._sub_08_amount * 2);
-//     o + bufferamt > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + bufferamt : 0;
-// }
-// function get_pmwr_model_animation_1_52t163(o) {
-// ü(3, [u32, 0], o)
-//     ;for (let i = 0; i < u32(o + 4); i++) {
-//         get_pmwr_model_animation_1_52t163_08(u32(o + 8) + (i * 1) + offset_mid, i)
-//     }
-//     if (u32(o + 0) === 0) {
-//     } else {
-
-//         for (let i = 0; i < u32(o + 0); i++) {
-//             get_pmwr_model_animation_1_52t163_12(u32(o + 12) + (i * 1) + offset_mid, i)
-//         }
-//     }
-//     // offset 12
-//     o + 16 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 16 : 0;
-// }
-// function get_pmwr_model_animation_1_52t163_08(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 1 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 1 : 0;
-// }
-// function get_pmwr_model_animation_1_52t163_12(o) {
-// ü(3, [u32, 0], o)
-//     ;o + 1 > temp_obj.main_padding_end ? temp_obj.main_padding_end = o + 1 : 0;
-// }
-
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+        ö(u32(o + 12), get_pmwr_model_animation_1_52t35_12)
+    }
+    if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
+        ö(u32(o + 24), get_pmwr_model_animation_1_52t35_24)
+    }
+    if (old_log_array.p_offset.array.includes(o + 20 - offset_mid)) {
+        ö(u32(o + 20), get_pmwr_model_animation_1_52t35_20)
+    }
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_pmwr_model_animation_1_52t35_28)
+    }
+    if (old_log_array.p_offset.array.includes(o + 16 - offset_mid)) {
+        ö(u32(o + 16), get_pmwr_model_animation_1_52t35_16)
+    }
+    if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
+        ö(u32(o + 32), get_pmwr_model_animation_1_52t35_32)
+    }
+}
+function get_pmwr_model_animation_1_52t35_12(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35_24(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35_20(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35_28(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35_16(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t35_32(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t163(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_52t163_08(o) {// ü(3, [u32, 0], o);
+}
+function get_pmwr_model_animation_1_52t163_12(o) {// ü(3, [u32, 0], o);
 }
 
 function get_pmwr_activator(o) {
     // ü(3, [u32, 0], o)
+    ö(u32(o + 8), get_pmwr_frame_text_0)
     ä(pmwr_model_animation_2, u32(o + 4), get_pmwr_model_animation_2)
 
     for (let ii = 0; ii < u32(o + 20); ii++) {
-        get_pmwr_activator_24(u32(o + 24) + (ii * 24) + offset_mid, ii)
+        ö(u32(o + 24) + (ii * 24), get_pmwr_activator_24)
     }
 
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_activator_32(u32(o + 32) + (ii * 24) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 24), get_pmwr_activator_32)
     }
     ö(u32(o + 108), get_pmwr_activator_108)
     ö(u32(o + 116), get_pmwr_activator_116)
@@ -1312,27 +1130,27 @@ function get_pmwr_activator(o) {
     ä(pmwr_wtf, u32(o + 148), get_pmwr_wtf)
 
     for (let ii = 0; ii < u32(o + 172); ii++) {
-        get_pmwr_activator_176(u32(o + 176) + (ii * 20) + offset_mid, ii)
+        ö(u32(o + 176) + (ii * 20), get_pmwr_activator_176)
     }
 
     for (let ii = 0; ii < u32(o + 180); ii++) {
-        get_pmwr_activator_184(u32(o + 184) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 184) + (ii * 12), get_pmwr_activator_184)
     }
 
     for (let ii = 0; ii < u32(o + 188); ii++) {
-        get_pmwr_activator_184(u32(o + 192) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 192) + (ii * 12), get_pmwr_activator_184)
     }
 
     for (let ii = 0; ii < u32(o + 208); ii++) {
-        get_pmwr_unknown(u32(o + 212) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 212) + (ii * 4), get_pmwr_unknown)
     }
 
     for (let ii = 0; ii < u32(o + 224); ii++) {
-        get_pmwr_unknown(u32(o + 228) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 228) + (ii * 4), get_pmwr_unknown)
     }
 
     for (let ii = 0; ii < u32(o + 244); ii++) {
-        get_pmwr_activator_248(u32(o + 248) + (ii * 36) + offset_mid, ii)
+        ö(u32(o + 248) + (ii * 36), get_pmwr_activator_248)
     }
 
     // 256 bytes;
@@ -1364,6 +1182,7 @@ function get_pmwr_activator_24_04t4_04(o) {
 function get_pmwr_activator_24_04t6(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ö(u32(o + 8), get_pmwr_frame_text_0)
 
 }
 function get_pmwr_activator_32(o) {
@@ -1371,7 +1190,7 @@ function get_pmwr_activator_32(o) {
     ö(u32(o + 4), get_pmwr_activator_32_04)
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_activator_32_20(u32(o + 20) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 12), get_pmwr_activator_32_20)
     }
 
 }
@@ -1438,11 +1257,11 @@ function get_pmwr_activator_144(o) {
 function get_pmwr_activator_176(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_activator_176_08(u32(o + 8) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 8) + (ii * 12), get_pmwr_activator_176_08)
     }
 
     for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_activator_176_08(u32(o + 16) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 12), get_pmwr_activator_176_08)
     }
 
 }
@@ -1478,19 +1297,20 @@ function get_pmwr_activator_176_08t19(o) {
 function get_pmwr_activator_184(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_mysterious(u32(o + 4) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 64), get_pmwr_mysterious)
     }
 
 }
 function get_pmwr_activator_248(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_activator_248_04(u32(o + 4) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 8), get_pmwr_activator_248_04)
     }
+    ö(u32(o + 8), get_pmwr_frame_text_0)
     ä(pmwr_sound_controls, u32(o + 20), get_pmwr_sound_controls)
 
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_activator_248_32(u32(o + 32) + (ii * 80) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 80), get_pmwr_activator_248_32)
     }
 
 }
@@ -1614,8 +1434,9 @@ function get_pmwr_activator_248_04_04t15(o) {
 }
 function get_pmwr_activator_248_32(o) {
     // ü(3, [u32, 0], o)
-    ;for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_activator_248_32_08(u32(o + 8) + (ii * 4) + offset_mid, ii)
+    ö(u32(o + 0), get_pmwr_frame_text_0);
+    for (let ii = 0; ii < u32(o + 4); ii++) {
+        ö(u32(o + 8) + (ii * 4), get_pmwr_activator_248_32_08)
     }
     ö(u32(o + 16), get_pmwr_activator_248_32_16)
     ö(u32(o + 32), get_pmwr_activator_248_32_32)
@@ -1624,7 +1445,7 @@ function get_pmwr_activator_248_32(o) {
     ö(u32(o + 52), get_pmwr_activator_248_32_52)
 
     for (let ii = 0; ii < u32(o + 68); ii++) {
-        get_pmwr_activator_248_32_72(u32(o + 72) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 72) + (ii * 12), get_pmwr_activator_248_32_72)
     }
     ö(u32(o + 76), get_pmwr_activator_248_32_76)
 
@@ -1726,7 +1547,7 @@ function get_pmwr_activator_248_32_72_08t2(o) {
 function get_pmwr_activator_248_32_72_08t08(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious(u32(o + 4) + (i * 64) + offset_mid, i)
+        ö(u32(o + 4) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -1765,7 +1586,7 @@ function get_pmwr_activator_248_32_72_08t16(o) {
 function get_pmwr_activator_248_32_72_08t17(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_mysterious(u32(o + 8) + (i * 64) + offset_mid, i)
+        ö(u32(o + 8) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -1849,7 +1670,7 @@ function get_pmwr_activator_248_32_72_08t22_00_04(o) {
 function get_pmwr_activator_248_32_72_08t23(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious(u32(o + 4) + (i * 64) + offset_mid, i)
+        ö(u32(o + 4) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -1889,7 +1710,7 @@ function get_pmwr_activator_248_32_76(o) {
 function get_pmwr_activator_248_04_04t0_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_activator_248_04_04t0_04_04(u32(o + 4) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 8), get_pmwr_activator_248_04_04t0_04_04)
     }
 
     // 48 bytes;
@@ -1931,19 +1752,19 @@ function get_pmwr_car_00(o) {
     ö(u32(o + 200), get_pmwr_car_00_200)
 
     for (let i = 0; i < u32(o + 204); i++) {
-        get_pmwr_car_00_208(u32(o + 208) + (i * 8) + offset_mid, i)
+        ö(u32(o + 208) + (i * 8), get_pmwr_car_00_208)
     }
 
     for (let i = 0; i < u32(o + 212); i++) {
-        get_pmwr_car_00_216(u32(o + 216) + (i * 12) + offset_mid, i)
+        ö(u32(o + 216) + (i * 12), get_pmwr_car_00_216)
     }
 
     for (let i = 0; i < u32(o + 220); i++) {
-        get_pmwr_car_00_216(u32(o + 224) + (i * 12) + offset_mid, i)
+        ö(u32(o + 224) + (i * 12), get_pmwr_car_00_216)
     }
 
     for (let i = 0; i < u32(o + 228); i++) {
-        get_pmwr_unknown(u32(o + 232) + (i * 4) + offset_mid, i)
+        ö(u32(o + 232) + (i * 4), get_pmwr_unknown)
     }
 
     // 240 bytes;
@@ -1957,19 +1778,19 @@ function get_pmwr_car_00_180(o) {
     ä(pmwr_sound_section, u32(o + 12), get_pmwr_sound_section)
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_car_00_180_20(u32(o + 20) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 8), get_pmwr_car_00_180_20)
     }
 
     for (let ii = 0; ii < u32(o + 24); ii++) {
-        get_pmwr_car_00_180_20(u32(o + 28) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 28) + (ii * 8), get_pmwr_car_00_180_20)
     }
 
     for (let ii = 0; ii < u32(o + 32); ii++) {
-        get_pmwr_car_00_180_20(u32(o + 36) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 36) + (ii * 8), get_pmwr_car_00_180_20)
     }
 
     for (let ii = 0; ii < u32(o + 40); ii++) {
-        get_pmwr_car_00_180_20(u32(o + 44) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 44) + (ii * 8), get_pmwr_car_00_180_20)
     }
 
     // 48 bytes;
@@ -1977,10 +1798,11 @@ function get_pmwr_car_00_180(o) {
 }
 function get_pmwr_car_00_180_00(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 4)
     ö(u32(o + 8), get_pmwr_car_00_180_00_08)
 
     for (let i = 0; i < u32(o + 12); i++) {
-        get_pmwr_car_00_180_00_16(u32(o + 16) + (i * 20) + offset_mid, i)
+        ö(u32(o + 16) + (i * 20), get_pmwr_car_00_180_00_16)
     }
     ä(pmwr_unknown_00, u32(o + 20), get_pmwr_unknown_00)
     ä(pmwr_unknown_00, u32(o + 28), get_pmwr_unknown_00)
@@ -2010,7 +1832,7 @@ function get_pmwr_car_00_180_00_16_08(o) {
 function get_pmwr_car_00_180_00_16_12(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious(u32(o + 4) + (i * 64) + offset_mid, i)
+        ö(u32(o + 4) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -2124,23 +1946,23 @@ function get_pmwr_car_00_188(o) {
     ä(pmwr_model_animation_1, u32(o + 24), get_pmwr_model_animation_1)
 
     for (let i = 0; i < u32(o + 48); i++) {
-        get_pmwr_car_00_188_52(u32(o + 52) + (i * 8) + offset_mid, i)
+        ö(u32(o + 52) + (i * 8), get_pmwr_car_00_188_52)
     }
 
     for (let i = 0; i < u32(o + 56); i++) {
-        get_pmwr_car_00_188_60(u32(o + 60) + (i * 20) + offset_mid, i)
+        ö(u32(o + 60) + (i * 20), get_pmwr_car_00_188_60)
     }
 
     for (let i = 0; i < u32(o + 64); i++) {
-        get_pmwr_car_00_188_68(u32(o + 68) + (i * 32) + offset_mid, i)
+        ö(u32(o + 68) + (i * 32), get_pmwr_car_00_188_68)
     }
 
     for (let i = 0; i < u32(o + 72); i++) {
-        get_pmwr_car_00_188_68(u32(o + 76) + (i * 32) + offset_mid, i)
+        ö(u32(o + 76) + (i * 32), get_pmwr_car_00_188_68)
     }
 
     for (let i = 0; i < u32(o + 80); i++) {
-        get_pmwr_car_00_188_68(u32(o + 84) + (i * 32) + offset_mid, i)
+        ö(u32(o + 84) + (i * 32), get_pmwr_car_00_188_68)
     }
 
     // 128 bytes;
@@ -2154,7 +1976,7 @@ function get_pmwr_car_00_188_52(o) {
 function get_pmwr_car_00_188_52_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_car_00_188_52_04_04(u32(o + 4) + (i * 4) + offset_mid, i)
+        ö(u32(o + 4) + (i * 4), get_pmwr_car_00_188_52_04_04)
     }
 
     // 16 bytes;
@@ -2180,7 +2002,7 @@ function get_pmwr_car_00_192(o) {
     ä(pmwr_car_00_192_16, u32(o + 16), get_pmwr_car_00_192_16)
 
     for (let i = 0; i < u32(o + 20); i++) {
-        get_pmwr_car_00_192_24(u32(o + 24) + (i * 12) + offset_mid, i)
+        ö(u32(o + 24) + (i * 12), get_pmwr_car_00_192_24)
     }
     ä(pmwr_wtf, u32(o + 32), get_pmwr_wtf)
 
@@ -2221,7 +2043,7 @@ function get_pmwr_car_00_200(o) {
 function get_pmwr_car_00_208(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_car_00_208_04(u32(o + 4) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 32), get_pmwr_car_00_208_04)
     }
 
 }
@@ -2233,14 +2055,15 @@ function get_pmwr_car_00_208_04(o) {
 function get_pmwr_car_00_216(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_mysterious(u32(o + 4) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 64), get_pmwr_mysterious)
     }
 
 }
 
 function get_pmwr_flag(o) {
     // ü(3, [u32, 0], o)
-    ;switch (u8(o + 8)) {
+    ö(u32(o + 4), get_pmwr_frame_text_0);
+    switch (u8(o + 8)) {
     case 2:
         ö(u32(o + 12), get_pmwr_flag_12t2)
         break;
@@ -2280,10 +2103,12 @@ function get_pmwr_flag_12t4(o) {
 
 function get_pmwr_frame_font(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 0)
+
     ö(u32(o + 28), get_pmwr_frame_font_28)
 
     for (let ii = 0; ii < u32(o + 32); ii++) {
-        get_pmwr_frame_font_36(u32(o + 36) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 36) + (ii * 12), get_pmwr_frame_font_36)
     }
 
     // 48 bytes;
@@ -2326,12 +2151,13 @@ function get_pmwr_frame_sparkler(o) {
 }
 function get_pmwr_frame_sparkler_16(o) {
     // ü(3, [u32, 0], o)
-    ;for (let i = 0; i < u32(o + 44); i++) {
-        get_pmwr_frame_sparkler_16_48(u32(o + 48) + (i * 12) + offset_mid, i)
+    ß('p_texture', o, 0);
+    for (let i = 0; i < u32(o + 44); i++) {
+        ö(u32(o + 48) + (i * 12), get_pmwr_frame_sparkler_16_48)
     }
 
     for (let i = 0; i < u32(o + 52); i++) {
-        get_pmwr_frame_sparkler_16_56(u32(o + 56) + (i * 32) + offset_mid, i)
+        ö(u32(o + 56) + (i * 32), get_pmwr_frame_sparkler_16_56)
     }
 
     // 64 bytes;
@@ -2351,7 +2177,11 @@ function get_pmwr_frame_sparkler_16_56(o) {
 function get_pmwr_frame_text(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ö(u32(o + 0), get_pmwr_frame_text_0)
 
+}
+
+function get_pmwr_frame_text_0(o) {// string
 }
 
 function get_pmwr_gate(o) {
@@ -2361,7 +2191,7 @@ function get_pmwr_gate(o) {
     ä(pmwr_unknown_00, u32(o + 36), get_pmwr_unknown_00)
 
     for (let ii = 0; ii < u32(o + 60); ii++) {
-        get_pmwr_unknown(u32(o + 64) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 64) + (ii * 4), get_pmwr_unknown)
     }
     ä(pmwr_sound_section, u32(o + 76), get_pmwr_sound_section)
     ä(pmwr_sound_controls, u32(o + 80), get_pmwr_sound_controls)
@@ -2393,7 +2223,6 @@ function get_pmwr_idk(o) {
     ;switch (u8(o + 0)) {
     case 0:
         ß('p_model', o, 4)
-        // ä(pmwr_models, u32(o + 4), get_pmwr_models)
         break;
     case 1:
         ä(pmwr_model_link, u32(o + 4), get_pmwr_model_link)
@@ -2403,11 +2232,11 @@ function get_pmwr_idk(o) {
     ö(u32(o + 12), get_pmwr_idk_12)
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_idk_20(u32(o + 20) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 32), get_pmwr_idk_20)
     }
 
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_mysterious(u32(o + 32) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 64), get_pmwr_mysterious)
     }
 
     // 80 bytes;
@@ -2417,12 +2246,11 @@ function get_pmwr_idk_12(o) {
     // ü(3, [u32, 0], o)
     ö(u32(o + 16), get_pmwr_idk_12_16)
     ß('p_model', o, 20)
-    // ä(pmwr_models, u32(o + 20), get_pmwr_models)
     ä(pmwr_wtf, u32(o + 28), get_pmwr_wtf)
     ä(pmwr_gate, u32(o + 44), get_pmwr_gate)
 
     for (let i = 0; i < u32(o + 64); i++) {
-        get_pmwr_unknown(u32(o + 68) + (i * 4) + offset_mid, i)
+        ö(u32(o + 68) + (i * 4), get_pmwr_unknown)
     }
 
     // 80 bytes;
@@ -2436,15 +2264,15 @@ function get_pmwr_idk_12_16(o) {
 function get_pmwr_idk_20(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_idk_20_08(u32(o + 8) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 8) + (ii * 32), get_pmwr_idk_20_08)
     }
 
     for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_idk_20_16(u32(o + 16) + (ii * 32) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 32), get_pmwr_idk_20_16)
     }
 
     for (let ii = 0; ii < u32(o + 24); ii++) {
-        get_pmwr_mysterious(u32(o + 28) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 28) + (ii * 64), get_pmwr_mysterious)
     }
 
 }
@@ -2464,7 +2292,7 @@ function get_pmwr_interface(o) {
     ö(u32(o + 4), get_pmwr_interface_04)
 
     for (let ii = 0; ii < u32(o + 8); ii++) {
-        get_pmwr_interface_12(u32(o + 12) + (ii * 28) + offset_mid, ii)
+        ö(u32(o + 12) + (ii * 28), get_pmwr_interface_12)
     }
     ä(pmwr_sound_controls, u32(o + 28), get_pmwr_sound_controls)
     ä(pmwr_sound_controls, u32(o + 36), get_pmwr_sound_controls)
@@ -2474,7 +2302,7 @@ function get_pmwr_interface(o) {
     ö(u32(o + 56), get_pmwr_interface_56)
 
     for (let ii = 0; ii < u32(o + 68); ii++) {
-        get_pmwr_interface_72(u32(o + 72) + (ii * 100) + offset_mid, ii)
+        ö(u32(o + 72) + (ii * 100), get_pmwr_interface_72)
     }
     // 80 bytes;
 
@@ -2483,14 +2311,15 @@ function get_pmwr_interface(o) {
 function get_pmwr_interface_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_04_04(u32(o + 4) + (i * 36) + offset_mid, i)
+        ö(u32(o + 4) + (i * 36), get_pmwr_interface_04_04)
     }
     // 16 bytes;
 
 }
 function get_pmwr_interface_04_04(o) {
     // ü(3, [u32, 0], o)
-    ;switch (u8(o + 4)) {
+    ö(u32(o + 0), get_pmwr_frame_text_0);
+    switch (u8(o + 4)) {
     case 1:
         ö(u32(o + 12), get_pmwr_interface_04_04_12t1)
         break;
@@ -2533,19 +2362,21 @@ function get_pmwr_interface_04_04_12t7(o) {
 function get_pmwr_interface_04_04_12t8(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_04_04_12t8_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_interface_04_04_12t8_04)
     }
     // 16 bytes;
 
 }
 function get_pmwr_interface_04_04_12t8_04(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ö(u32(o + 8), get_pmwr_frame_text_0)
 
 }
 function get_pmwr_interface_04_04_12t9(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ö(u32(o + 4), get_pmwr_frame_text_0)
+    ö(u32(o + 8), get_pmwr_frame_text_0)
 
 }
 function get_pmwr_interface_12(o) {
@@ -2559,11 +2390,11 @@ function get_pmwr_interface_12(o) {
         break;
     }
     for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_interface_12_16(u32(o + 16) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 8), get_pmwr_interface_12_16)
     }
 
     for (let ii = 0; ii < u32(o + 20); ii++) {
-        get_pmwr_interface_12_24(u32(o + 24) + (ii * 36) + offset_mid, ii)
+        ö(u32(o + 24) + (ii * 36), get_pmwr_interface_12_24)
     }
 
 }
@@ -2614,7 +2445,7 @@ function get_pmwr_interface_12_24(o) {
 function get_pmwr_interface_12_24_04t11(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_12_24_04t11_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_interface_12_24_04t11_04)
     }
     // 16 bytes;
 
@@ -2695,6 +2526,8 @@ function get_pmwr_interface_56(o) {
 }
 function get_pmwr_interface_72(o) {
     // ü(3, [u32, 0], o)
+    ö(u32(o + 0), get_pmwr_frame_text_0)
+    ö(u32(o + 48), get_pmwr_frame_text_0)
     ö(u32(o + 8), get_pmwr_interface_72_08)
     switch (u32(o + 12)) {
     case 4:
@@ -2747,7 +2580,7 @@ function get_pmwr_interface_72(o) {
     ö(u32(o + 52), get_pmwr_interface_72_52)
 
     for (let ii = 0; ii < u32(o + 68); ii++) {
-        get_pmwr_interface_72_72(u32(o + 72) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 72) + (ii * 12), get_pmwr_interface_72_72)
     }
 
 }
@@ -2755,7 +2588,7 @@ function get_pmwr_interface_72(o) {
 function get_pmwr_interface_72_08(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_interface_72_08_08(u32(o + 8) + (i * 12) + offset_mid, i)
+        ö(u32(o + 8) + (i * 12), get_pmwr_interface_72_08_08)
     }
     // 16 bytes;
 
@@ -2810,7 +2643,6 @@ function get_pmwr_interface_72_24t0(o) {
         break;
     case 1:
         ß('p_model', o, 4)
-        // ä(pmwr_models, u32(o + 4), get_pmwr_models)
         break;
     case 3:
         ö(u32(o + 8), get_pmwr_interface_72_24t0_08)
@@ -2822,14 +2654,14 @@ function get_pmwr_interface_72_24t0(o) {
 function get_pmwr_interface_72_24t0_08(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_72_24t0_08_04(u32(o + 4) + (i * 4) + offset_mid, i)
+        ö(u32(o + 4) + (i * 4), get_pmwr_interface_72_24t0_08_04)
     }
     // 32 bytes;
 
 }
 function get_pmwr_interface_72_24t0_08_04(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ß('p_texture', o, 0);
 
 }
 function get_pmwr_interface_72_24t1(o) {
@@ -2861,7 +2693,7 @@ function get_pmwr_interface_72_24t1(o) {
 function get_pmwr_interface_72_24t1_08t1(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_72_24t1_08t1_04(u32(o + 4) + (i * 8) + offset_mid, i)
+        ö(u32(o + 4) + (i * 8), get_pmwr_interface_72_24t1_08t1_04)
     }
     // 16 bytes;
 
@@ -2879,7 +2711,7 @@ function get_pmwr_interface_72_24t1_08t3(o) {
 function get_pmwr_interface_72_24t3(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_72_24t3_04(u32(o + 4) + (i * 8) + offset_mid, i)
+        ö(u32(o + 4) + (i * 8), get_pmwr_interface_72_24t3_04)
     }
     ö(u32(o + 16), get_pmwr_interface_72_24t3_16)
     // 32 bytes;
@@ -2905,6 +2737,7 @@ function get_pmwr_interface_72_24t3_16_08(o) {
 function get_pmwr_interface_72_24t5(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ß('p_texture', o, 0)
 
 }
 function get_pmwr_interface_72_24t6(o) {
@@ -2912,7 +2745,7 @@ function get_pmwr_interface_72_24t6(o) {
     ä(pmwr_interface, u32(o + 0), get_pmwr_interface)
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_interface_72_24t6_12(u32(o + 12) + (i * 12) + offset_mid, i)
+        ö(u32(o + 12) + (i * 12), get_pmwr_interface_72_24t6_12)
     }
     // 16 bytes;
 
@@ -2947,6 +2780,7 @@ function get_pmwr_interface_72_24t13_04(o) {
 function get_pmwr_interface_72_24t13_12(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ß('p_texture', o, 0)
 
 }
 function get_pmwr_interface_72_24t14(o) {
@@ -2970,19 +2804,19 @@ function get_pmwr_interface_72_24t15(o) {
 function get_pmwr_interface_72_32(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_interface_72_32_12(u32(o + 12) + (i * 24) + offset_mid, i)
+        ö(u32(o + 12) + (i * 24), get_pmwr_interface_72_32_12)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_interface_72_32_20(u32(o + 20) + (i * 12) + offset_mid, i)
+        ö(u32(o + 20) + (i * 12), get_pmwr_interface_72_32_20)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        get_pmwr_interface_72_32_20(u32(o + 28) + (i * 12) + offset_mid, i)
+        ö(u32(o + 28) + (i * 12), get_pmwr_interface_72_32_20)
     }
 
     for (let i = 0; i < u32(o + 32); i++) {
-        get_pmwr_interface_12(u32(o + 36) + (i * 28) + offset_mid, i)
+        ö(u32(o + 36) + (i * 28), get_pmwr_interface_12)
     }
     // 48 bytes;
 
@@ -3039,23 +2873,23 @@ function get_pmwr_interface_72_44(o) {
 function get_pmwr_interface_72_52(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_72_52_04(u32(o + 4) + (i * 32) + offset_mid, i)
+        ö(u32(o + 4) + (i * 32), get_pmwr_interface_72_52_04)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_interface_72_52_04(u32(o + 12) + (i * 32) + offset_mid, i)
+        ö(u32(o + 12) + (i * 32), get_pmwr_interface_72_52_04)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_interface_72_52_04(u32(o + 20) + (i * 32) + offset_mid, i)
+        ö(u32(o + 20) + (i * 32), get_pmwr_interface_72_52_04)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        get_pmwr_interface_72_52_28(u32(o + 28) + (i * 12) + offset_mid, i)
+        ö(u32(o + 28) + (i * 12), get_pmwr_interface_72_52_28)
     }
 
     for (let i = 0; i < u32(o + 32); i++) {
-        get_pmwr_interface_72_52_36(u32(o + 36) + (i * 40) + offset_mid, i)
+        ö(u32(o + 36) + (i * 40), get_pmwr_interface_72_52_36)
     }
     // 48 bytes;
 
@@ -3083,23 +2917,23 @@ function get_pmwr_interface_72_72(o) {
 function get_pmwr_interface_72_72_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_interface_72_72_04_04(u32(o + 4) + (i * 20) + offset_mid, i)
+        ö(u32(o + 4) + (i * 20), get_pmwr_interface_72_72_04_04)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_interface_72_72_04_12(u32(o + 12) + (i * 32) + offset_mid, i)
+        ö(u32(o + 12) + (i * 32), get_pmwr_interface_72_72_04_12)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_interface_72_72_04_12(u32(o + 20) + (i * 32) + offset_mid, i)
+        ö(u32(o + 20) + (i * 32), get_pmwr_interface_72_72_04_12)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        get_pmwr_interface_72_72_04_12(u32(o + 28) + (i * 32) + offset_mid, i)
+        ö(u32(o + 28) + (i * 32), get_pmwr_interface_72_72_04_12)
     }
 
     for (let i = 0; i < u32(o + 32); i++) {
-        get_pmwr_interface_72_72_04_36(u32(o + 36) + (i * 12) + offset_mid, i)
+        ö(u32(o + 36) + (i * 12), get_pmwr_interface_72_72_04_36)
     }
     ö(u32(o + 44), get_pmwr_interface_72_72_04_44)
     ä(pmwr_sound_controls, u32(o + 48), get_pmwr_sound_controls)
@@ -3109,7 +2943,7 @@ function get_pmwr_interface_72_72_04(o) {
 function get_pmwr_interface_72_72_04_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_interface_72_72_04_04_16(u32(o + 16) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 12), get_pmwr_interface_72_72_04_04_16)
     }
 
 }
@@ -3154,13 +2988,13 @@ function get_pmwr_link(o) {
     ö(u32(o + 0), get_pmwr_link_00)
 
     for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_link_intro(u32(o + 8) + (ii * 16) + offset_mid, ii)
+        ö(u32(o + 8) + (ii * 16), get_pmwr_link_intro)
     }
 
     ö(u32(o + 12), get_pmwr_link_12)
     ö(u32(o + 20), get_pmwr_link_20)
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_link_32(u32(o + 32) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 8), get_pmwr_link_32)
     }
     ö(u32(o + 36), get_pmwr_link_36)
     ö(u32(o + 40), get_pmwr_link_40)
@@ -3254,7 +3088,7 @@ function get_pmwr_link_32_00(o) {
     if (u32(o + 8))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o);
     for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_link_32_00_04(u32(o + 4) + (i * 32) + offset_mid, i)
+        ö(u32(o + 4) + (i * 32), get_pmwr_link_32_00_04)
     }
     // 16 bytes;
 
@@ -3268,11 +3102,11 @@ function get_pmwr_link_32_00_04(o) {
     ö(u32(o + 12), get_pmwr_link_32_00_04_12)
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_link_32_00_04_20(u32(o + 20) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 12), get_pmwr_link_32_00_04_20)
     }
 
     for (let ii = 0; ii < u32(o + 24); ii++) {
-        get_pmwr_link_32_00_04_20(u32(o + 28) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 28) + (ii * 12), get_pmwr_link_32_00_04_20)
     }
 
 }
@@ -3289,7 +3123,7 @@ function get_pmwr_link_32_00_04_12(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
 function get_pmwr_link_32_00_04_20(o) {
     /*ü(1, [u32, 0, u32, 4, u32, 8], o)*/
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_link_32_00_04_20_04(u32(o + 4) + (ii * 8) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 8), get_pmwr_link_32_00_04_20_04)
     }
 
 }
@@ -3311,21 +3145,22 @@ function get_pmwr_link_demo(o) {
 }
 
 function get_pmwr_model_link(o) {
-    // ü(3, [u32, 0], o)
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, f32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, ], o)
+    ö(u32(o + 4), get_pmwr_frame_text_0)
     ä(pmwr_model_sub_link, u32(o + 8), get_pmwr_model_sub_link)
     ä(pmwr_model_animation_1, u32(o + 12), get_pmwr_model_animation_1)
     ä(pmwr_model_animation_2, u32(o + 16), get_pmwr_model_animation_2)
 
     for (let ii = 0; ii < u32(o + 20); ii++) {
-        get_pmwr_model_link_24(u32(o + 24) + (ii * 4) + offset_mid, ii, u32(o + 24) + offset_mid);
+        ö(u32(o + 24) + (ii * 4), get_pmwr_model_link_24)
     }
 
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_model_link_32(u32(o + 32) + (ii * 8) + offset_mid, ii, u32(o + 32) + offset_mid);
+        ö(u32(o + 32) + (ii * 8), get_pmwr_model_link_32)
     }
 
     for (let ii = 0; ii < u32(o + 40); ii++) {
-        get_pmwr_mysterious(u32(o + 44) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 44) + (ii * 64), get_pmwr_mysterious)
     }
     ö(u32(o + 52), get_pmwr_model_link_52)
     ö(u32(o + 56), get_pmwr_model_link_56)
@@ -3334,13 +3169,11 @@ function get_pmwr_model_link(o) {
     // 80 bytes;
 
 }
-function get_pmwr_model_link_24(o, i, tempoffset) {
-    // ä(pmwr_models, tempoffset, i * 4, u32(o + 0), get_pmwr_models, tempoffset, i * 4)
-    ß('p_model', o, i * 4)
+function get_pmwr_model_link_24(o) {
+    ß('p_model', o, 0)
 }
-function get_pmwr_model_link_32(o, i, tempoffset) {
-    // ä(pmwr_models, tempoffset, i * 8, u32(o + 0), get_pmwr_models, tempoffset, i * 8)
-    ß('p_model', o, i * 8)
+function get_pmwr_model_link_32(o) {
+    ß('p_model', o, 0)
 
 }
 function get_pmwr_model_link_52(o) {
@@ -3360,14 +3193,14 @@ function get_pmwr_model_link_64(o) {
 }
 
 function get_pmwr_model_sub_link(o) {
-    // ü(3, [u32, 0], o)
+    // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, ], o)
     ä(pmwr_model_animation_2, u32(o + 0), get_pmwr_model_animation_2)
     for (let ii = 0; ii < u32(o + 4); ii++) {
-        get_pmwr_model_link_24(u32(o + 8) + (ii * 4) + offset_mid, ii, u32(o + 8) + offset_mid);
+        ö(u32(o + 8) + (ii * 4), get_pmwr_model_link_24)
     }
 
     for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_model_link_32(u32(o + 16) + (ii * 8) + offset_mid, ii, u32(o + 16) + offset_mid);
+        ö(u32(o + 16) + (ii * 8), get_pmwr_model_link_32)
     }
 
     // 32 bytes;
@@ -3443,20 +3276,20 @@ function get_pmwr_mysterious_04t5(o) {
     }
 
     for (let i = 0; i < u32(o + 12); i++) {
-        temp_function(u32(o + 16) + (i * 4) + offset_mid, i)
+        ö(u32(o + 16) + (i * 4), temp_function)
     }
 
     ö(u32(o + 28), get_pmwr_mysterious_04t5_28)
 
     for (let i = 0; i < u32(o + 32); i++) {
-        get_pmwr_mysterious_04t5_36(u32(o + 36) + (i * 32) + offset_mid, i)
+        ö(u32(o + 36) + (i * 32), get_pmwr_mysterious_04t5_36)
     }
 
     for (let i = 0; i < u32(o + 40); i++) {
-        get_pmwr_mysterious_04t5_44(u32(o + 44) + (i * 32) + offset_mid, i)
+        ö(u32(o + 44) + (i * 32), get_pmwr_mysterious_04t5_44)
     }
     for (let i = 0; i < u32(o + 48); i++) {
-        get_pmwr_mysterious_04t5_52(u32(o + 52) + (i * 12) + offset_mid, i)
+        ö(u32(o + 52) + (i * 12), get_pmwr_mysterious_04t5_52)
     }
     ö(u32(o + 56), get_pmwr_mysterious_04t5_56)
 
@@ -3470,22 +3303,21 @@ function get_pmwr_mysterious_04t5_56(o) {
 }
 function get_pmwr_mysterious_04t5_16t0(o) {
     // ü(3, [u32, 0], o)
-    // ä(pmwr_models, o, u32(o + 0), get_pmwr_models, o)
     ß('p_model', o, 0)
 }
 function get_pmwr_mysterious_04t5_16t2(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ß('p_texture', o, 0)
 
 }
 function get_pmwr_mysterious_04t5_16t3(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ß('p_texture', o, 0)
 
 }
 function get_pmwr_mysterious_04t5_16t5(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ß('p_texture', o, 0)
 
 }
 function get_pmwr_mysterious_04t5_28(o) {
@@ -3513,11 +3345,11 @@ function get_pmwr_mysterious_04t7(o) {
     ö(u32(o + 12), get_pmwr_mysterious_04t7_12)
 
     for (let i = 0; i < u32(o + 32); i++) {
-        get_pmwr_mysterious_04t7_36(u32(o + 36) + (i * 12) + offset_mid, i)
+        ö(u32(o + 36) + (i * 12), get_pmwr_mysterious_04t7_36)
     }
 
     for (let i = 0; i < u32(o + 40); i++) {
-        get_pmwr_mysterious_04t7_36(u32(o + 44) + (i * 12) + offset_mid, i)
+        ö(u32(o + 44) + (i * 12), get_pmwr_mysterious_04t7_36)
     }
 
     // 64 bytes;
@@ -3526,6 +3358,7 @@ function get_pmwr_mysterious_04t7(o) {
 function get_pmwr_mysterious_04t7_12(o) {
     // ü(3, [u32, 0], o)
     ;// 16 bytes;
+    ß('p_texture', o, 0)
 
 }
 function get_pmwr_mysterious_04t7_36(o) {
@@ -3537,7 +3370,7 @@ function get_pmwr_mysterious_04t7_36(o) {
 function get_pmwr_mysterious_04t10(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious(u32(o + 4) + (i * 64) + offset_mid, i)
+        ö(u32(o + 4) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -3622,6 +3455,7 @@ function get_pmwr_mysterious_04t9(o) {
 }
 function get_pmwr_mysterious_04t9_08(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 0)
     ö(u32(o + 8), get_pmwr_mysterious_04t9_08_08)
 
     // 32 bytes;
@@ -3635,7 +3469,7 @@ function get_pmwr_mysterious_04t9_08_08(o) {
 function get_pmwr_mysterious_04t9_12(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious_04t9_12_04(u32(o + 4) + (i * 56) + offset_mid, i)
+        ö(u32(o + 4) + (i * 56), get_pmwr_mysterious_04t9_12_04)
     }
     ö(u32(o + 12), get_pmwr_mysterious_04t9_12_12)
 
@@ -3644,6 +3478,7 @@ function get_pmwr_mysterious_04t9_12(o) {
 }
 function get_pmwr_mysterious_04t9_12_04(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 0)
     ö(u32(o + 8), get_pmwr_mysterious_04t9_12_04_08)
     ö(u32(o + 44), get_pmwr_mysterious_04t9_12_04_44)
 
@@ -3655,6 +3490,7 @@ function get_pmwr_mysterious_04t9_12_04_08(o) {
 }
 function get_pmwr_mysterious_04t9_12_04_44(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 0)
     ö(u32(o + 8), get_pmwr_mysterious_04t9_12_04_44_08)
     ö(u32(o + 12), get_pmwr_mysterious_04t9_12_04_44_12)
 
@@ -3674,7 +3510,7 @@ function get_pmwr_mysterious_04t9_12_04_44_12(o) {
 function get_pmwr_mysterious_04t9_12_12(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_mysterious_04t9_12_04(u32(o + 4) + (i * 56) + offset_mid, i)
+        ö(u32(o + 4) + (i * 56), get_pmwr_mysterious_04t9_12_04)
     }
 
     // 16 bytes;
@@ -3705,7 +3541,7 @@ function get_pmwr_object(o) {
     ä(pmwr_wtf, u32(o + 88), get_pmwr_wtf)
 
     for (let ii = 0; ii < u32(o + 96); ii++) {
-        get_pmwr_mysterious(u32(o + 100) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 100) + (ii * 64), get_pmwr_mysterious)
     }
 
     // 112 bytes;
@@ -3713,6 +3549,7 @@ function get_pmwr_object(o) {
 }
 function get_pmwr_object_12(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 0)
     ö(u32(o + 16), get_pmwr_object_12_16)
 
     // 32 bytes;
@@ -3726,7 +3563,7 @@ function get_pmwr_object_12_16(o) {
 function get_pmwr_object_32t15(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_object_32t15_04(u32(o + 4) + (ii * 28) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 28), get_pmwr_object_32t15_04)
     }
     ä(pmwr_unknown_00, u32(o + 8), get_pmwr_unknown_00)
     ä(pmwr_unknown_00, u32(o + 12), get_pmwr_unknown_00)
@@ -3737,15 +3574,15 @@ function get_pmwr_object_32t15(o) {
 function get_pmwr_object_32t15_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_object_32t15_04_04(u32(o + 4) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 12), get_pmwr_object_32t15_04_04)
     }
 
     for (let ii = 0; ii < u32(o + 8); ii++) {
-        get_pmwr_object_32t15_04_04(u32(o + 12) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 12) + (ii * 12), get_pmwr_object_32t15_04_04)
     }
 
     for (let ii = 0; ii < u32(o + 16); ii++) {
-        get_pmwr_object_32t15_04_04(u32(o + 20) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 20) + (ii * 12), get_pmwr_object_32t15_04_04)
     }
 
 }
@@ -3775,7 +3612,7 @@ function get_pmwr_object_32t18(o) {
 function get_pmwr_object_32t18_00(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_mysterious(u32(o + 8) + (i * 64) + offset_mid, i)
+        ö(u32(o + 8) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -3785,7 +3622,7 @@ function get_pmwr_object_32t18_00(o) {
 function get_pmwr_sound_controls(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 12); ii++) {
-        get_pmwr_sound_controls_16(u32(o + 16) + (ii * 16) + offset_mid, ii)
+        ö(u32(o + 16) + (ii * 16), get_pmwr_sound_controls_16)
     }
 
     // 32 bytes;
@@ -3794,7 +3631,7 @@ function get_pmwr_sound_controls(o) {
 function get_pmwr_sound_controls_16(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_sound_controls_16_04(u32(o + 4) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 4), get_pmwr_sound_controls_16_04)
     }
 
     // 16 bytes;
@@ -3808,6 +3645,7 @@ function get_pmwr_sound_controls_16_04(o) {
 
 function get_pmwr_sound_section(o) {
     // ü(3, [u32, 0], o)
+    ß('p_sound', o, 0)
     ö(u32(o + 8), get_pmwr_sound_section_08)
 
     // 32 bytes;
@@ -3822,7 +3660,7 @@ function get_pmwr_sound_section_08(o) {
 function get_pmwr_strange(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_unknown(u32(o + 4) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 4), get_pmwr_unknown)
     }
 
     ä(pmwr_sound_controls, u32(o + 28), get_pmwr_sound_controls)
@@ -3833,7 +3671,7 @@ function get_pmwr_strange(o) {
 function get_pmwr_um(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_mysterious(u32(o + 4) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 64), get_pmwr_mysterious)
     }
 
     // 32 bytes;
@@ -3849,7 +3687,7 @@ function get_pmwr_unknown(o) {
 function get_pmwr_unknown_00(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_unknown_00_04(u32(o + 4) + (ii * 16) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 16), get_pmwr_unknown_00_04)
     }
 
     // 16 bytes;
@@ -3933,7 +3771,7 @@ function get_pmwr_unknown_00_04_04t2(o) {
     ö(u32(o + 80), get_pmwr_unknown_00_04_04t2_80)
 
     for (let ii = 0; ii < u32(o + 96); ii++) {
-        get_pmwr_mysterious(u32(o + 100) + (ii * 64) + offset_mid, ii)
+        ö(u32(o + 100) + (ii * 64), get_pmwr_mysterious)
     }
 
     // 112 bytes;
@@ -3947,7 +3785,7 @@ function get_pmwr_unknown_00_04_04t2_80(o) {
 function get_pmwr_unknown_00_04_04t29(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t29_04(u32(o + 4) + (i * 48) + offset_mid, i)
+        ö(u32(o + 4) + (i * 48), get_pmwr_unknown_00_04_04t29_04)
     }
 
     // 32 bytes;
@@ -3955,7 +3793,7 @@ function get_pmwr_unknown_00_04_04t29(o) {
 }
 function get_pmwr_unknown_00_04_04t29_04(o) {
     // ü(3, [u32, 0], o)
-    ä(pmwr_models, u32(o + 0), get_pmwr_models)
+    ß('p_model', o, 0)
 
 }
 function get_pmwr_unknown_00_04_08t1(o) {
@@ -4126,6 +3964,7 @@ function get_pmwr_unknown_00_04_08t31_52(o) {
 function get_pmwr_unknown_00_04_08t32(o) {
     // ü(3, [u32, 0], o)
     ;// 32 bytes;
+    ö(u32(o + 8), get_pmwr_frame_text_0)
 
 }
 function get_pmwr_unknown_00_04_08t34(o) {
@@ -4158,11 +3997,11 @@ function get_pmwr_unknown_00_04_04t1(o) {
         break;
     }
     for (let ii = 0; ii < u32(o + 20); ii++) {
-        get_pmwr_unknown_00_04_04t1_24(u32(o + 24) + (ii * 12) + offset_mid, ii)
+        ö(u32(o + 24) + (ii * 12), get_pmwr_unknown_00_04_04t1_24)
     }
 
     for (let ii = 0; ii < u32(o + 28); ii++) {
-        get_pmwr_unknown(u32(o + 32) + (ii * 4) + offset_mid, ii)
+        ö(u32(o + 32) + (ii * 4), get_pmwr_unknown)
     }
 
     // 48 bytes;
@@ -4171,29 +4010,28 @@ function get_pmwr_unknown_00_04_04t1(o) {
 function get_pmwr_unknown_00_04_04t1_04t0(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t1_04t0_04(u32(o + 4) + (i * 4) + offset_mid, i, u32(o + 4) + offset_mid);
+        ö(u32(o + 4) + (i * 4), get_pmwr_unknown_00_04_04t1_04t0_04)
     }
 
     for (let i = 0; i < u32(o + 36); i++) {
-        get_pmwr_unknown_00_04_04t1_04t0_40(u32(o + 40) + (i * 32) + offset_mid, i)
+        ö(u32(o + 40) + (i * 32), get_pmwr_unknown_00_04_04t1_04t0_40)
     }
 
     for (let i = 0; i < u32(o + 44); i++) {
-        get_pmwr_unknown_00_04_04t1_04t0_48(u32(o + 48) + (i * 16) + offset_mid, i)
+        ö(u32(o + 48) + (i * 16), get_pmwr_unknown_00_04_04t1_04t0_48)
     }
 
     ö(u32(o + 56), get_pmwr_unknown_00_04_04t1_04t0_56)
 
     for (let i = 0; i < u32(o + 60); i++) {
-        get_pmwr_unknown_00_04_04t1_04t0_64(u32(o + 64) + (i * 8) + offset_mid, i)
+        ö(u32(o + 64) + (i * 8), get_pmwr_unknown_00_04_04t1_04t0_64)
     }
 
     // 80 bytes;
 
 }
 function get_pmwr_unknown_00_04_04t1_04t0_04(o, i, tempoffset) {
-    // ä(pmwr_models, tempoffset, i * 4, u32(o + 0), get_pmwr_models, tempoffset, i * 4)
-    ß('p_model', o, i * 4)
+    ß('p_model', o, 0)
 
 }
 function get_pmwr_unknown_00_04_04t1_04t0_40(o) {
@@ -4214,7 +4052,7 @@ function get_pmwr_unknown_00_04_04t1_04t0_56(o) {
 function get_pmwr_unknown_00_04_04t1_04t0_64(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_unknown_00_04_04t1_04t0_64_04(u32(o + 4) + (ii * 20) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 20), get_pmwr_unknown_00_04_04t1_04t0_64_04)
     }
 
 }
@@ -4226,20 +4064,20 @@ function get_pmwr_unknown_00_04_04t1_04t0_64_04(o) {
 function get_pmwr_unknown_00_04_04t1_04t1(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t1_04t1_04(u32(o + 4) + (i * 4) + offset_mid, i)
+        ö(u32(o + 4) + (i * 4), get_pmwr_unknown_00_04_04t1_04t1_04)
     }
 
     for (let i = 0; i < u32(o + 40); i++) {
-        get_pmwr_unknown_00_04_04t1_04t1_44(u32(o + 44) + (i * 12) + offset_mid, i)
+        ö(u32(o + 44) + (i * 12), get_pmwr_unknown_00_04_04t1_04t1_44)
     }
 
     for (let i = 0; i < u32(o + 48); i++) {
-        get_pmwr_unknown_00_04_04t1_04t1_44(u32(o + 52) + (i * 12) + offset_mid, i)
+        ö(u32(o + 52) + (i * 12), get_pmwr_unknown_00_04_04t1_04t1_44)
     }
     ö(u32(o + 56), get_pmwr_unknown_00_04_04t1_04t1_56)
 
     for (let i = 0; i < u32(o + 60); i++) {
-        get_pmwr_unknown_00_04_04t1_04t1_64(u32(o + 64) + (i * 8) + offset_mid, i)
+        ö(u32(o + 64) + (i * 8), get_pmwr_unknown_00_04_04t1_04t1_64)
     }
 
     // 80 bytes;
@@ -4247,7 +4085,7 @@ function get_pmwr_unknown_00_04_04t1_04t1(o) {
 }
 function get_pmwr_unknown_00_04_04t1_04t1_04(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ß('p_texture', o, 0)
 
 }
 function get_pmwr_unknown_00_04_04t1_04t1_44(o) {
@@ -4263,7 +4101,7 @@ function get_pmwr_unknown_00_04_04t1_04t1_56(o) {
 function get_pmwr_unknown_00_04_04t1_04t1_64(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_unknown_00_04_04t1_04t1_64_04(u32(o + 4) + (ii * 20) + offset_mid, ii)
+        ö(u32(o + 4) + (ii * 20), get_pmwr_unknown_00_04_04t1_04t1_64_04)
     }
 
 }
@@ -4275,11 +4113,11 @@ function get_pmwr_unknown_00_04_04t1_04t1_64_04(o) {
 function get_pmwr_unknown_00_04_04t1_04t2(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t1_04t2_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_unknown_00_04_04t1_04t2_04)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_unknown_00_04_04t1_04t2_20(u32(o + 20) + (i * 16) + offset_mid, i)
+        ö(u32(o + 20) + (i * 16), get_pmwr_unknown_00_04_04t1_04t2_20)
     }
 
     // 32 bytes;
@@ -4328,11 +4166,11 @@ function get_pmwr_unknown_00_04_04t5_04(o) {
         break;
     }
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_unknown_00_04_04t5_04_20(u32(o + 20) + (i * 4) + offset_mid, i)
+        ö(u32(o + 20) + (i * 4), get_pmwr_unknown_00_04_04t5_04_20)
     }
 
     for (let i = 0; i < u32(o + 28); i++) {
-        get_pmwr_mysterious(u32(o + 32) + (i * 64) + offset_mid, i)
+        ö(u32(o + 32) + (i * 64), get_pmwr_mysterious)
     }
 
     // 48 bytes;
@@ -4346,7 +4184,7 @@ function get_pmwr_unknown_00_04_04t5_04_12t103(o) {
 function get_pmwr_unknown_00_04_04t5_04_12t105(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_mysterious(u32(o + 8) + (i * 64) + offset_mid, i)
+        ö(u32(o + 8) + (i * 64), get_pmwr_mysterious)
     }
 
     // 16 bytes;
@@ -4360,7 +4198,7 @@ function get_pmwr_unknown_00_04_04t5_04_20(o) {
 function get_pmwr_unknown_00_04_04t5_12(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t5_12_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_unknown_00_04_04t5_12_04)
     }
 
     // 16 bytes;
@@ -4374,7 +4212,7 @@ function get_pmwr_unknown_00_04_04t5_12_04(o) {
 function get_pmwr_unknown_00_04_04t5_20(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_unknown_00_04_04t5_20_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_unknown_00_04_04t5_20_04)
     }
 
     // 16 bytes;
@@ -4463,7 +4301,9 @@ function get_pmwr_unknown_00_04_04t5_28_04_00_04t2(o) {
 
 function get_pmwr_var(o) {
     // ü(3, [u32, 0], o)
+    ö(u32(o + 140), get_pmwr_frame_text_0)
     ö(u32(o + 148), get_pmwr_var_148)
+    ö(u32(o + 152), get_pmwr_frame_text_0)
     ö(u32(o + 164), get_pmwr_var_164)
     ö(u32(o + 168), get_pmwr_var_168)
 
@@ -4480,11 +4320,11 @@ function get_pmwr_var_148(o) {
 function get_pmwr_var_164(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_var_164_12(u32(o + 12) + (i * 24) + offset_mid, i)
+        ö(u32(o + 12) + (i * 24), get_pmwr_var_164_12)
     }
 
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_var_164_20(u32(o + 20) + (i * 8) + offset_mid, i)
+        ö(u32(o + 20) + (i * 8), get_pmwr_var_164_20)
     }
 
     // 32 bytes;
@@ -4492,7 +4332,9 @@ function get_pmwr_var_164(o) {
 }
 function get_pmwr_var_164_12(o) {
     // ü(3, [u32, 0], o)
-    ;switch (u32(o + 4)) {
+    ö(u32(o + 0), get_pmwr_frame_text_0)
+    ö(u32(o + 8), get_pmwr_frame_text_0);
+    switch (u32(o + 4)) {
     case 1:
         ö(u32(o + 12), get_pmwr_var_164_12_12t1)
         break;
@@ -4830,11 +4672,13 @@ function get_pmwr_var_164_12_12t24_04(o) {
 }
 function get_pmwr_var_164_20(o) {
     // ü(3, [u32, 0], o)
+    globalThis.type_0 = u32(o + 0)
     ö(u32(o + 4), get_pmwr_var_164_20_04)
 
 }
 function get_pmwr_var_164_20_04(o, t) {
-    ;switch (t) {
+    ö(u32(o + 8), get_pmwr_frame_text_0);
+    switch (globalThis.type_0) {
     case 1604:
         ö(u32(o + 12), get_pmwr_var_164_20_04_12t1604)
         break;
@@ -4852,11 +4696,11 @@ function get_pmwr_var_164_20_04(o, t) {
         break;
     }
     for (let i = 0; i < u32(o + 16); i++) {
-        get_pmwr_var_164_20_04_20(u32(o + 20) + (i * 12) + offset_mid, i)
+        ö(u32(o + 20) + (i * 12), get_pmwr_var_164_20_04_20)
     }
 
     for (let i = 0; i < u32(o + 24); i++) {
-        get_pmwr_var_164_12(u32(o + 28) + (i * 24) + offset_mid, i)
+        ö(u32(o + 28) + (i * 24), get_pmwr_var_164_12)
     }
 
     // 32 bytes;
@@ -4939,7 +4783,8 @@ function get_pmwr_var_164_20_04_12t1636_00(o) {
 }
 function get_pmwr_var_164_20_04_20(o) {
     // ü(3, [u32, 0], o)
-    ;switch (u32(o + 0)) {
+    ö(u32(o + 4), get_pmwr_frame_text_0);
+    switch (u32(o + 0)) {
     case 5:
         ö(u32(o + 8), get_pmwr_var_164_20_04_20_08t5)
         break;
@@ -5007,7 +4852,7 @@ function get_pmwr_var_164_20_04_20_08t6_00(o) {
 function get_pmwr_var_168(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 4); i++) {
-        get_pmwr_var_164_12(u32(o + 8) + (i * 24) + offset_mid, i)
+        ö(u32(o + 8) + (i * 24), get_pmwr_var_164_12)
     }
 
     // 16 bytes;
@@ -5016,8 +4861,12 @@ function get_pmwr_var_168(o) {
 
 function get_pmwr_world_settings(o) {
     // ü(3, [u32, 0], o)
-    ;for (let ii = 0; ii < u32(o + 0); ii++) {
-        get_pmwr_world_settings_04(u32(o + 4) + (ii * 64) + offset_mid, ii)
+    ß('p_texture', o, 16)
+    ß('p_texture', o, 20)
+    ß('p_texture', o, 24)
+    ß('p_texture', o, 136);
+    for (let ii = 0; ii < u32(o + 0); ii++) {
+        ö(u32(o + 4) + (ii * 64), get_pmwr_world_settings_04)
     }
     ö(u32(o + 12), get_pmwr_world_settings_12)
     ö(u32(o + 36), get_pmwr_world_settings_36)
@@ -5028,6 +4877,8 @@ function get_pmwr_world_settings(o) {
     ö(u32(o + 64), get_pmwr_world_settings_64)
     ö(u32(o + 68), get_pmwr_world_settings_68)
     ö(u32(o + 72), get_pmwr_world_settings_72)
+    ö(u32(o + 76), get_pmwr_frame_text_0)
+
     ä(pmwr_frame_font, u32(o + 88), get_pmwr_frame_font)
     ö(u32(o + 192), get_pmwr_world_settings_192)
     ö(u32(o + 196), get_pmwr_world_settings_196)
@@ -5094,14 +4945,17 @@ function get_pmwr_world_settings_72(o) {
 }
 function get_pmwr_world_settings_192(o) {
     // ü(3, [u32, 0], o)
+    ß('p_texture', o, 20)
     ä(pmwr_interface, u32(o + 0), get_pmwr_interface)
     ä(pmwr_interface, u32(o + 4), get_pmwr_interface)
+    ö(u32(o + 12), get_pmwr_frame_text_0)
+    ö(u32(o + 16), get_pmwr_frame_text_0)
     ä(pmwr_car, u32(o + 24), get_pmwr_car)
     ä(pmwr_car, u32(o + 28), get_pmwr_car)
     ä(pmwr_car, u32(o + 32), get_pmwr_car)
 
     for (let i = 0; i < u32(o + 36); i++) {
-        get_pmwr_world_settings_192_40(u32(o + 40) + (i * 8) + offset_mid, i)
+        ö(u32(o + 40) + (i * 8), get_pmwr_world_settings_192_40)
     }
 
     // 48 bytes;
@@ -5109,7 +4963,7 @@ function get_pmwr_world_settings_192(o) {
 }
 function get_pmwr_world_settings_192_40(o) {
     // ü(3, [u32, 0], o)
-    ;
+    ;ö(u32(o + 0), get_pmwr_frame_text_0)
 
 }
 function get_pmwr_world_settings_196(o) {
@@ -5125,11 +4979,11 @@ function get_pmwr_world_settings_196(o) {
 function get_pmwr_world_settings_196_04(o) {
     // ü(3, [u32, 0], o)
     ;for (let i = 0; i < u32(o + 0); i++) {
-        get_pmwr_world_settings_196_04_04(u32(o + 4) + (i * 12) + offset_mid, i)
+        ö(u32(o + 4) + (i * 12), get_pmwr_world_settings_196_04_04)
     }
 
     for (let i = 0; i < u32(o + 8); i++) {
-        get_pmwr_world_settings_196_04_04(u32(o + 12) + (i * 12) + offset_mid, i)
+        ö(u32(o + 12) + (i * 12), get_pmwr_world_settings_196_04_04)
     }
 
     // 32 bytes;

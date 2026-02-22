@@ -6414,6 +6414,32 @@ function get_from_replace(string) {
     console.log(new_line)
 
 }
+
+function get_replace_loop_with(string) {
+    a_split = string.split('\n')
+
+    let new_line = ''
+    for (let line_string of a_split) {
+        if (line_string.includes(') + (i')) {
+            let before_x = line_string.split('(u32(')
+            let name = before_x[0].trim()
+            let after = "(u32(" + before_x[1]
+
+            if (after.includes('+ offset_mid')) {
+                after = after.split('+ offset_mid')[0]
+            } else {
+                after = after.split(')')[1] + ")"
+            }
+
+            new_line += `ö${after}, ${name})\n`
+
+        } else {
+            new_line += line_string + "\n"
+        }
+    }
+    console.log(new_line)
+
+}
 function get_check_doc_tables_if_href_not_linked(string_html) {
     let html = ''
     let array_h2_split = string_html.split('<h2 id=')
