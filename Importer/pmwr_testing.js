@@ -144,7 +144,7 @@ function get_pmwr_directory(o, end_offset) {
 }
 
 function get_pmwr_datapack(o) {
-    // ü(3, [u32, 0], o)
+        // ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116], o)
     offset_mid = 0
     let end_datapack = o + 120
 
@@ -188,6 +188,8 @@ function get_pmwr_datapack(o) {
     //pmwr_audio
     let padding_test = get_pmwr_audio(offset_after_datapack, u32(o + 8))
 
+
+    // psp only
     //pmwr_index_patch_list
     // get_pmwr_index_patch_list(offset_index_patch)
 
@@ -198,6 +200,13 @@ function get_pmwr_datapack(o) {
 
     //ordered
     get_pmwr_ordered(offset_mid)
+
+    if (g.console === "psp") {
+    for (let i = 0; i < u32(o +80); i++) {
+    get_pmwr_datapack_84(u32(o + 84) + (i*8) + offset_mid)
+    }
+    }
+
 
     return
 
@@ -225,6 +234,14 @@ function get_pmwr_datapack(o) {
     }
 }
 
+function get_pmwr_datapack_84(o) {
+if(u32(o+0) )
+ü(1, [u32, 0, u32, 4], o)
+
+ä(pmwr_frame_text, u32(o + 4), get_pmwr_frame_text)
+
+}
+
 function pmwr_get_index_patch_list(o, patch_offset) {
     patchlistoffset = patch_offset
     log_array.p_texture.offset = patchlistoffset
@@ -247,9 +264,14 @@ function pmwr_get_index_patch_list(o, patch_offset) {
 function pmwr_get_offset_patch_list(o, patch_offset) {
     patchlistoffset = patch_offset
     log_array.p_model.offset = patchlistoffset
+    let type_offset = 6
+    if (g.console === "gamecube") {
+        type_offset = 4
+    }
+
     for (let i = 0; i < u32(o + 56); i++) {
         log_array.p_model.array.push(u32(patchlistoffset + (i * 8)))
-        log_array.p_model.array_type.push(u16(patchlistoffset + (i * 8) + 6))
+        log_array.p_model.array_type.push(u16(patchlistoffset + (i * 8) + type_offset))
     }
     patchlistoffset += u32(o + 56) * 8
     log_array.p_offset.offset = patchlistoffset
@@ -279,8 +301,14 @@ function get_pmwr_ordered(o) {
     // ü(3, [u32, 0], o)
 
     get_pmwr_offset_patch_list(u32(g.datapack_offset) + offset_mid)
+    if (g.console === "psp") {
+        for (let i = 0; i < u32(g.datapack_offset + 20); i++) {
+            get_pmwr_texture_psp(u32(g.datapack_offset + 24) + (i * 64) + offset_mid)
+        }
 
-    let gsharedonly = get_pmwr_texture(u32(g.datapack_offset + 24) + offset_mid)
+    } else {
+        get_pmwr_texture(u32(g.datapack_offset + 24) + offset_mid)
+    }
     for (let i = 0; i < u32(g.datapack_offset + 48); i++) {
         get_pmwr_texture_animation_section(u32(g.datapack_offset + 60) + offset_mid + (i * 12))
     }
@@ -296,7 +324,7 @@ function get_pmwr_ordered(o) {
         get_pmwr_basic(o)
         break
     case 8:
-        get_pmwr_share(o, gsharedonly)
+        get_pmwr_share(o)
         break
     case 4:
         get_pmwr_world(o, 0)
@@ -321,7 +349,7 @@ function get_pmwr_basic(o) {
 
     function get_pmwr_basic_4(o) {
         if (u32(o + 8) || u32(o + 12))
-            ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+            ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
         switch (g.type) {
         case 0:
             ä(pmwr_car, u32(o), get_pmwr_car)
@@ -434,15 +462,26 @@ function get_pmwr_collision_32t0_40(o) {
 }
 function get_pmwr_collision_32t1(o) {
     // ü(3, [u32, 0], o)
-    ;for (let ii = 0; ii < u32(o + 32); ii++) {
-        ö(u32(o + 36) + (ii * 2), get_pmwr_collision_32t1_36)
+    if (u32(o + 32)) {
+        for (let ii = 0; ii < u32(o + 32); ii++) {
+            ö(u32(o + 36) + (ii * 2), get_pmwr_collision_32t1_36)
+        }
+    } else {
+        ö(u32(o + 36), get_pmwr_collision_32t1_36Itemp)
     }
 
-    for (let ii = 0; ii < u32(o + 44); ii++) {
-        ö(u32(o + 40) + (ii * 12), get_pmwr_collision_32t1_40)
+    if (u32(o + 44)) {
+        for (let ii = 0; ii < u32(o + 44); ii++) {
+            ö(u32(o + 40) + (ii * 12), get_pmwr_collision_32t1_40)
+        }
+    } else {
+        ö(u32(o + 40), get_pmwr_collision_32t1_40temp)
     }
 
 }
+function get_pmwr_collision_32t1_36Itemp(o) {}
+function get_pmwr_collision_32t1_40temp(o) {}
+
 function get_pmwr_collision_32t1_40(o) {
     // ü(3, [u32, 0], o)
     ;for (let ii = 0; ii < u32(o + 4); ii++) {
@@ -555,6 +594,7 @@ function get_pmwr_world_20_12t2(o) {
     for (let ii = 0; ii < u32(o + 60); ii++) {
         ö(u32(o + 64) + (ii * 4), get_pmwr_world_20_12t2_64)
     }
+    globalThis.type_u32_get_pmwr_world_20_12t2_72 = u32(o + 40)
     ö(u32(o + 72), get_pmwr_world_20_12t2_72)
     ö(u32(o + 76), get_pmwr_world_20_12t2_76)
 
@@ -587,15 +627,25 @@ function get_pmwr_world_20_12t2_76(o) {
 }
 function get_pmwr_world_20_12t2_76_12(o) {
     // ü(3, [u32, 0], o)
-    ;let offset = u32(o + 0)
-
-    if (offset) {
-        let ii
-    }
+    ö(u32(o + 0), get_pmwr_world_20_12t2_76_12_0)
 
 }
-function get_pmwr_world_20_12t2_72(o, t) {
-    ;for (let i = 0; i < t; i++) {
+function get_pmwr_world_20_12t2_76_12_0(o) {// ü(3, [u32, 0], o)
+// let check_val = o
+// if (pmwr_world_20_12t13.includes(check_val)) {
+//     return
+// }
+// if (pmwr_world_20_12t14.includes(check_val)) {
+//     return
+// }
+// if (pmwr_world_20_12t15.includes(check_val)) {
+//     return
+// }
+// console.log(o)
+
+}
+function get_pmwr_world_20_12t2_72(o) {
+    ;for (let i = 0; i < type_u32_get_pmwr_world_20_12t2_72; i++) {
         ö(u32(o + 0) + (i * 4), get_pmwr_world_20_12t2_72_00)
     }
 
@@ -651,12 +701,7 @@ function get_pmwr_world_20_12t8(o) {
         break;
     }
 
-    switch (u32(o + 32)) {
-    case 0:
-        if (u32(o + 72)) {}
-
-        break;
-    }
+    ö(u32(o + 72), get_pmwr_world_20_12t8_72)
 
 }
 function get_pmwr_world_20_12t8_72(o) {// ü(3, [u32, 0], o)
@@ -722,9 +767,18 @@ function get_pmwr_world_08(o) {
         ö(u32(o + 16) + (i * 80), get_pmwr_world_08_16)
     }
 
-    for (let i = 0; i < u32(o + 24); i++) {
-        ö(u32(o + 20) + (i * 4), get_pmwr_world_08_20)
+    if (u32(o + 24)) {
+        for (let i = 0; i < u32(o + 24); i++) {
+            ö(u32(o + 20) + (i * 4), get_pmwr_world_08_20)
+        }
+    } else {
+        ö(u32(o + 20), get_pmwr_world_08_20temp)
     }
+
+}
+function get_pmwr_world_08_20temp(o) {
+    // ü(3, [u32, 0], o)
+    ;
 
 }
 function get_pmwr_world_08_20(o) {
@@ -818,7 +872,10 @@ function get_pmwr_world_24_12(o) {
 }
 
 function get_pmwr_texture(o) {
-    // ü(3, [u32, 0], o)
+    // if (g.console === "psp") {
+    //     get_pmwr_texture_psp(o)
+    //     return
+    // }
     let e = o + (u32(g.datapack_offset + 20) * 64)
     for (let i = 0; i < u32(g.datapack_offset + 20); i++) {
         ö(u32(o + 4 + (i * 64)), get_pmwr_texture_4)
@@ -830,6 +887,30 @@ function get_pmwr_texture(o) {
 function get_pmwr_texture_4(o) {// ü(3, [u32, 0], o)
 }
 function get_pmwr_texture_8(o) {// ü(3, [u32, 0], o)
+}
+
+function get_pmwr_texture_psp(o) {
+    if (u8(o + 8) || u8(o + 9) || u8(o + 10) || u8(o + 11) || u32(o + 56) || u32(o + 60))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60], o)
+
+    ö(u32(o + 4), get_pmwr_texture_psp_4)
+
+}
+
+function get_pmwr_texture_psp_4(o) {
+    if (u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44], o)
+
+    ö(u32(o + 0), get_pmwr_texture_psp_4_0)
+    ö(u32(o + 4), get_pmwr_texture_psp_4_4)
+
+}
+
+function get_pmwr_texture_psp_4_0(o) {
+    // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_texture_psp_4_4(o) {
+    // ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_pmwr_texture_animation_section(o) {
@@ -897,20 +978,61 @@ function get_pmwr_audio(o, a) {
 
 }
 
-function get_pmwr_share(o, gshareoffset) {
+function get_pmwr_share(o) {
     for (let i = 0, ii = 0; i < u32(o) && u32(o + i) !== 0; i += 4,
     ii++) {
-        get_pmwr_models(u32(o + i) + o, ii)
+        ß('p_model', o, i)
     }
 
-    function getpmwr_textureshrae(o) {// ü(3, [u32, 0], o)}
-    }
-    function gettsoundshare(o) {// ü(3, [u32, 0], o)}
-    }
-    function getpmwr_modelshare(o) {// ü(3, [u32, 0], o)}
+    if (g.file_name.toLowerCase().includes("gshared")) {
+        let set_offset = 0
+        if (g.console === "pc") {
+            set_offset = 2380244
+        } else if (g.console === "gamecube") {
+            set_offset = 1076836
+        } else if (g.console === "psp") {
+            set_offset = 720012
+        } else if (g.console === "ps2") {
+            set_offset = 843056
+        }
 
+        get_pmwr_share_end(set_offset)
     }
+
 }
+function get_pmwr_share_end(o) {
+    if (u32(o + 4) !== 62 || u32(o + 12) !== 14 || u32(o + 20) !== 7 || u32(o + 28))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28], o)
+
+    ö(u32(o + 0), get_pmwr_share_end_0)
+    for (let i = 0; i < u32(o + 4); i++) {
+        ö(u32(o + 8) + (i * 4), get_pmwr_share_end_8)
+    }
+    for (let i = 0; i < u32(o + 12); i++) {
+        ö(u32(o + 16) + (i * 4), get_pmwr_share_end_16)
+    }
+    for (let i = 0; i < u32(o + 20); i++) {
+        ö(u32(o + 24) + (i * 4), get_pmwr_share_end_24)
+    }
+
+}
+
+function get_pmwr_share_end_0(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12, ], o)
+// string
+}
+function get_pmwr_share_end_8(o) {
+    /*ü(1,], o)*/
+    ß('p_texture', o, 0)
+}
+function get_pmwr_share_end_16(o) {
+    /*ü(1,], o)*/
+    ß('p_sound', o, 0)
+}
+function get_pmwr_share_end_24(o) {
+    /*ü(1,], o)*/
+    ß('p_model', o, 0)
+}
+
 function get_pmwr_models(o, index) {
     ö(u32(o + 8), get_pmwr_frame_text_0)
 
@@ -987,35 +1109,183 @@ function get_models_04(o) {
 }
 
 function get_models_04_4(o) {
-    ö(u32(o + 0), get_models_04_4_0)
+    if (g.console === "pc") {
+        ö(u32(o + 0), get_models_04_4_0_pc)
+    } else if (g.console === "gamecube") {
+        ö(u32(o + 0), get_models_04_4_0_gc)
+    } else if (g.console === "psp") {
+        set_offset = 720012
+    } else if (g.console === "ps2") {
+        ö(u32(o + 0), get_models_04_4_0_ps2)
+    }
+
 }
-function get_models_04_4_0(o) {
+
+function get_models_04_4_0_ps2(o) {
+    switch (u32(o)) {
+    case 0:
+        get_models_04_4_0_ps2_t0(o)
+        break
+    case 1:
+        get_models_04_4_0_ps2_t1(o)
+        break
+    case 2:
+        get_models_04_4_0_ps2_t2(o)
+        break
+    }
+}
+function get_models_04_4_0_ps2_t0(o) {
+    if (u32(o + 0) || u32(o + 20) || u32(o + 32) || u32(o + 36))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
+    ß('p_texture', o, 40)
+    ß('p_animation', o, 24)
+
+    ö(u32(o + 64), get_models_04_4_0_ps2_t0_64)
+    ö(u32(o + 68), get_models_04_4_0_ps2_t0_68)
+    ö(u32(o + 72), get_models_04_4_0_ps2_t0_72)
+    ö(u32(o + 76), get_models_04_4_0_ps2_t0_76)
+
+}
+
+function get_models_04_4_0_ps2_t0_64(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t0_68(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t0_72(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t0_76(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_models_04_4_0_ps2_t1(o) {
+    if (u32(o + 0) !== 1 || u8(o + 14) || u32(o + 20) || u32(o + 32) || u32(o + 36) || u32(o + 56) !== 224 || u32(o + 60) !== 1 || u32(o + 76) || u32(o + 84) || u32(o + 88) || u32(o + 92))
+        ü(1, [u32, 0, u32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u8, 40, u8, 41, u8, 42, u8, 43, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
+    ß('p_animation', o, 24)
+    ß('p_texture', o, 40)
+
+    ö(u32(o + 64), get_models_04_4_0_ps2_t1_64)
+    ö(u32(o + 68), get_models_04_4_0_ps2_t1_68)
+    ö(u32(o + 72), get_models_04_4_0_ps2_t1_72)
+    ö(u32(o + 80), get_models_04_4_0_ps2_t1_80)
+
+}
+
+function get_models_04_4_0_ps2_t1_64(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t1_68(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t1_72(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t1_80(o) {
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 8), get_models_04_4_0_ps2_t1_80_8)
+
+}
+
+function get_models_04_4_0_ps2_t1_80_8(o) {// ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u8, 8, u8, 9, u8, 10, u8, 11, u8, 12, u8, 13, u8, 14, u8, 15, ], o)
+}
+
+function get_models_04_4_0_ps2_t2(o) {
+    if (u32(o + 0) !== 2 || u32(o + 4) || u32(o + 20) || u32(o + 32) || u32(o + 36) || u32(o + 40) !== 65535 || u32(o + 52) || u32(o + 88) || u32(o + 92))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, f32, 56, f32, 60, f32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u32, 84, u32, 88, u32, 92], o)
+
+    ö(u32(o + 72), get_models_04_4_0_ps2_t2_72)
+    ö(u32(o + 80), get_models_04_4_0_ps2_t2_80)
+    ö(u32(o + 84), get_models_04_4_0_ps2_t2_84)
+
+}
+
+function get_models_04_4_0_ps2_t2_72(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t2_80(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_ps2_t2_84(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_models_04_4_0_pc(o) {
     ß('p_animation', o, 24)
     ß('p_animation', o, 36)
     ß('p_texture', o, 40)
 
-    ö(u32(o + 68), get_models_04_4_0_68)
-    ö(u32(o + 72), get_models_04_4_0_72)
-    ö(u32(o + 76), get_models_04_4_0_76)
-    ö(u32(o + 80), get_models_04_4_0_80)
-    ö(u32(o + 84), get_models_04_4_0_84)
-    ö(u32(o + 92), get_models_04_4_0_92)
+    ö(u32(o + 68), get_models_04_4_0_pc_68)
+    ö(u32(o + 72), get_models_04_4_0_pc_72)
+    ö(u32(o + 76), get_models_04_4_0_pc_76)
+    ö(u32(o + 80), get_models_04_4_0_pc_80)
+    ö(u32(o + 84), get_models_04_4_0_pc_84)
+    ö(u32(o + 92), get_models_04_4_0_pc_92)
 }
-function get_models_04_4_0_68(o) {// ?
+function get_models_04_4_0_pc_68(o) {// ?
 }
-function get_models_04_4_0_72(o) {// ?
+function get_models_04_4_0_pc_72(o) {// ?
 }
-function get_models_04_4_0_76(o) {// ?
+function get_models_04_4_0_pc_76(o) {// ?
 }
-function get_models_04_4_0_80(o) {// ?
+function get_models_04_4_0_pc_80(o) {// ?
 }
-function get_models_04_4_0_84(o) {// ?
+function get_models_04_4_0_pc_84(o) {// ?
 }
-function get_models_04_4_0_92(o) {
-    ö(u32(o + 12), get_models_04_4_0_92_12)
+function get_models_04_4_0_pc_92(o) {
+    ö(u32(o + 12), get_models_04_4_0_pc_92_12)
 }
 
-function get_models_04_4_0_92_12(o) {// ?
+function get_models_04_4_0_pc_92_12(o) {// ?
+}
+
+function get_models_04_4_0_gc(o) {
+    if (u32(o + 4) || u32(o + 20) || u32(o + 32) || u32(o + 36) || u32(o + 88) || u32(o + 92))
+        ü(1, [u32, 0, u32, 4, u8, 8, u8, 9, u8, 10, u8, 11, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, u32, 48, u32, 52, u32, 56, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76, u32, 80, u16, 84, u16, 86, u32, 88, u32, 92], o)
+    ß('p_texture', o, 40)
+    ß('p_animation', o, 24)
+
+    ö(u32(o + 60), get_models_04_4_0_gc_60)
+    ö(u32(o + 64), get_models_04_4_0_gc_64)
+    ö(u32(o + 68), get_models_04_4_0_gc_68)
+    ö(u32(o + 72), get_models_04_4_0_gc_72)
+    for (let i = 0; i < u16(o + 84); i++) {
+        ö(u32(o + 76) + (i * 24), get_models_04_4_0_gc_76)
+    }
+    ö(u32(o + 80), get_models_04_4_0_gc_80)
+
+}
+
+function get_models_04_4_0_gc_60(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_64(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_68(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_72(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_76(o) {
+    if (u32(o + 0))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23], o)
+
+    ö(u32(o + 8), get_models_04_4_0_gc_76_8)
+    ö(u32(o + 12), get_models_04_4_0_gc_76_12)
+    ö(u32(o + 16), get_models_04_4_0_gc_76_16)
+
+}
+
+function get_models_04_4_0_gc_76_8(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_76_12(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_models_04_4_0_gc_76_16(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_80(o) {
+    if (u32(o + 12))
+        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+
+    ö(u32(o + 0), get_models_04_4_0_gc_80_0)
+    ö(u32(o + 4), get_models_04_4_0_gc_80_4)
+
+}
+
+function get_models_04_4_0_gc_80_0(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_models_04_4_0_gc_80_4(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 }
 
 function get_models_12(o) {// ?
@@ -1037,7 +1307,7 @@ function get_pmwr_model_animation_2_1(o) {
 //
 
 function get_pmwr_model_animation_1(o) {
-    // ü(3, [u32, 0], o)
+    // ü(1, [u32, 0, u32, 4, f32, 8, f32, 12, u32, 16, u32, 20, u8, 24, u8, 25, u8, 26, u8, 27, f32, 28, u32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, u8, 44, u8, 45, u8, 46, u8, 47, f32, 48, u32, 52, f32, 56, u8, 60, u8, 61, u8, 62, u8, 63, ], o)
     if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
         ö(u32(o + 24), get_pmwr_model_animation_1_24)
     }
@@ -1047,28 +1317,109 @@ function get_pmwr_model_animation_1(o) {
     if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
         ö(u32(o + 32), get_pmwr_model_animation_1_32)
     }
+    if (old_log_array.p_offset.array.includes(o + 36 - offset_mid)) {
+        ö(u32(o + 36), get_pmwr_model_animation_1_36)
+    }
+    if (old_log_array.p_offset.array.includes(o + 44 - offset_mid)) {
+        ö(u32(o + 44), get_pmwr_model_animation_1_44)
+    }
     if (old_log_array.p_offset.array.includes(o + 52 - offset_mid)) {
-        switch (u32(o + 4)) {
-        case 291:
-        case 35:
-            ö(u32(o + 52), get_pmwr_model_animation_1_52t35)
-            break;
-        case 163:
-        case 419:
-            ö(u32(o + 52), get_pmwr_model_animation_1_52t163)
-            break;
-        case 11:
-        case 67:
-            break;
+        if (g.console === "gamecube") {
+            switch (u32(o + 0)) {
+            case 1:
+                ö(u32(o + 52), get_pmwr_model_animation_1_52t1_gc)
+                break
+            case 5:
+                ö(u32(o + 52), get_pmwr_model_animation_1_52t5_gc)
+                break
+            default:
+                if (u32(o + 52)) {
+                    sü(u32, 0, o, 52)
+                }
+            }
+
+        } else {
+            switch (u32(o + 4)) {
+            case 291:
+            case 35:
+                ö(u32(o + 52), get_pmwr_model_animation_1_52t35)
+                break;
+            case 163:
+            case 419:
+                ö(u32(o + 52), get_pmwr_model_animation_1_52t163)
+                break;
+            default:
+                console.log(o, "?", u32(o + 4))
+            }
         }
+
     }
 
 }
+function get_pmwr_model_animation_1_52t1_gc(o) {
+    if (u8(o + 1) || u8(o + 2) || u8(o + 3) || u8(o + 5) || u8(o + 6) || u8(o + 7))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15], o)
+
+    if (old_log_array.p_offset.array.includes(o + 8 - offset_mid)) {
+        ö(u32(o + 8), get_pmwr_model_animation_1_52t1_gc_8)
+    }
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+        ö(u32(o + 12), get_pmwr_model_animation_1_52t1_gc_12)
+    }
+
+}
+
+function get_pmwr_model_animation_1_52t1_gc_8(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t1_gc_12(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
+function get_pmwr_model_animation_1_52t5_gc(o) {
+    /*ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u8, 16, u8, 17, u8, 18, u8, 19, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u32, 28, u32, 32], o)*/
+
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+        ö(u32(o + 12), get_pmwr_model_animation_1_52t5_gc_12)
+    }
+    if (old_log_array.p_offset.array.includes(o + 16 - offset_mid)) {
+        ö(u32(o + 16), get_pmwr_model_animation_1_52t5_gc_16)
+    }
+    if (old_log_array.p_offset.array.includes(o + 20 - offset_mid)) {
+        ö(u32(o + 20), get_pmwr_model_animation_1_52t5_gc_20)
+    }
+    if (old_log_array.p_offset.array.includes(o + 24 - offset_mid)) {
+        ö(u32(o + 24), get_pmwr_model_animation_1_52t5_gc_24)
+    }
+    if (old_log_array.p_offset.array.includes(o + 28 - offset_mid)) {
+        ö(u32(o + 28), get_pmwr_model_animation_1_52t5_gc_28)
+    }
+    if (old_log_array.p_offset.array.includes(o + 32 - offset_mid)) {
+        ö(u32(o + 32), get_pmwr_model_animation_1_52t5_gc_32)
+    }
+
+}
+
+function get_pmwr_model_animation_1_52t5_gc_12(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t5_gc_16(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t5_gc_20(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t5_gc_24(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t5_gc_28(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+function get_pmwr_model_animation_1_52t5_gc_32(o) {// ü(3, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+}
+
 function get_pmwr_model_animation_1_24(o) {// ü(3, [u32, 0], o)
 }
 function get_pmwr_model_animation_1_28(o) {// ü(3, [u32, 0], o)
 }
 function get_pmwr_model_animation_1_32(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_36(o) {// ü(3, [u32, 0], o)
+}
+function get_pmwr_model_animation_1_44(o) {// ü(3, [u32, 0], o)
 }
 function get_pmwr_model_animation_1_52t35(o) {
     // ü(3, [u32, 0], o)
@@ -1104,7 +1455,17 @@ function get_pmwr_model_animation_1_52t35_16(o) {// ü(3, [u32, 0], o)
 }
 function get_pmwr_model_animation_1_52t35_32(o) {// ü(3, [u32, 0], o)
 }
-function get_pmwr_model_animation_1_52t163(o) {// ü(3, [u32, 0], o)
+function get_pmwr_model_animation_1_52t163(o) {
+    // ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, ], o)
+    // ü(3, [u32, 0], o)
+    if (old_log_array.p_offset.array.includes(o + 8 - offset_mid)) {
+        ö(u32(o + 8), get_pmwr_model_animation_1_52t163_08)
+    }
+    if (old_log_array.p_offset.array.includes(o + 12 - offset_mid)) {
+        ö(u32(o + 12), get_pmwr_model_animation_1_52t163_12)
+    }
+
+    // ü(3, [u32, 0], o)
 }
 function get_pmwr_model_animation_1_52t163_08(o) {// ü(3, [u32, 0], o);
 }
@@ -2980,7 +3341,7 @@ function get_pmwr_interface_72_72_04_44(o) {
 }
 
 function get_pmwr_link(o) {
-    if (u32(o + 24) || u32(o + 44) || u8(o + 53) || u8(o + 57) || u32(o + 72) || u32(o + 76))
+    if (u32(o + 24) || u32(o + 44) || u32(o + 76))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u8, 52, u8, 53, u8, 54, u8, 55, u8, 56, u8, 57, u8, 58, u8, 59, u32, 60, u32, 64, u32, 68, u32, 72, u32, 76], o)
     ß('p_texture', o, 52)
     ß('p_texture', o, 56)
@@ -3002,6 +3363,7 @@ function get_pmwr_link(o) {
     ö(u32(o + 48), get_pmwr_link_demo)
     ä(pmwr_frame_font, u32(o + 60), get_pmwr_frame_font)
     ö(u32(o + 68), get_pmwr_link_68)
+    ö(u32(o + 72), get_pmwr_link_72)
 
 }
 
@@ -3017,10 +3379,12 @@ function get_pmwr_link_40(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
 
 function get_pmwr_link_68(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
 }
+function get_pmwr_link_72(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
+}
 
 function get_pmwr_link_00(o) {
-    if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_pmwr_link_00_04)
     // 16 bytes;
@@ -3035,7 +3399,7 @@ function get_pmwr_link_00_04(o) {
 
 }
 function get_pmwr_link_00_04_00(o) {
-    if (u32(o + 0) || u32(o + 8) !== 1 || u32(o + 12))
+    if (u32(o + 0) || u8(o + 8) !== 1 || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
 
     ö(u32(o + 4), get_pmwr_link_00_04_00_04)
@@ -3043,7 +3407,7 @@ function get_pmwr_link_00_04_00(o) {
 
 }
 function get_pmwr_link_00_04_00_04(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u8(o + 20) || u8(o + 21) !== 148 || u8(o + 22) !== 53 || u8(o + 23) !== 119 || u32(o + 24) || u32(o + 28))
+    if (u32(o + 0) || u32(o + 4) || u32(o + 8) || u32(o + 12) || u32(o + 16) || u32(o + 24) || u32(o + 28))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u32, 24, u32, 28], o);
     // 32 bytes;
 
@@ -3060,7 +3424,7 @@ function get_pmwr_link_intro_4(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
 }
 
 function get_pmwr_link_intro_08(o) {
-    if (u32(o + 0) !== 7680 || u32(o + 4) || u32(o + 8) || u32(o + 12))
+    if (u32(o + 4) || u32(o + 8) || u32(o + 12))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o);
     // 16 bytes;
 
@@ -3111,8 +3475,8 @@ function get_pmwr_link_32_00_04(o) {
 
 }
 function get_pmwr_link_32_00_04_04(o) {
-    if (u32(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) !== 1 || u32(o + 8) || u32(o + 12))
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4, u32, 8, u32, 12], o)
     ö(u32(o + 4), get_pmwr_link_offset_index)
     // 16 bytes;
 
@@ -3128,8 +3492,8 @@ function get_pmwr_link_32_00_04_20(o) {
 
 }
 function get_pmwr_link_32_00_04_20_04(o) {
-    if (u32(o + 0) !== 1)
-        ü(1, [u32, 0, u32, 4], o)
+    if (u8(o + 0) !== 1)
+        ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u32, 4], o)
     ö(u32(o + 4), get_pmwr_link_offset_index)
 
 }
@@ -3137,8 +3501,8 @@ function get_pmwr_link_32_8(o) {/*ü(3,[u32,0,u32,4,u32,8,u32,12],o)*/
 }
 
 function get_pmwr_link_demo(o) {
-    if (u32(o + 0) !== 1 || u32(o + 12))
-        ü(1, [u32, 0, u32, 4, u32, 8, u32, 12], o)
+    if (u8(o + 0) !== 1 || u32(o + 12))
+        ü(1, [u8, 0, u32, 4, u32, 8, u32, 12], o)
     ö(u32(o + 8), get_pmwr_link_32_00)
     // 16 bytes;
 
