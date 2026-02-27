@@ -3344,10 +3344,19 @@ function ß(type, o, n) {
     } else {
         array = log_array[type].array
     }
-    if (array.includes(new_o)) {
-        let index = array.indexOf(new_o)
-        array[index] = array[array.length - 1];
-        array.pop();
+    if (array[0] === new_o) {
+        array.shift()
+    if (type === 'p_offset') {
+        globalThis.last_value_stored = new_o
+        globalThis.next_value_needed = array[0]
+    }
+        // let index = array.indexOf(new_o)
+        // array[index] = array[array.length - 1];
+        // array.pop();
+    }else{
+        if (new_o === globalThis.next_value_needed) {
+        console.log("wrong offset")
+        }
     }
 
 }
