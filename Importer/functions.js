@@ -3344,22 +3344,72 @@ function ß(type, o, n) {
     } else {
         array = log_array[type].array
     }
+    var caller_name = (new Error).stack.split("\n")
+    if (caller_name[3].includes("ö")) {
+        caller_name = caller_name[4].split('(')[0].split('at get_')[1]?.trim()
+    } else {
+        caller_name = caller_name[3].split('(')[0].split('at get_')[1]?.trim()
+    }
+
     if (array[0] === new_o) {
         array.shift()
-    if (type === 'p_offset') {
-        globalThis.last_value_stored = new_o
-        globalThis.next_value_needed = array[0]
-    }
+        if (type === 'p_offset') {
+        if(globalThis.first_wrong_value === true){
+        console.log(`
+        last values name: ${next_value_name} last offset: ${last_value_stored}
+        expected value: ${globalThis.next_value_needed}
+        wrong value: ${wrong_value} | name: ${next_wrong_value_name}
+        diff: ${globalThis.next_value_needed - new_o}`)
+        }
+
+            globalThis.last_value_stored = new_o
+            globalThis.next_value_needed = array[0]
+            globalThis.next_value_name = caller_name
+            globalThis.first_wrong_value = undefined
+        }
         // let index = array.indexOf(new_o)
         // array[index] = array[array.length - 1];
         // array.pop();
-    }else{
-        if (new_o === globalThis.next_value_needed) {
-        console.log("wrong offset")
+    } else {
+        if (globalThis.first_wrong_value === true) {
+            
+        }else{
+        globalThis.first_wrong_value = true
+        globalThis.wrong_value = new_o
+        globalThis.next_wrong_value_name = caller_name
+
         }
+        // console.log(` last values name: ${next_value_name} last offset: ${last_value_stored}
+        // expected value: ${globalThis.next_value_needed}
+        // value: ${new_o}
+        // diff: ${globalThis.next_value_needed - new_o}`)
+        // console.log('?')
+        // globalThis.first_wrong_value
+        //     if (new_o === globalThis.next_value_needed) {
+        // }
+        // if (array.includes(new_o)) {
+        //     let index = array.indexOf(new_o)
+        //     array[index] = array[array.length - 1];
+        //     array.pop();
+        // }
+
     }
 
 }
+
+// function temp_check_patch_array_order(array) {
+//     let check_value = 0
+//     let prev_value = 0
+//     for (let i = 0; i < array.length; i++) {
+//         check_value = array[i]
+
+//         if (check_value < prev_value) {
+//             console.log(`less then check_value ${check_value} | prev_value ${prev_value} | i ${i}`)
+//         }
+
+//         prev_value = check_value
+//     }
+// }
 
 function print_logarray(log) {
     if (log.print === false) {
@@ -6457,12 +6507,12 @@ function get_check_doc_tables_if_href_not_linked(string_html) {
     for (let string_table of array_h2_split) {
 
         // if (string_table.includes("<table")) {
-            if (string_table.includes(`"`)) {
-                string_table = string_table.replace(`"`, '')
-            }
+        if (string_table.includes(`"`)) {
+            string_table = string_table.replace(`"`, '')
+        }
 
-            let section_name = string_table.split(`">`)[0]
-            array_list_of_sections.push(section_name)
+        let section_name = string_table.split(`">`)[0]
+        array_list_of_sections.push(section_name)
 
         // }
     }

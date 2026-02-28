@@ -185,7 +185,7 @@ function get_hwvx_proto_datapack(o) {
 
     get_hwvx_proto_get_combined_patch_list(o, end_datapack)
     globalThis.old_log_array = structuredClone(log_array)
-
+    globalThis.datapack_offset = o
     // let calcoffset = (u32(o + 8) * 4 + (o + 120))
     // if (u32(o + 72)) {//always type 4
     // // get_hwvx_proto_datapack_72(calcoffset + u32(o + 72) )
@@ -240,19 +240,6 @@ function get_hwvx_proto_datapack(o) {
         break
     default:
         console.log("?")
-    }
-    for (let i = 0; i < u32(o + 20); i++) {
-        get_hwvx_proto_texture(offset_mid + u32(o + 24) + (i * 16))
-    }
-
-    for (let i = 0; i < u32(o + 48); i++) {
-        get_hwvx_proto_texture_anims(offset_mid + u32(o + 60) + (i * 12))
-    }
-
-    if (u32(o + 68)) {
-        for (let i = 0; i < u32(o + 64); i++) {
-            get_hwvx_proto_triggers_and_actions(offset_mid + u32(o + 68) + (i * 44))
-        }
     }
 
 }
@@ -1028,6 +1015,7 @@ function get_hwvx_proto_get_combined_patch_list(o, patch_offset) {
         log_array.p_offset.array.push(u32(patchlistoffset + (i * 4)))
     }
 
+    // temp_check_patch_array_order(log_array.p_offset.array)
     let _2ndarray = []
     for (let patchoffset of log_array.p_offset.array) {
         _2ndarray.push(u32(patchoffset + offset_mid))
@@ -1509,6 +1497,13 @@ function get_hwvx_proto_basic(o) {
 
 function get_hwvx_proto_basic_4(o) {
     // ü(1, [u32, 0, u32, 4], o)
+
+    if (u32(o)) {
+        ß('p_offset', u32(o + 0), offset_mid)
+    }
+
+    get_hwvx_proto_ordered_list(globalThis.datapack_offset)
+
     switch (g.type) {
     case 0:
         ö(u32(o), get_hwvx_proto_car)
@@ -1520,7 +1515,7 @@ function get_hwvx_proto_basic_4(o) {
         ö(u32(o), get_hwvx_proto_item)
         break
     case 3:
-        ö(u32(o), get_hwvx_proto_link)
+        get_hwvx_proto_link(u32(o) + offset_mid)
         break
     case 9:
         ä(hwvx_proto_sound_controls, u32(o), get_hwvx_proto_sound_controls)
@@ -1529,6 +1524,24 @@ function get_hwvx_proto_basic_4(o) {
         if (u32(o))
             console.log("?")
 
+    }
+
+}
+
+function get_hwvx_proto_ordered_list(o) {
+
+    for (let i = 0; i < u32(o + 20); i++) {
+           get_hwvx_proto_texture(offset_mid + u32(o + 24) + (i * 16))
+    }
+
+    for (let i = 0; i < u32(o + 48); i++) {
+        get_hwvx_proto_texture_anims(offset_mid + u32(o + 60) + (i * 12))
+    }
+
+    if (u32(o + 68)) {
+        for (let i = 0; i < u32(o + 64); i++) {
+            get_hwvx_proto_triggers_and_actions(offset_mid + u32(o + 68) + (i * 44))
+        }
     }
 
 }
