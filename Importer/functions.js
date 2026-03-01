@@ -2348,14 +2348,24 @@ globalThis.temp_array__ = [generate_temp_array()]
 
 function ö(o, f, t) {
     if (o) {
-        ß('p_offset', o, offset_mid)
-        f(o + offset_mid)
+        if (t === "up") {
+            f(o + offset_mid)
+            ß('p_offset', o, offset_mid, f)
+        } else if (t === "n") {
+            f(o + offset_mid)
+        } else {
+            ß('p_offset', o, offset_mid, f)
+            f(o + offset_mid)
+        }
     }
 
 }
-function ä(a, o, f) {
+function ä(a, o, f, t) {
     if (o) {
-        ß('p_offset', o, offset_mid)
+        if (t === "up") {
+            ß('p_offset', o, offset_mid, f)
+        }
+
         if (log_array.ä_array.includes(o + offset_mid)) {
             if (a.includes(o + offset_mid)) {} else {
                 let index = log_array.ä_array.indexOf(o + offset_mid)
@@ -2371,6 +2381,10 @@ function ä(a, o, f) {
             a.push(o + offset_mid)
             f(o + offset_mid)
         }
+        if (t !== "n") {
+            ß('p_offset', o, offset_mid, f)
+        }
+
     }
 }
 
@@ -3276,7 +3290,7 @@ function html_to_eximport(inputHtml) {
     }
 
 }
-function ß(type, o, n) {
+function ß(type, o, n, f="no link") {
     if (Number(check_offset.value)) {
         if ([Number(check_offset.value)].includes(o + n)) {
             var caller_name = (new Error).stack
@@ -3343,28 +3357,130 @@ function ß(type, o, n) {
         array = log_array[type].pointers
     } else {
         array = log_array[type].array
+        if (array[0] === new_o) {
+            array.shift()
+        }
+        return
     }
+    globalThis.prev_correct_name = ''
+    globalThis.next_correct_name = ''
     var caller_name = (new Error).stack.split("\n")
-    if (caller_name[3].includes("ö")) {
-        caller_name = caller_name[4].split('(')[0].split('at get_')[1]?.trim()
+    let check_array = ['ö', "ß", "Error", "Eval", 'ä']
+    let prev_name = '?'
+    let mid_name = '?'
+    let next_name = '?'
+    var i = -1
+    let match_found = false
+    let loop = true
+
+    if (f === "no link") {
+        var temp_caller_name = (new Error).stack.split("\n")[2]
+        next_name = temp_caller_name.split('(')[0].split('at get_')[1]?.trim() + " from ß link"
     } else {
-        caller_name = caller_name[3].split('(')[0].split('at get_')[1]?.trim()
+        next_name = f?.name?.replace("get_", "")
     }
+
+    while (loop) {
+        i++
+        for (let value of check_array) {
+            if (caller_name[i].includes(value)) {
+                match_found = true
+            }
+        }
+
+        if (match_found === false) {
+            mid_name = caller_name[i]
+            loop = false
+        }
+        if (i === caller_name.length) {
+            loop = false
+        }
+
+        match_found = false
+    }
+    loop = true
+    while (loop) {
+        i++
+        for (let value of check_array) {
+            if (caller_name[i].includes(value)) {
+                match_found = true
+            }
+        }
+
+        if (match_found === false) {
+            prev_name = caller_name[i]
+            loop = false
+        }
+        if (i === caller_name.length) {
+            loop = false
+        }
+        match_found = false
+    }
+
+    prev_name = prev_name.split('(')[0].split('at get_')[1]?.trim()
+    mid_name = mid_name.split('(')[0].split('at get_')[1]?.trim()
+    // console.log(prev_name, mid_name)
+
+    // if (caller_name[3].includes("ö")) {
+    //     caller_name = caller_name[4].split('(')[0].split('at get_')[1]?.trim()
+    // } else {
+    //     caller_name = caller_name[3].split('(')[0].split('at get_')[1]?.trim()
+    // }
+
+    // globalThis.temp_name = '?'
+    // if (f === "no link") {
+    // var temp_caller_name = (new Error).stack.split("\n")
+    // if (temp_caller_name[1].includes(!check_array)) {
+    //     globalThis.temp_name = temp_caller_name[1].split('(')[0].split('at get_')[1]?.trim()
+    // } else if (temp_caller_name[2].includes(!check_array)){
+    //     globalThis.temp_name = temp_caller_name[2].split('(')[0].split('at get_')[1]?.trim()
+    // } else if (temp_caller_name[3].includes(!check_array)){
+    //     globalThis.temp_name = temp_caller_name[3].split('(')[0].split('at get_')[1]?.trim()
+    // } else if (temp_caller_name[4].includes(!check_array)){
+    //     globalThis.temp_name = temp_caller_name[4].split('(')[0].split('at get_')[1]?.trim()
+    // }
+    // globalThis.temp_name = (new Error).stack.split("\n")[4]
+    // let temp = globalThis.temp_name?.split('(')[0]?.split('at get_')[1]?.trim()
+    // if (typeof temp !== "undefined") {
+    //     globalThis.temp_name = temp + " sub"
+    // }else{
+    //     globalThis.temp_name = globalThis.temp_name + " undefined"
+    // }
+    // }else{
+    //     globalThis.temp_name = f?.name?.replace("get_","")
+    // }
 
     if (array[0] === new_o) {
         array.shift()
         if (type === 'p_offset') {
-        if(globalThis.first_wrong_value === true){
-        console.log(`
-        last values name: ${next_value_name} last offset: ${last_value_stored}
-        expected value: ${globalThis.next_value_needed}
-        wrong value: ${wrong_value} | name: ${next_wrong_value_name}
-        diff: ${globalThis.next_value_needed - new_o}`)
-        }
+            if (globalThis.first_wrong_value === true) {
+                console.log(`
+incorrect order: ${wrong_value_name}->${mid_wrong_value_name}->  [${next_wrong_value_name}(${wrong_value})]
+correct order: ${prev_name}->${mid_name}(${last_value_stored})->  [${next_name}(${new_o})]
+offset difference: ${wrong_value - new_o} | count ${wrong_value_count} | array: ${log_array[type].array.length - array.length}/${log_array[type].array.length} | next: ${array[0]}`)
+
+                console.log('?')
+                /*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        */
+            }
 
             globalThis.last_value_stored = new_o
             globalThis.next_value_needed = array[0]
-            globalThis.next_value_name = caller_name
             globalThis.first_wrong_value = undefined
         }
         // let index = array.indexOf(new_o)
@@ -3372,14 +3488,17 @@ function ß(type, o, n) {
         // array.pop();
     } else {
         if (globalThis.first_wrong_value === true) {
-            
-        }else{
-        globalThis.first_wrong_value = true
-        globalThis.wrong_value = new_o
-        globalThis.next_wrong_value_name = caller_name
+            globalThis.wrong_value_count++
+            globalThis.last_value_stored = new_o
+        } else {
+            globalThis.first_wrong_value = true
+            globalThis.wrong_value_count = 1
+            globalThis.wrong_value = new_o
+            globalThis.wrong_value_name = prev_name
+            globalThis.mid_wrong_value_name = mid_name
+            globalThis.next_wrong_value_name = next_name
 
         }
-        // console.log(` last values name: ${next_value_name} last offset: ${last_value_stored}
         // expected value: ${globalThis.next_value_needed}
         // value: ${new_o}
         // diff: ${globalThis.next_value_needed - new_o}`)
@@ -3415,6 +3534,15 @@ function print_logarray(log) {
     if (log.print === false) {
         return
     }
+    if (globalThis.first_wrong_value === true) {
+
+        console.log(`
+incorrect order: ${wrong_value_name}->${mid_wrong_value_name}->  [${next_wrong_value_name}(${wrong_value})]
+offset difference: ${wrong_value} | count ${wrong_value_count} | array: ${log_array.p_offset.array.length - log_array.p_offset.pointers.length}/${log_array.p_offset.array.length} | next: ${log_array.p_offset.array[0]}`)
+
+        console.log('?')
+    }
+
     log_array.order = offset_mid
     let html = ''
     let new_a, old_a;
@@ -6496,6 +6624,87 @@ function get_replace_loop_with(string) {
             new_line += line_string + "\n"
         }
     }
+    console.log(new_line)
+
+}
+
+function get_replace_function_in_loop(string) {
+    a_split = string.split('\n')
+
+    let new_line = ''
+    let i = 0
+    for (let line_string of a_split) {
+        i++
+        if (line_string.includes('for (let i = 0; i <')) {
+            let function_line = a_split[i]
+
+            let split;
+            let offset_value;
+            let name_value;
+            offset_value = ''
+            if (function_line.includes("o + 4 + (i")) {} else if (function_line.includes("o + 8 + (i")) {} else if (function_line.includes("o + 12 + (i")) {} else if (function_line.includes("ö")) {
+                split_value = function_line.split("(")
+                offset_value = `${split_value[1]}(${split_value[2]}`
+                offset_value = offset_value.split(')')[0].trim() + ")"
+                offset_value = `${offset_value} && ß('p_offset', ${offset_value}, offset_mid);`
+            } else if (function_line.includes("ä")) {
+                split_value = function_line.split("(")
+                let first_value = split_value[1].split(", ")[1].trim()
+                offset_value = `${first_value}(${split_value[2]}`
+                offset_value = offset_value.split(')')[0].trim() + ")"
+                offset_value = `${offset_value} && ß('p_offset', ${offset_value}, offset_mid);`
+            } else {
+                offset_value = ''
+                console.log("?")
+            }
+
+            new_line += offset_value + line_string + "\n"
+
+        } else {
+            new_line += line_string + "\n"
+        }
+    }
+    console.log(new_line)
+
+}
+function get_replace_function_in_loop_function(string) {
+    a_split = string.split('\n')
+    let is_next_line = false
+    let new_line = ''
+    let next_line = ''
+    let i = 0
+    for (let line_string of a_split) {
+        i++
+        if (is_next_line === true) {
+            new_line += next_line + "\n"
+
+            is_next_line = false
+        } else {
+
+            if (line_string.includes('for (let i = 0; i <')) {
+                let function_line = a_split[i]
+
+                let split;
+                let offset_value;
+                let name_value;
+                offset_value = ''
+                if (function_line.includes("o + 4 + (i")) {} else if (function_line.includes("o + 8 + (i")) {} else if (function_line.includes("o + 12 + (i")) {} else if (function_line.includes("ö")) {
+                    is_next_line = true
+                    function_line += 'temp'
+                    next_line = function_line.replace(`)temp`, `,'n')`)
+                } else {
+                    offset_value = ''
+                    console.log("?")
+                }
+
+                new_line += line_string + "\n"
+
+            } else {
+                new_line += line_string + "\n"
+            }
+        }
+    }
+
     console.log(new_line)
 
 }
