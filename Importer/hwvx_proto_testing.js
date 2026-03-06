@@ -1298,13 +1298,7 @@ function get_hwvx_proto_world_52_88t1(o) {
 }
 
 function get_hwvx_proto_world_76(o) {
-    // ü(1, [u32, 0], o)
-    ä(hwvx_proto_world_small_section, u32(o + 0), get_hwvx_proto_world_small_section)
-
-}
-
-function get_hwvx_proto_world_84(o) {
-    // ü(1, [u32, 0], o) // ML ???
+    ü(1, [u32, 0], o)
     ä(hwvx_proto_world_small_section, u32(o + 0), get_hwvx_proto_world_small_section)
 
 }
@@ -1551,7 +1545,7 @@ function get_hwvx_proto_basic(o) {
 }
 
 function get_hwvx_proto_basic_4(o) {
-    // ü(1, [u32, 0, u32, 4], o)
+    ü(1, [u32, 0, u32, 4], o)
 
     if (u32(o)) {
         ß('p_offset', u32(o + 0), offset_mid)
@@ -2016,7 +2010,7 @@ function get_hwvx_proto_car_228(o) {
 
 }
 function get_hwvx_proto_mysterious(o) {
-    if (u32(o + 12) || u8(o + 19) || u32(o + 28))
+    // if (u32(o + 12) || u8(o + 19) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, f32, 20, u32, 24, u32, 28], o)
 
     switch (u8(o + 16)) {
@@ -2170,7 +2164,7 @@ function get_hwvx_proto_mysterious_24t7_88(o) {
 }
 
 function get_hwvx_proto_mysterious_24t9(o) {
-    if (u8(o + 0) !== 2 || u8(o + 1) !== 2 || u32(o + 12) || u32(o + 16) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
+    // if (u8(o + 0) !== 2 || u8(o + 1) !== 2 || u32(o + 12) || u32(o + 16) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, f32, 4, f32, 8, u32, 12, u32, 16, u8, 20, u8, 21, u8, 22, u8, 23, u8, 24, u8, 25, u8, 26, u8, 27, u32, 28, u32, 32, u8, 36, u8, 37, u8, 38, u8, 39, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
     ß('p_texture', o, 20)
     ß('p_texture', o, 24)
@@ -2296,7 +2290,7 @@ function get_hwvx_proto_world_model_related(o) {
 }
 
 function get_hwvx_proto_world_small_section(o) {
-    // ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, ], o)
+    ü(1, [u32, 0, u32, 4, f32, 8, u32, 12, ], o)
     ö(u32(o + 12), get_hwvx_proto_world_small_section_12)
 
 }
@@ -3642,7 +3636,7 @@ function get_hwvx_proto_unknown_link_section_28(o) {
 }
 
 function get_hwvx_proto_item(o) {
-    if (u8(o + 4) !== 255 || u8(o + 5) !== 255 || u8(o + 6) !== 255 || u8(o + 7) !== 255 || u32(o + 20) || u32(o + 40))
+    // if (u8(o + 4) !== 255 || u8(o + 5) !== 255 || u8(o + 6) !== 255 || u8(o + 7) !== 255 || u32(o + 20) || u32(o + 40))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, f32, 8, f32, 12, f32, 16, u32, 20, f32, 24, f32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
     ä(hwvx_proto_text, u32(o + 32), get_hwvx_proto_text)
     ä(hwvx_proto_unknown, u32(o + 36), get_hwvx_proto_unknown)
