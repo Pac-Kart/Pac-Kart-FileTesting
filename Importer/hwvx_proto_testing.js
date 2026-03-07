@@ -1019,9 +1019,6 @@ function get_hwvx_proto_get_combined_patch_list(o, patch_offset) {
     let _2ndarray = []
     for (let patchoffset of log_array.p_offset.array) {
         _2ndarray.push(u32(patchoffset + offset_mid))
-        // if (u32(patchoffset + offset_mid) === 0) {
-        //     console.log(patchoffset,offset_mid)
-        // }
     }
     log_array.p_offset.pointers = _2ndarray.slice(0)
 
@@ -1707,6 +1704,8 @@ function get_hwvx_proto_model_anims_1(o) {
     for (let i = 0; i < u32(o + 48); i++) {
         ö(u32(o + 36) + (i * 16), get_hwvx_proto_model_anims_1_36, 'n')
     }
+        ö(u32(o + 36), get_hwvx_proto_model_anims_1_36test, 'n')
+
     u32(o + 44) && ß('p_offset', u32(o + 44), offset_mid);
     for (let i = 0; i < u32(o + 16); i++) {
         ö(u32(o + 44) + (i * 28), get_hwvx_proto_model_anims_1_44, 'n')
@@ -1728,6 +1727,9 @@ function get_hwvx_proto_model_anims_1_32(o) {// if (f32(o + 0) !== -10 || f32(o 
 
 }
 function get_hwvx_proto_model_anims_1_36(o) {// ü(1, [f32, 0, f32, 4, f32, 8, f32, 12], o)
+}
+function get_hwvx_proto_model_anims_1_36test(o) {
+    ü(3, [f32, 0, f32, 4, f32, 8, f32, 12], o)
 }
 function get_hwvx_proto_model_anims_1_44(o) {// ü(1, [f32, 0, f32, 4, f32, 8, f32, 12, f32, 16, f32, 20], o)
 }
