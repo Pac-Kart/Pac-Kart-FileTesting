@@ -224,9 +224,9 @@ function get_hwvx_proto_datapack(o) {
         // if (u32(o+48)) {
         //     console.log("???",u32(o+48),u32(o+60))
         // }
-        // if (u32(o + 24) !== 16) {
-        // get_hwvx_proto_texture_basic(offset_mid,offset_mid + u32(o + 24))
-        // }
+        if (u32(o + 24) !== 16) {
+        get_hwvx_proto_texture_basic(offset_mid,offset_mid + u32(o + 24))
+        }
         break
     case 8:
         for (let i = 0; i < u32(o + 56); i++) {
@@ -957,7 +957,7 @@ function get_hwvx_proto_texture_basic(o, textureoffset) {
 function get_hwvx_proto_texture(o) {
     ö(u32(o + 8), get_hwvx_proto_texture_8)
 
-    // ü(1, [u16, 0,u16, 2, u16, 4,u16, 6, u32, 8, u32, 12], o)
+    ü(1, [u16, 0,u16, 2, u16, 4,u16, 6, u32, 8, u32, 12], o)
 }
 
 function get_hwvx_proto_texture_8(o) {//texture data
@@ -2012,7 +2012,7 @@ function get_hwvx_proto_car_228(o) {
 
 }
 function get_hwvx_proto_mysterious(o) {
-    // if (u32(o + 12) || u8(o + 19) || u32(o + 28))
+    if (u32(o + 12) || u8(o + 19) || u32(o + 28))
         ü(1, [f32, 0, f32, 4, f32, 8, u32, 12, u8, 16, u8, 17, u8, 18, u8, 19, f32, 20, u32, 24, u32, 28], o)
 
     switch (u8(o + 16)) {
@@ -2073,7 +2073,7 @@ function get_hwvx_proto_strange_32(o) {
 }
 
 function get_hwvx_proto_mysterious_24t5(o) {
-    if (u32(o + 0) || u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 36) || u32(o + 40))
+    // if (u32(o + 0) || u32(o + 4) || u32(o + 12) || u32(o + 16) || u32(o + 36) || u32(o + 40))
         ü(1, [u32, 0, u32, 4, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, ], o)
     ß('p_model', o, 8)
 
@@ -3018,7 +3018,7 @@ function get_hwvx_proto_interface_24(o) {
 
 }
 function get_hwvx_proto_interface_24_8(o) {
-    if (u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
+    // if (u32(o + 12) || u32(o + 16) || u32(o + 20) || u32(o + 24) || u32(o + 28) || u32(o + 32) || u32(o + 36) || u32(o + 40) || u32(o + 44) || u32(o + 48) || u32(o + 52) || u32(o + 56) || u32(o + 60))
         ü(1, [u32, 0, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 
     //17,15
@@ -3529,7 +3529,7 @@ function get_hwvx_proto_unknown_4_4t8_24(o) {
 }
 
 function get_hwvx_proto_asdf(o) {
-    if (u32(o + 32) || u32(o + 36) || u32(o + 40) || u8(o + 68) || u32(o + 80) || u32(o + 88) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136))
+    // if (u32(o + 32) || u32(o + 36) || u32(o + 40) || u8(o + 68) || u32(o + 80) || u32(o + 88) || u32(o + 96) || u32(o + 100) || u32(o + 104) || u32(o + 108) || u32(o + 124) || u32(o + 128) || u32(o + 132) || u32(o + 136))
         ü(1, [u8, 0, u8, 1, u8, 2, u8, 3, u8, 4, u8, 5, u8, 6, u8, 7, u32, 8, u32, 12, u32, 16, u32, 20, u32, 24, u32, 28, u32, 32, u32, 36, u32, 40, f32, 44, f32, 48, f32, 52, u32, 56, f32, 60, f32, 64, u8, 68, u8, 69, u8, 70, u8, 71, f32, 72, f32, 76, u32, 80, u32, 84, u32, 88, f32, 92, u32, 96, u32, 100, u32, 104, u32, 108, u32, 112, u32, 116, u32, 120, u32, 124, u32, 128, u32, 132, u32, 136, u32, 140, u32, 144, u32, 148, u32, 152, u32, 156, u32, 160, u32, 164, u32, 168, u32, 172, ], o)
 
     switch (u8(o + 4)) {
@@ -3906,7 +3906,9 @@ function get_hwvx_proto_sound_section(o) {
     ß('p_sound', o, 20)
 
     ö(u32(o + 24), get_hwvx_proto_sound_section_24)
-    ö(u32(o + 32), get_hwvx_proto_sound_section_32)
+    for (let i = 0; i < u32(o + 28); i++) {
+    ö(u32(o + 32) + (i*12), get_hwvx_proto_sound_section_32)
+    }
 
 }
 
@@ -3915,8 +3917,8 @@ function get_hwvx_proto_sound_section_24(o) {
         ü(1, [u32, 0, f32, 4, u32, 8], o)
 }
 function get_hwvx_proto_sound_section_32(o) {
-    if (u32(o + 4) || u32(o + 8))
-        ü(1, [f32, 0, u32, 4, u32, 8, u32, 12, ], o)
+    if (u8(o + 4))
+        ü(1, [f32, 0, u8, 4,u8, 5,u8, 6,u8, 7, f32, 8], o)
 }
 
 function get_hwvx_proto_geo_basic_0(o) {
@@ -3939,7 +3941,7 @@ function get_hwvx_proto_geo_list(o) {
 }
 
 function get_hwvx_proto_geo_list_4(o) {
-    if (u8(o + 15) !== 255)
+    // if (u8(o + 15) !== 255)
         ü(1, [u32, 0, u32, 4, u32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16], o)
 
     u32(o + 8) && ß('p_offset', u32(o + 8), offset_mid);
