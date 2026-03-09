@@ -1128,7 +1128,7 @@ function get_hwvx_proto_world(o) {
 
 }
 function get_hwvx_proto_world_4(o) {
-    if (u8(o + 12) !== 204 || u8(o + 13) !== 204 || u8(o + 14) !== 204 || u8(o + 15) !== 204 || u32(o + 56) || u32(o + 60))
+    // if (u8(o + 12) !== 204 || u8(o + 13) !== 204 || u8(o + 14) !== 204 || u8(o + 15) !== 204 || u32(o + 56) || u32(o + 60))
         ü(1, [f32, 0, f32, 4, f32, 8, u8, 12, u8, 13, u8, 14, u8, 15, u32, 16, u32, 20, u32, 24, u32, 28, f32, 32, f32, 36, f32, 40, u32, 44, u32, 48, u32, 52, u32, 56, u32, 60, ], o)
 
     u32(o + 16) && ß('p_offset', u32(o + 16), offset_mid);
@@ -1136,10 +1136,16 @@ function get_hwvx_proto_world_4(o) {
         ö(u32(o + 16) + (i * 56), get_hwvx_proto_world_4_16, 'n')
     }
     u32(o + 20) && ß('p_offset', u32(o + 20), offset_mid);
-    for (let i = 0; i < u32(o + 28); i++) {
+    for (let i = 0; i < u32(o + 24); i++) {
         ö(u32(o + 20) + (i * 4), get_hwvx_proto_world_4_20, 'n')
     }
+    // ö(u32(o + 20), get_hwvx_proto_world_4_20_test, 'n')
 
+
+}
+
+function get_hwvx_proto_world_4_20_test(o) {
+        ü(3, [u32, 0], o)
 }
 
 function get_hwvx_proto_world_4_16(o) {
